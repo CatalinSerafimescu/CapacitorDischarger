@@ -11,8 +11,13 @@ LV section: Q1 threshold, LED indicator, DVM divider, DVM Vcc, connector
 NFet.right() orientation: drain up, source down, gate to the right.
 BjtNpn orientation: base left, collector upper-right, emitter lower-right.
 """
+import sys
+import os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+
 import schemdraw
 import schemdraw.elements as elm
+from bom import LABEL
 
 schemdraw.use('svg')
 
@@ -37,15 +42,15 @@ with schemdraw.Drawing(show=False) as d:
 
     # Left column: D4(GND→PROBE_A), D1(PROBE_A→HV+)
     d.add(elm.Diode().up().at((0, GND_Y)).length(MID_Y))
-    rlabel(d, 0, MID_Y, GND_Y, 'D4\n1N4007')
+    rlabel(d, 0, MID_Y, GND_Y, LABEL['D4'])
     d.add(elm.Diode().up().at((0, MID_Y)).length(MID_Y))
-    rlabel(d, 0, HV_Y, MID_Y, 'D1\n1N4007')
+    rlabel(d, 0, HV_Y, MID_Y, LABEL['D1'])
 
     # Right column: D2(GND→PROBE_B), D3(PROBE_B→HV+)
     d.add(elm.Diode().up().at((4, GND_Y)).length(MID_Y))
-    d.add(elm.Label().at((4 - LABEL_OFST, (GND_Y + MID_Y) / 2)).label('D2\n1N4007', halign='right', valign='center'))
+    d.add(elm.Label().at((4 - LABEL_OFST, (GND_Y + MID_Y) / 2)).label(LABEL['D2'], halign='right', valign='center'))
     d.add(elm.Diode().up().at((4, MID_Y)).length(MID_Y))
-    d.add(elm.Label().at((4 - LABEL_OFST, (MID_Y + HV_Y) / 2)).label('D3\n1N4007', halign='right', valign='center'))
+    d.add(elm.Label().at((4 - LABEL_OFST, (MID_Y + HV_Y) / 2)).label(LABEL['D3'], halign='right', valign='center'))
 
     # PROBE_A / PROBE_B terminals
     d.add(elm.Dot().at((0, MID_Y)))
@@ -86,7 +91,7 @@ with schemdraw.Drawing(show=False) as d:
     for i in range(1, 6):
         top = cur[1]
         r = d.add(elm.Resistor().down().at(cur).length(EL))
-        rlabel(d, B1_X, top, r.end[1], f'R_slow{i}\n4.7kΩ/5W')
+        rlabel(d, B1_X, top, r.end[1], LABEL[f'R_slow{i}'])
         cur = r.end
     d.add(elm.Line().down().at(cur).toy(GND_Y))
     d.add(elm.Dot().at((B1_X, GND_Y)))
@@ -98,9 +103,9 @@ with schemdraw.Drawing(show=False) as d:
     R5_X = 11
     d.add(elm.Dot().at((R5_X, HV_Y)))
     R5e = d.add(elm.Resistor().down().at((R5_X, HV_Y)).length(EL))
-    rlabel(d, R5_X, HV_Y, R5e.end[1], 'R5\n470kΩ/0.6W')
+    rlabel(d, R5_X, HV_Y, R5e.end[1], LABEL['R5'])
     D9e = d.add(elm.Zener().down().length(EL))
-    rlabel(d, R5_X, R5e.end[1], D9e.end[1], 'D9\nBZX85C12\n12V')
+    rlabel(d, R5_X, R5e.end[1], D9e.end[1], LABEL['D9'])
     d.add(elm.Dot(open=True).at(D9e.end).label('GATE_CTRL', loc='right'))
 
     # ═══════════════════════════════════════════════════════════════
@@ -109,11 +114,11 @@ with schemdraw.Drawing(show=False) as d:
     B2_X = 14
     d.add(elm.Dot().at((B2_X, HV_Y)))
     RF = d.add(elm.Resistor().down().at((B2_X, HV_Y)).length(EL))
-    rlabel(d, B2_X, HV_Y, RF.end[1], 'R_fast\n50Ω/5W')
+    rlabel(d, B2_X, HV_Y, RF.end[1], LABEL['R_fast'])
 
     # NFet.right(): drain=top, source=bottom, gate to the right
     q2 = d.add(elm.NFet().right().anchor('drain').at(RF.end)
-               .label('Q2\nSTF7NM80\n800V 6A', loc='left'))
+               .label(LABEL['Q2'], loc='left'))
 
     # Q2 source → GND
     d.add(elm.Line().down().at(q2.source).toy(GND_Y))
@@ -122,7 +127,7 @@ with schemdraw.Drawing(show=False) as d:
     # R4 (100 Ω gate series) from Q2.gate rightward → GATE_CTRL net
     R4e = d.add(elm.Resistor().right().at(q2.gate).length(EL))
     d.add(elm.Label().at(((q2.gate[0] + R4e.end[0]) / 2, q2.gate[1] + 0.4))
-          .label('R4\n100Ω', halign='center', valign='bottom'))
+          .label(LABEL['R4'], halign='center', valign='bottom'))
     d.add(elm.Dot(open=True).at(R4e.end).label('GATE_CTRL', loc='right'))
 
     # ═══════════════════════════════════════════════════════════════
@@ -134,23 +139,23 @@ with schemdraw.Drawing(show=False) as d:
     B3_X = 20
     d.add(elm.Dot().at((B3_X, HV_Y)))
     R1e = d.add(elm.Resistor().down().at((B3_X, HV_Y)).length(EL))
-    rlabel(d, B3_X, HV_Y, R1e.end[1], 'R1\n1MΩ/0.6W')
+    rlabel(d, B3_X, HV_Y, R1e.end[1], LABEL['R1'])
     d.add(elm.Dot().at(R1e.end))
     NODE_A = R1e.end
 
     R2e = d.add(elm.Resistor().down().length(EL))
-    rlabel(d, B3_X, NODE_A[1], R2e.end[1], 'R2\n10kΩ')
+    rlabel(d, B3_X, NODE_A[1], R2e.end[1], LABEL['R2'])
     d.add(elm.Line().down().at(R2e.end).toy(GND_Y))
     d.add(elm.Dot().at((B3_X, GND_Y)))
 
     # R3: node_A → rightward → Q1 base
     R3e = d.add(elm.Resistor().right().at(NODE_A).length(EL))
     d.add(elm.Label().at((R3e.end[0] + 0.1, NODE_A[1] + 0.4))
-          .label('R3\n100kΩ', halign='left', valign='bottom'))
+          .label(LABEL['R3'], halign='left', valign='bottom'))
 
     # Q1 NPN — base anchored at R3 end
     q1 = d.add(elm.BjtNpn(circle=True).anchor('base').at(R3e.end)
-               .label('Q1\n2N3904', loc='right'))
+               .label(LABEL['Q1'], loc='right'))
 
     # Q1 emitter → GND
     d.add(elm.Line().down().at(q1.emitter).toy(GND_Y))
@@ -172,14 +177,14 @@ with schemdraw.Drawing(show=False) as d:
     for i in range(1, 4):
         top = cur[1]
         r = d.add(elm.Resistor().down().at(cur).length(EL))
-        rlabel(d, B4_X, top, r.end[1], f'R_LED{i}\n100kΩ/0.6W')
+        rlabel(d, B4_X, top, r.end[1], LABEL[f'R_LED{i}'])
         cur = r.end
     DZ_top = cur[1]
     DZ  = d.add(elm.Zener().down().at(cur).length(EL))
-    rlabel(d, B4_X, DZ_top, DZ.end[1], 'D_LED\nBZX55C8V2\n8.2V')
+    rlabel(d, B4_X, DZ_top, DZ.end[1], LABEL['D_LED'])
     L1_top = DZ.end[1]
     L1  = d.add(elm.LED().down().length(EL))
-    rlabel(d, B4_X, L1_top, L1.end[1], 'LED1\nRed  Vf≈2V')
+    rlabel(d, B4_X, L1_top, L1.end[1], LABEL['LED1'])
     d.add(elm.Line().down().at(L1.end).toy(GND_Y))
     d.add(elm.Dot().at((B4_X, GND_Y)))
 
@@ -193,13 +198,13 @@ with schemdraw.Drawing(show=False) as d:
     for i in range(1, 6):
         top = cur[1]
         r = d.add(elm.Resistor().down().at(cur).length(EL))
-        rlabel(d, B5_X, top, r.end[1], f'R_sig{i}\n100kΩ/0.6W')
+        rlabel(d, B5_X, top, r.end[1], LABEL[f'R_sig{i}'])
         cur = r.end
     NODE_SIG = cur
     d.add(elm.Dot().at(NODE_SIG))
     RSB_top = NODE_SIG[1]
     RSB = d.add(elm.Resistor().down().at(NODE_SIG).length(EL))
-    rlabel(d, B5_X, RSB_top, RSB.end[1], 'R_sig_bot\n100kΩ')
+    rlabel(d, B5_X, RSB_top, RSB.end[1], LABEL['R_sig_bot'])
     d.add(elm.Line().down().at(RSB.end).toy(GND_Y))
     d.add(elm.Dot().at((B5_X, GND_Y)))
 
@@ -212,7 +217,7 @@ with schemdraw.Drawing(show=False) as d:
     for i in range(1, 5):
         top = cur[1]
         r = d.add(elm.Resistor().down().at(cur).length(EL))
-        rlabel(d, B6_X, top, r.end[1], f'R_drop{i}\n15kΩ/3W')
+        rlabel(d, B6_X, top, r.end[1], LABEL[f'R_drop{i}'])
         cur = r.end
     NODE_VCC = cur
     d.add(elm.Dot().at(NODE_VCC))
@@ -220,7 +225,7 @@ with schemdraw.Drawing(show=False) as d:
     # D_Vcc Zener on main column
     DVcc_top = NODE_VCC[1]
     DVcc = d.add(elm.Zener().down().at(NODE_VCC).length(EL))
-    rlabel(d, B6_X, DVcc_top, DVcc.end[1], 'D_Vcc\n1N4744A\n15V')
+    rlabel(d, B6_X, DVcc_top, DVcc.end[1], LABEL['D_Vcc'])
     d.add(elm.Line().down().at(DVcc.end).toy(GND_Y))
     d.add(elm.Dot().at((B6_X, GND_Y)))
 
@@ -231,7 +236,7 @@ with schemdraw.Drawing(show=False) as d:
     CVcc_top = NODE_VCC[1]
     CVcc = d.add(elm.Capacitor().down().at((CVCC_X, NODE_VCC[1])).length(EL))
     d.add(elm.Label().at((CVCC_X + LABEL_OFST, (CVcc_top + CVcc.end[1]) / 2))
-          .label('C_Vcc\n10µF/25V', halign='left', valign='center'))
+          .label(LABEL['C_Vcc'], halign='left', valign='center'))
     d.add(elm.Line().down().at(CVcc.end).toy(GND_Y))
     d.add(elm.Line().right().at((CVCC_X, GND_Y)).tox(B6_X))
 
