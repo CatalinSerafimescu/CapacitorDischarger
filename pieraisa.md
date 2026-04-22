@@ -1,7 +1,9 @@
 # Source 1: Pieraisa Kit — Reference Analysis
 
+**Origin:** https://www.pieraisa.it/forum_share/KITS/Discharge.Tool.Datasheet.pdf
+**Based on Mend It Mark design** https://www.youtube.com/watch?v=pNkEchLQWDU
+
 **Rating:** 500V max, RDS = 120Ω min / 940Ω typ / 5640Ω max  
-**Origin:** Italian design, commercial kit
 
 ---
 

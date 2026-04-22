@@ -1,9 +1,8 @@
 # Capacitor Discharger DeLuxe — Schematic Analysis
 
-**Source:** Schematic_Capacitor-Discharger-deluxe_2025-12-22.pdf  
+**Source:** https://www.youtube.com/watch?v=5_QUd8iT3_g
+**Schematic** https://drive.google.com/drive/folders/14RW6CgVl9O2DX6QJiTpvzaHROwtBKmW-
 **Designer:** MAC / Electronics Old & New — REV 1.0  
-**Project born from:** frustration with slow resistor-based discharging of large caps (e.g. 33,000µF @ 80–100V)  
-**Target use case:** Large electrolytic capacitors typical in vintage electronics restoration and repair
 
 ---
 
