@@ -65,11 +65,11 @@ PROBE_B ─┘                                           │
 | Ref | Value / Part | Source |
 |---|---|---|
 | Q1 | 2N3904 NPN TO-92 | **buy** |
-| R1 | 1 MΩ / 0.6 W (or 2.2 MΩ ∥ 1.8 MΩ ≈ 989 kΩ from stock) | **stock or buy** |
+| R1 | 1 MΩ / 1 W / ≥600 V metal film | **buy** |
 | R2 | 10 kΩ / 0.25 W | **buy** |
 | R3 | 100 kΩ / 0.6 W (Q1 base) | **stock** (MF006FF1003A50) |
 | R4 | 100 Ω / 0.25 W (gate series) | **buy** |
-| R5 | 470 kΩ / 0.6 W (gate pull-up) | **buy** |
+| R5 | 470 kΩ / 1 W / ≥600 V metal film (gate pull-up) | **buy** |
 | D9 | 12 V / 1.3 W Zener (BZX85C12) | **buy** |
 
 - **Threshold**: V_th = 0.7 V · (R1 + R2) / R2 = **71 V**. Tune via R2 if desired.
@@ -117,10 +117,10 @@ PROBE_B ─┘                                           │
 | 1 | Q2 | 800 V N-MOSFET TO-220 | STF7NM80 / STP10NK80Z / IXTP2N80 |
 | 4 | D1–D4 | Bridge diodes | 1N4007 |
 | 1 | Q1 | Small-signal NPN | 2N3904 |
-| 1 | R1 | 1 MΩ / 0.6 W | any |
+| 1 | R1 | 1 MΩ / 1 W / ≥600 V metal film | any (verify voltage rating) |
 | 1 | R2 | 10 kΩ / 0.25 W | any |
 | 1 | R4 | 100 Ω / 0.25 W | any |
-| 1 | R5 | 470 kΩ / 0.6 W | any |
+| 1 | R5 | 470 kΩ / 1 W / ≥600 V metal film | any (verify voltage rating) |
 | 1 | D9 | 12 V / 1.3 W Zener | BZX85C12 |
 | 1 | D_LED | 8.2 V / 0.5 W Zener | BZX55C8V2 |
 | 1 | D_Vcc | 15 V / 1 W Zener | 1N4744A |
