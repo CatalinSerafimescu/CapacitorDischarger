@@ -105,13 +105,17 @@ BOM = [
     },
     {
         "refs": ["R5"],
-        "value": "470 kΩ / 0.6 W",
-        "schematic_label": "470kΩ/0.6W",
-        "description": "Resistor, metal film, 470 kΩ, 0.6 W, ±1%, 350 V, axial THT",
-        "part_number": "any 470 kΩ / 0.6 W axial metal film",
+        "value": "470 kΩ / 1 W",
+        "schematic_label": "470kΩ/1W",
+        "description": "Resistor, metal film, 470 kΩ, 1 W, ±1%, ≥600 V, axial THT",
+        "part_number": "any 470 kΩ / 1 W axial metal film rated ≥600 V",
         "qty": 1,
         "status": "buy",
-        "notes": "Gate pull-up from HV+ rail; combined with D9 to clamp gate at 12 V when Q1 is off.",
+        "notes": (
+            "Gate pull-up from HV+ rail; D9 clamps gate at 12 V when Q1 is off. "
+            "At 600 V: P = (600−12)²/470 k ≈ 0.74 W (74% of 1 W rating). "
+            "Sees up to ~590 V — verify part is rated ≥600 V working voltage."
+        ),
     },
     {
         "refs": ["D9"],
@@ -140,18 +144,16 @@ BOM = [
     },
     {
         "refs": ["R1"],
-        "value": "~1 MΩ / 0.6 W",
-        "schematic_label": "~1MΩ/0.6W",
-        "description": (
-            "Resistor, metal film, ~1 MΩ (990 kΩ), 0.6 W, ±1%, 350 V, axial THT. "
-            "Build as: 2.2 MΩ (MBB0207VC2204FCT00) ∥ 1.8 MΩ (MF0207FTE-1M8) = 989 kΩ."
-        ),
-        "part_number": "MBB0207VC2204FCT00 + MF0207FTE-1M8 (parallel, both sourced)",
+        "value": "1 MΩ / 1 W",
+        "schematic_label": "1MΩ/1W",
+        "description": "Resistor, metal film, 1 MΩ, 1 W, ±1%, ≥600 V, axial THT",
+        "part_number": "any 1 MΩ / 1 W axial metal film rated ≥600 V",
         "qty": 1,
-        "status": "sourced_partial",
+        "status": "buy",
         "notes": (
-            "Use one 2.2 MΩ in parallel with one 1.8 MΩ (both in stock) = 989 kΩ ≈ 1 MΩ. "
-            "Place in parallel on the PCB footprint (two axial resistors side by side)."
+            "Top of R1/R2 threshold divider. At 600 V: 0.36 W (36% of 1 W rating). "
+            "Sees up to ~600 V — verify part is rated ≥600 V working voltage. "
+            "V_th = 0.7 × (1 MΩ + 10 kΩ) / 10 kΩ ≈ 70.7 V."
         ),
     },
     {
@@ -353,7 +355,7 @@ BOM = [
         "part_number": "MF0207FTE-1M8",
         "qty": 0,
         "status": "sourced_unused",
-        "notes": "5 pcs sourced. Use one in parallel with 2.2 MΩ (below) to build R1 ≈ 990 kΩ.",
+        "notes": "5 pcs sourced. Not used in current design revision.",
     },
     {
         "refs": [],
@@ -363,7 +365,7 @@ BOM = [
         "part_number": "MBB0207VC2204FCT00",
         "qty": 0,
         "status": "sourced_unused",
-        "notes": "10 pcs sourced. Use one in parallel with 1.8 MΩ (above) to build R1 ≈ 990 kΩ.",
+        "notes": "10 pcs sourced. Not used in current design revision.",
     },
     {
         "refs": [],
