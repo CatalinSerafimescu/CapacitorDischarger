@@ -1,0 +1,8 @@
+SCENARIO: A_full_600V_1mF
+STATUS: PASS
+
+  [PASS] A: t(V<71V): t(V<71V) = 31.38 s  (expected 22-40 s)
+  [PASS] A: t(V<10V): t(V<10V) = 31.49 s  (expected 22-42 s)
+  [PASS] A: max I_slow: max |I(V_islow)| = 25.53 mA  (expected 23.0-28.0 mA)
+  [PASS] A: max I_fast = 1.45 A  (expected > 1 A)
+  [PASS] A: DVM ratio max error = 0.00%  (tol 1%)

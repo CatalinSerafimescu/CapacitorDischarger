@@ -1,0 +1,5 @@
+SCENARIO: C_mid_100V_100uF
+STATUS: PASS
+
+  [PASS] C: fast path on at t = 0.431 s  (expected < 1.5 s)
+  [PASS] C: t(V<10V): t(V<10V) = 0.44 s  (expected 0-3 s)

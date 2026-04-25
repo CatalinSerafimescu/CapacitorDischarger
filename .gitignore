@@ -1,3 +1,4 @@
 blocks/gen_led_indicator.py
 blocks/led_indicator.svg
 .claude/
+**__pycache__/

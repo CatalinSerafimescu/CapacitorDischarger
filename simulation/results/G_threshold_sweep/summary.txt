@@ -1,0 +1,6 @@
+SCENARIO: G_threshold_sweep
+STATUS: PASS
+
+  [PASS] G: V(n_gate) at HVp<30V = 9.36 V  (expected >8 V)
+  [PASS] G: V(n_gate) at HVp>120V = 0.11 V  (expected <1 V)
+  [PASS] G: gate threshold = 74.5 V  (expected 68-77 V)

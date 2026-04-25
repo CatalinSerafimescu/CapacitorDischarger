@@ -1,0 +1,8 @@
+SCENARIO: F_steady_state_600V
+STATUS: PASS
+
+  [PASS] F: I_slow @1s: I(V_islow) at t=1.0s = 0.026  (expected 0.0242-0.0268)
+  [PASS] F: I_drop @1s: I(V_idrop) at t=1.0s = 0.010  (expected 0.00926-0.01024)
+  [PASS] F: V(n_vcc) @1s: V(n_vcc) at t=1.0s = 15.045  (expected 14.5-15.5)
+  [PASS] F: V(n_sigout) @1s: V(n_sigout) at t=1.0s = 99.933  (expected 98-102)
+  [PASS] F: V(n_gate) @1s (Q2 off): V(n_gate) at t=1.0s = 0.102  (expected 0-1.0)

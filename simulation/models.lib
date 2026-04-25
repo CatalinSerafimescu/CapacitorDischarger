@@ -1,0 +1,36 @@
+* ============================================================
+* Device models — 600 V Capacitor Discharger
+* ============================================================
+
+* ── Rectifier diode (bridge D1-D4) ──────────────────────────
+.model D1N4007 D BV=1000 IS=1e-9 N=2 RS=0.05
+
+* ── Zener diodes ─────────────────────────────────────────────
+* BZX85C12 — 12 V, 1.3 W (gate clamp D9)
+.model DZ12 D BV=12 IBV=5m N=1.5 RS=5
+
+* BZX55C8V2 — 8.2 V, 0.5 W (LED chain D_LED)
+.model DZ8V2 D BV=8.2 IBV=5m N=1.5 RS=10
+
+* 1N4744A — 15 V, 1 W (DVM Vcc clamp D_Vcc)
+.model DZ15 D BV=15 IBV=5m N=1.5 RS=5
+
+* ── LED (red, Vf ≈ 2 V) ──────────────────────────────────────
+.model DLED D IS=1e-20 N=2 RS=5
+
+* ── NPN BJT: 2N3904 (threshold detector Q1) ─────────────────
+.model Q2N3904 NPN IS=1.0e-14 XTI=3 EG=1.11 VAF=74.03 BF=300
++  ISE=6.734e-15 NE=1.259 IKF=66.78e-3 XTB=1.5
++  BR=0.7372 ISC=1.32e-13 NC=2 IKR=80e-3
++  RC=1 CJC=3.638e-12 MJC=0.3085 VJC=0.75 FC=0.5
++  CJE=4.493e-12 MJE=0.2593 VJE=0.75 TR=239.5e-9 TF=301.2e-12
++  ITF=0.4 VTF=4 XTF=2 RB=10
+
+* ── N-channel MOSFET: STF7NM80 (fast-path switch Q2) ────────
+* Generic 800 V N-MOSFET; replace with vendor model if available
+* Vto=4V, Kp=2 A/V², Rds=1.7 Ω, Vds=800V
+.model STF7NM80 NMOS LEVEL=1 VTO=4 KP=2 LAMBDA=0.01
++  RD=0.85 RS=0.05 RG=2 CGS=800p CGD=100p
++  IS=1e-14 N=1 BV=800 IBV=1e-6
+
+.end
