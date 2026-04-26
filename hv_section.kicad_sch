@@ -1,0 +1,598 @@
+(kicad_sch
+  (version 20231120)
+  (generator "claude-codegen")
+  (generator_version "1.0")
+  (uuid "a1000000-0001-0001-0001-000000000001")
+  (paper "A3")
+  (title_block
+    (title "Capacitor Discharger — HV Section")
+    (rev "1.0")
+    (company "DIY")
+  )
+
+  (lib_symbols
+
+    ;; ── Connector 1×01 (banana socket / single pin) ──────────────────────
+    (symbol "Connector:Conn_01x01_Pin"
+      (pin_names (offset 1.016) hide)
+      (in_bom yes) (on_board yes)
+      (property "Reference" "J" (at 0 2.54 0) (effects (font (size 1.27 1.27))))
+      (property "Value" "Conn_01x01_Pin" (at 0 -2.54 0) (effects (font (size 1.27 1.27))))
+      (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (symbol "Conn_01x01_Pin_0_1"
+        (polyline (pts (xy 0.6096 0.508) (xy 0 0) (xy 0.6096 -0.508)) (stroke (width 0) (type default)) (fill (type none)))
+        (rectangle (start -0.254 -1.524) (end 0 1.524) (stroke (width 0) (type default)) (fill (type background)))
+      )
+      (symbol "Conn_01x01_Pin_1_1"
+        (pin passive line (at -2.54 0 0) (length 2.54)
+          (name "Pin_1" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27))))
+        )
+      )
+    )
+
+    ;; ── Screw terminal 2-pin ─────────────────────────────────────────────
+    (symbol "Connector:Screw_Terminal_01x02"
+      (pin_names (offset 1.016) hide)
+      (in_bom yes) (on_board yes)
+      (property "Reference" "J" (at 0 3.81 0) (effects (font (size 1.27 1.27))))
+      (property "Value" "Screw_Terminal_01x02" (at 0 -3.81 0) (effects (font (size 1.27 1.27))))
+      (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (symbol "Screw_Terminal_01x02_0_1"
+        (polyline (pts (xy 0.6096 1.0414) (xy 0 0.5334) (xy 0.6096 0.0254)) (stroke (width 0) (type default)) (fill (type none)))
+        (polyline (pts (xy 0.6096 -0.0254) (xy 0 -0.5334) (xy 0.6096 -1.0414)) (stroke (width 0) (type default)) (fill (type none)))
+        (rectangle (start -0.254 -2.032) (end 0 2.032) (stroke (width 0) (type default)) (fill (type background)))
+      )
+      (symbol "Screw_Terminal_01x02_1_1"
+        (pin passive line (at -2.54 1.27 0) (length 2.54)
+          (name "Pin_1" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27))))
+        )
+        (pin passive line (at -2.54 -1.27 0) (length 2.54)
+          (name "Pin_2" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27))))
+        )
+      )
+    )
+
+    ;; ── Diode (1N4007) ───────────────────────────────────────────────────
+    (symbol "Device:D"
+      (pin_names (offset 0.254) hide)
+      (in_bom yes) (on_board yes)
+      (property "Reference" "D" (at 0 2.54 0) (effects (font (size 1.27 1.27))))
+      (property "Value" "D" (at 0 -2.54 0) (effects (font (size 1.27 1.27))))
+      (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (symbol "D_0_1"
+        (polyline (pts (xy -1.27 -1.27) (xy -1.27 1.27)) (stroke (width 0.254) (type default)) (fill (type none)))
+        (polyline (pts (xy -1.27 0) (xy 1.27 0)) (stroke (width 0.254) (type default)) (fill (type none)))
+        (polyline (pts (xy 1.27 -1.27) (xy 1.27 1.27) (xy -1.27 0) (xy 1.27 -1.27)) (stroke (width 0.254) (type default)) (fill (type outline)))
+      )
+      (symbol "D_1_1"
+        (pin passive line (at -3.81 0 0) (length 2.54)
+          (name "A" (effects (font (size 1.27 1.27))))
+          (number "A" (effects (font (size 1.27 1.27))))
+        )
+        (pin passive line (at 3.81 0 180) (length 2.54)
+          (name "K" (effects (font (size 1.27 1.27))))
+          (number "K" (effects (font (size 1.27 1.27))))
+        )
+      )
+    )
+
+    ;; ── Resistor large (5W power) ─────────────────────────────────────────
+    (symbol "Device:R_Large"
+      (pin_names (offset 0) hide)
+      (in_bom yes) (on_board yes)
+      (property "Reference" "R" (at 1.651 0 90) (effects (font (size 1.27 1.27))))
+      (property "Value" "R_Large" (at -1.651 0 90) (effects (font (size 1.27 1.27))))
+      (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (symbol "R_Large_0_1"
+        (rectangle (start -1.016 -2.54) (end 1.016 2.54) (stroke (width 0.254) (type default)) (fill (type none)))
+      )
+      (symbol "R_Large_1_1"
+        (pin passive line (at 0 3.81 270) (length 1.27)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27))))
+        )
+        (pin passive line (at 0 -3.81 90) (length 1.27)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27))))
+        )
+      )
+    )
+
+    ;; ── N-MOSFET (GDS) ───────────────────────────────────────────────────
+    (symbol "Device:Q_NMOS_GDS"
+      (in_bom yes) (on_board yes)
+      (property "Reference" "Q" (at 5.08 1.27 0) (effects (font (size 1.27 1.27))))
+      (property "Value" "Q_NMOS_GDS" (at 5.08 -1.27 0) (effects (font (size 1.27 1.27))))
+      (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (symbol "Q_NMOS_GDS_0_1"
+        (polyline (pts (xy 0 -2.54) (xy 0 -1.905)) (stroke (width 0) (type default)) (fill (type none)))
+        (polyline (pts (xy 0 1.905) (xy 0 2.54)) (stroke (width 0) (type default)) (fill (type none)))
+        (polyline (pts (xy 0 -1.905) (xy 0 1.905)) (stroke (width 0.508) (type default)) (fill (type none)))
+        (polyline (pts (xy -2.54 0) (xy -1.27 0) (xy -1.27 1.27) (xy 0 1.27)) (stroke (width 0) (type default)) (fill (type none)))
+        (polyline (pts (xy -2.54 -2.54) (xy -1.27 -2.54) (xy -1.27 -1.27) (xy 0 -1.27)) (stroke (width 0) (type default)) (fill (type none)))
+        (polyline (pts (xy -0.762 -2.032) (xy -0.762 2.032)) (stroke (width 0.508) (type default)) (fill (type none)))
+        (polyline (pts (xy -2.54 0) (xy -1.905 0)) (stroke (width 0) (type default)) (fill (type none)))
+        (polyline (pts (xy -1.905 0) (xy -0.762 0)) (stroke (width 0) (type default)) (fill (type none)))
+        (circle (center 0 0) (radius 2.905) (stroke (width 0.254) (type default)) (fill (type none)))
+        (polyline (pts (xy 0.762 -0.508) (xy 0 -1.27)) (stroke (width 0) (type default)) (fill (type none)))
+        (polyline (pts (xy 0 -1.27) (xy -0.508 -0.762)) (stroke (width 0) (type default)) (fill (type none)))
+      )
+      (symbol "Q_NMOS_GDS_1_1"
+        (pin input line (at -5.08 0 0) (length 2.54)
+          (name "G" (effects (font (size 1.27 1.27))))
+          (number "G" (effects (font (size 1.27 1.27))))
+        )
+        (pin passive line (at 0 5.08 270) (length 2.54)
+          (name "D" (effects (font (size 1.27 1.27))))
+          (number "D" (effects (font (size 1.27 1.27))))
+        )
+        (pin passive line (at 0 -5.08 90) (length 2.54)
+          (name "S" (effects (font (size 1.27 1.27))))
+          (number "S" (effects (font (size 1.27 1.27))))
+        )
+      )
+    )
+
+    ;; ── Power: GND ────────────────────────────────────────────────────────
+    (symbol "power:GND"
+      (power)
+      (pin_names (offset 0) hide)
+      (in_bom no) (on_board no)
+      (property "Reference" "#PWR" (at 0 -6.35 0) (effects (font (size 1.27 1.27)) hide))
+      (property "Value" "GND" (at 0 -3.81 0) (effects (font (size 1.27 1.27))))
+      (symbol "GND_0_1"
+        (polyline (pts (xy 0 0) (xy 0 -1.27) (xy 1.27 -1.27) (xy 0 -2.54) (xy -1.27 -1.27) (xy 0 -1.27)) (stroke (width 0) (type default)) (fill (type none)))
+      )
+      (symbol "GND_1_1"
+        (pin power_in line (at 0 0 270) (length 0)
+          (name "GND" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27))))
+        )
+      )
+    )
+
+  )
+  ;; ═══════════════════════════════════════════════════════════════════════
+  ;; CONNECTORS — J1 (banana +), J2 (banana −), J3 (screw A), J4 (screw B)
+  ;; ═══════════════════════════════════════════════════════════════════════
+
+  ;; J1 — banana socket (green, +) at (20, 30)
+  (symbol
+    (lib_id "Connector:Conn_01x01_Pin")
+    (at 20 30 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "a1000001-0001-0001-0001-000000000001")
+    (property "Reference" "J1" (at 20 27 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "SLB4-G-21" (at 20 32 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "a1000001-0001-0001-0001-000000000101"))
+    (instances (project "CapacitorDischarger" (path "/a1000000-0001-0001-0001-000000000001" (reference "J1") (unit 1))))
+  )
+
+  ;; J2 — banana socket (black, −) at (20, 50)
+  (symbol
+    (lib_id "Connector:Conn_01x01_Pin")
+    (at 20 50 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "a1000002-0001-0001-0001-000000000001")
+    (property "Reference" "J2" (at 20 47 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "SLB4-G-22" (at 20 52 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "a1000002-0001-0001-0001-000000000101"))
+    (instances (project "CapacitorDischarger" (path "/a1000000-0001-0001-0001-000000000001" (reference "J2") (unit 1))))
+  )
+
+  ;; J3 — screw terminal (probe A/B pair) at (20, 70)
+  (symbol
+    (lib_id "Connector:Screw_Terminal_01x02")
+    (at 20 70 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "a1000003-0001-0001-0001-000000000001")
+    (property "Reference" "J3" (at 20 66 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "MKDS5/2-9.5" (at 20 74 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-2_1x02_P5.00mm_Horizontal" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "a1000003-0001-0001-0001-000000000101"))
+    (pin "2" (uuid "a1000003-0001-0001-0001-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/a1000000-0001-0001-0001-000000000001" (reference "J3") (unit 1))))
+  )
+
+  ;; J4 — screw terminal (second pair) at (20, 90)
+  (symbol
+    (lib_id "Connector:Screw_Terminal_01x02")
+    (at 20 90 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "a1000004-0001-0001-0001-000000000001")
+    (property "Reference" "J4" (at 20 86 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "MKDS5/2-9.5" (at 20 94 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-2_1x02_P5.00mm_Horizontal" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "a1000004-0001-0001-0001-000000000101"))
+    (pin "2" (uuid "a1000004-0001-0001-0001-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/a1000000-0001-0001-0001-000000000001" (reference "J4") (unit 1))))
+  )
+
+  ;; ═══════════════════════════════════════════════════════════════════════
+  ;; BRIDGE RECTIFIER — D1 (top-left), D2 (top-right), D3 (bot-left), D4 (bot-right)
+  ;; Bridge centre at (65, 60). Diodes oriented to route current:
+  ;;   PROBE_A (top) → bridge → HV+
+  ;;   PROBE_B (bottom) → bridge → GND
+  ;; D1: anode=PROBE_A  cathode=HV+   at (55, 45) angle=0
+  ;; D2: anode=GND_node cathode=PROBE_A  at (75, 45) angle=0  (reverse branch)
+  ;; D3: anode=PROBE_B  cathode=HV+   at (55, 75) angle=0
+  ;; D4: anode=GND_node cathode=PROBE_B  at (75, 75) angle=0
+  ;;
+  ;; Standard bridge topology:
+  ;;   AC1 = PROBE_A, AC2 = PROBE_B
+  ;;   DC+ = HV+,  DC- = GND
+  ;;   D1: A=AC1 K=DC+
+  ;;   D2: A=DC- K=AC1
+  ;;   D3: A=AC2 K=DC+
+  ;;   D4: A=DC- K=AC2
+  ;; ═══════════════════════════════════════════════════════════════════════
+
+  ;; D1 — at (60, 45), horizontal, A left = PROBE_A, K right = HV+
+  (symbol
+    (lib_id "Device:D")
+    (at 60 45 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "a1000010-0001-0001-0001-000000000001")
+    (property "Reference" "D1" (at 60 42 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "1N4007" (at 60 48 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "A" (uuid "a1000010-0001-0001-0001-000000000101"))
+    (pin "K" (uuid "a1000010-0001-0001-0001-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/a1000000-0001-0001-0001-000000000001" (reference "D1") (unit 1))))
+  )
+
+  ;; D2 — at (60, 75), horizontal, A left = PROBE_B, K right = HV+
+  (symbol
+    (lib_id "Device:D")
+    (at 60 75 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "a1000011-0001-0001-0001-000000000001")
+    (property "Reference" "D2" (at 60 72 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "1N4007" (at 60 78 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "A" (uuid "a1000011-0001-0001-0001-000000000101"))
+    (pin "K" (uuid "a1000011-0001-0001-0001-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/a1000000-0001-0001-0001-000000000001" (reference "D2") (unit 1))))
+  )
+
+  ;; D3 — at (75, 45), horizontal, A left = GND_node, K right = PROBE_A (return path)
+  (symbol
+    (lib_id "Device:D")
+    (at 75 45 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "a1000012-0001-0001-0001-000000000001")
+    (property "Reference" "D3" (at 75 42 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "1N4007" (at 75 48 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "A" (uuid "a1000012-0001-0001-0001-000000000101"))
+    (pin "K" (uuid "a1000012-0001-0001-0001-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/a1000000-0001-0001-0001-000000000001" (reference "D3") (unit 1))))
+  )
+
+  ;; D4 — at (75, 75), horizontal, A left = GND_node, K right = PROBE_B (return path)
+  (symbol
+    (lib_id "Device:D")
+    (at 75 75 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "a1000013-0001-0001-0001-000000000001")
+    (property "Reference" "D4" (at 75 72 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "1N4007" (at 75 78 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "A" (uuid "a1000013-0001-0001-0001-000000000101"))
+    (pin "K" (uuid "a1000013-0001-0001-0001-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/a1000000-0001-0001-0001-000000000001" (reference "D4") (unit 1))))
+  )
+
+  ;; ═══════════════════════════════════════════════════════════════════════
+  ;; SLOW DISCHARGE PATH — R_slow1..5 in series, HV+ (100,30) → GND (100,130)
+  ;; Each resistor 10mm tall body + 10mm spacing → placed at y=40,60,80,100,120
+  ;; ═══════════════════════════════════════════════════════════════════════
+
+  (symbol
+    (lib_id "Device:R_Large")
+    (at 120 45 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "a1000020-0001-0001-0001-000000000001")
+    (property "Reference" "R_slow1" (at 123 45 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Value" "4k7 5W" (at 123 47.5 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Footprint" "Resistor_THT:R_Axial_Power_L38mm_W10mm_P41.91mm" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "a1000020-0001-0001-0001-000000000101"))
+    (pin "2" (uuid "a1000020-0001-0001-0001-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/a1000000-0001-0001-0001-000000000001" (reference "R_slow1") (unit 1))))
+  )
+
+  (symbol
+    (lib_id "Device:R_Large")
+    (at 120 62 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "a1000021-0001-0001-0001-000000000001")
+    (property "Reference" "R_slow2" (at 123 62 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Value" "4k7 5W" (at 123 64.5 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Footprint" "Resistor_THT:R_Axial_Power_L38mm_W10mm_P41.91mm" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "a1000021-0001-0001-0001-000000000101"))
+    (pin "2" (uuid "a1000021-0001-0001-0001-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/a1000000-0001-0001-0001-000000000001" (reference "R_slow2") (unit 1))))
+  )
+
+  (symbol
+    (lib_id "Device:R_Large")
+    (at 120 79 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "a1000022-0001-0001-0001-000000000001")
+    (property "Reference" "R_slow3" (at 123 79 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Value" "4k7 5W" (at 123 81.5 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Footprint" "Resistor_THT:R_Axial_Power_L38mm_W10mm_P41.91mm" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "a1000022-0001-0001-0001-000000000101"))
+    (pin "2" (uuid "a1000022-0001-0001-0001-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/a1000000-0001-0001-0001-000000000001" (reference "R_slow3") (unit 1))))
+  )
+
+  (symbol
+    (lib_id "Device:R_Large")
+    (at 120 96 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "a1000023-0001-0001-0001-000000000001")
+    (property "Reference" "R_slow4" (at 123 96 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Value" "4k7 5W" (at 123 98.5 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Footprint" "Resistor_THT:R_Axial_Power_L38mm_W10mm_P41.91mm" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "a1000023-0001-0001-0001-000000000101"))
+    (pin "2" (uuid "a1000023-0001-0001-0001-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/a1000000-0001-0001-0001-000000000001" (reference "R_slow4") (unit 1))))
+  )
+
+  (symbol
+    (lib_id "Device:R_Large")
+    (at 120 113 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "a1000024-0001-0001-0001-000000000001")
+    (property "Reference" "R_slow5" (at 123 113 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Value" "4k7 5W" (at 123 115.5 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Footprint" "Resistor_THT:R_Axial_Power_L38mm_W10mm_P41.91mm" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "a1000024-0001-0001-0001-000000000101"))
+    (pin "2" (uuid "a1000024-0001-0001-0001-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/a1000000-0001-0001-0001-000000000001" (reference "R_slow5") (unit 1))))
+  )
+
+  ;; ═══════════════════════════════════════════════════════════════════════
+  ;; FAST DISCHARGE PATH — R_fast (160,60) vertical, Q2 (175,80)
+  ;; ═══════════════════════════════════════════════════════════════════════
+
+  (symbol
+    (lib_id "Device:R_Large")
+    (at 160 55 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "a1000030-0001-0001-0001-000000000001")
+    (property "Reference" "R_fast" (at 163 55 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Value" "50R 5W" (at 163 57.5 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Footprint" "Resistor_THT:R_Axial_Power_L38mm_W10mm_P41.91mm" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "a1000030-0001-0001-0001-000000000101"))
+    (pin "2" (uuid "a1000030-0001-0001-0001-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/a1000000-0001-0001-0001-000000000001" (reference "R_fast") (unit 1))))
+  )
+
+  ;; Q2 — MOSFET STF7NM80, D at top (drain connected to R_fast bottom), S at bottom → GND
+  (symbol
+    (lib_id "Device:Q_NMOS_GDS")
+    (at 160 80 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "a1000031-0001-0001-0001-000000000001")
+    (property "Reference" "Q2" (at 165 78 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "STF7NM80" (at 165 80.5 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "Package_TO_SOT_THT:TO-220-3_Vertical" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "G" (uuid "a1000031-0001-0001-0001-000000000101"))
+    (pin "D" (uuid "a1000031-0001-0001-0001-000000000102"))
+    (pin "S" (uuid "a1000031-0001-0001-0001-000000000103"))
+    (instances (project "CapacitorDischarger" (path "/a1000000-0001-0001-0001-000000000001" (reference "Q2") (unit 1))))
+  )
+
+  ;; ═══════════════════════════════════════════════════════════════════════
+  ;; GND POWER SYMBOLS
+  ;; ═══════════════════════════════════════════════════════════════════════
+
+  ;; GND at bottom of R_slow5 (120, 120)
+  (symbol
+    (lib_id "power:GND")
+    (at 120 123 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "a1000040-0001-0001-0001-000000000001")
+    (property "Reference" "#PWR01" (at 120 129 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 120 126 0) (effects (font (size 1.27 1.27))))
+    (pin "1" (uuid "a1000040-0001-0001-0001-000000000101"))
+    (instances (project "CapacitorDischarger" (path "/a1000000-0001-0001-0001-000000000001" (reference "#PWR01") (unit 1))))
+  )
+
+  ;; GND at Q2 source (160, 92)
+  (symbol
+    (lib_id "power:GND")
+    (at 160 92 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "a1000041-0001-0001-0001-000000000001")
+    (property "Reference" "#PWR02" (at 160 98 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 160 95 0) (effects (font (size 1.27 1.27))))
+    (pin "1" (uuid "a1000041-0001-0001-0001-000000000101"))
+    (instances (project "CapacitorDischarger" (path "/a1000000-0001-0001-0001-000000000001" (reference "#PWR02") (unit 1))))
+  )
+
+  ;; GND at bridge bottom node (67.5, 82)
+  (symbol
+    (lib_id "power:GND")
+    (at 67.5 87 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "a1000042-0001-0001-0001-000000000001")
+    (property "Reference" "#PWR03" (at 67.5 93 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 67.5 90 0) (effects (font (size 1.27 1.27))))
+    (pin "1" (uuid "a1000042-0001-0001-0001-000000000101"))
+    (instances (project "CapacitorDischarger" (path "/a1000000-0001-0001-0001-000000000001" (reference "#PWR03") (unit 1))))
+  )
+
+  ;; GND at J2 (probe −) (20, 55)
+  (symbol
+    (lib_id "power:GND")
+    (at 20 58 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "a1000043-0001-0001-0001-000000000001")
+    (property "Reference" "#PWR04" (at 20 64 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 20 61 0) (effects (font (size 1.27 1.27))))
+    (pin "1" (uuid "a1000043-0001-0001-0001-000000000101"))
+    (instances (project "CapacitorDischarger" (path "/a1000000-0001-0001-0001-000000000001" (reference "#PWR04") (unit 1))))
+  )
+
+  ;; GND at J4 pin2 (20, 93.27)
+  (symbol
+    (lib_id "power:GND")
+    (at 20 96 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "a1000044-0001-0001-0001-000000000001")
+    (property "Reference" "#PWR05" (at 20 102 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 20 99 0) (effects (font (size 1.27 1.27))))
+    (pin "1" (uuid "a1000044-0001-0001-0001-000000000101"))
+    (instances (project "CapacitorDischarger" (path "/a1000000-0001-0001-0001-000000000001" (reference "#PWR05") (unit 1))))
+  )
+
+  ;; ═══════════════════════════════════════════════════════════════════════
+  ;; WIRES
+  ;; ═══════════════════════════════════════════════════════════════════════
+
+  ;; J1 pin1 → PROBE_A node at (30, 30) horizontal
+  (wire (pts (xy 22.54 30) (xy 35 30)) (stroke (width 0) (type default)) (uuid "w0001"))
+  ;; J2 pin1 → GND short stub
+  (wire (pts (xy 22.54 50) (xy 25 50)) (stroke (width 0) (type default)) (uuid "w0002"))
+  (wire (pts (xy 25 50) (xy 25 58)) (stroke (width 0) (type default)) (uuid "w0003"))
+
+  ;; J3 pin1 → PROBE_A at y=68.73 → join (35,30)
+  (wire (pts (xy 22.54 68.73) (xy 35 68.73)) (stroke (width 0) (type default)) (uuid "w0004"))
+  (wire (pts (xy 35 68.73) (xy 35 30)) (stroke (width 0) (type default)) (uuid "w0005"))
+  ;; J3 pin2 → GND node
+  (wire (pts (xy 22.54 71.27) (xy 25 71.27)) (stroke (width 0) (type default)) (uuid "w0006"))
+  (wire (pts (xy 25 71.27) (xy 25 58)) (stroke (width 0) (type default)) (uuid "w0007"))
+
+  ;; J4 pin1 → PROBE_A node (35,30)
+  (wire (pts (xy 22.54 88.73) (xy 35 88.73)) (stroke (width 0) (type default)) (uuid "w0008"))
+  (wire (pts (xy 35 88.73) (xy 35 30)) (stroke (width 0) (type default)) (uuid "w0009"))
+  ;; J4 pin2 → GND
+  (wire (pts (xy 22.54 91.27) (xy 25 91.27)) (stroke (width 0) (type default)) (uuid "w0010"))
+  (wire (pts (xy 25 91.27) (xy 25 96)) (stroke (width 0) (type default)) (uuid "w0011"))
+
+  ;; PROBE_A bus (35,30) → D1 anode (56.19, 45): go right then down
+  (wire (pts (xy 35 30) (xy 45 30)) (stroke (width 0) (type default)) (uuid "w0020"))
+  (wire (pts (xy 45 30) (xy 45 45)) (stroke (width 0) (type default)) (uuid "w0021"))
+  (wire (pts (xy 45 45) (xy 56.19 45)) (stroke (width 0) (type default)) (uuid "w0022"))
+
+  ;; PROBE_A also → D3 cathode (right side of D3 at 78.81, 45): connects PROBE_A to D3 K
+  (wire (pts (xy 45 45) (xy 56.19 45)) (stroke (width 0) (type default)) (uuid "w0023"))
+  ;; Actually D3 K is at (78.81,45) — wire from PROBE_A node through D1 K to D3 K
+  ;; D1 K = (63.81, 45), D3 K = (78.81, 45) — both cathodes meet at HV+ bus
+  (wire (pts (xy 63.81 45) (xy 78.81 45)) (stroke (width 0) (type default)) (uuid "w0024"))
+  ;; HV+ bus right to R_slow1 pin1 (120, 41.19)
+  (wire (pts (xy 78.81 45) (xy 100 45)) (stroke (width 0) (type default)) (uuid "w0025"))
+  (wire (pts (xy 100 45) (xy 120 41.19)) (stroke (width 0) (type default)) (uuid "w0026"))
+  ;; HV+ bus branch to R_fast pin1
+  (wire (pts (xy 100 45) (xy 100 35)) (stroke (width 0) (type default)) (uuid "w0027"))
+  (wire (pts (xy 100 35) (xy 160 35)) (stroke (width 0) (type default)) (uuid "w0028"))
+  (wire (pts (xy 160 35) (xy 160 51.19)) (stroke (width 0) (type default)) (uuid "w0029"))
+
+  ;; PROBE_B — from J2/J3/J4 minus → bridge
+  ;; GND-referenced probe node at y=75 left side: D2 A and D4 A are the PROBE_B entry
+  ;; Actually in full-bridge: D2 anode = PROBE_B, D4 anode = PROBE_B
+  ;; J2 connects to GND (probe minus = circuit GND in this design)
+  ;; PROBE_B node at (45, 75)
+  (wire (pts (xy 35 30) (xy 35 75)) (stroke (width 0) (type default)) (uuid "w0030"))
+  ;; No — PROBE_B is the negative probe, which for a full-bridge goes to the AC2 terminal.
+  ;; In this design J1=PROBE_A, J2=PROBE_B(−). Bridge AC1=A-probe, AC2=B-probe.
+  ;; J2 → PROBE_B node at (35,75)
+  (wire (pts (xy 22.54 50) (xy 35 50)) (stroke (width 0) (type default)) (uuid "w0031"))
+  (wire (pts (xy 35 50) (xy 35 75)) (stroke (width 0) (type default)) (uuid "w0032"))
+  ;; PROBE_B node → D2 anode (56.19, 75)
+  (wire (pts (xy 35 75) (xy 56.19 75)) (stroke (width 0) (type default)) (uuid "w0033"))
+  ;; D2 K → HV+ (same bus as D1 K): (63.81, 75) wire up to (63.81, 45) then join HV+ bus
+  (wire (pts (xy 63.81 75) (xy 63.81 45)) (stroke (width 0) (type default)) (uuid "w0034"))
+  ;; D4 anode (71.19, 75) ← from GND node (bridge DC−)
+  (wire (pts (xy 67.5 82) (xy 67.5 75)) (stroke (width 0) (type default)) (uuid "w0035"))
+  (wire (pts (xy 67.5 75) (xy 71.19 75)) (stroke (width 0) (type default)) (uuid "w0036"))
+  ;; D4 K (78.81, 75) → PROBE_B return: connects back to PROBE_B node at (35,75)? No.
+  ;; D4 K should connect to PROBE_B = (35,75)? No, D4 K goes to PROBE_B (AC2).
+  ;; In full bridge: D4 K = AC2 = PROBE_B
+  (wire (pts (xy 78.81 75) (xy 90 75)) (stroke (width 0) (type default)) (uuid "w0037"))
+  (wire (pts (xy 90 75) (xy 90 50)) (stroke (width 0) (type default)) (uuid "w0038"))
+  (wire (pts (xy 90 50) (xy 35 50)) (stroke (width 0) (type default)) (uuid "w0039"))
+  ;; D3 anode (56.19, 45) ← from GND node
+  (wire (pts (xy 67.5 82) (xy 67.5 45)) (stroke (width 0) (type default)) (uuid "w0040"))
+  ;; Actually D3 is bottom-left: A=GND_node, K=PROBE_A
+  ;; D3 at (75,45): A at (71.19,45), K at (78.81,45)
+  ;; D3 A (71.19,45) ← GND node at (67.5,82) — too far up
+  ;; Let me re-route: bridge GND node at (67.5, 45+82)/2 area...
+  ;; Simplify: bridge GND node is at (67.5, 60) centre; run short stubs.
+  ;; D3 A = (71.19,45), D4 A = (71.19,75) — both connect to bridge GND centre
+
+  ;; Bridge internal GND node at (67.5, 60)
+  (wire (pts (xy 67.5 60) (xy 67.5 82)) (stroke (width 0) (type default)) (uuid "w0041"))
+  (wire (pts (xy 67.5 60) (xy 71.19 45)) (stroke (width 0) (type default)) (uuid "w0042"))
+  (wire (pts (xy 67.5 60) (xy 71.19 75)) (stroke (width 0) (type default)) (uuid "w0043"))
+
+  ;; R_slow series chain wires (pin2 of one → pin1 of next)
+  ;; R_slow1 pin2 (120,48.81) → R_slow2 pin1 (120,58.19)
+  (wire (pts (xy 120 48.81) (xy 120 58.19)) (stroke (width 0) (type default)) (uuid "w0050"))
+  ;; R_slow2 pin2 (120,65.81) → R_slow3 pin1 (120,75.19)
+  (wire (pts (xy 120 65.81) (xy 120 75.19)) (stroke (width 0) (type default)) (uuid "w0051"))
+  ;; R_slow3 pin2 (120,82.81) → R_slow4 pin1 (120,92.19)
+  (wire (pts (xy 120 82.81) (xy 120 92.19)) (stroke (width 0) (type default)) (uuid "w0052"))
+  ;; R_slow4 pin2 (120,99.81) → R_slow5 pin1 (120,109.19)
+  (wire (pts (xy 120 99.81) (xy 120 109.19)) (stroke (width 0) (type default)) (uuid "w0053"))
+  ;; R_slow5 pin2 (120,116.81) → GND symbol (120,123)
+  (wire (pts (xy 120 116.81) (xy 120 123)) (stroke (width 0) (type default)) (uuid "w0054"))
+
+  ;; R_fast pin2 (160,58.81) → Q2 drain (160,75)
+  (wire (pts (xy 160 58.81) (xy 160 75)) (stroke (width 0) (type default)) (uuid "w0060"))
+  ;; Q2 source (160,85) → GND symbol (160,92)
+  (wire (pts (xy 160 85) (xy 160 92)) (stroke (width 0) (type default)) (uuid "w0061"))
+
+  ;; ═══════════════════════════════════════════════════════════════════════
+  ;; GLOBAL LABELS
+  ;; ═══════════════════════════════════════════════════════════════════════
+
+  ;; HV+ global label at (100, 35) — junction of slow and fast path top bus
+  (global_label "HV+"
+    (shape output)
+    (at 100 30 0)
+    (effects (font (size 1.27 1.27)) (justify left))
+    (uuid "gl0001")
+    (property "Intersheet References" "" (at 100 30 0) (effects (font (size 1.27 1.27)) hide))
+  )
+
+  ;; GATE global label — connects to Q2 gate (155,80)
+  (global_label "GATE"
+    (shape input)
+    (at 148 80 180)
+    (effects (font (size 1.27 1.27)) (justify right))
+    (uuid "gl0002")
+    (property "Intersheet References" "" (at 148 80 0) (effects (font (size 1.27 1.27)) hide))
+  )
+
+  ;; Wire: GATE global label → Q2 gate pin
+  (wire (pts (xy 148 80) (xy 155 80)) (stroke (width 0) (type default)) (uuid "w0070"))
+
+  ;; Wire: HV+ label → HV+ bus junction
+  (wire (pts (xy 100 30) (xy 100 35)) (stroke (width 0) (type default)) (uuid "w0071"))
+
+  ;; Junction at HV+ bus split (100,35)
+  (junction (at 100 35) (diameter 0) (color 0 0 0 0) (uuid "j0001"))
+  ;; Junction at PROBE_A bus (35,30) — J1, J3, J4 all meet here
+  (junction (at 35 30) (diameter 0) (color 0 0 0 0) (uuid "j0002"))
+  ;; Junction at PROBE_B bus (35,50) — J2 meets J3/J4 minus
+  (junction (at 35 50) (diameter 0) (color 0 0 0 0) (uuid "j0003"))
+  ;; Junction at bridge HV+ node (63.81,45) — D1K and D2K meet
+  (junction (at 63.81 45) (diameter 0) (color 0 0 0 0) (uuid "j0004"))
+  ;; Junction at bridge GND internal node (67.5,60)
+  (junction (at 67.5 60) (diameter 0) (color 0 0 0 0) (uuid "j0005"))
+
+  (sheet_instances
+    (path "/"
+      (page "1")
+    )
+  )
+)

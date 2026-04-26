@@ -1,0 +1,66 @@
+* 600V Capacitor Discharger — DC sweep (scenario G: threshold verification)
+* Template placeholders: G_threshold_sweep E:/Catalin/Work/Electronics/CapacitorDischarger_Claude/simulation/results/G_threshold_sweep/out.csv
+* V_HVp sweeps 0→200 V; confirms Q1/Q2 gate logic flips at ~70.7 V
+.include E:/Catalin/Work/Electronics/CapacitorDischarger_Claude/simulation/models.lib
+
+* ── Stimulus: voltage source sweeping HVp ───────────────────
+V_HVp HVp 0 0
+
+* ── Slow path (passive, loads HVp for accuracy) ─────────────
+R_slow1 HVp n_slow2 4.7k
+R_slow2 n_slow2 n_slow3 4.7k
+R_slow3 n_slow3 n_slow4 4.7k
+R_slow4 n_slow4 n_slow5 4.7k
+R_slow5 n_slow5 0       4.7k
+
+* ── Gate drive ───────────────────────────────────────────────
+R5      HVp n_gate_top 470k
+D_D9    0   n_gate_top DZ12
+R4      n_gate_top n_gate 100
+
+* ── Q1 threshold detector ────────────────────────────────────
+R1      HVp n_base_top 1Meg
+R2      n_base_top 0   10k
+R3      n_base_top n_q1b 100k
+Q1      n_gate_top n_q1b 0 Q2N3904
+
+* ── Fast path MOSFET (drain to separate load for I readout) ──
+R_fast  HVp n_drain 50
+M_Q2    n_drain n_gate 0 0 STF7NM80
+
+* ── LED chain ────────────────────────────────────────────────
+R_LED1  HVp n_led2 100k
+R_LED2  n_led2 n_led3 100k
+R_LED3  n_led3 n_dled 100k
+D_DLED  n_led_a n_dled DZ8V2
+D_LED1  n_led_a 0      DLED
+
+* ── DVM signal divider ───────────────────────────────────────
+R_sig1  HVp n_sig2 100k
+R_sig2  n_sig2 n_sig3 100k
+R_sig3  n_sig3 n_sig4 100k
+R_sig4  n_sig4 n_sig5 100k
+R_sig5  n_sig5 n_sigout 100k
+R_sigb  n_sigout 0     100k
+
+* ── DVM Vcc dropper ──────────────────────────────────────────
+R_drop1 HVp n_drop2 15k
+R_drop2 n_drop2 n_drop3 15k
+R_drop3 n_drop3 n_drop4 15k
+R_drop4 n_drop4 n_vcc   15k
+D_DVcc  0       n_vcc   DZ15
+C_Vcc   n_vcc 0 10u
+R_dvm_load n_vcc 0 5k
+
+* ── DC sweep ─────────────────────────────────────────────────
+.dc V_HVp 0 200 0.5
+
+.save V(HVp) V(n_gate) V(n_gate_top) V(n_sigout) V(n_vcc) V(n_led_a)
+
+.control
+run
+wrdata E:/Catalin/Work/Electronics/CapacitorDischarger_Claude/simulation/results/G_threshold_sweep/out.csv V(HVp) V(n_gate) V(n_gate_top) V(n_sigout) V(n_vcc) V(n_led_a)
+quit
+.endc
+
+.end

@@ -1,0 +1,1040 @@
+(kicad_sch
+  (version 20231120)
+  (generator "claude-codegen")
+  (generator_version "1.0")
+  (uuid "b2000000-0002-0002-0002-000000000002")
+  (paper "A3")
+  (title_block
+    (title "Capacitor Discharger — LV Section")
+    (rev "1.0")
+    (company "DIY")
+  )
+
+  (lib_symbols
+
+    ;; ── Device:R (standard 0.25W / 0.6W axial) ───────────────────────────
+    (symbol "Device:R"
+      (pin_names (offset 0) hide)
+      (in_bom yes) (on_board yes)
+      (property "Reference" "R" (at 1.651 0 90) (effects (font (size 1.27 1.27))))
+      (property "Value" "R" (at -1.651 0 90) (effects (font (size 1.27 1.27))))
+      (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (symbol "R_0_1"
+        (rectangle (start -1.016 -1.524) (end 1.016 1.524) (stroke (width 0.254) (type default)) (fill (type none)))
+      )
+      (symbol "R_1_1"
+        (pin passive line (at 0 2.54 270) (length 1.016)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27))))
+        )
+        (pin passive line (at 0 -2.54 90) (length 1.016)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27))))
+        )
+      )
+    )
+
+    ;; ── Device:R_Large (1W / 2W+ power axial) ────────────────────────────
+    (symbol "Device:R_Large"
+      (pin_names (offset 0) hide)
+      (in_bom yes) (on_board yes)
+      (property "Reference" "R" (at 1.651 0 90) (effects (font (size 1.27 1.27))))
+      (property "Value" "R_Large" (at -1.651 0 90) (effects (font (size 1.27 1.27))))
+      (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (symbol "R_Large_0_1"
+        (rectangle (start -1.016 -2.54) (end 1.016 2.54) (stroke (width 0.254) (type default)) (fill (type none)))
+      )
+      (symbol "R_Large_1_1"
+        (pin passive line (at 0 3.81 270) (length 1.27)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27))))
+        )
+        (pin passive line (at 0 -3.81 90) (length 1.27)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27))))
+        )
+      )
+    )
+
+    ;; ── Device:D_Zener ────────────────────────────────────────────────────
+    (symbol "Device:D_Zener"
+      (pin_names (offset 0.254) hide)
+      (in_bom yes) (on_board yes)
+      (property "Reference" "D" (at 0 2.54 0) (effects (font (size 1.27 1.27))))
+      (property "Value" "D_Zener" (at 0 -2.54 0) (effects (font (size 1.27 1.27))))
+      (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (symbol "D_Zener_0_1"
+        (polyline (pts (xy -1.27 -1.27) (xy -1.27 1.27)) (stroke (width 0.254) (type default)) (fill (type none)))
+        (polyline (pts (xy -1.27 0) (xy 1.27 0)) (stroke (width 0.254) (type default)) (fill (type none)))
+        (polyline (pts (xy 1.27 -1.27) (xy 1.27 1.27) (xy -1.27 0) (xy 1.27 -1.27)) (stroke (width 0.254) (type default)) (fill (type outline)))
+        ;; Zener bars on cathode
+        (polyline (pts (xy 1.27 -1.27) (xy 1.651 -1.651)) (stroke (width 0.254) (type default)) (fill (type none)))
+        (polyline (pts (xy 1.27 1.27) (xy 0.889 1.651)) (stroke (width 0.254) (type default)) (fill (type none)))
+      )
+      (symbol "D_Zener_1_1"
+        (pin passive line (at -3.81 0 0) (length 2.54)
+          (name "A" (effects (font (size 1.27 1.27))))
+          (number "A" (effects (font (size 1.27 1.27))))
+        )
+        (pin passive line (at 3.81 0 180) (length 2.54)
+          (name "K" (effects (font (size 1.27 1.27))))
+          (number "K" (effects (font (size 1.27 1.27))))
+        )
+      )
+    )
+
+    ;; ── Device:LED ────────────────────────────────────────────────────────
+    (symbol "Device:LED"
+      (pin_names (offset 0.254) hide)
+      (in_bom yes) (on_board yes)
+      (property "Reference" "D" (at 0 2.54 0) (effects (font (size 1.27 1.27))))
+      (property "Value" "LED" (at 0 -2.54 0) (effects (font (size 1.27 1.27))))
+      (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (symbol "LED_0_1"
+        (polyline (pts (xy -1.27 -1.27) (xy -1.27 1.27)) (stroke (width 0.254) (type default)) (fill (type none)))
+        (polyline (pts (xy -1.27 0) (xy 1.27 0)) (stroke (width 0.254) (type default)) (fill (type none)))
+        (polyline (pts (xy 1.27 -1.27) (xy 1.27 1.27) (xy -1.27 0) (xy 1.27 -1.27)) (stroke (width 0.254) (type default)) (fill (type outline)))
+        ;; Light emission arrows
+        (polyline (pts (xy 0.762 -2.032) (xy 1.778 -3.048) (xy 1.397 -3.048) (xy 1.778 -3.048) (xy 1.778 -2.667)) (stroke (width 0.254) (type default)) (fill (type none)))
+        (polyline (pts (xy -0.254 -2.032) (xy 0.762 -3.048) (xy 0.381 -3.048) (xy 0.762 -3.048) (xy 0.762 -2.667)) (stroke (width 0.254) (type default)) (fill (type none)))
+      )
+      (symbol "LED_1_1"
+        (pin passive line (at -3.81 0 0) (length 2.54)
+          (name "A" (effects (font (size 1.27 1.27))))
+          (number "A" (effects (font (size 1.27 1.27))))
+        )
+        (pin passive line (at 3.81 0 180) (length 2.54)
+          (name "K" (effects (font (size 1.27 1.27))))
+          (number "K" (effects (font (size 1.27 1.27))))
+        )
+      )
+    )
+
+    ;; ── Device:Q_NPN_BCE (2N3904) ─────────────────────────────────────────
+    (symbol "Device:Q_NPN_BCE"
+      (in_bom yes) (on_board yes)
+      (property "Reference" "Q" (at 5.08 1.27 0) (effects (font (size 1.27 1.27))))
+      (property "Value" "Q_NPN_BCE" (at 5.08 -1.27 0) (effects (font (size 1.27 1.27))))
+      (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (symbol "Q_NPN_BCE_0_1"
+        ;; Circle body
+        (circle (center 0.5 0) (radius 2.905) (stroke (width 0.254) (type default)) (fill (type none)))
+        ;; Base line
+        (polyline (pts (xy -0.508 -2.032) (xy -0.508 2.032)) (stroke (width 0.508) (type default)) (fill (type none)))
+        ;; Collector line (no arrow)
+        (polyline (pts (xy -0.508 1.016) (xy 0.508 2.032) (xy 0.508 2.54)) (stroke (width 0) (type default)) (fill (type none)))
+        ;; Emitter line with arrow
+        (polyline (pts (xy -0.508 -1.016) (xy 0.508 -2.032) (xy 0.508 -2.54)) (stroke (width 0) (type default)) (fill (type none)))
+        (polyline (pts (xy 0.508 -2.54) (xy 0.0 -2.0) (xy 0.508 -2.032)) (stroke (width 0) (type default)) (fill (type outline)))
+      )
+      (symbol "Q_NPN_BCE_1_1"
+        (pin input line (at -2.54 0 0) (length 2.032)
+          (name "B" (effects (font (size 1.27 1.27))))
+          (number "B" (effects (font (size 1.27 1.27))))
+        )
+        (pin passive line (at 0.508 5.08 270) (length 2.54)
+          (name "C" (effects (font (size 1.27 1.27))))
+          (number "C" (effects (font (size 1.27 1.27))))
+        )
+        (pin passive line (at 0.508 -5.08 90) (length 2.54)
+          (name "E" (effects (font (size 1.27 1.27))))
+          (number "E" (effects (font (size 1.27 1.27))))
+        )
+      )
+    )
+
+    ;; ── Device:CP (electrolytic capacitor) ───────────────────────────────
+    (symbol "Device:CP"
+      (pin_names (offset 0.254) hide)
+      (in_bom yes) (on_board yes)
+      (property "Reference" "C" (at 1.651 0 90) (effects (font (size 1.27 1.27))))
+      (property "Value" "CP" (at -1.651 0 90) (effects (font (size 1.27 1.27))))
+      (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (symbol "CP_0_1"
+        ;; Positive plate (flat line, top)
+        (polyline (pts (xy -1.524 0.508) (xy 1.524 0.508)) (stroke (width 0.508) (type default)) (fill (type none)))
+        ;; Negative plate (curved bottom)
+        (arc (start -1.524 -0.508) (mid 0 -0.762) (end 1.524 -0.508) (stroke (width 0.508) (type default)) (fill (type none)))
+        ;; Plus sign
+        (polyline (pts (xy 0.508 1.524) (xy 0.508 2.032)) (stroke (width 0.254) (type default)) (fill (type none)))
+        (polyline (pts (xy 0.254 1.778) (xy 0.762 1.778)) (stroke (width 0.254) (type default)) (fill (type none)))
+      )
+      (symbol "CP_1_1"
+        (pin passive line (at 0 3.81 270) (length 3.302)
+          (name "+" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27))))
+        )
+        (pin passive line (at 0 -3.81 90) (length 3.302)
+          (name "-" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27))))
+        )
+      )
+    )
+
+    ;; ── Device:C (ceramic capacitor) ──────────────────────────────────────
+    (symbol "Device:C"
+      (pin_names (offset 0.254) hide)
+      (in_bom yes) (on_board yes)
+      (property "Reference" "C" (at 1.651 0 90) (effects (font (size 1.27 1.27))))
+      (property "Value" "C" (at -1.651 0 90) (effects (font (size 1.27 1.27))))
+      (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (symbol "C_0_1"
+        (polyline (pts (xy -1.524 0.508) (xy 1.524 0.508)) (stroke (width 0.508) (type default)) (fill (type none)))
+        (polyline (pts (xy -1.524 -0.508) (xy 1.524 -0.508)) (stroke (width 0.508) (type default)) (fill (type none)))
+      )
+      (symbol "C_1_1"
+        (pin passive line (at 0 2.54 270) (length 2.032)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27))))
+        )
+        (pin passive line (at 0 -2.54 90) (length 2.032)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27))))
+        )
+      )
+    )
+
+    ;; ── Connector:Conn_01x03_Pin (DVM 3-pin) ──────────────────────────────
+    (symbol "Connector:Conn_01x03_Pin"
+      (pin_names (offset 1.016) hide)
+      (in_bom yes) (on_board yes)
+      (property "Reference" "J" (at 0 5.08 0) (effects (font (size 1.27 1.27))))
+      (property "Value" "Conn_01x03_Pin" (at 0 -5.08 0) (effects (font (size 1.27 1.27))))
+      (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (symbol "Conn_01x03_Pin_0_1"
+        (polyline (pts (xy 0.6096 3.0734) (xy 0 2.5654) (xy 0.6096 2.0574)) (stroke (width 0) (type default)) (fill (type none)))
+        (polyline (pts (xy 0.6096 0.5334) (xy 0 0.0254) (xy 0.6096 -0.4826)) (stroke (width 0) (type default)) (fill (type none)))
+        (polyline (pts (xy 0.6096 -2.0066) (xy 0 -2.5146) (xy 0.6096 -3.0226)) (stroke (width 0) (type default)) (fill (type none)))
+        (rectangle (start -0.254 -4.064) (end 0 4.064) (stroke (width 0) (type default)) (fill (type background)))
+      )
+      (symbol "Conn_01x03_Pin_1_1"
+        (pin passive line (at -2.54 2.54 0) (length 2.54)
+          (name "Pin_1" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27))))
+        )
+        (pin passive line (at -2.54 0 0) (length 2.54)
+          (name "Pin_2" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27))))
+        )
+        (pin passive line (at -2.54 -2.54 0) (length 2.54)
+          (name "Pin_3" (effects (font (size 1.27 1.27))))
+          (number "3" (effects (font (size 1.27 1.27))))
+        )
+      )
+    )
+
+    ;; ── Device:R_POT (trimmer) ────────────────────────────────────────────
+    (symbol "Device:R_POT"
+      (pin_names (offset 0) hide)
+      (in_bom yes) (on_board yes)
+      (property "Reference" "RV" (at 1.651 0 90) (effects (font (size 1.27 1.27))))
+      (property "Value" "R_POT" (at -1.651 0 90) (effects (font (size 1.27 1.27))))
+      (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (symbol "R_POT_0_1"
+        (rectangle (start -1.016 -2.54) (end 1.016 2.54) (stroke (width 0.254) (type default)) (fill (type none)))
+        ;; Wiper arrow
+        (polyline (pts (xy 2.54 0) (xy 1.016 0)) (stroke (width 0) (type default)) (fill (type none)))
+        (polyline (pts (xy 2.032 0.508) (xy 2.54 0) (xy 2.032 -0.508)) (stroke (width 0) (type default)) (fill (type outline)))
+      )
+      (symbol "R_POT_1_1"
+        (pin passive line (at 0 3.81 270) (length 1.27)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27))))
+        )
+        (pin passive line (at 0 -3.81 90) (length 1.27)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27))))
+        )
+        (pin passive line (at 3.81 0 180) (length 1.27)
+          (name "wiper" (effects (font (size 1.27 1.27))))
+          (number "3" (effects (font (size 1.27 1.27))))
+        )
+      )
+    )
+
+    ;; ── power:GND ─────────────────────────────────────────────────────────
+    (symbol "power:GND"
+      (power)
+      (pin_names (offset 0) hide)
+      (in_bom no) (on_board no)
+      (property "Reference" "#PWR" (at 0 -6.35 0) (effects (font (size 1.27 1.27)) hide))
+      (property "Value" "GND" (at 0 -3.81 0) (effects (font (size 1.27 1.27))))
+      (symbol "GND_0_1"
+        (polyline (pts (xy 0 0) (xy 0 -1.27) (xy 1.27 -1.27) (xy 0 -2.54) (xy -1.27 -1.27) (xy 0 -1.27)) (stroke (width 0) (type default)) (fill (type none)))
+      )
+      (symbol "GND_1_1"
+        (pin power_in line (at 0 0 270) (length 0)
+          (name "GND" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27))))
+        )
+      )
+    )
+
+  )
+
+  ;; ═══════════════════════════════════════════════════════════════════════
+  ;; BLOCK A — THRESHOLD DETECTOR
+  ;; Layout:
+  ;;   HV+ label (input) at top
+  ;;   R1 (1MΩ) vertical: top=HV+, bottom=node_A (y=55)
+  ;;   R2 (10kΩ) vertical: top=node_A, bottom=GND
+  ;;   R3 (100kΩ) horizontal: left=node_A, right=Q1 base
+  ;;   Q1 (2N3904): B=R3, C→R4, E→GND
+  ;; ═══════════════════════════════════════════════════════════════════════
+
+  ;; R1 — 1 MΩ / 1W, R_Large at (50, 40)
+  ;; pin1 at (50, 36.19) → HV+ bus; pin2 at (50, 43.81) → node_A
+  (symbol
+    (lib_id "Device:R_Large")
+    (at 50 40 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000010-0002-0002-0002-000000000001")
+    (property "Reference" "R1" (at 53 40 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Value" "1M 1W" (at 53 42.5 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Footprint" "Resistor_THT:R_Axial_Power_L15mm_W5mm_P20.32mm" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "b2000010-0002-0002-0002-000000000101"))
+    (pin "2" (uuid "b2000010-0002-0002-0002-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "R1") (unit 1))))
+  )
+
+  ;; R2 — 10 kΩ / 0.25W, Device:R at (50, 62)
+  ;; pin1 at (50, 59.46) → node_A; pin2 at (50, 64.54) → GND
+  (symbol
+    (lib_id "Device:R")
+    (at 50 62 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000011-0002-0002-0002-000000000001")
+    (property "Reference" "R2" (at 53 62 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Value" "10k" (at 53 64.5 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "b2000011-0002-0002-0002-000000000101"))
+    (pin "2" (uuid "b2000011-0002-0002-0002-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "R2") (unit 1))))
+  )
+
+  ;; R3 — 100 kΩ / 0.6W, Device:R horizontal at (72.5, 52)
+  ;; angle=90 → pin1 at (70, 52) = node_A side; pin2 at (75, 52) = Q1 base side
+  (symbol
+    (lib_id "Device:R")
+    (at 72.5 52 90) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000012-0002-0002-0002-000000000001")
+    (property "Reference" "R3" (at 72.5 49 0) (effects (font (size 1.27 1.27)) (justify center)))
+    (property "Value" "100k" (at 72.5 54.5 0) (effects (font (size 1.27 1.27)) (justify center)))
+    (property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "b2000012-0002-0002-0002-000000000101"))
+    (pin "2" (uuid "b2000012-0002-0002-0002-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "R3") (unit 1))))
+  )
+
+  ;; Q1 — 2N3904 NPN, at (90, 52)
+  ;; B at (87.46, 52); C at (90.508, 46.92); E at (90.508, 57.08)
+  (symbol
+    (lib_id "Device:Q_NPN_BCE")
+    (at 90 52 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000013-0002-0002-0002-000000000001")
+    (property "Reference" "Q1" (at 95 50 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "2N3904" (at 95 52.5 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "Package_TO_SOT_THT:TO-92_Inline" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "B" (uuid "b2000013-0002-0002-0002-000000000101"))
+    (pin "C" (uuid "b2000013-0002-0002-0002-000000000102"))
+    (pin "E" (uuid "b2000013-0002-0002-0002-000000000103"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "Q1") (unit 1))))
+  )
+
+  ;; GND at Q1 emitter (90.508, 62)
+  (symbol
+    (lib_id "power:GND")
+    (at 90.508 62 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000050-0002-0002-0002-000000000001")
+    (property "Reference" "#PWR01" (at 90.508 68 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 90.508 65 0) (effects (font (size 1.27 1.27))))
+    (pin "1" (uuid "b2000050-0002-0002-0002-000000000101"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "#PWR01") (unit 1))))
+  )
+
+  ;; GND at R2 bottom (50, 70)
+  (symbol
+    (lib_id "power:GND")
+    (at 50 70 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000051-0002-0002-0002-000000000001")
+    (property "Reference" "#PWR02" (at 50 76 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 50 73 0) (effects (font (size 1.27 1.27))))
+    (pin "1" (uuid "b2000051-0002-0002-0002-000000000101"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "#PWR02") (unit 1))))
+  )
+
+  ;; ═══════════════════════════════════════════════════════════════════════
+  ;; BLOCK B — GATE DRIVE
+  ;; R4 (100Ω) between Q1 collector and GATE node
+  ;; R5 (470kΩ) from HV+ down to GATE node
+  ;; D9 (12V Zener) from GATE node to GND (K=GATE, A=GND)
+  ;; GATE global label (output)
+  ;; GATE node at (90.508, 35)
+  ;; ═══════════════════════════════════════════════════════════════════════
+
+  ;; R4 — 100 Ω / 0.25W, Device:R vertical at (90.508, 41)
+  ;; pin1 at (90.508, 38.46) = GATE node; pin2 at (90.508, 43.54) → Q1 C
+  (symbol
+    (lib_id "Device:R")
+    (at 90.508 41 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000020-0002-0002-0002-000000000001")
+    (property "Reference" "R4" (at 93.5 41 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Value" "100R" (at 93.5 43.5 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "b2000020-0002-0002-0002-000000000101"))
+    (pin "2" (uuid "b2000020-0002-0002-0002-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "R4") (unit 1))))
+  )
+
+  ;; R5 — 470 kΩ / 1W, R_Large vertical at (108, 28)
+  ;; pin1 at (108, 24.19) → HV+ bus; pin2 at (108, 31.81) → GATE node
+  (symbol
+    (lib_id "Device:R_Large")
+    (at 108 28 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000021-0002-0002-0002-000000000001")
+    (property "Reference" "R5" (at 111 28 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Value" "470k 1W" (at 111 30.5 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Footprint" "Resistor_THT:R_Axial_Power_L15mm_W5mm_P20.32mm" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "b2000021-0002-0002-0002-000000000101"))
+    (pin "2" (uuid "b2000021-0002-0002-0002-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "R5") (unit 1))))
+  )
+
+  ;; D9 — BZX85C12 (12V Zener), D_Zener vertical K-up at (108, 45)
+  ;; angle=270 → K at (108, 41.19) = GATE node; A at (108, 48.81) → GND
+  (symbol
+    (lib_id "Device:D_Zener")
+    (at 108 45 270) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000022-0002-0002-0002-000000000001")
+    (property "Reference" "D9" (at 111 43 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "BZX85C12" (at 111 45.5 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "A" (uuid "b2000022-0002-0002-0002-000000000101"))
+    (pin "K" (uuid "b2000022-0002-0002-0002-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "D9") (unit 1))))
+  )
+
+  ;; GND at D9 anode (108, 52)
+  (symbol
+    (lib_id "power:GND")
+    (at 108 55 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000052-0002-0002-0002-000000000001")
+    (property "Reference" "#PWR03" (at 108 61 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 108 58 0) (effects (font (size 1.27 1.27))))
+    (pin "1" (uuid "b2000052-0002-0002-0002-000000000101"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "#PWR03") (unit 1))))
+  )
+
+  ;; ═══════════════════════════════════════════════════════════════════════
+  ;; BLOCK C — LED DANGER INDICATOR
+  ;; HV+ → R_LED1 → R_LED2 → R_LED3 → D_LED(K) D_LED(A) → LED1(A) LED1(K) → GND
+  ;; Column x=152, top at y=25
+  ;; ═══════════════════════════════════════════════════════════════════════
+
+  ;; R_LED1 at (152, 35) — Device:R vertical
+  ;; pin1 at (152, 32.46) → HV+; pin2 at (152, 37.54)
+  (symbol
+    (lib_id "Device:R")
+    (at 152 35 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000030-0002-0002-0002-000000000001")
+    (property "Reference" "R_LED1" (at 155 35 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Value" "100k" (at 155 37.5 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "b2000030-0002-0002-0002-000000000101"))
+    (pin "2" (uuid "b2000030-0002-0002-0002-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "R_LED1") (unit 1))))
+  )
+
+  ;; R_LED2 at (152, 47)
+  ;; pin1 at (152, 44.46); pin2 at (152, 49.54)
+  (symbol
+    (lib_id "Device:R")
+    (at 152 47 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000031-0002-0002-0002-000000000001")
+    (property "Reference" "R_LED2" (at 155 47 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Value" "100k" (at 155 49.5 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "b2000031-0002-0002-0002-000000000101"))
+    (pin "2" (uuid "b2000031-0002-0002-0002-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "R_LED2") (unit 1))))
+  )
+
+  ;; R_LED3 at (152, 59)
+  ;; pin1 at (152, 56.46); pin2 at (152, 61.54)
+  (symbol
+    (lib_id "Device:R")
+    (at 152 59 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000032-0002-0002-0002-000000000001")
+    (property "Reference" "R_LED3" (at 155 59 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Value" "100k" (at 155 61.5 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "b2000032-0002-0002-0002-000000000101"))
+    (pin "2" (uuid "b2000032-0002-0002-0002-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "R_LED3") (unit 1))))
+  )
+
+  ;; D_LED — BZX55C8V2 (8.2V Zener), K-up at (152, 73)
+  ;; angle=270 → K at (152, 69.19); A at (152, 76.81)
+  (symbol
+    (lib_id "Device:D_Zener")
+    (at 152 73 270) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000033-0002-0002-0002-000000000001")
+    (property "Reference" "D_LED" (at 155 71 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "BZX55C8V2" (at 155 73.5 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "A" (uuid "b2000033-0002-0002-0002-000000000101"))
+    (pin "K" (uuid "b2000033-0002-0002-0002-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "D_LED") (unit 1))))
+  )
+
+  ;; LED1 — red 5mm, D_LED (K-up at 152,88), angle=270 → K at (152,84.19); A at (152,91.81)
+  (symbol
+    (lib_id "Device:LED")
+    (at 152 88 270) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000034-0002-0002-0002-000000000001")
+    (property "Reference" "LED1" (at 155 86 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "RED 5mm" (at 155 88.5 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "LED_THT:LED_D5.0mm" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "A" (uuid "b2000034-0002-0002-0002-000000000101"))
+    (pin "K" (uuid "b2000034-0002-0002-0002-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "LED1") (unit 1))))
+  )
+
+  ;; GND at LED1 anode bottom (152, 96)
+  (symbol
+    (lib_id "power:GND")
+    (at 152 98 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000053-0002-0002-0002-000000000001")
+    (property "Reference" "#PWR04" (at 152 104 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 152 101 0) (effects (font (size 1.27 1.27))))
+    (pin "1" (uuid "b2000053-0002-0002-0002-000000000101"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "#PWR04") (unit 1))))
+  )
+
+  ;; ═══════════════════════════════════════════════════════════════════════
+  ;; BLOCK D — DVM SIGNAL DIVIDER
+  ;; HV+ → R_sig1–5 (series) → node_sig → R_sig_bot → R_cal → GND
+  ;; DVM SIG net label at node_sig (junction of R_sig5/R_sig_bot)
+  ;; Column x=185
+  ;; ═══════════════════════════════════════════════════════════════════════
+
+  (symbol
+    (lib_id "Device:R")
+    (at 185 35 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000040-0002-0002-0002-000000000001")
+    (property "Reference" "R_sig1" (at 188 35 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Value" "100k" (at 188 37.5 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "b2000040-0002-0002-0002-000000000101"))
+    (pin "2" (uuid "b2000040-0002-0002-0002-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "R_sig1") (unit 1))))
+  )
+
+  (symbol
+    (lib_id "Device:R")
+    (at 185 47 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000041-0002-0002-0002-000000000001")
+    (property "Reference" "R_sig2" (at 188 47 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Value" "100k" (at 188 49.5 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "b2000041-0002-0002-0002-000000000101"))
+    (pin "2" (uuid "b2000041-0002-0002-0002-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "R_sig2") (unit 1))))
+  )
+
+  (symbol
+    (lib_id "Device:R")
+    (at 185 59 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000042-0002-0002-0002-000000000001")
+    (property "Reference" "R_sig3" (at 188 59 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Value" "100k" (at 188 61.5 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "b2000042-0002-0002-0002-000000000101"))
+    (pin "2" (uuid "b2000042-0002-0002-0002-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "R_sig3") (unit 1))))
+  )
+
+  (symbol
+    (lib_id "Device:R")
+    (at 185 71 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000043-0002-0002-0002-000000000001")
+    (property "Reference" "R_sig4" (at 188 71 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Value" "100k" (at 188 73.5 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "b2000043-0002-0002-0002-000000000101"))
+    (pin "2" (uuid "b2000043-0002-0002-0002-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "R_sig4") (unit 1))))
+  )
+
+  (symbol
+    (lib_id "Device:R")
+    (at 185 83 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000044-0002-0002-0002-000000000001")
+    (property "Reference" "R_sig5" (at 188 83 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Value" "100k" (at 188 85.5 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "b2000044-0002-0002-0002-000000000101"))
+    (pin "2" (uuid "b2000044-0002-0002-0002-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "R_sig5") (unit 1))))
+  )
+
+  ;; R_sig_bot at (185, 97)
+  ;; pin1 at (185, 94.46) = node_sig; pin2 at (185, 99.54) → R_cal
+  (symbol
+    (lib_id "Device:R")
+    (at 185 97 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000045-0002-0002-0002-000000000001")
+    (property "Reference" "R_sig_bot" (at 188 97 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Value" "100k" (at 188 99.5 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "b2000045-0002-0002-0002-000000000101"))
+    (pin "2" (uuid "b2000045-0002-0002-0002-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "R_sig_bot") (unit 1))))
+  )
+
+  ;; R_cal — 200kΩ trimmer, R_POT at (185, 113)
+  ;; pin1 at (185, 109.19); pin2 at (185, 116.81) → GND; wiper shorted to pin1 (no-connect acceptable)
+  (symbol
+    (lib_id "Device:R_POT")
+    (at 185 113 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000046-0002-0002-0002-000000000001")
+    (property "Reference" "R_cal" (at 190 113 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Value" "200k trim" (at 190 115.5 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Footprint" "Potentiometer_THT:Potentiometer_Vishay_T93_Vertical" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "b2000046-0002-0002-0002-000000000101"))
+    (pin "2" (uuid "b2000046-0002-0002-0002-000000000102"))
+    (pin "3" (uuid "b2000046-0002-0002-0002-000000000103"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "R_cal") (unit 1))))
+  )
+
+  ;; GND at R_cal pin2 bottom (185, 122)
+  (symbol
+    (lib_id "power:GND")
+    (at 185 124 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000054-0002-0002-0002-000000000001")
+    (property "Reference" "#PWR05" (at 185 130 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 185 127 0) (effects (font (size 1.27 1.27))))
+    (pin "1" (uuid "b2000054-0002-0002-0002-000000000101"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "#PWR05") (unit 1))))
+  )
+
+  ;; ═══════════════════════════════════════════════════════════════════════
+  ;; BLOCK E — DVM VCC DROPPER
+  ;; HV+ → R_drop1–4 (series) → node_Vcc → D_Vcc (15V Z) → GND
+  ;;                                       → C_Vcc (10µF) → GND
+  ;;                                       → J5 (DVM Vcc pin)
+  ;; C_byp1 across DVM Vcc supply point
+  ;; C_byp2 near Q1 (bypass for gate drive)
+  ;; Column x=230 for dropper chain; D_Vcc/C_Vcc at x=247/258
+  ;; ═══════════════════════════════════════════════════════════════════════
+
+  (symbol
+    (lib_id "Device:R_Large")
+    (at 230 35 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000060-0002-0002-0002-000000000001")
+    (property "Reference" "R_drop1" (at 233 35 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Value" "15k 3W" (at 233 37.5 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Footprint" "Resistor_THT:R_Axial_Power_L15mm_W5mm_P20.32mm" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "b2000060-0002-0002-0002-000000000101"))
+    (pin "2" (uuid "b2000060-0002-0002-0002-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "R_drop1") (unit 1))))
+  )
+
+  (symbol
+    (lib_id "Device:R_Large")
+    (at 230 52 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000061-0002-0002-0002-000000000001")
+    (property "Reference" "R_drop2" (at 233 52 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Value" "15k 3W" (at 233 54.5 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Footprint" "Resistor_THT:R_Axial_Power_L15mm_W5mm_P20.32mm" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "b2000061-0002-0002-0002-000000000101"))
+    (pin "2" (uuid "b2000061-0002-0002-0002-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "R_drop2") (unit 1))))
+  )
+
+  (symbol
+    (lib_id "Device:R_Large")
+    (at 230 69 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000062-0002-0002-0002-000000000001")
+    (property "Reference" "R_drop3" (at 233 69 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Value" "15k 3W" (at 233 71.5 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Footprint" "Resistor_THT:R_Axial_Power_L15mm_W5mm_P20.32mm" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "b2000062-0002-0002-0002-000000000101"))
+    (pin "2" (uuid "b2000062-0002-0002-0002-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "R_drop3") (unit 1))))
+  )
+
+  (symbol
+    (lib_id "Device:R_Large")
+    (at 230 86 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000063-0002-0002-0002-000000000001")
+    (property "Reference" "R_drop4" (at 233 86 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Value" "15k 3W" (at 233 88.5 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Footprint" "Resistor_THT:R_Axial_Power_L15mm_W5mm_P20.32mm" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "b2000063-0002-0002-0002-000000000101"))
+    (pin "2" (uuid "b2000063-0002-0002-0002-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "R_drop4") (unit 1))))
+  )
+
+  ;; D_Vcc — 1N4744A (15V Zener), K-up at (247, 102)
+  ;; angle=270 → K at (247, 98.19) = node_Vcc; A at (247, 105.81) → GND
+  (symbol
+    (lib_id "Device:D_Zener")
+    (at 247 102 270) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000064-0002-0002-0002-000000000001")
+    (property "Reference" "D_Vcc" (at 250 100 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "1N4744A" (at 250 102.5 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "A" (uuid "b2000064-0002-0002-0002-000000000101"))
+    (pin "K" (uuid "b2000064-0002-0002-0002-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "D_Vcc") (unit 1))))
+  )
+
+  ;; C_Vcc — 10µF/25V electrolytic, at (260, 102)
+  ;; Device:CP → pin1(+) at (260, 98.19); pin2(-) at (260, 105.81) → GND
+  (symbol
+    (lib_id "Device:CP")
+    (at 260 102 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000065-0002-0002-0002-000000000001")
+    (property "Reference" "C_Vcc" (at 263 100 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "10uF 25V" (at 263 102.5 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "Capacitor_THT:CP_Radial_D4.0mm_P2.50mm" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "b2000065-0002-0002-0002-000000000101"))
+    (pin "2" (uuid "b2000065-0002-0002-0002-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "C_Vcc") (unit 1))))
+  )
+
+  ;; C_byp1 — 100nF ceramic, at (271, 102)
+  ;; pin1 at (271, 99.46); pin2 at (271, 104.54) → GND
+  (symbol
+    (lib_id "Device:C")
+    (at 271 102 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000066-0002-0002-0002-000000000001")
+    (property "Reference" "C_byp1" (at 274 100 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "100nF" (at 274 102.5 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "Capacitor_THT:C_Disc_D3.8mm_W2.6mm_P5.00mm" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "b2000066-0002-0002-0002-000000000101"))
+    (pin "2" (uuid "b2000066-0002-0002-0002-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "C_byp1") (unit 1))))
+  )
+
+  ;; C_byp2 — 100nF ceramic, near gate/Q1, at (119, 52)
+  ;; pin1 at (119, 49.46); pin2 at (119, 54.54) → GND
+  (symbol
+    (lib_id "Device:C")
+    (at 119 52 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000067-0002-0002-0002-000000000001")
+    (property "Reference" "C_byp2" (at 122 50 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "100nF" (at 122 52.5 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "Capacitor_THT:C_Disc_D3.8mm_W2.6mm_P5.00mm" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "b2000067-0002-0002-0002-000000000101"))
+    (pin "2" (uuid "b2000067-0002-0002-0002-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "C_byp2") (unit 1))))
+  )
+
+  ;; GND symbols for Block E
+  (symbol (lib_id "power:GND") (at 247 110 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000055-0002-0002-0002-000000000001")
+    (property "Reference" "#PWR06" (at 247 116 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 247 113 0) (effects (font (size 1.27 1.27))))
+    (pin "1" (uuid "b2000055-0002-0002-0002-000000000101"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "#PWR06") (unit 1))))
+  )
+  (symbol (lib_id "power:GND") (at 260 110 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000056-0002-0002-0002-000000000001")
+    (property "Reference" "#PWR07" (at 260 116 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 260 113 0) (effects (font (size 1.27 1.27))))
+    (pin "1" (uuid "b2000056-0002-0002-0002-000000000101"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "#PWR07") (unit 1))))
+  )
+  (symbol (lib_id "power:GND") (at 271 110 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000057-0002-0002-0002-000000000001")
+    (property "Reference" "#PWR08" (at 271 116 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 271 113 0) (effects (font (size 1.27 1.27))))
+    (pin "1" (uuid "b2000057-0002-0002-0002-000000000101"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "#PWR08") (unit 1))))
+  )
+  (symbol (lib_id "power:GND") (at 119 60 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000058-0002-0002-0002-000000000001")
+    (property "Reference" "#PWR09" (at 119 66 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 119 63 0) (effects (font (size 1.27 1.27))))
+    (pin "1" (uuid "b2000058-0002-0002-0002-000000000101"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "#PWR09") (unit 1))))
+  )
+
+  ;; ── J5 — DVM connector (3-pin: 1=GND, 2=VCC, 3=SIG) at (288, 98) ──────
+  (symbol
+    (lib_id "Connector:Conn_01x03_Pin")
+    (at 288 98 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000070-0002-0002-0002-000000000001")
+    (property "Reference" "J5" (at 288 91 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "DVM_Connector" (at 288 93.5 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "b2000070-0002-0002-0002-000000000101"))
+    (pin "2" (uuid "b2000070-0002-0002-0002-000000000102"))
+    (pin "3" (uuid "b2000070-0002-0002-0002-000000000103"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "J5") (unit 1))))
+  )
+
+  ;; J5 pin1 = GND (at 285.46, 100.54); pin2 = VCC (at 285.46, 98); pin3 = SIG (at 285.46, 95.46)
+  (symbol (lib_id "power:GND") (at 280 103 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000059-0002-0002-0002-000000000001")
+    (property "Reference" "#PWR10" (at 280 109 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 280 106 0) (effects (font (size 1.27 1.27))))
+    (pin "1" (uuid "b2000059-0002-0002-0002-000000000101"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "#PWR10") (unit 1))))
+  )
+
+  ;; ═══════════════════════════════════════════════════════════════════════
+  ;; GLOBAL LABELS — HV+ inputs (one per block) and GATE output
+  ;; ═══════════════════════════════════════════════════════════════════════
+
+  ;; Block A — HV+ for R1/threshold
+  (global_label "HV+"
+    (shape input) (at 50 22 270)
+    (effects (font (size 1.27 1.27)) (justify left))
+    (uuid "gl1001")
+    (property "Intersheet References" "" (at 50 22 0) (effects (font (size 1.27 1.27)) hide))
+  )
+
+  ;; Block B — HV+ for R5
+  (global_label "HV+"
+    (shape input) (at 108 20 270)
+    (effects (font (size 1.27 1.27)) (justify left))
+    (uuid "gl1002")
+    (property "Intersheet References" "" (at 108 20 0) (effects (font (size 1.27 1.27)) hide))
+  )
+
+  ;; Block C — HV+ for LED chain
+  (global_label "HV+"
+    (shape input) (at 152 22 270)
+    (effects (font (size 1.27 1.27)) (justify left))
+    (uuid "gl1003")
+    (property "Intersheet References" "" (at 152 22 0) (effects (font (size 1.27 1.27)) hide))
+  )
+
+  ;; Block D — HV+ for DVM divider
+  (global_label "HV+"
+    (shape input) (at 185 22 270)
+    (effects (font (size 1.27 1.27)) (justify left))
+    (uuid "gl1004")
+    (property "Intersheet References" "" (at 185 22 0) (effects (font (size 1.27 1.27)) hide))
+  )
+
+  ;; Block E — HV+ for dropper
+  (global_label "HV+"
+    (shape input) (at 230 22 270)
+    (effects (font (size 1.27 1.27)) (justify left))
+    (uuid "gl1005")
+    (property "Intersheet References" "" (at 230 22 0) (effects (font (size 1.27 1.27)) hide))
+  )
+
+  ;; GATE output — from gate drive node
+  (global_label "GATE"
+    (shape output) (at 125 35 0)
+    (effects (font (size 1.27 1.27)) (justify left))
+    (uuid "gl1006")
+    (property "Intersheet References" "" (at 125 35 0) (effects (font (size 1.27 1.27)) hide))
+  )
+
+  ;; ═══════════════════════════════════════════════════════════════════════
+  ;; WIRES — Block A
+  ;; ═══════════════════════════════════════════════════════════════════════
+
+  ;; HV+ → R1 pin1
+  (wire (pts (xy 50 22) (xy 50 36.19)) (stroke (width 0) (type default)) (uuid "lw0001"))
+  ;; R1 pin2 → node_A wire down to R2 pin1
+  (wire (pts (xy 50 43.81) (xy 50 59.46)) (stroke (width 0) (type default)) (uuid "lw0002"))
+  ;; R2 pin2 → GND
+  (wire (pts (xy 50 64.54) (xy 50 70)) (stroke (width 0) (type default)) (uuid "lw0003"))
+  ;; node_A → R3 pin1 (horizontal to left of R3)
+  (wire (pts (xy 50 52) (xy 70 52)) (stroke (width 0) (type default)) (uuid "lw0004"))
+  ;; node_A junction at (50,52) on main vertical wire
+  ;; R3 pin2 → Q1 base
+  (wire (pts (xy 75 52) (xy 87.46 52)) (stroke (width 0) (type default)) (uuid "lw0005"))
+  ;; Q1 emitter → GND
+  (wire (pts (xy 90.508 57.08) (xy 90.508 62)) (stroke (width 0) (type default)) (uuid "lw0006"))
+
+  ;; ═══════════════════════════════════════════════════════════════════════
+  ;; WIRES — Block B
+  ;; ═══════════════════════════════════════════════════════════════════════
+
+  ;; HV+ → R5 pin1
+  (wire (pts (xy 108 20) (xy 108 24.19)) (stroke (width 0) (type default)) (uuid "lw0010"))
+  ;; R5 pin2 → GATE node at (108, 35)
+  (wire (pts (xy 108 31.81) (xy 108 35)) (stroke (width 0) (type default)) (uuid "lw0011"))
+  ;; GATE node horizontal bus: (90.508,35) → (108,35)
+  (wire (pts (xy 90.508 35) (xy 108 35)) (stroke (width 0) (type default)) (uuid "lw0012"))
+  ;; R4 pin1 → GATE node
+  (wire (pts (xy 90.508 38.46) (xy 90.508 35)) (stroke (width 0) (type default)) (uuid "lw0013"))
+  ;; R4 pin2 → Q1 collector
+  (wire (pts (xy 90.508 43.54) (xy 90.508 46.92)) (stroke (width 0) (type default)) (uuid "lw0014"))
+  ;; D9 K → GATE node (D9 at 108,45; K at 108,41.19)
+  (wire (pts (xy 108 41.19) (xy 108 35)) (stroke (width 0) (type default)) (uuid "lw0015"))
+  ;; D9 A → GND (A at 108,48.81)
+  (wire (pts (xy 108 48.81) (xy 108 55)) (stroke (width 0) (type default)) (uuid "lw0016"))
+  ;; GATE global label ← GATE node (label at 125,35; wire runs left to node)
+  (wire (pts (xy 108 35) (xy 125 35)) (stroke (width 0) (type default)) (uuid "lw0017"))
+  ;; C_byp2 pin1 → GATE node area (at 119,49.46); pin2 → GND (119,60)
+  (wire (pts (xy 119 49.46) (xy 119 35)) (stroke (width 0) (type default)) (uuid "lw0018"))
+  (wire (pts (xy 119 54.54) (xy 119 60)) (stroke (width 0) (type default)) (uuid "lw0019"))
+
+  ;; ═══════════════════════════════════════════════════════════════════════
+  ;; WIRES — Block C (LED chain)
+  ;; ═══════════════════════════════════════════════════════════════════════
+
+  ;; HV+ → R_LED1 pin1
+  (wire (pts (xy 152 22) (xy 152 32.46)) (stroke (width 0) (type default)) (uuid "lw0020"))
+  ;; R_LED1→2→3 chain
+  (wire (pts (xy 152 37.54) (xy 152 44.46)) (stroke (width 0) (type default)) (uuid "lw0021"))
+  (wire (pts (xy 152 49.54) (xy 152 56.46)) (stroke (width 0) (type default)) (uuid "lw0022"))
+  ;; R_LED3 pin2 → D_LED K (at 152,69.19)
+  (wire (pts (xy 152 61.54) (xy 152 69.19)) (stroke (width 0) (type default)) (uuid "lw0023"))
+  ;; D_LED A → LED1 K (D_LED A at 152,76.81; LED1 K at 152,84.19)
+  (wire (pts (xy 152 76.81) (xy 152 84.19)) (stroke (width 0) (type default)) (uuid "lw0024"))
+  ;; LED1 A → GND (LED1 A at 152,91.81)
+  (wire (pts (xy 152 91.81) (xy 152 98)) (stroke (width 0) (type default)) (uuid "lw0025"))
+
+  ;; ═══════════════════════════════════════════════════════════════════════
+  ;; WIRES — Block D (DVM divider)
+  ;; ═══════════════════════════════════════════════════════════════════════
+
+  ;; HV+ → R_sig1 pin1
+  (wire (pts (xy 185 22) (xy 185 32.46)) (stroke (width 0) (type default)) (uuid "lw0030"))
+  ;; R_sig chain
+  (wire (pts (xy 185 37.54) (xy 185 44.46)) (stroke (width 0) (type default)) (uuid "lw0031"))
+  (wire (pts (xy 185 49.54) (xy 185 56.46)) (stroke (width 0) (type default)) (uuid "lw0032"))
+  (wire (pts (xy 185 61.54) (xy 185 68.46)) (stroke (width 0) (type default)) (uuid "lw0033"))
+  (wire (pts (xy 185 73.54) (xy 185 80.46)) (stroke (width 0) (type default)) (uuid "lw0034"))
+  ;; R_sig5 pin2 → node_sig → R_sig_bot pin1
+  (wire (pts (xy 185 85.54) (xy 185 94.46)) (stroke (width 0) (type default)) (uuid "lw0035"))
+  ;; R_sig_bot pin2 → R_cal pin1
+  (wire (pts (xy 185 99.54) (xy 185 109.19)) (stroke (width 0) (type default)) (uuid "lw0036"))
+  ;; R_cal pin2 → GND
+  (wire (pts (xy 185 116.81) (xy 185 124)) (stroke (width 0) (type default)) (uuid "lw0037"))
+  ;; R_cal wiper (pin3 at 188.81,113) short to pin1: no-connect or short wire
+  (no_connect (at 188.81 113) (uuid "nc0001"))
+
+  ;; ═══════════════════════════════════════════════════════════════════════
+  ;; WIRES — Block E (DVM Vcc dropper)
+  ;; ═══════════════════════════════════════════════════════════════════════
+
+  ;; HV+ → R_drop1 pin1
+  (wire (pts (xy 230 22) (xy 230 31.19)) (stroke (width 0) (type default)) (uuid "lw0040"))
+  ;; R_drop chain
+  (wire (pts (xy 230 38.81) (xy 230 48.19)) (stroke (width 0) (type default)) (uuid "lw0041"))
+  (wire (pts (xy 230 55.81) (xy 230 65.19)) (stroke (width 0) (type default)) (uuid "lw0042"))
+  (wire (pts (xy 230 72.81) (xy 230 82.19)) (stroke (width 0) (type default)) (uuid "lw0043"))
+  ;; R_drop4 pin2 → node_Vcc at (230, 93)
+  (wire (pts (xy 230 89.81) (xy 230 93)) (stroke (width 0) (type default)) (uuid "lw0044"))
+  ;; node_Vcc horizontal bus to D_Vcc K (247,98.19), C_Vcc pin1 (260,98.19), C_byp1 pin1 (271,99.46)
+  (wire (pts (xy 230 93) (xy 247 93)) (stroke (width 0) (type default)) (uuid "lw0045"))
+  (wire (pts (xy 247 93) (xy 260 93)) (stroke (width 0) (type default)) (uuid "lw0046"))
+  (wire (pts (xy 260 93) (xy 271 93)) (stroke (width 0) (type default)) (uuid "lw0047"))
+  ;; Verticals down to each component pin1
+  (wire (pts (xy 247 93) (xy 247 98.19)) (stroke (width 0) (type default)) (uuid "lw0048"))
+  (wire (pts (xy 260 93) (xy 260 98.19)) (stroke (width 0) (type default)) (uuid "lw0049"))
+  (wire (pts (xy 271 93) (xy 271 99.46)) (stroke (width 0) (type default)) (uuid "lw0050"))
+  ;; D_Vcc A → GND
+  (wire (pts (xy 247 105.81) (xy 247 110)) (stroke (width 0) (type default)) (uuid "lw0051"))
+  ;; C_Vcc pin2 → GND
+  (wire (pts (xy 260 105.81) (xy 260 110)) (stroke (width 0) (type default)) (uuid "lw0052"))
+  ;; C_byp1 pin2 → GND
+  (wire (pts (xy 271 104.54) (xy 271 110)) (stroke (width 0) (type default)) (uuid "lw0053"))
+  ;; node_Vcc → J5 pin2 (VCC): J5 at (288,98), pin2 at (285.46, 98)
+  (wire (pts (xy 271 93) (xy 285.46 93)) (stroke (width 0) (type default)) (uuid "lw0054"))
+  (wire (pts (xy 285.46 93) (xy 285.46 98)) (stroke (width 0) (type default)) (uuid "lw0055"))
+  ;; J5 pin1 (GND) at (285.46, 100.54) → GND symbol at (280,103)
+  (wire (pts (xy 285.46 100.54) (xy 280 100.54)) (stroke (width 0) (type default)) (uuid "lw0056"))
+  (wire (pts (xy 280 100.54) (xy 280 103)) (stroke (width 0) (type default)) (uuid "lw0057"))
+
+  ;; ═══════════════════════════════════════════════════════════════════════
+  ;; NET LABELS
+  ;; ═══════════════════════════════════════════════════════════════════════
+
+  ;; node_A label on threshold divider mid-rail
+  (label "node_A"
+    (at 50 52 0)
+    (effects (font (size 1.27 1.27)) (justify left))
+    (uuid "nl0001")
+  )
+
+  ;; node_sig label — DVM signal tap between R_sig5 and R_sig_bot
+  (label "node_sig"
+    (at 185 90 0)
+    (effects (font (size 1.27 1.27)) (justify left))
+    (uuid "nl0002")
+  )
+
+  ;; DVM SIG wire from node_sig to J5 pin3
+  (wire (pts (xy 185 90) (xy 200 90)) (stroke (width 0) (type default)) (uuid "lw0060"))
+  (wire (pts (xy 200 90) (xy 285.46 90)) (stroke (width 0) (type default)) (uuid "lw0061"))
+  (wire (pts (xy 285.46 90) (xy 285.46 95.46)) (stroke (width 0) (type default)) (uuid "lw0062"))
+
+  ;; node_Vcc label
+  (label "node_Vcc"
+    (at 230 93 180)
+    (effects (font (size 1.27 1.27)) (justify right))
+    (uuid "nl0003")
+  )
+
+  ;; GATE node label at junction
+  (label "GATE_node"
+    (at 108 35 180)
+    (effects (font (size 1.27 1.27)) (justify right))
+    (uuid "nl0004")
+  )
+
+  ;; ═══════════════════════════════════════════════════════════════════════
+  ;; JUNCTIONS
+  ;; ═══════════════════════════════════════════════════════════════════════
+
+  (junction (at 50 52) (diameter 0) (color 0 0 0 0) (uuid "lj0001"))
+  (junction (at 108 35) (diameter 0) (color 0 0 0 0) (uuid "lj0002"))
+  (junction (at 247 93) (diameter 0) (color 0 0 0 0) (uuid "lj0003"))
+  (junction (at 260 93) (diameter 0) (color 0 0 0 0) (uuid "lj0004"))
+  (junction (at 271 93) (diameter 0) (color 0 0 0 0) (uuid "lj0005"))
+  (junction (at 119 35) (diameter 0) (color 0 0 0 0) (uuid "lj0006"))
+  (junction (at 185 90) (diameter 0) (color 0 0 0 0) (uuid "lj0007"))
+
+  (sheet_instances
+    (path "/"
+      (page "1")
+    )
+  )
+)
