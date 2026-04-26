@@ -115,7 +115,7 @@ with schemdraw.Drawing(show=False) as d:
     d.add(elm.Dot().at((R5_X, GND_Y)))
 
     # ═══════════════════════════════════════════════════════════════
-    # BRANCH 2 — R_fast (50 Ω / 5 W) + Q2 N-MOSFET (STF7NM80)
+    # BRANCH 2 — R_fast (50 Ω / 5 W) + Q2 N-MOSFET (STP10NK80Z)
     # ═══════════════════════════════════════════════════════════════
     B2_X = 14
     d.add(elm.Dot().at((B2_X, HV_Y)))
