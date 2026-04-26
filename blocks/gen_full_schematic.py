@@ -246,7 +246,7 @@ with schemdraw.Drawing(show=False) as d:
     d.add(elm.Dot().at((CVCC_X,  NODE_VCC[1])))
     d.add(elm.Dot().at((CBYP1_X, NODE_VCC[1])))
     CVcc_top = NODE_VCC[1]
-    CVcc = d.add(elm.Capacitor().down().at((CVCC_X, NODE_VCC[1])).length(EL))
+    CVcc = d.add(elm.Capacitor2(polar=True).down().at((CVCC_X, NODE_VCC[1])).length(EL))
     d.add(elm.Label().at((CVCC_X + LABEL_OFST, (CVcc_top + CVcc.end[1]) / 2))
           .label(LABEL['C_Vcc'], halign='left', valign='center'))
     d.add(elm.Line().down().at(CVcc.end).toy(GND_Y))
