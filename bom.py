@@ -70,15 +70,16 @@ BOM = [
     },
     {
         "refs": ["Q2"],
-        "value": "STF7NM80",
-        "schematic_label": "STF7NM80\n800V 6A",
-        "description": "MOSFET, N-channel, 800 V, 6 A, R_ds(on) 1.7 Ω typ, TO-220, THT",
-        "part_number": "STF7NM80  (alt: STP10NK80Z, IXTP2N80)",
+        "value": "STP10NK80Z",
+        "schematic_label": "STP10NK80Z\n800V 9A",
+        "description": "MOSFET, N-channel, 800 V, 9 A, R_ds(on) 0.9 Ω typ, TO-220, THT",
+        "part_number": "STP10NK80Z  (alt: STF7NM80, IXTP2N80)",
         "qty": 1,
         "status": "buy",
         "notes": (
-            "IRF840 rejected — only 500 V Vds, marginal at 600 V rail. "
-            "Mount at board edge with clip-on heatsink ~10 °C/W (e.g. Wakefield 637-10ABPE)."
+            "STP10NK80Z preferred over STF7NM80: 9 A vs 6 A, 0.9 Ω vs 1.7 Ω Rds(on) — less heat in MOSFET during fast discharge. "
+            "Use standard TO-220 (not FP variant — FP has isolated tab but only 40 W Pd vs 160 W). "
+            "Mount with clip-on heatsink ~10 °C/W (e.g. Wakefield 637-10ABPE) and mica/kapton washer."
         ),
     },
     {
@@ -89,7 +90,7 @@ BOM = [
         "part_number": "Wakefield 637-10ABPE  (alt: any TO-220 clip-on ≤12 °C/W)",
         "qty": 1,
         "status": "buy",
-        "notes": "For Q2 (STF7NM80). Not a schematic component; listed for completeness.",
+        "notes": "For Q2 (STP10NK80Z). Not a schematic component; listed for completeness.",
     },
 
     # ══ GATE DRIVE ════════════════════════════════════════════════════════════
