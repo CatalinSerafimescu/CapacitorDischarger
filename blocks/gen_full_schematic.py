@@ -72,8 +72,8 @@ with schemdraw.Drawing(show=False) as d:
     # ═══════════════════════════════════════════════════════════════
     # HV+ BUS and GND BUS
     # ═══════════════════════════════════════════════════════════════
-    B6_X = 38           # last branch — defines right end of HV+ bus
-    HV_BUS_END = 42     # GND bus / connector leads extend further right
+    B6_X = 40           # last branch — defines right end of HV+ bus
+    HV_BUS_END = 44     # GND bus / connector leads extend further right
     d.add(elm.Line().right().at((2, HV_Y)).tox(B6_X))   # HV+ bus ends at last branch
     d.add(elm.Label().at((3.5, HV_Y + 0.5)).label('HV+'))
     d.add(elm.Line().right().at((2, GND_Y)).tox(HV_BUS_END))
@@ -107,6 +107,12 @@ with schemdraw.Drawing(show=False) as d:
     D9e = d.add(elm.Zener().down().length(EL))
     rlabel(d, R5_X, R5e.end[1], D9e.end[1], LABEL['D9'])
     d.add(elm.Dot(open=True).at(D9e.end).label('GATE_CTRL', loc='right'))
+
+    # C_byp2 — 100 nF gate RC filter (τ = R5 × C ≈ 47 ms, soft Q2 turn-on)
+    CBP2 = d.add(elm.Capacitor().down().at(D9e.end).length(EL))
+    rlabel(d, R5_X, D9e.end[1], CBP2.end[1], LABEL['C_byp2'])
+    d.add(elm.Line().down().at(CBP2.end).toy(GND_Y))
+    d.add(elm.Dot().at((R5_X, GND_Y)))
 
     # ═══════════════════════════════════════════════════════════════
     # BRANCH 2 — R_fast (50 Ω / 5 W) + Q2 N-MOSFET (STF7NM80)
@@ -190,7 +196,7 @@ with schemdraw.Drawing(show=False) as d:
 
     # ═══════════════════════════════════════════════════════════════
     # BRANCH 5 — DVM Signal Divider 6:1  (0–600 V → 0–100 V)
-    # HV+ → 5 × 100 kΩ/0.6 W → node_sig → 100 kΩ → GND
+    # HV+ → 5 × 100 kΩ/0.6 W → node_sig → R_sig_bot → R_cal → GND
     # ═══════════════════════════════════════════════════════════════
     B5_X = 33
     d.add(elm.Dot().at((B5_X, HV_Y)))
@@ -205,7 +211,11 @@ with schemdraw.Drawing(show=False) as d:
     RSB_top = NODE_SIG[1]
     RSB = d.add(elm.Resistor().down().at(NODE_SIG).length(EL))
     rlabel(d, B5_X, RSB_top, RSB.end[1], LABEL['R_sig_bot'])
-    d.add(elm.Line().down().at(RSB.end).toy(GND_Y))
+    # R_cal trimmer in series below R_sig_bot — full-scale calibration trim
+    RCAL_top = RSB.end[1]
+    RCAL = d.add(elm.Resistor().down().length(EL))
+    rlabel(d, B5_X, RCAL_top, RCAL.end[1], LABEL['R_cal'])
+    d.add(elm.Line().down().at(RCAL.end).toy(GND_Y))
     d.add(elm.Dot().at((B5_X, GND_Y)))
 
     # ═══════════════════════════════════════════════════════════════
@@ -229,15 +239,22 @@ with schemdraw.Drawing(show=False) as d:
     d.add(elm.Line().down().at(DVcc.end).toy(GND_Y))
     d.add(elm.Dot().at((B6_X, GND_Y)))
 
-    # C_Vcc in parallel — one column to the left
-    CVCC_X = B6_X - 2
+    # C_Vcc and C_byp1 in parallel — two columns to the left of D_Vcc
+    CVCC_X  = B6_X - 4   # 10 µF electrolytic
+    CBYP1_X = B6_X - 2   # 100 nF HF decoupling
     d.add(elm.Line().left().at(NODE_VCC).tox(CVCC_X))
-    d.add(elm.Dot().at((CVCC_X, NODE_VCC[1])))
+    d.add(elm.Dot().at((CVCC_X,  NODE_VCC[1])))
+    d.add(elm.Dot().at((CBYP1_X, NODE_VCC[1])))
     CVcc_top = NODE_VCC[1]
     CVcc = d.add(elm.Capacitor().down().at((CVCC_X, NODE_VCC[1])).length(EL))
     d.add(elm.Label().at((CVCC_X + LABEL_OFST, (CVcc_top + CVcc.end[1]) / 2))
           .label(LABEL['C_Vcc'], halign='left', valign='center'))
     d.add(elm.Line().down().at(CVcc.end).toy(GND_Y))
+    # C_byp1 — 100 nF HF decoupling for regulated Vcc rail
+    CBP1_top = NODE_VCC[1]
+    CBP1 = d.add(elm.Capacitor().down().at((CBYP1_X, NODE_VCC[1])).length(EL))
+    rlabel(d, CBYP1_X, CBP1_top, CBP1.end[1], LABEL['C_byp1'])
+    d.add(elm.Line().down().at(CBP1.end).toy(GND_Y))
     d.add(elm.Line().right().at((CVCC_X, GND_Y)).tox(B6_X))
 
     # ═══════════════════════════════════════════════════════════════
