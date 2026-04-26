@@ -6,7 +6,7 @@ To update a component:  edit the entry here; the schematic regenerates automatic
 To print a buy list:    python bom.py
 
 status values
-  'sourced'          — in hand (from TME order 2026-04-15 or prior stock)
+  'sourced'          — in hand (from TME order 2026-04-15, Mouser 39007986, or prior stock)
   'sourced_partial'  — can be built from sourced parts (see notes)
   'sourced_unused'   — ordered but not placed in this design
   'buy'              — must be ordered
@@ -31,9 +31,9 @@ BOM = [
         "value": "1N4007",
         "schematic_label": None,       # auto → "D1\n1N4007" etc.
         "description": "Diode, rectifier, 1 A, 1000 V PIV, DO-41, THT",
-        "part_number": "1N4007",
+        "part_number": "1N4007  (Diotec, Mouser 637-1N4007)",
         "qty": 4,
-        "status": "buy",
+        "status": "sourced",
         "notes": "Full-bridge for reverse-polarity protection. PIV 1000 V gives 400 V margin over 600 V rail.",
     },
 
@@ -42,10 +42,10 @@ BOM = [
         "refs": ["R_slow1", "R_slow2", "R_slow3", "R_slow4", "R_slow5"],
         "value": "4.7 kΩ / 5 W",
         "schematic_label": "4.7kΩ/5W",
-        "description": "Resistor, wirewound, 4.7 kΩ, 5 W, ±5%, axial THT",
-        "part_number": "Ohmite WN5S4R70JE  (alt: Vishay RS5-4K7-J)",
+        "description": "Resistor, wirewound, 4.7 kΩ, 5 W, ±1%, 460 V, axial THT",
+        "part_number": "45F4K7E  (Ohmite, Mouser 588-45F4K7E)",
         "qty": 5,
-        "status": "buy",
+        "status": "sourced",
         "notes": (
             "5 in series = 23.5 kΩ / 25 W / 1750 V working voltage. "
             "At 600 V: 25.5 mA, 3.06 W per resistor (61% of 5 W rating). "
@@ -57,12 +57,12 @@ BOM = [
     # ══ FAST DISCHARGE PATH ══════════════════════════════════════════════════
     {
         "refs": ["R_fast"],
-        "value": "50 Ω / 5 W",
-        "schematic_label": "50Ω/5W",
-        "description": "Resistor, wirewound, 50 Ω, 5 W, ±5%, axial THT",
-        "part_number": "Ohmite WN5S50RJE  (alt: Vishay RS5-50R-J)",
+        "value": "50 Ω / 7 W",
+        "schematic_label": "50Ω/7W",
+        "description": "Resistor, wirewound, 50 Ω, 7 W, ±5%, axial THT",
+        "part_number": "27J50RE  (Ohmite, Mouser 588-27J50RE)",
         "qty": 1,
-        "status": "buy",
+        "status": "sourced",
         "notes": (
             "Peak dissipation ≈ 100 W for τ = 50 Ω × C_cap ms at switch-on (V_cap = 71 V). "
             "Energy for 1 mF cap = 2.5 J — well within TO-220 SOA."
@@ -75,22 +75,22 @@ BOM = [
         "description": "MOSFET, N-channel, 800 V, 9 A, R_ds(on) 0.9 Ω typ, TO-220, THT",
         "part_number": "STP10NK80Z  (alt: STF7NM80, IXTP2N80)",
         "qty": 1,
-        "status": "buy",
+        "status": "sourced",
         "notes": (
             "STP10NK80Z preferred over STF7NM80: 9 A vs 6 A, 0.9 Ω vs 1.7 Ω Rds(on) — less heat in MOSFET during fast discharge. "
             "Use standard TO-220 (not FP variant — FP has isolated tab but only 40 W Pd vs 160 W). "
-            "Mount with clip-on heatsink ~10 °C/W (e.g. Wakefield 637-10ABPE) and mica/kapton washer."
+            "Mount with bolt-down heatsink (e.g. Wakefield 647-10ABEP, 3.8 °C/W) and mica/kapton washer."
         ),
     },
     {
         "refs": ["HS1"],
-        "value": "~10 °C/W clip-on",
+        "value": "3.8 °C/W bolt-down",
         "schematic_label": None,
-        "description": "Heatsink, TO-220 clip-on, ~10 °C/W",
-        "part_number": "Wakefield 637-10ABPE  (alt: any TO-220 clip-on ≤12 °C/W)",
+        "description": "Heatsink, TO-220, through-hole bolt-down, 3.8 °C/W",
+        "part_number": "647-10ABEP  (Wakefield, Mouser 567-647-10ABEP)  (also sourced: 637-10ABPE, 5.8 °C/W)",
         "qty": 1,
-        "status": "buy",
-        "notes": "For Q2 (STP10NK80Z). Not a schematic component; listed for completeness.",
+        "status": "sourced",
+        "notes": "For Q2 (STP10NK80Z). Not a schematic component; listed for completeness. Two heatsinks sourced — use 647-10ABEP (better Rth).",
     },
 
     # ══ GATE DRIVE ════════════════════════════════════════════════════════════
@@ -99,23 +99,23 @@ BOM = [
         "value": "100 Ω",
         "schematic_label": "100Ω",
         "description": "Resistor, metal film, 100 Ω, 0.25 W, ±1%, axial THT",
-        "part_number": "any 100 Ω / 0.25 W axial metal film",
+        "part_number": "RN60D1000FB14  (Vishay, Mouser 71-RN60D-F-100)",
         "qty": 1,
-        "status": "buy",
+        "status": "sourced",
         "notes": "Gate series resistor; limits gate charge current to prevent oscillation.",
     },
     {
         "refs": ["R5"],
-        "value": "470 kΩ / 1 W",
-        "schematic_label": "470kΩ/1W",
-        "description": "Resistor, metal film, 470 kΩ, 1 W, ±1%, ≥600 V, axial THT",
-        "part_number": "any 470 kΩ / 1 W axial metal film rated ≥600 V",
+        "value": "470 kΩ / 3 W",
+        "schematic_label": "470kΩ/3W",
+        "description": "Resistor, metal film, 470 kΩ, 3 W, ±1%, 750 V, axial THT",
+        "part_number": "FMP300FRF73-470K  (YAGEO, Mouser 603-FMP300FRF73-470K)",
         "qty": 1,
-        "status": "buy",
+        "status": "sourced",
         "notes": (
             "Gate pull-up from HV+ rail; D9 clamps gate at 12 V when Q1 is off. "
-            "At 600 V: P = (600−12)²/470 k ≈ 0.74 W (74% of 1 W rating). "
-            "Sees up to ~590 V — verify part is rated ≥600 V working voltage."
+            "At 600 V: P = (600−12)²/470 k ≈ 0.74 W (25% of 3 W rating). "
+            "Sees up to ~590 V — 750 V part rating gives adequate margin."
         ),
     },
     {
@@ -123,9 +123,9 @@ BOM = [
         "value": "BZX85C12 / 12 V",
         "schematic_label": "BZX85C12\n12V",
         "description": "Zener diode, 12 V, 1.3 W, DO-41, THT",
-        "part_number": "BZX85C12",
+        "part_number": "BZX85C12  (onsemi, Mouser 512-BZX85C12)",
         "qty": 1,
-        "status": "buy",
+        "status": "sourced",
         "notes": "Clamps Q2 gate to 12 V when Q1 is off (safe for any gate oxide).",
     },
 
@@ -135,9 +135,9 @@ BOM = [
         "value": "2N3904",
         "schematic_label": "2N3904",
         "description": "BJT, NPN, 40 V Vce, 200 mA, TO-92, THT",
-        "part_number": "2N3904",
+        "part_number": "2N3904TFR  (onsemi, Mouser 512-2N3904TFR)",
         "qty": 1,
-        "status": "buy",
+        "status": "sourced",
         "notes": (
             "Saturates when V_cap > 71 V → pulls GATE_CTRL low → Q2 OFF (slow path only). "
             "Threshold = 0.7 V × (R1 + R2) / R2 ≈ 71 V."
@@ -145,15 +145,15 @@ BOM = [
     },
     {
         "refs": ["R1"],
-        "value": "1 MΩ / 1 W",
-        "schematic_label": "1MΩ/1W",
-        "description": "Resistor, metal film, 1 MΩ, 1 W, ±1%, ≥600 V, axial THT",
-        "part_number": "any 1 MΩ / 1 W axial metal film rated ≥600 V",
+        "value": "1 MΩ / 3 W",
+        "schematic_label": "1MΩ/3W",
+        "description": "Resistor, metal film, 1 MΩ, 3 W, ±1%, 750 V, axial THT",
+        "part_number": "FMP300FRF73-1M  (YAGEO, Mouser 603-FMP300FRF73-1M)",
         "qty": 1,
-        "status": "buy",
+        "status": "sourced",
         "notes": (
-            "Top of R1/R2 threshold divider. At 600 V: 0.36 W (36% of 1 W rating). "
-            "Sees up to ~600 V — verify part is rated ≥600 V working voltage. "
+            "Top of R1/R2 threshold divider. At 600 V: 0.36 W (12% of 3 W rating). "
+            "Sees up to ~408 V (divider top) — 750 V part rating gives adequate margin. "
             "V_th = 0.7 × (1 MΩ + 10 kΩ) / 10 kΩ ≈ 70.7 V."
         ),
     },
@@ -162,9 +162,9 @@ BOM = [
         "value": "10 kΩ",
         "schematic_label": "10kΩ",
         "description": "Resistor, metal film, 10 kΩ, 0.25 W, ±1%, axial THT",
-        "part_number": "any 10 kΩ / 0.25 W axial metal film",
+        "part_number": "MFR-25FTE52-10K  (YAGEO, Mouser 603-MFR-25FTE52-10K)",
         "qty": 1,
-        "status": "buy",
+        "status": "sourced",
         "notes": "Bottom of R1/R2 divider; sets 71 V threshold. Tune by swapping value if needed.",
     },
     {
@@ -198,9 +198,9 @@ BOM = [
         "value": "BZX55C8V2 / 8.2 V",
         "schematic_label": "BZX55C8V2\n8.2V",
         "description": "Zener diode, 8.2 V, 0.5 W, DO-35, THT",
-        "part_number": "BZX55C8V2",
+        "part_number": "BZX55C8V2-TAP  (Vishay, Mouser 78-BZX55C8V2-TAP)",
         "qty": 1,
-        "status": "buy",
+        "status": "sourced",
         "notes": "Sets LED cutoff: V_Z (8.2 V) + V_f (2 V) ≈ 10.2 V. LED off below that.",
     },
     {
@@ -208,9 +208,9 @@ BOM = [
         "value": "Red LED  Vf≈2V",
         "schematic_label": "Red  Vf≈2V",
         "description": "LED, red, 5 mm, Vf ≈ 2 V, 20 mA max, THT",
-        "part_number": "any 5 mm red LED (Vf ≈ 2 V)",
+        "part_number": "any 5 mm red LED (Vf ≈ 2 V)  (from kit)",
         "qty": 1,
-        "status": "buy",
+        "status": "sourced",
         "notes": "Danger indicator. ON above ~10.2 V, OFF below. Bright at 2 mA (600 V); dim at 0.3 mA (100 V).",
     },
 
@@ -262,9 +262,9 @@ BOM = [
         "value": "1N4744A / 15 V",
         "schematic_label": "1N4744A\n15V",
         "description": "Zener diode, 15 V, 1 W, DO-41, THT",
-        "part_number": "1N4744A",
+        "part_number": "1N4744A-T50A  (onsemi, Mouser 512-1N4744AT50A)",
         "qty": 1,
-        "status": "buy",
+        "status": "sourced",
         "notes": "Shunt regulator; holds DVM Vcc at 15 V. DVM live when V_cap > ~20 V.",
     },
     {

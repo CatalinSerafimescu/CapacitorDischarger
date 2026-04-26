@@ -6,30 +6,30 @@
 
 | Ref(s) | Qty | Description | Part Number / Suggestion |
 |--------|-----|-------------|--------------------------|
-| D1, D2, D3, D4 | 4 | Diode, rectifier, 1 A, 1000 V PIV, DO-41, THT | 1N4007 |
-| R_slow1, R_slow2, R_slow3, R_slow4, R_slow5 | 5 | Resistor, wirewound, 4.7 kΩ, 5 W, ±5%, axial THT | Ohmite WN5S4R70JE  (alt: Vishay RS5-4K7-J) |
-| R_fast | 1 | Resistor, wirewound, 50 Ω, 5 W, ±5%, axial THT | Ohmite WN5S50RJE  (alt: Vishay RS5-50R-J) |
-| Q2 | 1 | MOSFET, N-channel, 800 V, 9 A, R_ds(on) 0.9 Ω typ, TO-220, THT | STP10NK80Z  (alt: STF7NM80, IXTP2N80) |
-| HS1 | 1 | Heatsink, TO-220 clip-on, ~10 °C/W | Wakefield 637-10ABPE  (alt: any TO-220 clip-on ≤12 °C/W) |
-| R4 | 1 | Resistor, metal film, 100 Ω, 0.25 W, ±1%, axial THT | any 100 Ω / 0.25 W axial metal film |
-| R5 | 1 | Resistor, metal film, 470 kΩ, 1 W, ±1%, ≥600 V, axial THT | any 470 kΩ / 1 W axial metal film rated ≥600 V |
-| D9 | 1 | Zener diode, 12 V, 1.3 W, DO-41, THT | BZX85C12 |
-| Q1 | 1 | BJT, NPN, 40 V Vce, 200 mA, TO-92, THT | 2N3904 |
-| R1 | 1 | Resistor, metal film, 1 MΩ, 1 W, ±1%, ≥600 V, axial THT | any 1 MΩ / 1 W axial metal film rated ≥600 V |
-| R2 | 1 | Resistor, metal film, 10 kΩ, 0.25 W, ±1%, axial THT | any 10 kΩ / 0.25 W axial metal film |
-| D_LED | 1 | Zener diode, 8.2 V, 0.5 W, DO-35, THT | BZX55C8V2 |
-| LED1 | 1 | LED, red, 5 mm, Vf ≈ 2 V, 20 mA max, THT | any 5 mm red LED (Vf ≈ 2 V) |
-| D_Vcc | 1 | Zener diode, 15 V, 1 W, DO-41, THT | 1N4744A |
 
 ## Sourced (In Hand)
 
 | Ref(s) | Qty | Part Number |
 |--------|-----|-------------|
+| D1, D2, D3, D4 | 4 | 1N4007  (Diotec, Mouser 637-1N4007) |
+| R_slow1, R_slow2, R_slow3, R_slow4, R_slow5 | 5 | 45F4K7E  (Ohmite, Mouser 588-45F4K7E) |
+| R_fast | 1 | 27J50RE  (Ohmite, Mouser 588-27J50RE) |
+| Q2 | 1 | STP10NK80Z  (alt: STF7NM80, IXTP2N80) |
+| HS1 | 1 | 647-10ABEP  (Wakefield, Mouser 567-647-10ABEP)  (also sourced: 637-10ABPE, 5.8 °C/W) |
+| R4 | 1 | RN60D1000FB14  (Vishay, Mouser 71-RN60D-F-100) |
+| R5 | 1 | FMP300FRF73-470K  (YAGEO, Mouser 603-FMP300FRF73-470K) |
+| D9 | 1 | BZX85C12  (onsemi, Mouser 512-BZX85C12) |
+| Q1 | 1 | 2N3904TFR  (onsemi, Mouser 512-2N3904TFR) |
+| R1 | 1 | FMP300FRF73-1M  (YAGEO, Mouser 603-FMP300FRF73-1M) |
+| R2 | 1 | MFR-25FTE52-10K  (YAGEO, Mouser 603-MFR-25FTE52-10K) |
 | R3 | 1 | MF006FF1003A50 |
 | R_LED1, R_LED2, R_LED3 | 3 | MF006FF1003A50 |
+| D_LED | 1 | BZX55C8V2-TAP  (Vishay, Mouser 78-BZX55C8V2-TAP) |
+| LED1 | 1 | any 5 mm red LED (Vf ≈ 2 V)  (from kit) |
 | R_sig1, R_sig2, R_sig3, R_sig4, R_sig5 | 5 | MF006FF1003A50 |
 | R_sig_bot | 1 | MF006FF1003A50 |
 | R_drop1, R_drop2, R_drop3, R_drop4 | 4 | MOF3WS-15K |
+| D_Vcc | 1 | 1N4744A-T50A  (onsemi, Mouser 512-1N4744AT50A) |
 | C_Vcc | 1 | EEAGA1E100H |
 | R_cal | 1 | T93YA200K |
 | C_byp1, C_byp2 | 2 | K104K10X7RF5UH5 |
