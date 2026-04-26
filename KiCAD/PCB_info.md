@@ -43,19 +43,23 @@ Key PCB rules:
 
 | Rule | Value |
 |------|-------|
-| Min trace clearance HV↔LV | 6mm |
+| Min trace clearance HV↔GND | 8mm |
+| Min trace clearance HV↔LV signals | 6mm |
 | Creepage (enforced by slot) | 6mm |
 | HVp / GND return traces | 2mm min or copper pour |
 | Q2 drain/source traces | 2mm min |
-| Slow path resistors | standoff from PCB surface |
+| Slow path resistors | standoff from PCB surface, no copper pour underneath |
+| Spacing between consecutive resistor bodies | 3–5mm |
 | Q2 | TO-220 with heatsink tab, mounting hole |
 
 Practical layout tips:
 1. Put input terminals and Q2 at the top edge — short HV current loop
 2. Run the GND return as a copper pour directly under the discharge path
 3. The five boundary resistors straddle the slot — top pin in HV zone, body across the gap, bottom pin in LV zone
-4. R_cal trimmer in LV zone near the DVM connector for easy access
-5. DVM connector on the board edge, in LV zone only
+4. Leave 3–5mm air gap between consecutive resistor bodies (R_slow1–5) — reduces creepage risk between adjacent HV nodes
+5. No copper pour under resistor bodies — bare FR4 only; reduces surface tracking risk under high dissipation
+6. R_cal trimmer in LV zone near the DVM connector for easy access
+7. DVM connector on the board edge, in LV zone only
 
 ---
 
