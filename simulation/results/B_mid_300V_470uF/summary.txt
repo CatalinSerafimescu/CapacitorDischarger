@@ -1,5 +1,5 @@
 SCENARIO: B_mid_300V_470uF
 STATUS: PASS
 
-  [PASS] B: t(V<71V): t(V<71V) = 9.86 s  (expected 5-17 s)
-  [PASS] B: min V(n_vcc) while HVp>30V = 5.15 V  (expected >=5 V, DVM rail floor)
+  [PASS] B: t(V<71V): t(V<71V) = 9.89 s  (expected 5-17 s)
+  [PASS] B: min V(n_vcc) while HVp>30V = 5.19 V  (expected >=5 V, DVM rail floor)

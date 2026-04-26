@@ -17,6 +17,7 @@ R_slow5 n_slow5 0       4.7k
 R5      HVp n_gate_top 470k
 D_D9    0   n_gate_top DZ12
 R4      n_gate_top n_gate 100
+C_byp2  n_gate 0 100n
 
 * ── Q1 threshold detector ────────────────────────────────────
 R1      HVp n_base_top 1Meg
@@ -41,7 +42,8 @@ R_sig2  n_sig2 n_sig3 100k
 R_sig3  n_sig3 n_sig4 100k
 R_sig4  n_sig4 n_sig5 100k
 R_sig5  n_sig5 n_sigout 100k
-R_sigb  n_sigout 0     100k
+R_sigb  n_sigout n_rcal 100k
+R_cal   n_rcal 0       1
 
 * ── DVM Vcc dropper ──────────────────────────────────────────
 R_drop1 HVp n_drop2 15k
@@ -50,6 +52,7 @@ R_drop3 n_drop3 n_drop4 15k
 R_drop4 n_drop4 n_vcc   15k
 D_DVcc  0       n_vcc   DZ15
 C_Vcc   n_vcc 0 10u
+C_byp1  n_vcc 0 100n
 R_dvm_load n_vcc 0 5k
 
 * ── DC sweep ─────────────────────────────────────────────────

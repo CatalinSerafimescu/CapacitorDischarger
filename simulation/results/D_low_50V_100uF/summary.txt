@@ -1,5 +1,5 @@
 SCENARIO: D_low_50V_100uF
 STATUS: PASS
 
-  [PASS] D: fast path on at t=0.0000s  (expected <0.1s)
+  [PASS] D: fast path on at t=0.0045s  (expected <0.1s)
   [PASS] D: t(V<10V): t(V<10V) = 0.01 s  (expected 0-1.5 s)

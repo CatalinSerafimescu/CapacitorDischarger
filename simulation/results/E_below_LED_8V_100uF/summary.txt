@@ -2,4 +2,4 @@ SCENARIO: E_below_LED_8V_100uF
 STATUS: PASS
 
   [PASS] E: max I_LED = 0.000 µA  (expected < 1 µA)
-  [PASS] E: max V(n_vcc) = 0.28 V  (expected < 5 V)
+  [PASS] E: max V(n_vcc) = 0.34 V  (expected < 5 V)
