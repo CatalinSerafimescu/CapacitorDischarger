@@ -43,7 +43,7 @@ BOM = [
         "value": "4.7 kΩ / 5 W",
         "schematic_label": "4.7kΩ/5W",
         "description": "Resistor, wirewound, 4.7 kΩ, 5 W, ±5%, axial THT",
-        "part_number": "Ohmite WN5S4R70JE  (alt: Vishay AC05)",
+        "part_number": "Ohmite WN5S4R70JE  (alt: Vishay RS5-4K7-J)",
         "qty": 5,
         "status": "buy",
         "notes": (
@@ -60,7 +60,7 @@ BOM = [
         "value": "50 Ω / 5 W",
         "schematic_label": "50Ω/5W",
         "description": "Resistor, wirewound, 50 Ω, 5 W, ±5%, axial THT",
-        "part_number": "Ohmite WN5S50RJE  (alt: any 50 Ω / 5 W wirewound)",
+        "part_number": "Ohmite WN5S50RJE  (alt: Vishay RS5-50R-J)",
         "qty": 1,
         "status": "buy",
         "notes": (

@@ -7,8 +7,8 @@
 | Ref(s) | Qty | Description | Part Number / Suggestion |
 |--------|-----|-------------|--------------------------|
 | D1, D2, D3, D4 | 4 | Diode, rectifier, 1 A, 1000 V PIV, DO-41, THT | 1N4007 |
-| R_slow1, R_slow2, R_slow3, R_slow4, R_slow5 | 5 | Resistor, wirewound, 4.7 kΩ, 5 W, ±5%, axial THT | Ohmite WN5S4R70JE  (alt: Vishay AC05) |
-| R_fast | 1 | Resistor, wirewound, 50 Ω, 5 W, ±5%, axial THT | Ohmite WN5S50RJE  (alt: any 50 Ω / 5 W wirewound) |
+| R_slow1, R_slow2, R_slow3, R_slow4, R_slow5 | 5 | Resistor, wirewound, 4.7 kΩ, 5 W, ±5%, axial THT | Ohmite WN5S4R70JE  (alt: Vishay RS5-4K7-J) |
+| R_fast | 1 | Resistor, wirewound, 50 Ω, 5 W, ±5%, axial THT | Ohmite WN5S50RJE  (alt: Vishay RS5-50R-J) |
 | Q2 | 1 | MOSFET, N-channel, 800 V, 6 A, R_ds(on) 1.7 Ω typ, TO-220, THT | STF7NM80  (alt: STP10NK80Z, IXTP2N80) |
 | HS1 | 1 | Heatsink, TO-220 clip-on, ~10 °C/W | Wakefield 637-10ABPE  (alt: any TO-220 clip-on ≤12 °C/W) |
 | R4 | 1 | Resistor, metal film, 100 Ω, 0.25 W, ±1%, axial THT | any 100 Ω / 0.25 W axial metal film |
