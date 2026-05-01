@@ -683,7 +683,7 @@
         "uuid": "c3000000-0003-0003-0003-000000000003"
       }
     ],
-    "used_designators": "D_LED1,C_Vcc1,R_fast1,D_Vcc1,R_cal1,R_sig_bot1",
+    "used_designators": "",
     "variants": []
   },
   "sheets": [
