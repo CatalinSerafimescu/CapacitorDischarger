@@ -4032,7 +4032,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_Power_L38mm_W10mm_P41.91mm"
+		(property "Footprint" "Resistor_THT:R_Axial_Power_L25.0mm_W9.0mm_P30.48mm"
 			(at 50.18 2.28 0)
 			(hide yes)
 			(show_name no)
@@ -4112,7 +4112,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_Power_L38mm_W10mm_P41.91mm"
+		(property "Footprint" "Resistor_THT:R_Axial_Power_L25.0mm_W9.0mm_P30.48mm"
 			(at 50.18 2.28 0)
 			(hide yes)
 			(show_name no)
@@ -4192,7 +4192,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_Power_L38mm_W10mm_P41.91mm"
+		(property "Footprint" "Resistor_THT:R_Axial_Power_L25.0mm_W9.0mm_P30.48mm"
 			(at 50.18 2.28 0)
 			(hide yes)
 			(show_name no)
@@ -4272,7 +4272,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_Power_L38mm_W10mm_P41.91mm"
+		(property "Footprint" "Resistor_THT:R_Axial_Power_L25.0mm_W9.0mm_P30.48mm"
 			(at 50.18 2.28 0)
 			(hide yes)
 			(show_name no)
@@ -4352,7 +4352,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_Power_L38mm_W10mm_P41.91mm"
+		(property "Footprint" "Resistor_THT:R_Axial_Power_L25.0mm_W9.0mm_P30.48mm"
 			(at 50.18 2.28 0)
 			(hide yes)
 			(show_name no)
@@ -4432,7 +4432,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_Power_L38mm_W10mm_P41.91mm"
+		(property "Footprint" "Resistor_THT:R_Axial_Power_L38.0mm_W9.0mm_P40.64mm"
 			(at 50.18 2.28 0)
 			(hide yes)
 			(show_name no)
@@ -5037,7 +5037,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_Power_L15mm_W5mm_P20.32mm"
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0516_L15.5mm_D5.0mm_P20.32mm_Horizontal"
 			(at 8.04 -6.91 0)
 			(hide yes)
 			(show_name no)
@@ -5438,7 +5438,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_Power_L15mm_W5mm_P20.32mm"
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0516_L15.5mm_D5.0mm_P20.32mm_Horizontal"
 			(at 8.04 -6.91 0)
 			(hide yes)
 			(show_name no)
@@ -5594,7 +5594,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:C_Disc_D3.8mm_W2.6mm_P5.00mm"
+		(property "Footprint" "Capacitor_THT:C_Disc_D3.8mm_W2.6mm_P2.50mm"
 			(at 8.04 -6.91 0)
 			(hide yes)
 			(show_name no)
@@ -6630,7 +6630,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Potentiometer_THT:Potentiometer_Vishay_T93_Vertical"
+		(property "Footprint" "Potentiometer_THT:Potentiometer_Bourns_3296W_Vertical"
 			(at 8.04 -6.91 0)
 			(hide yes)
 			(show_name no)
@@ -7453,7 +7453,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_Power_L15mm_W5mm_P20.32mm"
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0516_L15.5mm_D5.0mm_P20.32mm_Horizontal"
 			(at 8.04 -6.91 0)
 			(hide yes)
 			(show_name no)
@@ -7533,7 +7533,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_Power_L15mm_W5mm_P20.32mm"
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0516_L15.5mm_D5.0mm_P20.32mm_Horizontal"
 			(at 8.04 -6.91 0)
 			(hide yes)
 			(show_name no)
@@ -7613,7 +7613,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_Power_L15mm_W5mm_P20.32mm"
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0516_L15.5mm_D5.0mm_P20.32mm_Horizontal"
 			(at 8.04 -6.91 0)
 			(hide yes)
 			(show_name no)
@@ -7693,7 +7693,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_Power_L15mm_W5mm_P20.32mm"
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0516_L15.5mm_D5.0mm_P20.32mm_Horizontal"
 			(at 8.04 -6.91 0)
 			(hide yes)
 			(show_name no)
@@ -7849,7 +7849,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:CP_Radial_D4.0mm_P2.50mm"
+		(property "Footprint" "Capacitor_THT:CP_Radial_D4.0mm_P2.00mm"
 			(at 8.04 -6.91 0)
 			(hide yes)
 			(show_name no)
@@ -7927,7 +7927,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:C_Disc_D3.8mm_W2.6mm_P5.00mm"
+		(property "Footprint" "Capacitor_THT:C_Disc_D3.8mm_W2.6mm_P2.50mm"
 			(at 8.04 -6.91 0)
 			(hide yes)
 			(show_name no)
