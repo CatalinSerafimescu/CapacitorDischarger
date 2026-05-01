@@ -104,13 +104,14 @@ with schemdraw.Drawing(show=False) as d:
     d.add(elm.Dot().at((R5_X, HV_Y)))
     R5e = d.add(elm.Resistor().down().at((R5_X, HV_Y)).length(EL))
     rlabel(d, R5_X, HV_Y, R5e.end[1], LABEL['R5'])
-    D9e = d.add(elm.Zener().down().length(EL))
-    rlabel(d, R5_X, R5e.end[1], D9e.end[1], LABEL['D9'])
-    d.add(elm.Dot(open=True).at(D9e.end).label('GATE_CTRL', loc='right'))
+    D9_bot = (R5_X, R5e.end[1] - EL)
+    D9e = d.add(elm.Zener().up().at(D9_bot).length(EL))
+    rlabel(d, R5_X, R5e.end[1], D9_bot[1], LABEL['D9'])
+    d.add(elm.Dot(open=True).at(D9_bot).label('GATE_CTRL', loc='right'))
 
     # C_byp2 — 100 nF gate RC filter (τ = R5 × C ≈ 47 ms, soft Q2 turn-on)
-    CBP2 = d.add(elm.Capacitor().down().at(D9e.end).length(EL))
-    rlabel(d, R5_X, D9e.end[1], CBP2.end[1], LABEL['C_byp2'])
+    CBP2 = d.add(elm.Capacitor().down().at(D9_bot).length(EL))
+    rlabel(d, R5_X, D9_bot[1], CBP2.end[1], LABEL['C_byp2'])
     d.add(elm.Line().down().at(CBP2.end).toy(GND_Y))
     d.add(elm.Dot().at((R5_X, GND_Y)))
 
@@ -186,10 +187,11 @@ with schemdraw.Drawing(show=False) as d:
         rlabel(d, B4_X, top, r.end[1], LABEL[f'R_LED{i}'])
         cur = r.end
     DZ_top = cur[1]
-    DZ  = d.add(elm.Zener().down().at(cur).length(EL))
-    rlabel(d, B4_X, DZ_top, DZ.end[1], LABEL['D_LED'])
-    L1_top = DZ.end[1]
-    L1  = d.add(elm.LED().down().length(EL))
+    DZ_bot_y = DZ_top - EL
+    DZ  = d.add(elm.Zener().up().at((B4_X, DZ_bot_y)).length(EL))
+    rlabel(d, B4_X, DZ_top, DZ_bot_y, LABEL['D_LED'])
+    L1_top = DZ_bot_y
+    L1  = d.add(elm.LED().down().at((B4_X, DZ_bot_y)).length(EL))
     rlabel(d, B4_X, L1_top, L1.end[1], LABEL['LED1'])
     d.add(elm.Line().down().at(L1.end).toy(GND_Y))
     d.add(elm.Dot().at((B4_X, GND_Y)))
@@ -234,9 +236,10 @@ with schemdraw.Drawing(show=False) as d:
 
     # D_Vcc Zener on main column
     DVcc_top = NODE_VCC[1]
-    DVcc = d.add(elm.Zener().down().at(NODE_VCC).length(EL))
-    rlabel(d, B6_X, DVcc_top, DVcc.end[1], LABEL['D_Vcc'])
-    d.add(elm.Line().down().at(DVcc.end).toy(GND_Y))
+    DVcc_bot_y = DVcc_top - EL
+    DVcc = d.add(elm.Zener().up().at((B6_X, DVcc_bot_y)).length(EL))
+    rlabel(d, B6_X, DVcc_top, DVcc_bot_y, LABEL['D_Vcc'])
+    d.add(elm.Line().down().at((B6_X, DVcc_bot_y)).toy(GND_Y))
     d.add(elm.Dot().at((B6_X, GND_Y)))
 
     # C_Vcc and C_byp1 in parallel — two columns to the left of D_Vcc
