@@ -175,13 +175,13 @@ with schemdraw.Drawing(show=False) as d:
 
     # ═══════════════════════════════════════════════════════════════
     # BRANCH 4 — LED Danger Indicator (~10.2 V cutoff)
-    # HV+ → R_LED1–R_LED3 (3 × 100 kΩ/0.6 W) → D_LED (BZX55C8V2, 8.2 V)
+    # HV+ → R_LED1–R_LED4 (4 × 100 kΩ/0.6 W) → D_LED (BZX55C8V2, 8.2 V)
     #      → LED1 (red, Vf ≈ 2 V) → GND
     # ═══════════════════════════════════════════════════════════════
     B4_X = 28
     d.add(elm.Dot().at((B4_X, HV_Y)))
     cur = (B4_X, HV_Y)
-    for i in range(1, 4):
+    for i in range(1, 5):
         top = cur[1]
         r = d.add(elm.Resistor().down().at(cur).length(EL))
         rlabel(d, B4_X, top, r.end[1], LABEL[f'R_LED{i}'])

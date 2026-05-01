@@ -132,15 +132,17 @@ BOM = [
     # ══ THRESHOLD DETECTOR (Q1 NPN, 71 V switch point) ══════════════════════
     {
         "refs": ["Q1"],
-        "value": "2N3904",
-        "schematic_label": "2N3904",
-        "description": "BJT, NPN, 40 V Vce, 200 mA, TO-92, THT",
-        "part_number": "2N3904TFR  (onsemi, Mouser 512-2N3904TFR)",
+        "value": "MPSA42",
+        "schematic_label": "MPSA42",
+        "description": "BJT, NPN, 300 V Vce, 500 mA, TO-92, THT",
+        "part_number": "MPSA42-FAI  (onsemi, TME MPSA42-FAI)",
         "qty": 1,
         "status": "sourced",
         "notes": (
             "Saturates when V_cap > 71 V → pulls GATE_CTRL low → Q2 OFF (slow path only). "
-            "Threshold = 0.7 V × (R1 + R2) / R2 ≈ 71 V."
+            "Threshold = 0.7 V × (R1 + R2) / R2 ≈ 71 V. "
+            "300 V V_CEO gives safe margin in a 600 V circuit even if D9 opens. "
+            "Drop-in replacement for 2N3904 (same TO-92 pinout, β ≈ 150)."
         ),
     },
     {
@@ -180,17 +182,17 @@ BOM = [
 
     # ══ LED DANGER INDICATOR (~10.2 V cutoff) ════════════════════════════════
     {
-        "refs": ["R_LED1", "R_LED2", "R_LED3"],
+        "refs": ["R_LED1", "R_LED2", "R_LED3", "R_LED4"],
         "value": "100 kΩ / 0.6 W",
         "schematic_label": "100kΩ/0.6W",
         "description": "Resistor, metal film, 100 kΩ, 0.6 W, ±1%, 250 V, axial THT",
         "part_number": "MF006FF1003A50",
-        "qty": 3,
+        "qty": 4,
         "status": "sourced",
         "notes": (
-            "3 in series = 300 kΩ current limiter. "
-            "At 600 V: 2 mA through LED, 0.4 W per resistor (67% of 0.6 W). "
-            "Each resistor sees ≤200 V (within 250 V rating)."
+            "4 in series = 400 kΩ current limiter. "
+            "At 600 V: 1.47 mA through LED, 0.29 W per resistor (49% of 0.6 W). "
+            "Each resistor sees ≤150 V (60% of 250 V rating) — improved derating vs 3-resistor design."
         ),
     },
     {
@@ -281,15 +283,17 @@ BOM = [
     # ══ OPTIONAL / CALIBRATION ════════════════════════════════════════════════
     {
         "refs": ["R_cal"],
-        "value": "200 kΩ trimmer",
-        "schematic_label": "200kΩ trim",
-        "description": "Potentiometer, wirewound trimmer, 200 kΩ, 500 mW, ±10%, THT",
-        "part_number": "T93YA200K",
+        "value": "10 kΩ trimmer",
+        "schematic_label": "10kΩ trim",
+        "description": "Potentiometer, cermet trimmer, 10 kΩ, 25-turn, 0.5 W, THT",
+        "part_number": "3296W-1-103LF  (Bourns, TME 3296W-1-103LF)",
         "qty": 1,
         "status": "sourced",
         "notes": (
             "Optional. Place in series with R_sig_bot to calibrate DVM full-scale reading. "
-            "Set trimmer so DVM reads 50.0 V when V_cap = 300 V (known reference)."
+            "Set trimmer so DVM reads 50.0 V when V_cap = 300 V (known reference). "
+            "10 kΩ gives ±8% calibration range; 25-turn for fine adjustment. "
+            "Do NOT use the sourced 200 kΩ trimmer here — it can overdrive the DVM beyond 100 V."
         ),
     },
 
@@ -367,6 +371,16 @@ BOM = [
         "qty": 0,
         "status": "sourced_unused",
         "notes": "10 pcs sourced. Not used in current design revision.",
+    },
+    {
+        "refs": [],
+        "value": "3386P-1-103LF",
+        "schematic_label": None,
+        "description": "Potentiometer, cermet trimmer, 10 kΩ, 1-turn, 0.5 W, THT",
+        "part_number": "3386P-1-103LF  (Bourns, TME 3386P-1-103LF)",
+        "qty": 0,
+        "status": "sourced_unused",
+        "notes": "5 pcs sourced. Single-turn variant of R_cal trimmer. Not placed — 3296W (25-turn) used instead for finer adjustment.",
     },
     {
         "refs": [],

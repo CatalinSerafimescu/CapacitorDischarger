@@ -18,13 +18,14 @@
 * ── LED (red, Vf ≈ 2 V) ──────────────────────────────────────
 .model DLED D IS=1e-20 N=2 RS=5
 
-* ── NPN BJT: 2N3904 (threshold detector Q1) ─────────────────
-.model Q2N3904 NPN IS=1.0e-14 XTI=3 EG=1.11 VAF=74.03 BF=300
-+  ISE=6.734e-15 NE=1.259 IKF=66.78e-3 XTB=1.5
-+  BR=0.7372 ISC=1.32e-13 NC=2 IKR=80e-3
-+  RC=1 CJC=3.638e-12 MJC=0.3085 VJC=0.75 FC=0.5
-+  CJE=4.493e-12 MJE=0.2593 VJE=0.75 TR=239.5e-9 TF=301.2e-12
-+  ITF=0.4 VTF=4 XTF=2 RB=10
+* ── NPN BJT: MPSA42 (threshold detector Q1) ─────────────────
+* onsemi MPSA42: 300 V V_CEO, 500 mA, TO-92
+.model QMPSA42 NPN IS=1.0e-14 XTI=3 EG=1.11 VAF=100 BF=150
++  ISE=6e-15 NE=1.3 IKF=100e-3 XTB=1.5
++  BR=1 ISC=1e-13 NC=2 IKR=100e-3
++  RC=2 CJC=4e-12 MJC=0.33 VJC=0.75 FC=0.5
++  CJE=8e-12 MJE=0.33 VJE=0.75 TR=100e-9 TF=5e-9
++  ITF=0.1 VTF=10 XTF=2 RB=100
 
 * ── N-channel MOSFET: STF7NM80 (fast-path switch Q2) ────────
 * Generic 800 V N-MOSFET; replace with vendor model if available

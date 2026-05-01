@@ -336,14 +336,14 @@
     (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "R3") (unit 1))))
   )
 
-  ;; Q1 — 2N3904 NPN, at (90, 52)
+  ;; Q1 — MPSA42 NPN, at (90, 52)
   ;; B at (87.46, 52); C at (90.508, 46.92); E at (90.508, 57.08)
   (symbol
     (lib_id "Device:Q_NPN_BCE")
     (at 90 52 0) (unit 1) (in_bom yes) (on_board yes)
     (uuid "b2000013-0002-0002-0002-000000000001")
     (property "Reference" "Q1" (at 95 50 0) (effects (font (size 1.27 1.27))))
-    (property "Value" "2N3904" (at 95 52.5 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "MPSA42" (at 95 52.5 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "Package_TO_SOT_THT:TO-92_Inline" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
     (pin "B" (uuid "b2000013-0002-0002-0002-000000000101"))
@@ -441,7 +441,7 @@
 
   ;; ═══════════════════════════════════════════════════════════════════════
   ;; BLOCK C — LED DANGER INDICATOR
-  ;; HV+ → R_LED1 → R_LED2 → R_LED3 → D_LED(K) D_LED(A) → LED1(A) LED1(K) → GND
+  ;; HV+ → R_LED1 → R_LED2 → R_LED3 → R_LED4 → D_LED(K) D_LED(A) → LED1(A) LED1(K) → GND
   ;; Column x=152, top at y=25
   ;; ═══════════════════════════════════════════════════════════════════════
 
@@ -490,14 +490,29 @@
     (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "R_LED3") (unit 1))))
   )
 
-  ;; D_LED — BZX55C8V2 (8.2V Zener), K-up at (152, 73)
-  ;; angle=270 → K at (152, 69.19); A at (152, 76.81)
+  ;; R_LED4 at (152, 71)
+  ;; pin1 at (152, 68.46); pin2 at (152, 73.54)
+  (symbol
+    (lib_id "Device:R")
+    (at 152 71 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000032-0002-0002-0002-000000000003")
+    (property "Reference" "R_LED4" (at 155 71 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Value" "100k" (at 155 73.5 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "b2000032-0002-0002-0002-000000000103"))
+    (pin "2" (uuid "b2000032-0002-0002-0002-000000000104"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "R_LED4") (unit 1))))
+  )
+
+  ;; D_LED — BZX55C8V2 (8.2V Zener), K-up at (152, 85)
+  ;; angle=270 → K at (152, 81.19); A at (152, 88.81)
   (symbol
     (lib_id "Device:D_Zener")
-    (at 152 73 270) (unit 1) (in_bom yes) (on_board yes)
+    (at 152 85 270) (unit 1) (in_bom yes) (on_board yes)
     (uuid "b2000033-0002-0002-0002-000000000001")
-    (property "Reference" "D_LED" (at 155 71 0) (effects (font (size 1.27 1.27))))
-    (property "Value" "BZX55C8V2" (at 155 73.5 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "D_LED" (at 155 83 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "BZX55C8V2" (at 155 85.5 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
     (pin "A" (uuid "b2000033-0002-0002-0002-000000000101"))
@@ -505,13 +520,13 @@
     (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "D_LED") (unit 1))))
   )
 
-  ;; LED1 — red 5mm, D_LED (K-up at 152,88), angle=270 → K at (152,84.19); A at (152,91.81)
+  ;; LED1 — red 5mm, angle=270 → K at (152,96.19); A at (152,103.81)
   (symbol
     (lib_id "Device:LED")
-    (at 152 88 270) (unit 1) (in_bom yes) (on_board yes)
+    (at 152 100 270) (unit 1) (in_bom yes) (on_board yes)
     (uuid "b2000034-0002-0002-0002-000000000001")
-    (property "Reference" "LED1" (at 155 86 0) (effects (font (size 1.27 1.27))))
-    (property "Value" "RED 5mm" (at 155 88.5 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "LED1" (at 155 98 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "RED 5mm" (at 155 100.5 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "LED_THT:LED_D5.0mm" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
     (pin "A" (uuid "b2000034-0002-0002-0002-000000000101"))
@@ -519,13 +534,13 @@
     (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "LED1") (unit 1))))
   )
 
-  ;; GND at LED1 anode bottom (152, 96)
+  ;; GND at LED1 anode bottom (152, 110)
   (symbol
     (lib_id "power:GND")
-    (at 152 98 0) (unit 1) (in_bom yes) (on_board yes)
+    (at 152 110 0) (unit 1) (in_bom yes) (on_board yes)
     (uuid "b2000053-0002-0002-0002-000000000001")
-    (property "Reference" "#PWR04" (at 152 104 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "GND" (at 152 101 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "#PWR04" (at 152 116 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 152 113 0) (effects (font (size 1.27 1.27))))
     (pin "1" (uuid "b2000053-0002-0002-0002-000000000101"))
     (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "#PWR04") (unit 1))))
   )
@@ -617,14 +632,14 @@
     (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "R_sig_bot") (unit 1))))
   )
 
-  ;; R_cal — 200kΩ trimmer, R_POT at (185, 113)
+  ;; R_cal — 10kΩ trimmer (3296W), R_POT at (185, 113)
   ;; pin1 at (185, 109.19); pin2 at (185, 116.81) → GND; wiper shorted to pin1 (no-connect acceptable)
   (symbol
     (lib_id "Device:R_POT")
     (at 185 113 0) (unit 1) (in_bom yes) (on_board yes)
     (uuid "b2000046-0002-0002-0002-000000000001")
     (property "Reference" "R_cal" (at 190 113 0) (effects (font (size 1.27 1.27)) (justify left)))
-    (property "Value" "200k trim" (at 190 115.5 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Value" "10k trim" (at 190 115.5 0) (effects (font (size 1.27 1.27)) (justify left)))
     (property "Footprint" "Potentiometer_THT:Potentiometer_Vishay_T93_Vertical" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "b2000046-0002-0002-0002-000000000101"))
@@ -923,12 +938,14 @@
   ;; R_LED1→2→3 chain
   (wire (pts (xy 152 37.54) (xy 152 44.46)) (stroke (width 0) (type default)) (uuid "lw0021"))
   (wire (pts (xy 152 49.54) (xy 152 56.46)) (stroke (width 0) (type default)) (uuid "lw0022"))
-  ;; R_LED3 pin2 → D_LED K (at 152,69.19)
-  (wire (pts (xy 152 61.54) (xy 152 69.19)) (stroke (width 0) (type default)) (uuid "lw0023"))
-  ;; D_LED A → LED1 K (D_LED A at 152,76.81; LED1 K at 152,84.19)
-  (wire (pts (xy 152 76.81) (xy 152 84.19)) (stroke (width 0) (type default)) (uuid "lw0024"))
-  ;; LED1 A → GND (LED1 A at 152,91.81)
-  (wire (pts (xy 152 91.81) (xy 152 98)) (stroke (width 0) (type default)) (uuid "lw0025"))
+  ;; R_LED3 pin2 → R_LED4 pin1
+  (wire (pts (xy 152 61.54) (xy 152 68.46)) (stroke (width 0) (type default)) (uuid "lw0023"))
+  ;; R_LED4 pin2 → D_LED K (at 152,81.19)
+  (wire (pts (xy 152 73.54) (xy 152 81.19)) (stroke (width 0) (type default)) (uuid "lw0023b"))
+  ;; D_LED A → LED1 K (D_LED A at 152,88.81; LED1 K at 152,96.19)
+  (wire (pts (xy 152 88.81) (xy 152 96.19)) (stroke (width 0) (type default)) (uuid "lw0024"))
+  ;; LED1 A → GND (LED1 A at 152,103.81)
+  (wire (pts (xy 152 103.81) (xy 152 110)) (stroke (width 0) (type default)) (uuid "lw0025"))
 
   ;; ═══════════════════════════════════════════════════════════════════════
   ;; WIRES — Block D (DVM divider)
