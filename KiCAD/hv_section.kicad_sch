@@ -83,17 +83,17 @@
     )
 
     ;; ── Resistor large (5W power) ─────────────────────────────────────────
-    (symbol "Device:R_Large"
+    (symbol "Device:R"
       (pin_names (offset 0) hide)
       (in_bom yes) (on_board yes)
       (property "Reference" "R" (at 1.651 0 90) (effects (font (size 1.27 1.27))))
       (property "Value" "R_Large" (at -1.651 0 90) (effects (font (size 1.27 1.27))))
       (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
       (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
-      (symbol "R_Large_0_1"
+      (symbol "R_0_1"
         (rectangle (start -1.016 -2.54) (end 1.016 2.54) (stroke (width 0.254) (type default)) (fill (type none)))
       )
-      (symbol "R_Large_1_1"
+      (symbol "R_1_1"
         (pin passive line (at 0 3.81 270) (length 1.27)
           (name "~" (effects (font (size 1.27 1.27))))
           (number "1" (effects (font (size 1.27 1.27))))
@@ -106,7 +106,7 @@
     )
 
     ;; ── N-MOSFET (GDS) ───────────────────────────────────────────────────
-    (symbol "Device:Q_NMOS_GDS"
+    (symbol "Transistor_FET:Q_NMOS_GDS"
       (in_bom yes) (on_board yes)
       (property "Reference" "Q" (at 5.08 1.27 0) (effects (font (size 1.27 1.27))))
       (property "Value" "Q_NMOS_GDS" (at 5.08 -1.27 0) (effects (font (size 1.27 1.27))))
@@ -128,15 +128,15 @@
       (symbol "Q_NMOS_GDS_1_1"
         (pin input line (at -5.08 0 0) (length 2.54)
           (name "G" (effects (font (size 1.27 1.27))))
-          (number "G" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27))))
         )
         (pin passive line (at 0 5.08 270) (length 2.54)
           (name "D" (effects (font (size 1.27 1.27))))
-          (number "D" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27))))
         )
         (pin passive line (at 0 -5.08 90) (length 2.54)
           (name "S" (effects (font (size 1.27 1.27))))
-          (number "S" (effects (font (size 1.27 1.27))))
+          (number "3" (effects (font (size 1.27 1.27))))
         )
       )
     )
@@ -299,7 +299,7 @@
   ;; ═══════════════════════════════════════════════════════════════════════
 
   (symbol
-    (lib_id "Device:R_Large")
+    (lib_id "Device:R")
     (at 120 45 0) (unit 1) (in_bom yes) (on_board yes)
     (uuid "a1000020-0001-0001-0001-000000000001")
     (property "Reference" "R_slow1" (at 123 45 0) (effects (font (size 1.27 1.27)) (justify left)))
@@ -312,7 +312,7 @@
   )
 
   (symbol
-    (lib_id "Device:R_Large")
+    (lib_id "Device:R")
     (at 120 62 0) (unit 1) (in_bom yes) (on_board yes)
     (uuid "a1000021-0001-0001-0001-000000000001")
     (property "Reference" "R_slow2" (at 123 62 0) (effects (font (size 1.27 1.27)) (justify left)))
@@ -325,7 +325,7 @@
   )
 
   (symbol
-    (lib_id "Device:R_Large")
+    (lib_id "Device:R")
     (at 120 79 0) (unit 1) (in_bom yes) (on_board yes)
     (uuid "a1000022-0001-0001-0001-000000000001")
     (property "Reference" "R_slow3" (at 123 79 0) (effects (font (size 1.27 1.27)) (justify left)))
@@ -338,7 +338,7 @@
   )
 
   (symbol
-    (lib_id "Device:R_Large")
+    (lib_id "Device:R")
     (at 120 96 0) (unit 1) (in_bom yes) (on_board yes)
     (uuid "a1000023-0001-0001-0001-000000000001")
     (property "Reference" "R_slow4" (at 123 96 0) (effects (font (size 1.27 1.27)) (justify left)))
@@ -351,7 +351,7 @@
   )
 
   (symbol
-    (lib_id "Device:R_Large")
+    (lib_id "Device:R")
     (at 120 113 0) (unit 1) (in_bom yes) (on_board yes)
     (uuid "a1000024-0001-0001-0001-000000000001")
     (property "Reference" "R_slow5" (at 123 113 0) (effects (font (size 1.27 1.27)) (justify left)))
@@ -368,7 +368,7 @@
   ;; ═══════════════════════════════════════════════════════════════════════
 
   (symbol
-    (lib_id "Device:R_Large")
+    (lib_id "Device:R")
     (at 160 55 0) (unit 1) (in_bom yes) (on_board yes)
     (uuid "a1000030-0001-0001-0001-000000000001")
     (property "Reference" "R_fast" (at 163 55 0) (effects (font (size 1.27 1.27)) (justify left)))
@@ -382,7 +382,7 @@
 
   ;; Q2 — MOSFET STP10NK80Z, D at top (drain connected to R_fast bottom), S at bottom → GND
   (symbol
-    (lib_id "Device:Q_NMOS_GDS")
+    (lib_id "Transistor_FET:Q_NMOS_GDS")
     (at 160 80 0) (unit 1) (in_bom yes) (on_board yes)
     (uuid "a1000031-0001-0001-0001-000000000001")
     (property "Reference" "Q2" (at 165 78 0) (effects (font (size 1.27 1.27))))

@@ -36,28 +36,7 @@
     )
 
     ;; ── Device:R_Large (1W / 2W+ power axial) ────────────────────────────
-    (symbol "Device:R_Large"
-      (pin_names (offset 0) hide)
-      (in_bom yes) (on_board yes)
-      (property "Reference" "R" (at 1.651 0 90) (effects (font (size 1.27 1.27))))
-      (property "Value" "R_Large" (at -1.651 0 90) (effects (font (size 1.27 1.27))))
-      (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
-      (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
-      (symbol "R_Large_0_1"
-        (rectangle (start -1.016 -2.54) (end 1.016 2.54) (stroke (width 0.254) (type default)) (fill (type none)))
-      )
-      (symbol "R_Large_1_1"
-        (pin passive line (at 0 3.81 270) (length 1.27)
-          (name "~" (effects (font (size 1.27 1.27))))
-          (number "1" (effects (font (size 1.27 1.27))))
-        )
-        (pin passive line (at 0 -3.81 90) (length 1.27)
-          (name "~" (effects (font (size 1.27 1.27))))
-          (number "2" (effects (font (size 1.27 1.27))))
-        )
-      )
-    )
-
+    
     ;; ── Device:D_Zener ────────────────────────────────────────────────────
     (symbol "Device:D_Zener"
       (pin_names (offset 0.254) hide)
@@ -115,13 +94,13 @@
     )
 
     ;; ── Device:Q_NPN_BCE (2N3904) ─────────────────────────────────────────
-    (symbol "Device:Q_NPN_BCE"
+    (symbol "Transistor_BJT:MPSA42"
       (in_bom yes) (on_board yes)
       (property "Reference" "Q" (at 5.08 1.27 0) (effects (font (size 1.27 1.27))))
       (property "Value" "Q_NPN_BCE" (at 5.08 -1.27 0) (effects (font (size 1.27 1.27))))
       (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
       (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
-      (symbol "Q_NPN_BCE_0_1"
+      (symbol "MPSA42_0_1"
         ;; Circle body
         (circle (center 0.5 0) (radius 2.905) (stroke (width 0.254) (type default)) (fill (type none)))
         ;; Base line
@@ -132,31 +111,31 @@
         (polyline (pts (xy -0.508 -1.016) (xy 0.508 -2.032) (xy 0.508 -2.54)) (stroke (width 0) (type default)) (fill (type none)))
         (polyline (pts (xy 0.508 -2.54) (xy 0.0 -2.0) (xy 0.508 -2.032)) (stroke (width 0) (type default)) (fill (type outline)))
       )
-      (symbol "Q_NPN_BCE_1_1"
+      (symbol "MPSA42_1_1"
         (pin input line (at -2.54 0 0) (length 2.032)
           (name "B" (effects (font (size 1.27 1.27))))
-          (number "B" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27))))
         )
         (pin passive line (at 0.508 5.08 270) (length 2.54)
           (name "C" (effects (font (size 1.27 1.27))))
-          (number "C" (effects (font (size 1.27 1.27))))
+          (number "3" (effects (font (size 1.27 1.27))))
         )
         (pin passive line (at 0.508 -5.08 90) (length 2.54)
           (name "E" (effects (font (size 1.27 1.27))))
-          (number "E" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27))))
         )
       )
     )
 
     ;; ── Device:CP (electrolytic capacitor) ───────────────────────────────
-    (symbol "Device:CP"
+    (symbol "Device:C_Polarized"
       (pin_names (offset 0.254) hide)
       (in_bom yes) (on_board yes)
       (property "Reference" "C" (at 1.651 0 90) (effects (font (size 1.27 1.27))))
       (property "Value" "CP" (at -1.651 0 90) (effects (font (size 1.27 1.27))))
       (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
       (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
-      (symbol "CP_0_1"
+      (symbol "C_Polarized_0_1"
         ;; Positive plate (flat line, top)
         (polyline (pts (xy -1.524 0.508) (xy 1.524 0.508)) (stroke (width 0.508) (type default)) (fill (type none)))
         ;; Negative plate (curved bottom)
@@ -165,7 +144,7 @@
         (polyline (pts (xy 0.508 1.524) (xy 0.508 2.032)) (stroke (width 0.254) (type default)) (fill (type none)))
         (polyline (pts (xy 0.254 1.778) (xy 0.762 1.778)) (stroke (width 0.254) (type default)) (fill (type none)))
       )
-      (symbol "CP_1_1"
+      (symbol "C_Polarized_1_1"
         (pin passive line (at 0 3.81 270) (length 3.302)
           (name "+" (effects (font (size 1.27 1.27))))
           (number "1" (effects (font (size 1.27 1.27))))
@@ -232,20 +211,20 @@
     )
 
     ;; ── Device:R_POT (trimmer) ────────────────────────────────────────────
-    (symbol "Device:R_POT"
+    (symbol "Device:R_Potentiometer_Trim"
       (pin_names (offset 0) hide)
       (in_bom yes) (on_board yes)
       (property "Reference" "RV" (at 1.651 0 90) (effects (font (size 1.27 1.27))))
       (property "Value" "R_POT" (at -1.651 0 90) (effects (font (size 1.27 1.27))))
       (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
       (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
-      (symbol "R_POT_0_1"
+      (symbol "R_Potentiometer_Trim_0_1"
         (rectangle (start -1.016 -2.54) (end 1.016 2.54) (stroke (width 0.254) (type default)) (fill (type none)))
         ;; Wiper arrow
         (polyline (pts (xy 2.54 0) (xy 1.016 0)) (stroke (width 0) (type default)) (fill (type none)))
         (polyline (pts (xy 2.032 0.508) (xy 2.54 0) (xy 2.032 -0.508)) (stroke (width 0) (type default)) (fill (type outline)))
       )
-      (symbol "R_POT_1_1"
+      (symbol "R_Potentiometer_Trim_1_1"
         (pin passive line (at 0 3.81 270) (length 1.27)
           (name "~" (effects (font (size 1.27 1.27))))
           (number "1" (effects (font (size 1.27 1.27))))
@@ -294,7 +273,7 @@
   ;; R1 — 1 MΩ / 1W, R_Large at (50, 40)
   ;; pin1 at (50, 36.19) → HV+ bus; pin2 at (50, 43.81) → node_A
   (symbol
-    (lib_id "Device:R_Large")
+    (lib_id "Device:R")
     (at 50 40 0) (unit 1) (in_bom yes) (on_board yes)
     (uuid "b2000010-0002-0002-0002-000000000001")
     (property "Reference" "R1" (at 53 40 0) (effects (font (size 1.27 1.27)) (justify left)))
@@ -339,7 +318,7 @@
   ;; Q1 — MPSA42 NPN, at (90, 52)
   ;; B at (87.46, 52); C at (90.508, 46.92); E at (90.508, 57.08)
   (symbol
-    (lib_id "Device:Q_NPN_BCE")
+    (lib_id "Transistor_BJT:MPSA42")
     (at 90 52 0) (unit 1) (in_bom yes) (on_board yes)
     (uuid "b2000013-0002-0002-0002-000000000001")
     (property "Reference" "Q1" (at 95 50 0) (effects (font (size 1.27 1.27))))
@@ -401,7 +380,7 @@
   ;; R5 — 470 kΩ / 1W, R_Large vertical at (108, 28)
   ;; pin1 at (108, 24.19) → HV+ bus; pin2 at (108, 31.81) → GATE node
   (symbol
-    (lib_id "Device:R_Large")
+    (lib_id "Device:R")
     (at 108 28 0) (unit 1) (in_bom yes) (on_board yes)
     (uuid "b2000021-0002-0002-0002-000000000001")
     (property "Reference" "R5" (at 111 28 0) (effects (font (size 1.27 1.27)) (justify left)))
@@ -635,7 +614,7 @@
   ;; R_cal — 10kΩ trimmer (3296W), R_POT at (185, 113)
   ;; pin1 at (185, 109.19); pin2 at (185, 116.81) → GND; wiper shorted to pin1 (no-connect acceptable)
   (symbol
-    (lib_id "Device:R_POT")
+    (lib_id "Device:R_Potentiometer_Trim")
     (at 185 113 0) (unit 1) (in_bom yes) (on_board yes)
     (uuid "b2000046-0002-0002-0002-000000000001")
     (property "Reference" "R_cal" (at 190 113 0) (effects (font (size 1.27 1.27)) (justify left)))
@@ -670,7 +649,7 @@
   ;; ═══════════════════════════════════════════════════════════════════════
 
   (symbol
-    (lib_id "Device:R_Large")
+    (lib_id "Device:R")
     (at 230 35 0) (unit 1) (in_bom yes) (on_board yes)
     (uuid "b2000060-0002-0002-0002-000000000001")
     (property "Reference" "R_drop1" (at 233 35 0) (effects (font (size 1.27 1.27)) (justify left)))
@@ -683,7 +662,7 @@
   )
 
   (symbol
-    (lib_id "Device:R_Large")
+    (lib_id "Device:R")
     (at 230 52 0) (unit 1) (in_bom yes) (on_board yes)
     (uuid "b2000061-0002-0002-0002-000000000001")
     (property "Reference" "R_drop2" (at 233 52 0) (effects (font (size 1.27 1.27)) (justify left)))
@@ -696,7 +675,7 @@
   )
 
   (symbol
-    (lib_id "Device:R_Large")
+    (lib_id "Device:R")
     (at 230 69 0) (unit 1) (in_bom yes) (on_board yes)
     (uuid "b2000062-0002-0002-0002-000000000001")
     (property "Reference" "R_drop3" (at 233 69 0) (effects (font (size 1.27 1.27)) (justify left)))
@@ -709,7 +688,7 @@
   )
 
   (symbol
-    (lib_id "Device:R_Large")
+    (lib_id "Device:R")
     (at 230 86 0) (unit 1) (in_bom yes) (on_board yes)
     (uuid "b2000063-0002-0002-0002-000000000001")
     (property "Reference" "R_drop4" (at 233 86 0) (effects (font (size 1.27 1.27)) (justify left)))
@@ -739,7 +718,7 @@
   ;; C_Vcc — 10µF/25V electrolytic, at (260, 102)
   ;; Device:CP → pin1(+) at (260, 98.19); pin2(-) at (260, 105.81) → GND
   (symbol
-    (lib_id "Device:CP")
+    (lib_id "Device:C_Polarized")
     (at 260 102 0) (unit 1) (in_bom yes) (on_board yes)
     (uuid "b2000065-0002-0002-0002-000000000001")
     (property "Reference" "C_Vcc" (at 263 100 0) (effects (font (size 1.27 1.27))))

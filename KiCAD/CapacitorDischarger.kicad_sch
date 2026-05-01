@@ -65,7 +65,7 @@
 					)
 				)
 			)
-			(property "Description" ""
+			(property "Description" "Generic connector, single row, 01x01, script generated"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -76,35 +76,65 @@
 					)
 				)
 			)
-			(symbol "Conn_01x01_Pin_0_1"
+			(property "ki_locked" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "connector"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "Connector*:*_1x??_*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "Conn_01x01_Pin_1_1"
 				(rectangle
-					(start -0.254 -1.524)
-					(end 0 1.524)
+					(start 0.8636 0.127)
+					(end 0 -0.127)
 					(stroke
-						(width 0)
+						(width 0.1524)
 						(type default)
 					)
 					(fill
-						(type background)
+						(type outline)
 					)
 				)
 				(polyline
 					(pts
-						(xy 0.6096 0.508) (xy 0 0) (xy 0.6096 -0.508)
+						(xy 1.27 0) (xy 0.8636 0)
 					)
 					(stroke
-						(width 0)
+						(width 0.1524)
 						(type default)
 					)
 					(fill
 						(type none)
 					)
 				)
-			)
-			(symbol "Conn_01x01_Pin_1_1"
 				(pin passive line
-					(at -2.54 0 0)
-					(length 2.54)
+					(at 5.08 0 180)
+					(length 3.81)
 					(name "Pin_1"
 						(effects
 							(font
@@ -175,7 +205,7 @@
 					)
 				)
 			)
-			(property "Description" ""
+			(property "Description" "Generic connector, single row, 01x03, script generated"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -186,59 +216,111 @@
 					)
 				)
 			)
-			(symbol "Conn_01x03_Pin_0_1"
-				(rectangle
-					(start -0.254 -4.064)
-					(end 0 4.064)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type background)
+			(property "ki_locked" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
 					)
 				)
-				(polyline
-					(pts
-						(xy 0.6096 3.0734) (xy 0 2.5654) (xy 0.6096 2.0574)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.6096 0.5334) (xy 0 0.0254) (xy 0.6096 -0.4826)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
+			)
+			(property "ki_keywords" "connector"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
 					)
 				)
-				(polyline
-					(pts
-						(xy 0.6096 -2.0066) (xy 0 -2.5146) (xy 0.6096 -3.0226)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
+			)
+			(property "ki_fp_filters" "Connector*:*_1x??_*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
 					)
 				)
 			)
 			(symbol "Conn_01x03_Pin_1_1"
+				(rectangle
+					(start 0.8636 2.667)
+					(end 0 2.413)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(rectangle
+					(start 0.8636 0.127)
+					(end 0 -0.127)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(rectangle
+					(start 0.8636 -2.413)
+					(end 0 -2.667)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 2.54) (xy 0.8636 2.54)
+					)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 0) (xy 0.8636 0)
+					)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 -2.54) (xy 0.8636 -2.54)
+					)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
 				(pin passive line
-					(at -2.54 2.54 0)
-					(length 2.54)
+					(at 5.08 2.54 180)
+					(length 3.81)
 					(name "Pin_1"
 						(effects
 							(font
@@ -255,8 +337,8 @@
 					)
 				)
 				(pin passive line
-					(at -2.54 0 0)
-					(length 2.54)
+					(at 5.08 0 180)
+					(length 3.81)
 					(name "Pin_2"
 						(effects
 							(font
@@ -273,8 +355,8 @@
 					)
 				)
 				(pin passive line
-					(at -2.54 -2.54 0)
-					(length 2.54)
+					(at 5.08 -2.54 180)
+					(length 3.81)
 					(name "Pin_3"
 						(effects
 							(font
@@ -304,7 +386,7 @@
 			(in_pos_files yes)
 			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "J"
-				(at 0 3.81 0)
+				(at 0 2.54 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
@@ -314,7 +396,7 @@
 				)
 			)
 			(property "Value" "Screw_Terminal_01x02"
-				(at 0 -3.81 0)
+				(at 0 -5.08 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
@@ -345,7 +427,7 @@
 					)
 				)
 			)
-			(property "Description" ""
+			(property "Description" "Generic screw terminal, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -356,12 +438,34 @@
 					)
 				)
 			)
-			(symbol "Screw_Terminal_01x02_0_1"
+			(property "ki_keywords" "screw terminal"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "TerminalBlock*:*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "Screw_Terminal_01x02_1_1"
 				(rectangle
-					(start -0.254 -2.032)
-					(end 0 2.032)
+					(start -1.27 1.27)
+					(end 1.27 -3.81)
 					(stroke
-						(width 0)
+						(width 0.254)
 						(type default)
 					)
 					(fill
@@ -370,10 +474,10 @@
 				)
 				(polyline
 					(pts
-						(xy 0.6096 1.0414) (xy 0 0.5334) (xy 0.6096 0.0254)
+						(xy -0.5334 0.3302) (xy 0.3302 -0.508)
 					)
 					(stroke
-						(width 0)
+						(width 0.1524)
 						(type default)
 					)
 					(fill
@@ -382,21 +486,65 @@
 				)
 				(polyline
 					(pts
-						(xy 0.6096 -0.0254) (xy 0 -0.5334) (xy 0.6096 -1.0414)
+						(xy -0.5334 -2.2098) (xy 0.3302 -3.048)
 					)
 					(stroke
-						(width 0)
+						(width 0.1524)
 						(type default)
 					)
 					(fill
 						(type none)
 					)
 				)
-			)
-			(symbol "Screw_Terminal_01x02_1_1"
+				(polyline
+					(pts
+						(xy -0.3556 0.508) (xy 0.508 -0.3302)
+					)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.3556 -2.032) (xy 0.508 -2.8702)
+					)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 0 0)
+					(radius 0.635)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 0 -2.54)
+					(radius 0.635)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
 				(pin passive line
-					(at -2.54 1.27 0)
-					(length 2.54)
+					(at -5.08 0 0)
+					(length 3.81)
 					(name "Pin_1"
 						(effects
 							(font
@@ -413,8 +561,8 @@
 					)
 				)
 				(pin passive line
-					(at -2.54 -1.27 0)
-					(length 2.54)
+					(at -5.08 -2.54 0)
+					(length 3.81)
 					(name "Pin_2"
 						(effects
 							(font
@@ -434,9 +582,11 @@
 			(embedded_fonts no)
 		)
 		(symbol "Device:C"
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
 				(offset 0.254)
-				(hide yes)
 			)
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -444,27 +594,29 @@
 			(in_pos_files yes)
 			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "C"
-				(at 1.651 0 90)
+				(at 0.635 2.54 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify left)
 				)
 			)
 			(property "Value" "C"
-				(at -1.651 0 90)
+				(at 0.635 -2.54 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify left)
 				)
 			)
 			(property "Footprint" ""
-				(at 0 0 0)
+				(at 0.9652 -3.81 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(hide yes)
@@ -485,7 +637,29 @@
 					)
 				)
 			)
-			(property "Description" ""
+			(property "Description" "Unpolarized capacitor"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "cap capacitor"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "C_*"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -499,7 +673,7 @@
 			(symbol "C_0_1"
 				(polyline
 					(pts
-						(xy -1.524 0.508) (xy 1.524 0.508)
+						(xy -2.032 0.762) (xy 2.032 0.762)
 					)
 					(stroke
 						(width 0.508)
@@ -511,7 +685,7 @@
 				)
 				(polyline
 					(pts
-						(xy -1.524 -0.508) (xy 1.524 -0.508)
+						(xy -2.032 -0.762) (xy 2.032 -0.762)
 					)
 					(stroke
 						(width 0.508)
@@ -524,8 +698,8 @@
 			)
 			(symbol "C_1_1"
 				(pin passive line
-					(at 0 2.54 270)
-					(length 2.032)
+					(at 0 3.81 270)
+					(length 2.794)
 					(name ""
 						(effects
 							(font
@@ -542,8 +716,8 @@
 					)
 				)
 				(pin passive line
-					(at 0 -2.54 90)
-					(length 2.032)
+					(at 0 -3.81 90)
+					(length 2.794)
 					(name ""
 						(effects
 							(font
@@ -562,7 +736,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Device:CP"
+		(symbol "Device:C_Polarized"
 			(pin_names
 				(offset 0.254)
 				(hide yes)
@@ -625,7 +799,7 @@
 					)
 				)
 			)
-			(symbol "CP_0_1"
+			(symbol "C_Polarized_0_1"
 				(polyline
 					(pts
 						(xy -1.524 0.508) (xy 1.524 0.508)
@@ -675,7 +849,7 @@
 					)
 				)
 			)
-			(symbol "CP_1_1"
+			(symbol "C_Polarized_1_1"
 				(pin passive line
 					(at 0 3.81 270)
 					(length 3.302)
@@ -716,8 +890,11 @@
 			(embedded_fonts no)
 		)
 		(symbol "Device:D"
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 0.254)
+				(offset 1.016)
 				(hide yes)
 			)
 			(exclude_from_sim no)
@@ -767,7 +944,51 @@
 					)
 				)
 			)
-			(property "Description" ""
+			(property "Description" "Diode"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Sim.Device" "D"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Sim.Pins" "1=K 2=A"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "diode"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "TO-???* *_Diode_* *SingleDiode* D_*"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -781,7 +1002,7 @@
 			(symbol "D_0_1"
 				(polyline
 					(pts
-						(xy -1.27 0) (xy 1.27 0)
+						(xy -1.27 1.27) (xy -1.27 -1.27)
 					)
 					(stroke
 						(width 0.254)
@@ -793,7 +1014,7 @@
 				)
 				(polyline
 					(pts
-						(xy -1.27 -1.27) (xy -1.27 1.27)
+						(xy 1.27 1.27) (xy 1.27 -1.27) (xy -1.27 0) (xy 1.27 1.27)
 					)
 					(stroke
 						(width 0.254)
@@ -805,14 +1026,14 @@
 				)
 				(polyline
 					(pts
-						(xy 1.27 -1.27) (xy 1.27 1.27) (xy -1.27 0) (xy 1.27 -1.27)
+						(xy 1.27 0) (xy -1.27 0)
 					)
 					(stroke
-						(width 0.254)
+						(width 0)
 						(type default)
 					)
 					(fill
-						(type outline)
+						(type none)
 					)
 				)
 			)
@@ -820,14 +1041,14 @@
 				(pin passive line
 					(at -3.81 0 0)
 					(length 2.54)
-					(name "A"
+					(name "K"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "A"
+					(number "1"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -838,14 +1059,14 @@
 				(pin passive line
 					(at 3.81 0 180)
 					(length 2.54)
-					(name "K"
+					(name "A"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "K"
+					(number "2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -857,8 +1078,11 @@
 			(embedded_fonts no)
 		)
 		(symbol "Device:D_Zener"
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 0.254)
+				(offset 1.016)
 				(hide yes)
 			)
 			(exclude_from_sim no)
@@ -908,7 +1132,29 @@
 					)
 				)
 			)
-			(property "Description" ""
+			(property "Description" "Zener diode"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "diode"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "TO-???* *_Diode_* *SingleDiode* D_*"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -922,7 +1168,7 @@
 			(symbol "D_Zener_0_1"
 				(polyline
 					(pts
-						(xy -1.27 0) (xy 1.27 0)
+						(xy -1.27 -1.27) (xy -1.27 1.27) (xy -0.762 1.27)
 					)
 					(stroke
 						(width 0.254)
@@ -934,34 +1180,10 @@
 				)
 				(polyline
 					(pts
-						(xy -1.27 -1.27) (xy -1.27 1.27)
+						(xy 1.27 0) (xy -1.27 0)
 					)
 					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.27 1.27) (xy 0.889 1.651)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.27 -1.27) (xy 1.651 -1.651)
-					)
-					(stroke
-						(width 0.254)
+						(width 0)
 						(type default)
 					)
 					(fill
@@ -977,7 +1199,7 @@
 						(type default)
 					)
 					(fill
-						(type outline)
+						(type none)
 					)
 				)
 			)
@@ -985,14 +1207,14 @@
 				(pin passive line
 					(at -3.81 0 0)
 					(length 2.54)
-					(name "A"
+					(name "K"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "A"
+					(number "1"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1003,14 +1225,14 @@
 				(pin passive line
 					(at 3.81 0 180)
 					(length 2.54)
-					(name "K"
+					(name "A"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "K"
+					(number "2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1022,8 +1244,11 @@
 			(embedded_fonts no)
 		)
 		(symbol "Device:LED"
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 0.254)
+				(offset 1.016)
 				(hide yes)
 			)
 			(exclude_from_sim no)
@@ -1073,7 +1298,40 @@
 					)
 				)
 			)
-			(property "Description" ""
+			(property "Description" "Light emitting diode"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Sim.Pins" "1=K 2=A"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "LED diode"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "LED* LED_SMD:* LED_THT:*"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1087,10 +1345,34 @@
 			(symbol "LED_0_1"
 				(polyline
 					(pts
+						(xy -3.048 -0.762) (xy -4.572 -2.286) (xy -3.81 -2.286) (xy -4.572 -2.286) (xy -4.572 -1.524)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.778 -0.762) (xy -3.302 -2.286) (xy -2.54 -2.286) (xy -3.302 -2.286) (xy -3.302 -1.524)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
 						(xy -1.27 0) (xy 1.27 0)
 					)
 					(stroke
-						(width 0.254)
+						(width 0)
 						(type default)
 					)
 					(fill
@@ -1111,30 +1393,6 @@
 				)
 				(polyline
 					(pts
-						(xy -0.254 -2.032) (xy 0.762 -3.048) (xy 0.381 -3.048) (xy 0.762 -3.048) (xy 0.762 -2.667)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.762 -2.032) (xy 1.778 -3.048) (xy 1.397 -3.048) (xy 1.778 -3.048) (xy 1.778 -2.667)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
 						(xy 1.27 -1.27) (xy 1.27 1.27) (xy -1.27 0) (xy 1.27 -1.27)
 					)
 					(stroke
@@ -1142,7 +1400,7 @@
 						(type default)
 					)
 					(fill
-						(type outline)
+						(type none)
 					)
 				)
 			)
@@ -1150,14 +1408,14 @@
 				(pin passive line
 					(at -3.81 0 0)
 					(length 2.54)
-					(name "A"
+					(name "K"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "A"
+					(number "1"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1168,14 +1426,14 @@
 				(pin passive line
 					(at 3.81 0 180)
 					(length 2.54)
-					(name "K"
+					(name "A"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "K"
+					(number "2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1186,7 +1444,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Device:Q_NMOS_GDS"
+		(symbol "Transistor_FET:Q_NMOS_GDS"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -1377,7 +1635,7 @@
 							)
 						)
 					)
-					(number "D"
+					(number "2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1395,7 +1653,7 @@
 							)
 						)
 					)
-					(number "G"
+					(number "1"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1413,7 +1671,7 @@
 							)
 						)
 					)
-					(number "S"
+					(number "3"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1424,7 +1682,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Device:Q_NPN_BCE"
+		(symbol "Transistor_BJT:MPSA42"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -1483,7 +1741,7 @@
 					)
 				)
 			)
-			(symbol "Q_NPN_BCE_0_1"
+			(symbol "MPSA42_0_1"
 				(polyline
 					(pts
 						(xy -0.508 1.016) (xy 0.508 2.032) (xy 0.508 2.54)
@@ -1544,7 +1802,7 @@
 					)
 				)
 			)
-			(symbol "Q_NPN_BCE_1_1"
+			(symbol "MPSA42_1_1"
 				(pin input line
 					(at -2.54 0 0)
 					(length 2.032)
@@ -1555,7 +1813,7 @@
 							)
 						)
 					)
-					(number "B"
+					(number "2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1573,7 +1831,7 @@
 							)
 						)
 					)
-					(number "C"
+					(number "3"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1591,7 +1849,7 @@
 							)
 						)
 					)
-					(number "E"
+					(number "1"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1603,9 +1861,11 @@
 			(embedded_fonts no)
 		)
 		(symbol "Device:R"
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
 				(offset 0)
-				(hide yes)
 			)
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -1613,7 +1873,7 @@
 			(in_pos_files yes)
 			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "R"
-				(at 1.651 0 90)
+				(at 2.032 0 90)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
@@ -1623,7 +1883,7 @@
 				)
 			)
 			(property "Value" "R"
-				(at -1.651 0 90)
+				(at 0 0 90)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
@@ -1633,7 +1893,7 @@
 				)
 			)
 			(property "Footprint" ""
-				(at 0 0 0)
+				(at -1.778 0 90)
 				(show_name no)
 				(do_not_autoplace no)
 				(hide yes)
@@ -1654,7 +1914,29 @@
 					)
 				)
 			)
-			(property "Description" ""
+			(property "Description" "Resistor"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "R res resistor"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "R_*"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1667,122 +1949,6 @@
 			)
 			(symbol "R_0_1"
 				(rectangle
-					(start -1.016 -1.524)
-					(end 1.016 1.524)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "R_1_1"
-				(pin passive line
-					(at 0 2.54 270)
-					(length 1.016)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -2.54 90)
-					(length 1.016)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "Device:R_Large"
-			(pin_names
-				(offset 0)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "R"
-				(at 1.651 0 90)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "R_Large"
-				(at -1.651 0 90)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "R_Large_0_1"
-				(rectangle
 					(start -1.016 -2.54)
 					(end 1.016 2.54)
 					(stroke
@@ -1794,7 +1960,7 @@
 					)
 				)
 			)
-			(symbol "R_Large_1_1"
+			(symbol "R_1_1"
 				(pin passive line
 					(at 0 3.81 270)
 					(length 1.27)
@@ -1834,7 +2000,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Device:R_POT"
+		(symbol "Device:R_Potentiometer_Trim"
 			(pin_names
 				(offset 0)
 				(hide yes)
@@ -1897,7 +2063,7 @@
 					)
 				)
 			)
-			(symbol "R_POT_0_1"
+			(symbol "R_Potentiometer_Trim_0_1"
 				(rectangle
 					(start -1.016 -2.54)
 					(end 1.016 2.54)
@@ -1934,7 +2100,7 @@
 					)
 				)
 			)
-			(symbol "R_POT_1_1"
+			(symbol "R_Potentiometer_Trim_1_1"
 				(pin passive line
 					(at 0 3.81 270)
 					(length 1.27)
@@ -1994,13 +2160,16 @@
 		)
 		(symbol "power:GND"
 			(power global)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
 				(offset 0)
 				(hide yes)
 			)
 			(exclude_from_sim no)
-			(in_bom no)
-			(on_board no)
+			(in_bom yes)
+			(on_board yes)
 			(in_pos_files yes)
 			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "#PWR"
@@ -2046,7 +2215,18 @@
 					)
 				)
 			)
-			(property "Description" ""
+			(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "global power"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2075,7 +2255,7 @@
 				(pin power_in line
 					(at 0 0 270)
 					(length 0)
-					(name "GND"
+					(name ""
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2095,17 +2275,20 @@
 		)
 		(symbol "power:PWR_FLAG"
 			(power global)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
 				(offset 0)
 				(hide yes)
 			)
 			(exclude_from_sim no)
-			(in_bom no)
-			(on_board no)
+			(in_bom yes)
+			(on_board yes)
 			(in_pos_files yes)
 			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "#FLG"
-				(at 0 -3.81 0)
+				(at 0 1.905 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(hide yes)
@@ -2116,7 +2299,7 @@
 				)
 			)
 			(property "Value" "PWR_FLAG"
-				(at 0 2.54 0)
+				(at 0 3.81 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
@@ -2147,7 +2330,7 @@
 					)
 				)
 			)
-			(property "Description" ""
+			(property "Description" "Special symbol for telling ERC where power comes from"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2158,25 +2341,22 @@
 					)
 				)
 			)
-			(symbol "PWR_FLAG_0_1"
-				(polyline
-					(pts
-						(xy 0 0) (xy 0 1.27) (xy -1.27 1.905) (xy 0 2.54) (xy 1.27 1.905) (xy 0 1.27)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
+			(property "ki_keywords" "flag power"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
 					)
 				)
 			)
-			(symbol "PWR_FLAG_1_1"
+			(symbol "PWR_FLAG_0_0"
 				(pin power_out line
-					(at 0 0 270)
+					(at 0 0 90)
 					(length 0)
-					(name "pwr"
+					(name ""
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2192,6 +2372,20 @@
 					)
 				)
 			)
+			(symbol "PWR_FLAG_0_1"
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 1.27) (xy -1.016 1.905) (xy 0 2.54) (xy 1.016 1.905) (xy 0 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
 			(embedded_fonts no)
 		)
 	)
@@ -2200,12 +2394,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "1bbac4b0-967f-43cb-bde5-7a50ac075c42")
-	)
-	(junction
-		(at 293.5 248.55)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "2efb6c59-3f3c-49c8-b283-0aa394f8665a")
 	)
 	(junction
 		(at 150.18 37.28)
@@ -2220,12 +2408,6 @@
 		(uuid "3bd0e58e-aaa3-4ec2-ad29-eb7d926d1d0a")
 	)
 	(junction
-		(at 83.08 205.09)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "4227534b-bd65-4518-976b-87cdfed5a3f0")
-	)
-	(junction
 		(at 113.99 47.28)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2236,12 +2418,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "74f71959-0960-4da6-a2bb-be7ac1e1ae1f")
-	)
-	(junction
-		(at 78 205.09)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "7a76fa93-d1b6-4229-a6b9-c6486702594b")
 	)
 	(junction
 		(at 116.04 188.09)
@@ -2344,16 +2520,6 @@
 			(type default)
 		)
 		(uuid "0ac10fca-515f-44b0-bac2-f5d771a9a3f6")
-	)
-	(wire
-		(pts
-			(xy 78 205.09) (xy 78.04 205.09)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "161ecd1e-739d-40df-9788-6054c3d284f5")
 	)
 	(wire
 		(pts
@@ -2477,7 +2643,7 @@
 	)
 	(wire
 		(pts
-			(xy 58.04 205.09) (xy 78 205.09)
+			(xy 58.04 205.09) (xy 78.04 205.09)
 		)
 		(stroke
 			(width 0)
@@ -2657,7 +2823,7 @@
 	)
 	(wire
 		(pts
-			(xy 293.5 248.55) (xy 293.5 251.09)
+			(xy 293.5 243.09) (xy 293.5 251.09)
 		)
 		(stroke
 			(width 0)
@@ -2684,16 +2850,6 @@
 			(type default)
 		)
 		(uuid "7dd08212-b8a7-4280-872d-4e9b9c0261fa")
-	)
-	(wire
-		(pts
-			(xy 83.08 205.09) (xy 95.5 205.09)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "883b9875-ac71-43b0-bafe-5f1c0d42ec34")
 	)
 	(wire
 		(pts
@@ -3007,7 +3163,7 @@
 	)
 	(wire
 		(pts
-			(xy 83.04 205.09) (xy 83.08 205.09)
+			(xy 83.04 205.09) (xy 95.5 205.09)
 		)
 		(stroke
 			(width 0)
@@ -3034,16 +3190,6 @@
 			(type default)
 		)
 		(uuid "e76d7793-0b1f-4b85-8f21-c99128f21fd6")
-	)
-	(wire
-		(pts
-			(xy 293.5 243.09) (xy 293.5 248.55)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e8a4b1cf-d8e3-4662-862e-d1cdb0c7d276")
 	)
 	(wire
 		(pts
@@ -3434,7 +3580,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Generic connector, single row, 01x01, script generated"
 			(at 70.18 32.28 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3509,7 +3655,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Generic connector, single row, 01x01, script generated"
 			(at 70.18 52.28 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3584,7 +3730,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Generic screw terminal, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
 			(at 70.18 72.28 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3662,7 +3808,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Generic screw terminal, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
 			(at 70.18 92.28 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3740,7 +3886,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Diode"
 			(at 110.18 47.28 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3750,10 +3896,32 @@
 				)
 			)
 		)
-		(pin "A"
+		(property "Sim.Device" "D"
+			(at 110.18 47.28 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Pins" "1=K 2=A"
+			(at 110.18 47.28 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
 			(uuid "c3000010-0003-0003-0003-000000000101")
 		)
-		(pin "K"
+		(pin "1"
 			(uuid "c3000010-0003-0003-0003-000000000102")
 		)
 		(instances
@@ -3818,7 +3986,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Diode"
 			(at 110.18 77.28 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3828,10 +3996,32 @@
 				)
 			)
 		)
-		(pin "A"
+		(property "Sim.Device" "D"
+			(at 110.18 77.28 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Pins" "1=K 2=A"
+			(at 110.18 77.28 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
 			(uuid "c3000011-0003-0003-0003-000000000101")
 		)
-		(pin "K"
+		(pin "1"
 			(uuid "c3000011-0003-0003-0003-000000000102")
 		)
 		(instances
@@ -3896,7 +4086,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Diode"
 			(at 125.18 47.28 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3906,10 +4096,32 @@
 				)
 			)
 		)
-		(pin "A"
+		(property "Sim.Device" "D"
+			(at 125.18 47.28 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Pins" "1=K 2=A"
+			(at 125.18 47.28 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
 			(uuid "c3000012-0003-0003-0003-000000000101")
 		)
-		(pin "K"
+		(pin "1"
 			(uuid "c3000012-0003-0003-0003-000000000102")
 		)
 		(instances
@@ -3974,7 +4186,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Diode"
 			(at 125.18 77.28 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3984,10 +4196,32 @@
 				)
 			)
 		)
-		(pin "A"
+		(property "Sim.Device" "D"
+			(at 125.18 77.28 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Pins" "1=K 2=A"
+			(at 125.18 77.28 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
 			(uuid "c3000013-0003-0003-0003-000000000101")
 		)
-		(pin "K"
+		(pin "2"
 			(uuid "c3000013-0003-0003-0003-000000000102")
 		)
 		(instances
@@ -4000,7 +4234,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_Large")
+		(lib_id "Device:R")
 		(at 170.18 47.28 0)
 		(unit 1)
 		(body_style 1)
@@ -4080,7 +4314,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_Large")
+		(lib_id "Device:R")
 		(at 170.18 64.28 0)
 		(unit 1)
 		(body_style 1)
@@ -4160,7 +4394,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_Large")
+		(lib_id "Device:R")
 		(at 170.18 81.28 0)
 		(unit 1)
 		(body_style 1)
@@ -4240,7 +4474,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_Large")
+		(lib_id "Device:R")
 		(at 170.18 98.28 0)
 		(unit 1)
 		(body_style 1)
@@ -4320,7 +4554,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_Large")
+		(lib_id "Device:R")
 		(at 170.18 115.28 0)
 		(unit 1)
 		(body_style 1)
@@ -4400,7 +4634,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_Large")
+		(lib_id "Device:R")
 		(at 210.18 57.28 0)
 		(unit 1)
 		(body_style 1)
@@ -4410,7 +4644,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "c3000030-0003-0003-0003-000000000001")
-		(property "Reference" "R_fast"
+		(property "Reference" "R_fast1"
 			(at 213.18 56.28 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4473,14 +4707,14 @@
 		(instances
 			(project "CapacitorDischarger"
 				(path "/c3000000-0003-0003-0003-000000000003"
-					(reference "R_fast")
+					(reference "R_fast1")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "Device:Q_NMOS_GDS")
+		(lib_id "Transistor_FET:Q_NMOS_GDS")
 		(at 210.18 82.28 0)
 		(unit 1)
 		(body_style 1)
@@ -4612,7 +4846,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
 			(at 170.18 125.28 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4686,7 +4920,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
 			(at 210.18 94.28 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4760,7 +4994,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
 			(at 121.37 94.28 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4834,7 +5068,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Special symbol for telling ERC where power comes from"
 			(at 60.18 127.28 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4908,7 +5142,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
 			(at 60.18 132.28 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4982,7 +5216,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Special symbol for telling ERC where power comes from"
 			(at 60.18 37.28 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5005,7 +5239,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_Large")
+		(lib_id "Device:R")
 		(at 58.04 193.09 0)
 		(unit 1)
 		(body_style 1)
@@ -5139,7 +5373,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 58.04 215.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5219,7 +5453,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 80.54 205.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5245,7 +5479,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:Q_NPN_BCE")
+		(lib_id "Transistor_BJT:MPSA42")
 		(at 98.04 205.09 0)
 		(unit 1)
 		(body_style 1)
@@ -5380,7 +5614,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 98.548 194.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5406,7 +5640,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_Large")
+		(lib_id "Device:R")
 		(at 116.04 181.09 0)
 		(unit 1)
 		(body_style 1)
@@ -5538,7 +5772,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Zener diode"
 			(at 116.04 198.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5548,10 +5782,10 @@
 				)
 			)
 		)
-		(pin "A"
+		(pin "2"
 			(uuid "c3000122-0003-0003-0003-000000000101")
 		)
-		(pin "K"
+		(pin "1"
 			(uuid "c3000122-0003-0003-0003-000000000102")
 		)
 		(instances
@@ -5616,7 +5850,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Unpolarized capacitor"
 			(at 127.04 205.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5696,7 +5930,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 160.04 188.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5776,7 +6010,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 160.04 200.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5856,7 +6090,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 160.04 212.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5936,7 +6170,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 160.04 224.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5972,7 +6206,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "c3000133-0003-0003-0003-000000000001")
-		(property "Reference" "D_LED"
+		(property "Reference" "D_LED1"
 			(at 163.04 236.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6014,7 +6248,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Zener diode"
 			(at 160.04 238.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6024,16 +6258,16 @@
 				)
 			)
 		)
-		(pin "A"
+		(pin "1"
 			(uuid "c3000133-0003-0003-0003-000000000101")
 		)
-		(pin "K"
+		(pin "2"
 			(uuid "c3000133-0003-0003-0003-000000000102")
 		)
 		(instances
 			(project "CapacitorDischarger"
 				(path "/c3000000-0003-0003-0003-000000000003"
-					(reference "D_LED")
+					(reference "D_LED1")
 					(unit 1)
 				)
 			)
@@ -6092,7 +6326,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Light emitting diode"
 			(at 160.04 253.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6102,10 +6336,21 @@
 				)
 			)
 		)
-		(pin "A"
+		(property "Sim.Pins" "1=K 2=A"
+			(at 160.04 253.09 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
 			(uuid "c3000134-0003-0003-0003-000000000101")
 		)
-		(pin "K"
+		(pin "2"
 			(uuid "c3000134-0003-0003-0003-000000000102")
 		)
 		(instances
@@ -6172,7 +6417,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 193.04 188.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6252,7 +6497,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 193.04 200.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6332,7 +6577,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 193.04 212.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6412,7 +6657,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 193.04 224.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6492,7 +6737,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 193.04 236.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6528,7 +6773,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "c3000145-0003-0003-0003-000000000001")
-		(property "Reference" "R_sig_bot"
+		(property "Reference" "R_sig_bot1"
 			(at 196.04 250.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6572,7 +6817,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor"
 			(at 193.04 250.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6591,14 +6836,14 @@
 		(instances
 			(project "CapacitorDischarger"
 				(path "/c3000000-0003-0003-0003-000000000003"
-					(reference "R_sig_bot")
+					(reference "R_sig_bot1")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "Device:R_POT")
+		(lib_id "Device:R_Potentiometer_Trim")
 		(at 193.04 266.09 0)
 		(unit 1)
 		(body_style 1)
@@ -6608,7 +6853,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "c3000146-0003-0003-0003-000000000001")
-		(property "Reference" "R_cal"
+		(property "Reference" "R_cal1"
 			(at 198.04 266.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6674,7 +6919,7 @@
 		(instances
 			(project "CapacitorDischarger"
 				(path "/c3000000-0003-0003-0003-000000000003"
-					(reference "R_cal")
+					(reference "R_cal1")
 					(unit 1)
 				)
 			)
@@ -6732,7 +6977,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
 			(at 98.548 215.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6806,7 +7051,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
 			(at 58.04 223.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6880,7 +7125,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
 			(at 116.04 208.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6954,7 +7199,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
 			(at 127.04 213.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7028,7 +7273,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
 			(at 160.04 263.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7102,7 +7347,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
 			(at 193.04 277.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7176,7 +7421,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
 			(at 255.04 263.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7250,7 +7495,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
 			(at 268.04 263.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7324,7 +7569,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
 			(at 279.04 263.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7398,7 +7643,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
 			(at 288.04 258.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7421,7 +7666,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_Large")
+		(lib_id "Device:R")
 		(at 238.04 188.09 0)
 		(unit 1)
 		(body_style 1)
@@ -7501,7 +7746,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_Large")
+		(lib_id "Device:R")
 		(at 238.04 205.09 0)
 		(unit 1)
 		(body_style 1)
@@ -7581,7 +7826,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_Large")
+		(lib_id "Device:R")
 		(at 238.04 222.09 0)
 		(unit 1)
 		(body_style 1)
@@ -7661,7 +7906,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_Large")
+		(lib_id "Device:R")
 		(at 238.04 239.09 0)
 		(unit 1)
 		(body_style 1)
@@ -7751,7 +7996,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "c3000164-0003-0003-0003-000000000001")
-		(property "Reference" "D_Vcc"
+		(property "Reference" "D_Vcc1"
 			(at 258.04 253.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7793,7 +8038,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Zener diode"
 			(at 255.04 255.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7803,23 +8048,23 @@
 				)
 			)
 		)
-		(pin "A"
+		(pin "2"
 			(uuid "c3000164-0003-0003-0003-000000000101")
 		)
-		(pin "K"
+		(pin "1"
 			(uuid "c3000164-0003-0003-0003-000000000102")
 		)
 		(instances
 			(project "CapacitorDischarger"
 				(path "/c3000000-0003-0003-0003-000000000003"
-					(reference "D_Vcc")
+					(reference "D_Vcc1")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "Device:CP")
+		(lib_id "Device:C_Polarized")
 		(at 268.04 255.09 0)
 		(unit 1)
 		(body_style 1)
@@ -7829,7 +8074,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "c3000165-0003-0003-0003-000000000001")
-		(property "Reference" "C_Vcc"
+		(property "Reference" "C_Vcc1"
 			(at 271.04 253.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7890,7 +8135,7 @@
 		(instances
 			(project "CapacitorDischarger"
 				(path "/c3000000-0003-0003-0003-000000000003"
-					(reference "C_Vcc")
+					(reference "C_Vcc1")
 					(unit 1)
 				)
 			)
@@ -7949,7 +8194,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Unpolarized capacitor"
 			(at 279.04 255.09 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8027,7 +8272,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Generic connector, single row, 01x03, script generated"
 			(at 296.04 251.09 0)
 			(show_name no)
 			(do_not_autoplace no)
