@@ -167,3 +167,24 @@ Splitting into separate GNDs would require an isolated DC-DC converter for Vcc a
 The DVM (3-wire: Vcc+, Vcc−, signal input) must share GND with the discharge path for the voltage reading to be correct — so shared GND is **required**, not just acceptable.
 
 The one real concern: PCB GND is at whatever potential the capacitor's negative terminal is at relative to earth. Touching the PCB while probing is dangerous — handled by enclosure design, not circuit isolation. The probes are the only user-touch points and are rated 1000V.
+
+---
+
+## Q: What wire to use between banana sockets and PCB screw terminals?
+
+| Property | Specification |
+|----------|---------------|
+| Cross-section | 1 mm² (AWG 17–18) |
+| Construction | Stranded (multi-filar) |
+| Insulation | Silicone, rated **1000 V** |
+| Colour | Red (HV+), Black (GND) |
+
+**Why stranded:** the banana sockets are panel-mounted and the wire must flex during assembly/service without fatiguing at the termination points. Solid wire cracks at screw terminals over time.
+
+**Why 1 mm²:** peak discharge current is only 2 A, but 600 V requires conservative insulation and a mechanically robust conductor. 0.75 mm² is the floor; 1 mm² gives margin.
+
+**Why 1000 V insulation:** matches the probe and socket rating. Standard 300 V hook-up wire is not suitable for a 600 V circuit.
+
+**Termination:** tin the stranded ends before inserting into the Phoenix MKDS5 screw terminals to prevent strand splaying. The Stäubli SLB4-G rear screw clamp accepts wire up to ~4 mm² — 1 mm² terminates cleanly.
+
+Keep runs as short as possible to minimise inductance in the discharge loop.
