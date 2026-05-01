@@ -1,4 +1,13 @@
 blocks/gen_led_indicator.py
 blocks/led_indicator.svg
 .claude/
-**__pycache__/
+**/__pycache__/
+
+# Serena AI tool data
+.serena/
+
+# KiCad auto-generated files
+KiCAD/.history/
+KiCAD/*-backups/
+KiCAD/*.kicad_prl
+KiCAD/~*.lck

@@ -32,14 +32,15 @@ C_byp2  n_gate 0 100n
 R1      HVp n_base_top 1Meg
 R2      n_base_top 0   10k
 R3      n_base_top n_q1b 100k
-Q1      n_gate_top n_q1b 0 Q2N3904
+Q1      n_gate_top n_q1b 0 QMPSA42
 
 * ── LED danger indicator (cutoff ≈ 10.2 V) ──────────────────
 * OFF below V_Z(8.2V) + Vf(2V) = 10.2 V
 V_iled  HVp n_led1 0
 R_LED1  n_led1 n_led2 100k
 R_LED2  n_led2 n_led3 100k
-R_LED3  n_led3 n_dled 100k
+R_LED3  n_led3 n_led4 100k
+R_LED4  n_led4 n_dled 100k
 D_DLED  n_led_a n_dled DZ8V2
 D_LED1  n_led_a 0      DLED
 
