@@ -6,6 +6,7 @@
 
 | Ref(s) | Qty | Description | Part Number / Suggestion |
 |--------|-----|-------------|--------------------------|
+| F1 | 1 | Fuse, 2 A, 600 V AC/DC, 10.3×38 mm ceramic cartridge, with PCB fuse clips | KLKD002.T  (Littelfuse, 600 VAC/VDC) + 2× Keystone 3517 PCB clips |
 
 ## Sourced (In Hand)
 
@@ -19,29 +20,32 @@
 | R4 | 1 | RN60D1000FB14  (Vishay, Mouser 71-RN60D-F-100) |
 | R5 | 1 | FMP300FRF73-470K  (YAGEO, Mouser 603-FMP300FRF73-470K) |
 | D9 | 1 | BZX85C12  (onsemi, Mouser 512-BZX85C12) |
-| Q1 | 1 | 2N3904TFR  (onsemi, Mouser 512-2N3904TFR) |
+| Q1 | 1 | MPSA42-FAI  (onsemi, TME MPSA42-FAI) |
 | R1 | 1 | FMP300FRF73-1M  (YAGEO, Mouser 603-FMP300FRF73-1M) |
 | R2 | 1 | MFR-25FTE52-10K  (YAGEO, Mouser 603-MFR-25FTE52-10K) |
-| R3 | 1 | MF006FF1003A50 |
-| R_LED1, R_LED2, R_LED3 | 3 | MF006FF1003A50 |
+| R3 | 1 | MFR-25FTE52-10K  (YAGEO, Mouser 603-MFR-25FTE52-10K) |
+| R_LED1, R_LED2, R_LED3, R_LED4 | 4 | MF006FF1003A50 |
 | D_LED | 1 | BZX55C8V2-TAP  (Vishay, Mouser 78-BZX55C8V2-TAP) |
 | LED1 | 1 | any 5 mm red LED (Vf ≈ 2 V)  (from kit) |
 | R_sig1, R_sig2, R_sig3, R_sig4, R_sig5 | 5 | MF006FF1003A50 |
 | R_sig_bot | 1 | MF006FF1003A50 |
-| R_drop1, R_drop2, R_drop3, R_drop4 | 4 | MOF3WS-15K |
-| D_Vcc | 1 | 1N4744A-T50A  (onsemi, Mouser 512-1N4744AT50A) |
+| BT1 | 1 | Westinghouse 6LR61 + 9 V battery box with ON/OFF switch  (both in ComponentsDB inventory) |
 | C_Vcc | 1 | EEAGA1E100H |
-| R_cal | 1 | T93YA200K |
+| R_cal | 1 | 3296W-1-103LF  (Bourns, TME 3296W-1-103LF) |
 | C_byp1, C_byp2 | 2 | K104K10X7RF5UH5 |
 | J1 | 1 | SLB4-G-21 |
 | J2 | 1 | SLB4-G-22 |
 | J3, J4 | 2 | MKDS5/2-9.5 |
+| J6 | 1 | B2B-XH-A  (from JST XH connector kit in ComponentsDB inventory) |
 
 ## Sourced — Not Used in Current Revision
 
 | Part Number | Description | Notes |
 |-------------|-------------|-------|
+| MOF3WS-15K | Resistor, metal oxide, 15 kΩ, 3 W, ±5%, 500 V, Ø5×15 mm, axial THT | 20 pcs sourced. Was R_drop1–4 (DVM Vcc dropper); removed 2026-07-29 — DVM (12–15 mA measured) is battery-powered now. |
+| 1N4744A-T50A  (onsemi, Mouser 512-1N4744AT50A) | Zener diode, 15 V, 1 W, DO-41, THT | Was D_Vcc (parasitic 15 V shunt regulator); removed 2026-07-29 together with the dropper. |
 | MF006FF8203A50 | Resistor, metal film, 820 kΩ, 0.6 W, ±1%, 250 V, axial THT | 100 pcs sourced. Not used in current design revision. |
 | MF0207FTE-1M8 | Resistor, metal film, 1.8 MΩ, 0.6 W, ±1%, 350 V, axial THT | 5 pcs sourced. Not used in current design revision. |
 | MBB0207VC2204FCT00 | Resistor, metal film, 2.2 MΩ, 0.6 W, ±1%, 350 V, axial THT | 10 pcs sourced. Not used in current design revision. |
+| 3386P-1-103LF  (Bourns, TME 3386P-1-103LF) | Potentiometer, cermet trimmer, 10 kΩ, 1-turn, 0.5 W, THT | 5 pcs sourced. Single-turn variant of R_cal trimmer. Not placed — 3296W (25-turn) used instead for finer adjustment. |
 | LM393AP | IC, dual comparator, 300 ns, 2–30 V supply, DIP-8, THT | 3 pcs sourced. Not used — NPN transistor threshold detector chosen instead. |

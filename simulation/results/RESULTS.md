@@ -9,3 +9,4 @@
 | E_below_LED_8V_100uF | **PASS** |
 | F_steady_state_600V | **PASS** |
 | G_threshold_sweep | **PASS** |
+| G2_threshold_lowbeta | **PASS** |

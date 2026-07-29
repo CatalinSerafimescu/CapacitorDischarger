@@ -210,6 +210,31 @@
       )
     )
 
+    ;; ── Connector:Conn_01x02_Pin (battery input J6) ───────────────────────
+    (symbol "Connector:Conn_01x02_Pin"
+      (pin_names (offset 1.016) hide)
+      (in_bom yes) (on_board yes)
+      (property "Reference" "J" (at 0 3.81 0) (effects (font (size 1.27 1.27))))
+      (property "Value" "Conn_01x02_Pin" (at 0 -3.81 0) (effects (font (size 1.27 1.27))))
+      (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (symbol "Conn_01x02_Pin_0_1"
+        (polyline (pts (xy 0.6096 -0.7366) (xy 0 -1.2446) (xy 0.6096 -1.7526)) (stroke (width 0) (type default)) (fill (type none)))
+        (polyline (pts (xy 0.6096 1.8034) (xy 0 1.2954) (xy 0.6096 0.7874)) (stroke (width 0) (type default)) (fill (type none)))
+        (rectangle (start -0.254 -2.794) (end 0 2.794) (stroke (width 0) (type default)) (fill (type background)))
+      )
+      (symbol "Conn_01x02_Pin_1_1"
+        (pin passive line (at -2.54 -1.27 0) (length 2.54)
+          (name "Pin_1" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27))))
+        )
+        (pin passive line (at -2.54 1.27 0) (length 2.54)
+          (name "Pin_2" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27))))
+        )
+      )
+    )
+
     ;; ── Device:R_POT (trimmer) ────────────────────────────────────────────
     (symbol "Device:R_Potentiometer_Trim"
       (pin_names (offset 0) hide)
@@ -266,7 +291,7 @@
   ;;   HV+ label (input) at top
   ;;   R1 (1MΩ) vertical: top=HV+, bottom=node_A (y=55)
   ;;   R2 (10kΩ) vertical: top=node_A, bottom=GND
-  ;;   R3 (100kΩ) horizontal: left=node_A, right=Q1 base
+  ;;   R3 (10kΩ) horizontal: left=node_A, right=Q1 base
   ;;   Q1 (2N3904): B=R3, C→R4, E→GND
   ;; ═══════════════════════════════════════════════════════════════════════
 
@@ -307,7 +332,7 @@
     (at 72.5 52 90) (unit 1) (in_bom yes) (on_board yes)
     (uuid "b2000012-0002-0002-0002-000000000001")
     (property "Reference" "R3" (at 72.5 49 0) (effects (font (size 1.27 1.27)) (justify center)))
-    (property "Value" "100k" (at 72.5 54.5 0) (effects (font (size 1.27 1.27)) (justify center)))
+    (property "Value" "10k" (at 72.5 54.5 0) (effects (font (size 1.27 1.27)) (justify center)))
     (property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "b2000012-0002-0002-0002-000000000101"))
@@ -377,14 +402,14 @@
     (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "R4") (unit 1))))
   )
 
-  ;; R5 — 470 kΩ / 1W, R_Large vertical at (108, 28)
+  ;; R5 — 470 kΩ / 3W, R_Large vertical at (108, 28)
   ;; pin1 at (108, 24.19) → HV+ bus; pin2 at (108, 31.81) → GATE node
   (symbol
     (lib_id "Device:R")
     (at 108 28 0) (unit 1) (in_bom yes) (on_board yes)
     (uuid "b2000021-0002-0002-0002-000000000001")
     (property "Reference" "R5" (at 111 28 0) (effects (font (size 1.27 1.27)) (justify left)))
-    (property "Value" "470k 1W" (at 111 30.5 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Value" "470k 3W" (at 111 30.5 0) (effects (font (size 1.27 1.27)) (justify left)))
     (property "Footprint" "Resistor_THT:R_Axial_DIN0516_L15.5mm_D5.0mm_P20.32mm_Horizontal" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "b2000021-0002-0002-0002-000000000101"))
@@ -639,80 +664,30 @@
   )
 
   ;; ═══════════════════════════════════════════════════════════════════════
-  ;; BLOCK E — DVM VCC DROPPER
-  ;; HV+ → R_drop1–4 (series) → node_Vcc → D_Vcc (15V Z) → GND
-  ;;                                       → C_Vcc (10µF) → GND
-  ;;                                       → J5 (DVM Vcc pin)
-  ;; C_byp1 across DVM Vcc supply point
+  ;; BLOCK E — DVM POWER (internal 9 V battery)
+  ;; J6 (JST XH 2-pin) ← BT1 9V battery holder w/ built-in ON/OFF switch
+  ;;   J6 pin1 (+9V) → VCC_DVM rail → C_Vcc (10µF) → GND
+  ;;                                → C_byp1 (100nF) → GND
+  ;;                                → J5 (DVM Vcc pin)
+  ;;   J6 pin2 → GND
   ;; C_byp2 near Q1 (bypass for gate drive)
-  ;; Column x=230 for dropper chain; D_Vcc/C_Vcc at x=247/258
+  ;; (Dropper R_drop1–4 + D_Vcc removed 2026-07-29: DVM module measured
+  ;;  12–15 mA — beyond the parasitic supply — so it is battery-powered.)
   ;; ═══════════════════════════════════════════════════════════════════════
 
+  ;; J6 — battery input, JST XH 2-pin, at (230, 98)
+  ;; pin1 (+9V) at (227.46, 96.73); pin2 (GND) at (227.46, 99.27)
   (symbol
-    (lib_id "Device:R")
-    (at 230 35 0) (unit 1) (in_bom yes) (on_board yes)
-    (uuid "b2000060-0002-0002-0002-000000000001")
-    (property "Reference" "R_drop1" (at 233 35 0) (effects (font (size 1.27 1.27)) (justify left)))
-    (property "Value" "15k 3W" (at 233 37.5 0) (effects (font (size 1.27 1.27)) (justify left)))
-    (property "Footprint" "Resistor_THT:R_Axial_DIN0516_L15.5mm_D5.0mm_P20.32mm_Horizontal" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (lib_id "Connector:Conn_01x02_Pin")
+    (at 230 98 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "b2000068-0002-0002-0002-000000000001")
+    (property "Reference" "J6" (at 230 91 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "BATT 9V" (at 230 93.5 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "b2000060-0002-0002-0002-000000000101"))
-    (pin "2" (uuid "b2000060-0002-0002-0002-000000000102"))
-    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "R_drop1") (unit 1))))
-  )
-
-  (symbol
-    (lib_id "Device:R")
-    (at 230 52 0) (unit 1) (in_bom yes) (on_board yes)
-    (uuid "b2000061-0002-0002-0002-000000000001")
-    (property "Reference" "R_drop2" (at 233 52 0) (effects (font (size 1.27 1.27)) (justify left)))
-    (property "Value" "15k 3W" (at 233 54.5 0) (effects (font (size 1.27 1.27)) (justify left)))
-    (property "Footprint" "Resistor_THT:R_Axial_DIN0516_L15.5mm_D5.0mm_P20.32mm_Horizontal" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "b2000061-0002-0002-0002-000000000101"))
-    (pin "2" (uuid "b2000061-0002-0002-0002-000000000102"))
-    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "R_drop2") (unit 1))))
-  )
-
-  (symbol
-    (lib_id "Device:R")
-    (at 230 69 0) (unit 1) (in_bom yes) (on_board yes)
-    (uuid "b2000062-0002-0002-0002-000000000001")
-    (property "Reference" "R_drop3" (at 233 69 0) (effects (font (size 1.27 1.27)) (justify left)))
-    (property "Value" "15k 3W" (at 233 71.5 0) (effects (font (size 1.27 1.27)) (justify left)))
-    (property "Footprint" "Resistor_THT:R_Axial_DIN0516_L15.5mm_D5.0mm_P20.32mm_Horizontal" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "b2000062-0002-0002-0002-000000000101"))
-    (pin "2" (uuid "b2000062-0002-0002-0002-000000000102"))
-    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "R_drop3") (unit 1))))
-  )
-
-  (symbol
-    (lib_id "Device:R")
-    (at 230 86 0) (unit 1) (in_bom yes) (on_board yes)
-    (uuid "b2000063-0002-0002-0002-000000000001")
-    (property "Reference" "R_drop4" (at 233 86 0) (effects (font (size 1.27 1.27)) (justify left)))
-    (property "Value" "15k 3W" (at 233 88.5 0) (effects (font (size 1.27 1.27)) (justify left)))
-    (property "Footprint" "Resistor_THT:R_Axial_DIN0516_L15.5mm_D5.0mm_P20.32mm_Horizontal" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "b2000063-0002-0002-0002-000000000101"))
-    (pin "2" (uuid "b2000063-0002-0002-0002-000000000102"))
-    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "R_drop4") (unit 1))))
-  )
-
-  ;; D_Vcc — 1N4744A (15V Zener), K-up at (247, 102)
-  ;; angle=270 → K at (247, 98.19) = node_Vcc; A at (247, 105.81) → GND
-  (symbol
-    (lib_id "Device:D_Zener")
-    (at 247 102 270) (unit 1) (in_bom yes) (on_board yes)
-    (uuid "b2000064-0002-0002-0002-000000000001")
-    (property "Reference" "D_Vcc" (at 250 100 0) (effects (font (size 1.27 1.27))))
-    (property "Value" "1N4744A" (at 250 102.5 0) (effects (font (size 1.27 1.27))))
-    (property "Footprint" "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "A" (uuid "b2000064-0002-0002-0002-000000000101"))
-    (pin "K" (uuid "b2000064-0002-0002-0002-000000000102"))
-    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "D_Vcc") (unit 1))))
+    (pin "1" (uuid "b2000068-0002-0002-0002-000000000101"))
+    (pin "2" (uuid "b2000068-0002-0002-0002-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "J6") (unit 1))))
   )
 
   ;; C_Vcc — 10µF/25V electrolytic, at (260, 102)
@@ -761,10 +736,11 @@
   )
 
   ;; GND symbols for Block E
-  (symbol (lib_id "power:GND") (at 247 110 0) (unit 1) (in_bom yes) (on_board yes)
+  ;; #PWR06 — GND for J6 pin2 (battery return)
+  (symbol (lib_id "power:GND") (at 227.46 110 0) (unit 1) (in_bom yes) (on_board yes)
     (uuid "b2000055-0002-0002-0002-000000000001")
-    (property "Reference" "#PWR06" (at 247 116 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "GND" (at 247 113 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "#PWR06" (at 227.46 116 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 227.46 113 0) (effects (font (size 1.27 1.27))))
     (pin "1" (uuid "b2000055-0002-0002-0002-000000000101"))
     (instances (project "CapacitorDischarger" (path "/b2000000-0002-0002-0002-000000000002" (reference "#PWR06") (unit 1))))
   )
@@ -848,14 +824,6 @@
     (effects (font (size 1.27 1.27)) (justify left))
     (uuid "gl1004")
     (property "Intersheet References" "" (at 185 22 0) (effects (font (size 1.27 1.27)) hide))
-  )
-
-  ;; Block E — HV+ for dropper
-  (global_label "HV+"
-    (shape input) (at 230 22 270)
-    (effects (font (size 1.27 1.27)) (justify left))
-    (uuid "gl1005")
-    (property "Intersheet References" "" (at 230 22 0) (effects (font (size 1.27 1.27)) hide))
   )
 
   ;; GATE output — from gate drive node
@@ -947,27 +915,20 @@
   (no_connect (at 188.81 113) (uuid "nc0001"))
 
   ;; ═══════════════════════════════════════════════════════════════════════
-  ;; WIRES — Block E (DVM Vcc dropper)
+  ;; WIRES — Block E (DVM power: 9 V battery via J6)
   ;; ═══════════════════════════════════════════════════════════════════════
 
-  ;; HV+ → R_drop1 pin1
-  (wire (pts (xy 230 22) (xy 230 31.19)) (stroke (width 0) (type default)) (uuid "lw0040"))
-  ;; R_drop chain
-  (wire (pts (xy 230 38.81) (xy 230 48.19)) (stroke (width 0) (type default)) (uuid "lw0041"))
-  (wire (pts (xy 230 55.81) (xy 230 65.19)) (stroke (width 0) (type default)) (uuid "lw0042"))
-  (wire (pts (xy 230 72.81) (xy 230 82.19)) (stroke (width 0) (type default)) (uuid "lw0043"))
-  ;; R_drop4 pin2 → node_Vcc at (230, 93)
-  (wire (pts (xy 230 89.81) (xy 230 93)) (stroke (width 0) (type default)) (uuid "lw0044"))
-  ;; node_Vcc horizontal bus to D_Vcc K (247,98.19), C_Vcc pin1 (260,98.19), C_byp1 pin1 (271,99.46)
-  (wire (pts (xy 230 93) (xy 247 93)) (stroke (width 0) (type default)) (uuid "lw0045"))
-  (wire (pts (xy 247 93) (xy 260 93)) (stroke (width 0) (type default)) (uuid "lw0046"))
+  ;; J6 pin1 (+9V) → VCC_DVM rail at (230, 93)
+  (wire (pts (xy 227.46 96.73) (xy 227.46 93)) (stroke (width 0) (type default)) (uuid "lw0040"))
+  (wire (pts (xy 227.46 93) (xy 230 93)) (stroke (width 0) (type default)) (uuid "lw0041"))
+  ;; J6 pin2 → GND
+  (wire (pts (xy 227.46 99.27) (xy 227.46 110)) (stroke (width 0) (type default)) (uuid "lw0042"))
+  ;; VCC_DVM horizontal bus to C_Vcc pin1 (260,98.19), C_byp1 pin1 (271,99.46)
+  (wire (pts (xy 230 93) (xy 260 93)) (stroke (width 0) (type default)) (uuid "lw0046"))
   (wire (pts (xy 260 93) (xy 271 93)) (stroke (width 0) (type default)) (uuid "lw0047"))
   ;; Verticals down to each component pin1
-  (wire (pts (xy 247 93) (xy 247 98.19)) (stroke (width 0) (type default)) (uuid "lw0048"))
   (wire (pts (xy 260 93) (xy 260 98.19)) (stroke (width 0) (type default)) (uuid "lw0049"))
   (wire (pts (xy 271 93) (xy 271 99.46)) (stroke (width 0) (type default)) (uuid "lw0050"))
-  ;; D_Vcc A → GND
-  (wire (pts (xy 247 105.81) (xy 247 110)) (stroke (width 0) (type default)) (uuid "lw0051"))
   ;; C_Vcc pin2 → GND
   (wire (pts (xy 260 105.81) (xy 260 110)) (stroke (width 0) (type default)) (uuid "lw0052"))
   ;; C_byp1 pin2 → GND
@@ -1002,8 +963,8 @@
   (wire (pts (xy 200 90) (xy 285.46 90)) (stroke (width 0) (type default)) (uuid "lw0061"))
   (wire (pts (xy 285.46 90) (xy 285.46 95.46)) (stroke (width 0) (type default)) (uuid "lw0062"))
 
-  ;; node_Vcc label
-  (label "node_Vcc"
+  ;; VCC_DVM label — battery-fed DVM supply rail
+  (label "VCC_DVM"
     (at 230 93 180)
     (effects (font (size 1.27 1.27)) (justify right))
     (uuid "nl0003")
@@ -1022,7 +983,7 @@
 
   (junction (at 50 52) (diameter 0) (color 0 0 0 0) (uuid "lj0001"))
   (junction (at 108 35) (diameter 0) (color 0 0 0 0) (uuid "lj0002"))
-  (junction (at 247 93) (diameter 0) (color 0 0 0 0) (uuid "lj0003"))
+  (junction (at 230 93) (diameter 0) (color 0 0 0 0) (uuid "lj0003"))
   (junction (at 260 93) (diameter 0) (color 0 0 0 0) (uuid "lj0004"))
   (junction (at 271 93) (diameter 0) (color 0 0 0 0) (uuid "lj0005"))
   (junction (at 119 35) (diameter 0) (color 0 0 0 0) (uuid "lj0006"))

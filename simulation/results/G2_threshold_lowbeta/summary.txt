@@ -1,0 +1,6 @@
+SCENARIO: G2_threshold_lowbeta
+STATUS: PASS
+
+  [PASS] G2: V(n_gate) at HVp<30V = 9.36 V  (expected >8 V)
+  [PASS] G2: V(n_gate) at HVp>120V = 0.06 V  (expected <1 V)
+  [PASS] G2: gate threshold (low-hFE) = 68.0 V  (expected 62-75 V)

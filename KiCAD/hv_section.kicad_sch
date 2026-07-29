@@ -141,6 +141,31 @@
       )
     )
 
+    ;; ── Fuse (protection F1) ─────────────────────────────────────────────
+    (symbol "Device:Fuse"
+      (pin_numbers hide)
+      (pin_names (offset 0) hide)
+      (in_bom yes) (on_board yes)
+      (property "Reference" "F" (at 0 2.54 90) (effects (font (size 1.27 1.27))))
+      (property "Value" "Fuse" (at 0 -2.54 90) (effects (font (size 1.27 1.27))))
+      (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+      (symbol "Fuse_0_1"
+        (rectangle (start -2.54 -1.016) (end 2.54 1.016) (stroke (width 0.254) (type default)) (fill (type none)))
+        (polyline (pts (xy -2.54 0) (xy 2.54 0)) (stroke (width 0) (type default)) (fill (type none)))
+      )
+      (symbol "Fuse_1_1"
+        (pin passive line (at -3.81 0 0) (length 1.27)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27))))
+        )
+        (pin passive line (at 3.81 0 180) (length 1.27)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27))))
+        )
+      )
+    )
+
     ;; ── Power: GND ────────────────────────────────────────────────────────
     (symbol "power:GND"
       (power)
@@ -372,7 +397,7 @@
     (at 160 55 0) (unit 1) (in_bom yes) (on_board yes)
     (uuid "a1000030-0001-0001-0001-000000000001")
     (property "Reference" "R_fast" (at 163 55 0) (effects (font (size 1.27 1.27)) (justify left)))
-    (property "Value" "50R 5W" (at 163 57.5 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Value" "50R 7W" (at 163 57.5 0) (effects (font (size 1.27 1.27)) (justify left)))
     (property "Footprint" "Resistor_THT:R_Axial_Power_L38.0mm_W9.0mm_P40.64mm" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "a1000030-0001-0001-0001-000000000101"))
@@ -443,6 +468,23 @@
     (instances (project "CapacitorDischarger" (path "/a1000000-0001-0001-0001-000000000001" (reference "#PWR04") (unit 1))))
   )
 
+  ;; F1 — protection fuse, 2A/600V (KLKD002.T, 10.3×38mm + Keystone 3517 clips)
+  ;; In series in the HV+ line between bridge cathodes and the HV+ bus:
+  ;; opens on single-fault (Q1 open / D9 fail → Q2 full-on at 600V → ~12A).
+  ;; Horizontal at (87, 45): pin1 at (83.19, 45), pin2 at (90.81, 45)
+  (symbol
+    (lib_id "Device:Fuse")
+    (at 87 45 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "a1000050-0001-0001-0001-000000000001")
+    (property "Reference" "F1" (at 87 40 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "2A/600V" (at 87 42.5 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "Fuse:Fuseholder_Cylinder-10x38mm" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid "a1000050-0001-0001-0001-000000000101"))
+    (pin "2" (uuid "a1000050-0001-0001-0001-000000000102"))
+    (instances (project "CapacitorDischarger" (path "/a1000000-0001-0001-0001-000000000001" (reference "F1") (unit 1))))
+  )
+
   ;; GND at J4 pin2 (20, 93.27)
   (symbol
     (lib_id "power:GND")
@@ -488,8 +530,9 @@
   ;; Actually D3 K is at (78.81,45) — wire from PROBE_A node through D1 K to D3 K
   ;; D1 K = (63.81, 45), D3 K = (78.81, 45) — both cathodes meet at HV+ bus
   (wire (pts (xy 63.81 45) (xy 78.81 45)) (stroke (width 0) (type default)) (uuid "w0024"))
-  ;; HV+ bus right to R_slow1 pin1 (120, 41.19)
-  (wire (pts (xy 78.81 45) (xy 100 45)) (stroke (width 0) (type default)) (uuid "w0025"))
+  ;; Bridge cathodes → F1 pin1; F1 pin2 → HV+ bus (fuse in series)
+  (wire (pts (xy 78.81 45) (xy 83.19 45)) (stroke (width 0) (type default)) (uuid "w0025"))
+  (wire (pts (xy 90.81 45) (xy 100 45)) (stroke (width 0) (type default)) (uuid "w0025b"))
   (wire (pts (xy 100 45) (xy 120 41.19)) (stroke (width 0) (type default)) (uuid "w0026"))
   ;; HV+ bus branch to R_fast pin1
   (wire (pts (xy 100 45) (xy 100 35)) (stroke (width 0) (type default)) (uuid "w0027"))

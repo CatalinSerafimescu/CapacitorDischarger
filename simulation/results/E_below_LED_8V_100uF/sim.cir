@@ -5,7 +5,13 @@
 .param V0=8 CDUT=1.000000e-04
 
 * ── DUT capacitor with initial condition ─────────────────────
-C_dut HVp 0 {CDUT} IC={V0}
+C_dut n_probe_a n_probe_b {CDUT} IC={V0}
+
+* ── Reverse-polarity bridge (D1-D4) between probes and HVp/0 ─
+D1      n_probe_a HVp        D1N4007
+D3      n_probe_b HVp        D1N4007
+D4      0         n_probe_a  D1N4007
+D2      0         n_probe_b  D1N4007
 
 * ── Slow path: 5 × 4.7 kΩ in series ────────────────────────
 * V_islow is a 0 V ammeter placed at the branch head
@@ -19,19 +25,19 @@ R_slow5 n_slow5 0       4.7k
 * ── Fast path: R_fast → Q2 (MOSFET) drain→source→GND ───────
 V_ifast HVp n_rfast 0
 R_fast  n_rfast n_drain 50
-M_Q2    n_drain n_gate 0 0 STF7NM80
+M_Q2    n_drain n_gate 0 0 STP10NK80Z
 
 * Gate drive: R5 pull-up from HVp, D9 clamps to 12 V
-* Q1 NPN: saturates above 71 V → pulls n_gate_top low → Q2 off
+* Q1 NPN: saturates above ~63 V → pulls n_gate_top low → Q2 off
 R5      HVp n_gate_top 470k
 D_D9    0   n_gate_top DZ12
 R4      n_gate_top n_gate 100
 C_byp2  n_gate 0 100n
 
-* Q1 base divider: R1 (1 MΩ) / R2 (10 kΩ) → threshold ≈ 70.7 V
+* Q1 base divider: R1 (1 MΩ) / R2 (10 kΩ), R3 = 10 kΩ → threshold ≈ 63 V
 R1      HVp n_base_top 1Meg
 R2      n_base_top 0   10k
-R3      n_base_top n_q1b 100k
+R3      n_base_top n_q1b 10k
 Q1      n_gate_top n_q1b 0 QMPSA42
 
 * ── LED danger indicator (cutoff ≈ 10.2 V) ──────────────────
@@ -54,31 +60,25 @@ R_sig5  n_sig5 n_sigout 100k
 R_sigb  n_sigout n_rcal 100k
 R_cal   n_rcal 0       1
 
-* ── DVM Vcc: 4 × 15 kΩ dropper + 15 V Zener + 10 µF cap ───
-V_idrop HVp n_drop1 0
-R_drop1 n_drop1 n_drop2 15k
-R_drop2 n_drop2 n_drop3 15k
-R_drop3 n_drop3 n_drop4 15k
-R_drop4 n_drop4 n_vcc   15k
-D_DVcc  0       n_vcc   DZ15
-C_Vcc   n_vcc 0 10u
-C_byp1  n_vcc 0 100n
-R_dvm_load n_vcc 0 5k
+* DVM Vcc branch removed 2026-07-29: the DVM module (measured 12-15 mA)
+* is now powered by an internal 9 V battery, not from the HV rail.
 
 * ── Initial conditions ───────────────────────────────────────
-.ic V(HVp)={V0} V(n_vcc)=0
+* V(HVp) is approximated one diode drop below V0 so the bridge diode D1
+* doesn't see a near-instant 600V step at t=0 (avoids "timestep too small").
+.ic V(n_probe_a)={V0} V(n_probe_b)=0 V(HVp)={V0-0.7}
 
 * ── Transient analysis ───────────────────────────────────────
 .tran 1m 2 uic
 
 * ── Save variables ───────────────────────────────────────────
-.save V(HVp) V(n_gate) V(n_gate_top) V(n_sigout) V(n_vcc) V(n_led_a)
-.save I(V_islow) I(V_ifast) I(V_iled) I(V_isig) I(V_idrop)
+.save V(HVp) V(n_gate) V(n_gate_top) V(n_sigout) V(n_led_a) V(n_probe_a) V(n_probe_b)
+.save I(V_islow) I(V_ifast) I(V_iled) I(V_isig)
 
 * ── Run and export ───────────────────────────────────────────
 .control
 run
-wrdata E:/Catalin/Work/Electronics/CapacitorDischarger_Claude/simulation/results/E_below_LED_8V_100uF/out.csv V(HVp) V(n_gate) V(n_gate_top) V(n_sigout) V(n_vcc) V(n_led_a) I(V_islow) I(V_ifast) I(V_iled) I(V_isig) I(V_idrop)
+wrdata E:/Catalin/Work/Electronics/CapacitorDischarger_Claude/simulation/results/E_below_LED_8V_100uF/out.csv V(HVp) V(n_gate) V(n_gate_top) V(n_sigout) V(n_led_a) V(n_probe_a) V(n_probe_b) I(V_islow) I(V_ifast) I(V_iled) I(V_isig)
 quit
 .endc
 

@@ -7,11 +7,13 @@ A professional, handheld capacitor discharger designed for safely discharging hi
 ## Features
 
 - Discharges capacitors up to **600V** in **under 60 seconds** (up to ~1200µF)
-- **Adaptive discharge:** controlled current above ~71V (slow resistive path); fast dump below (MOSFET-switched)
+- **Adaptive discharge:** controlled current above ~63 V (hFE-insensitive: 63–68 V across Q1 gain corners) (slow resistive path); fast dump below (MOSFET-switched)
 - **Red LED danger indicator:** ON above ~10V, OFF when safe — powered directly from the capacitor, no external supply
-- **Integrated digital voltmeter:** 0–100V readout via 6:1 input divider (scales 0–600V → 0–100V)
+- **Integrated digital voltmeter:** 0–100V readout via 6:1 input divider (scales 0–600V → 0–100V), powered by an internal 9V battery (holder with ON/OFF switch)
 - **Reverse polarity protection:** 1N4007 full-bridge rectifier
+- **Protection fuse:** 600V-rated 2A fuse on the HV+ line guards against single-fault conditions
 - Designed for **DIY assembly** with through-hole components
+- A residual ~1.2–1.4V remains on the capacitor (two bridge-diode drops) — below the 10V safe threshold
 
 ---
 
@@ -24,6 +26,8 @@ A professional, handheld capacitor discharger designed for safely discharging hi
 ## Bill of Materials
 
 See **[bom.md](bom.md)** for the full component list with sourced vs. to-buy status.
+
+**Note on DVM power:** the module was measured at 12–15 mA supply current — beyond what a parasitic dropper from the capacitor could deliver — so it is powered by an internal 9V battery (switch ON only while measuring; ~35h per alkaline cell).
 
 ---
 
@@ -60,8 +64,8 @@ This design consolidates ideas from three published reference designs:
 - MOSFET upgraded to **STF7NM80 (800V)** — IRF840 (500V) is marginal at 600V
 - Slow path split into **5× 4.7kΩ/5W** in series — distributes heat; single 820Ω/10W in DeLuxe is a thermal bottleneck at high voltage with large caps
 - **R1 and R5 properly rated** for 600V: 1W, ≥600V working voltage (DeLuxe leaves ratings unspecified)
-- **Zener-defined LED threshold at 10.2V** — DeLuxe LED fades naturally with no defined safe cutoff
-- **Full voltmeter circuit added** with 6:1 divider, parasitic 15V supply, and optional calibration trimmer (not present in DeLuxe)
+- **Zener-defined LED threshold at 10.2V** — DeLuxe LED fades naturally with no defined safe cutoff; note the LED is dim below ~70V, so a high-efficiency (~2mA) LED is recommended
+- **Full voltmeter circuit added** with 6:1 divider, battery-powered supply, and optional calibration trimmer (not present in DeLuxe)
 - Every component carries explicit power and voltage stress analysis in the BOM
 
 ---

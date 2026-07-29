@@ -375,6 +375,155 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Connector:Conn_01x02_Pin"
+			(pin_names
+				(offset 1.016)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "J"
+				(at 0 2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "Conn_01x02_Pin"
+				(at 0 -5.08 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Generic connector, single row, 01x02, script generated"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "Conn_01x02_Pin_1_1"
+				(rectangle
+					(start 0.8636 0.127)
+					(end 0 -0.127)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(rectangle
+					(start 0.8636 -2.413)
+					(end 0 -2.667)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 0) (xy 0.8636 0)
+					)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 -2.54) (xy 0.8636 -2.54)
+					)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at 5.08 0 180)
+					(length 3.81)
+					(name "Pin_1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 5.08 -2.54 180)
+					(length 3.81)
+					(name "Pin_2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Connector:Screw_Terminal_01x02"
 			(pin_names
 				(offset 1.016)
@@ -1257,6 +1406,158 @@
 						)
 					)
 					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Device:Fuse"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "F"
+				(at 2.032 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "Fuse"
+				(at -1.905 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at -1.778 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Fuse"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "fuse"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "*Fuse*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "Fuse_0_1"
+				(rectangle
+					(start -0.762 -2.54)
+					(end 0.762 2.54)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.54) (xy 0 -2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "Fuse_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 1.27)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 1.27)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2621,12 +2922,6 @@
 		(uuid "581d0f7f-6aba-4c40-ae32-a8e7893a1fa5")
 	)
 	(junction
-		(at 293.5 246.09)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "74f71959-0960-4da6-a2bb-be7ac1e1ae1f")
-	)
-	(junction
 		(at 116.04 188.09)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2780,13 +3075,63 @@
 	)
 	(wire
 		(pts
-			(xy 238.04 246.09) (xy 293.5 246.09)
+			(xy 245.04 246.09) (xy 285.04 246.09)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "2971cf8c-6c90-4f06-9b98-1bcea94cda73")
+	)
+	(wire
+		(pts
+			(xy 245.04 248.63) (xy 245.04 253.63)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f1a1b2c3-3333-4a2b-9c3d-000000000f30")
+	)
+	(wire
+		(pts
+			(xy 285.04 246.09) (xy 285.04 248.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f1a1b2c3-3333-4a2b-9c3d-000000000f31")
+	)
+	(wire
+		(pts
+			(xy 285.04 248.55) (xy 301.12 248.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f1a1b2c3-3333-4a2b-9c3d-000000000f32")
+	)
+	(wire
+		(pts
+			(xy 293.5 253.63) (xy 301.12 253.63)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f1a1b2c3-3333-4a2b-9c3d-000000000f33")
+	)
+	(wire
+		(pts
+			(xy 293.5 251.09) (xy 301.12 251.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f1a1b2c3-3333-4a2b-9c3d-000000000f34")
 	)
 	(wire
 		(pts
@@ -2867,16 +3212,6 @@
 			(type default)
 		)
 		(uuid "415d73cb-4472-4210-b990-f2bca41d38dc")
-	)
-	(wire
-		(pts
-			(xy 255.04 258.9) (xy 255.04 263.09)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "444eeb57-9ad3-469b-b94a-458bd82a7474")
 	)
 	(wire
 		(pts
@@ -3000,7 +3335,7 @@
 	)
 	(wire
 		(pts
-			(xy 279.04 257.63) (xy 279.04 263.09)
+			(xy 279.04 258.9) (xy 279.04 263.09)
 		)
 		(stroke
 			(width 0)
@@ -3020,7 +3355,7 @@
 	)
 	(wire
 		(pts
-			(xy 279.04 246.09) (xy 279.04 252.55)
+			(xy 279.04 246.09) (xy 279.04 251.28)
 		)
 		(stroke
 			(width 0)
@@ -3047,16 +3382,6 @@
 			(type default)
 		)
 		(uuid "78b865e5-bf47-476a-a455-d7b9ed88077b")
-	)
-	(wire
-		(pts
-			(xy 238.04 208.9) (xy 238.04 218.28)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7dd08212-b8a7-4280-872d-4e9b9c0261fa")
 	)
 	(wire
 		(pts
@@ -3130,16 +3455,6 @@
 	)
 	(wire
 		(pts
-			(xy 238.04 191.9) (xy 238.04 201.28)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9d35e995-54e0-4b76-a188-bacfe5a196b5")
-	)
-	(wire
-		(pts
 			(xy 60.18 37.28) (xy 113.99 37.28)
 		)
 		(stroke
@@ -3147,16 +3462,6 @@
 			(type default)
 		)
 		(uuid "a340d715-1389-4e84-b66e-fda76989b085")
-	)
-	(wire
-		(pts
-			(xy 238.04 225.9) (xy 238.04 235.28)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a44bec48-1484-4682-b716-6703acf05ec7")
 	)
 	(wire
 		(pts
@@ -3187,16 +3492,6 @@
 			(type default)
 		)
 		(uuid "b2f7e272-1538-4807-a113-feb6e7043542")
-	)
-	(wire
-		(pts
-			(xy 255.04 246.09) (xy 255.04 251.28)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b45edee6-6b15-4833-a463-ea039895248a")
 	)
 	(wire
 		(pts
@@ -3240,16 +3535,6 @@
 	)
 	(wire
 		(pts
-			(xy 238.04 175.09) (xy 238.04 184.28)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c298facf-f80c-45a9-a284-ddcd490bd09c")
-	)
-	(wire
-		(pts
 			(xy 116.04 188.09) (xy 133.04 188.09)
 		)
 		(stroke
@@ -3290,13 +3575,23 @@
 	)
 	(wire
 		(pts
-			(xy 113.99 37.28) (xy 150.18 37.28)
+			(xy 113.99 37.28) (xy 126.37 37.28)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "cccb0deb-9f05-438e-9592-50722e0d5805")
+	)
+	(wire
+		(pts
+			(xy 133.99 37.28) (xy 150.18 37.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f1a1b2c3-1111-4a2b-9c3d-000000000f01")
 	)
 	(wire
 		(pts
@@ -3377,16 +3672,6 @@
 			(type default)
 		)
 		(uuid "e5f6e5df-f9b8-454f-81a0-28e9dd5716fa")
-	)
-	(wire
-		(pts
-			(xy 238.04 242.9) (xy 238.04 246.09)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e6a5fcc4-c707-4ae9-842c-852b7907c70d")
 	)
 	(wire
 		(pts
@@ -3498,6 +3783,16 @@
 		)
 		(uuid "ae6c3670-4be5-4af2-89f7-6888fd7310d6")
 	)
+	(label "VCC_DVM"
+		(at 250.04 246.09 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "f1a1b2c3-4444-4a2b-9c3d-000000000f40")
+	)
 	(label "PROBE_A"
 		(at 135.18 47.28 0)
 		(effects
@@ -3592,28 +3887,6 @@
 		(uuid "1d694061-00f7-42e3-8bb5-99786a543ec2")
 		(property "Intersheetrefs" ""
 			(at 58.04 175.09 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-	)
-	(global_label "HV+"
-		(shape input)
-		(at 238.04 175.09 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "21008fef-31e6-4352-81d2-6162b6a36a46")
-		(property "Intersheetrefs" ""
-			(at 238.04 175.09 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3730,6 +4003,85 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:Fuse")
+		(at 130.18 37.28 270)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "f1a1b2c3-1111-4a2b-9c3d-000000000f00")
+		(property "Reference" "F1"
+			(at 130.18 32.28 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "2A/600V"
+			(at 130.18 42.28 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Fuse:Fuseholder_Clip-6.3x32mm_Littelfuse_102_Inline_P34.21x7.62mm_D2.54mm_Horizontal"
+			(at 130.18 37.28 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 130.18 37.28 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Fuse"
+			(at 130.18 37.28 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "f1a1b2c3-1111-4a2b-9c3d-000000000f02")
+		)
+		(pin "2"
+			(uuid "f1a1b2c3-1111-4a2b-9c3d-000000000f03")
+		)
+		(instances
+			(project "CapacitorDischarger"
+				(path "/c3000000-0003-0003-0003-000000000003"
+					(reference "F1")
+					(unit 1)
 				)
 			)
 		)
@@ -4042,7 +4394,7 @@
 	)
 	(symbol
 		(lib_id "Device:D")
-		(at 110.18 47.28 0)
+		(at 110.18 47.28 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4142,7 +4494,7 @@
 	)
 	(symbol
 		(lib_id "Device:D")
-		(at 110.18 77.28 0)
+		(at 110.18 77.28 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4242,7 +4594,7 @@
 	)
 	(symbol
 		(lib_id "Device:D")
-		(at 125.18 47.28 0)
+		(at 125.18 47.28 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4342,7 +4694,7 @@
 	)
 	(symbol
 		(lib_id "Device:D")
-		(at 125.18 77.28 0)
+		(at 125.18 77.28 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4862,7 +5214,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "50R 5W"
+		(property "Value" "50R 7W"
 			(at 213.18 58.78 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5627,7 +5979,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "100k 0.6W"
+		(property "Value" "10k 0.25W"
 			(at 80.54 207.59 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5890,7 +6242,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "470k 1W"
+		(property "Value" "470k 3W"
 			(at 119.04 183.59 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6504,7 +6856,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED")
-		(at 160.04 253.09 270)
+		(at 160.04 253.09 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7388,7 +7740,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 116.04 208.09 0)
+			(at 92.202 242.316 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7928,404 +8280,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R")
-		(at 238.04 188.09 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "c3000160-0003-0003-0003-000000000001")
-		(property "Reference" "R_drop1"
-			(at 241.04 188.09 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "15k 3W"
-			(at 241.04 190.59 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0516_L15.5mm_D5.0mm_P20.32mm_Horizontal"
-			(at 8.04 -6.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 8.04 -6.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 238.04 188.09 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "c3000160-0003-0003-0003-000000000101")
-		)
-		(pin "2"
-			(uuid "c3000160-0003-0003-0003-000000000102")
-		)
-		(instances
-			(project "CapacitorDischarger"
-				(path "/c3000000-0003-0003-0003-000000000003"
-					(reference "R_drop1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 238.04 205.09 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "c3000161-0003-0003-0003-000000000001")
-		(property "Reference" "R_drop2"
-			(at 241.04 205.09 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "15k 3W"
-			(at 241.04 207.59 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0516_L15.5mm_D5.0mm_P20.32mm_Horizontal"
-			(at 8.04 -6.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 8.04 -6.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 238.04 205.09 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "c3000161-0003-0003-0003-000000000101")
-		)
-		(pin "2"
-			(uuid "c3000161-0003-0003-0003-000000000102")
-		)
-		(instances
-			(project "CapacitorDischarger"
-				(path "/c3000000-0003-0003-0003-000000000003"
-					(reference "R_drop2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 238.04 222.09 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "c3000162-0003-0003-0003-000000000001")
-		(property "Reference" "R_drop3"
-			(at 241.04 222.09 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "15k 3W"
-			(at 241.04 224.59 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0516_L15.5mm_D5.0mm_P20.32mm_Horizontal"
-			(at 8.04 -6.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 8.04 -6.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 238.04 222.09 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "c3000162-0003-0003-0003-000000000101")
-		)
-		(pin "2"
-			(uuid "c3000162-0003-0003-0003-000000000102")
-		)
-		(instances
-			(project "CapacitorDischarger"
-				(path "/c3000000-0003-0003-0003-000000000003"
-					(reference "R_drop3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 238.04 239.09 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "c3000163-0003-0003-0003-000000000001")
-		(property "Reference" "R_drop4"
-			(at 241.04 239.09 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "15k 3W"
-			(at 241.04 241.59 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0516_L15.5mm_D5.0mm_P20.32mm_Horizontal"
-			(at 8.04 -6.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 8.04 -6.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 238.04 239.09 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "c3000163-0003-0003-0003-000000000101")
-		)
-		(pin "2"
-			(uuid "c3000163-0003-0003-0003-000000000102")
-		)
-		(instances
-			(project "CapacitorDischarger"
-				(path "/c3000000-0003-0003-0003-000000000003"
-					(reference "R_drop4")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:D_Zener")
-		(at 255.04 255.09 270)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "c3000164-0003-0003-0003-000000000001")
-		(property "Reference" "D_Vcc1"
-			(at 258.04 253.09 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "1N4744A 15V"
-			(at 258.04 255.59 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal"
-			(at 8.04 -6.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 8.04 -6.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Zener diode"
-			(at 255.04 255.09 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "c3000164-0003-0003-0003-000000000101")
-		)
-		(pin "1"
-			(uuid "c3000164-0003-0003-0003-000000000102")
-		)
-		(instances
-			(project "CapacitorDischarger"
-				(path "/c3000000-0003-0003-0003-000000000003"
-					(reference "D_Vcc1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C_Polarized")
 		(at 268.04 255.09 0)
 		(unit 1)
@@ -8476,6 +8430,159 @@
 			(project "CapacitorDischarger"
 				(path "/c3000000-0003-0003-0003-000000000003"
 					(reference "C_byp1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:Conn_01x02_Pin")
+		(at 239.96 246.09 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "f1a1b2c3-2222-4a2b-9c3d-000000000f10")
+		(property "Reference" "J6"
+			(at 239.96 240.09 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "BATT 9V"
+			(at 239.96 253.09 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical"
+			(at 239.96 246.09 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 239.96 246.09 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x02, script generated"
+			(at 239.96 246.09 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "f1a1b2c3-2222-4a2b-9c3d-000000000f11")
+		)
+		(pin "2"
+			(uuid "f1a1b2c3-2222-4a2b-9c3d-000000000f12")
+		)
+		(instances
+			(project "CapacitorDischarger"
+				(path "/c3000000-0003-0003-0003-000000000003"
+					(reference "J6")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 245.04 253.63 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "f1a1b2c3-2222-4a2b-9c3d-000000000f20")
+		(property "Reference" "#PWR101"
+			(at 245.04 259.63 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 245.04 256.63 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 245.04 238.09 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 245.04 238.09 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 245.04 238.09 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "f1a1b2c3-2222-4a2b-9c3d-000000000f21")
+		)
+		(instances
+			(project "CapacitorDischarger"
+				(path "/c3000000-0003-0003-0003-000000000003"
+					(reference "#PWR101")
 					(unit 1)
 				)
 			)

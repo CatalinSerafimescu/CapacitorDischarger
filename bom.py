@@ -37,6 +37,25 @@ BOM = [
         "notes": "Full-bridge for reverse-polarity protection. PIV 1000 V gives 400 V margin over 600 V rail.",
     },
 
+    # ══ PROTECTION FUSE ══════════════════════════════════════════════════════
+    {
+        "refs": ["F1"],
+        "value": "2 A / 600 V time-delay",
+        "schematic_label": "2A/600V",
+        "description": "Fuse, 2 A, 600 V AC/DC, 10.3×38 mm ceramic cartridge, with PCB fuse clips",
+        "part_number": "KLKD002.T  (Littelfuse, 600 VAC/VDC) + 2× Keystone 3517 PCB clips",
+        "qty": 1,
+        "status": "buy",
+        "notes": (
+            "Single-fault protection: if Q1 fails open or D9 fails, Q2 turns fully on at 600 V and "
+            "R_fast would see ~12 A / 7.2 kW — F1 opens the HV+ line on that fault. "
+            "Normal currents: ≤~40 mA continuous plus fast-dump pulses up to ~2 A peak decaying with "
+            "τ = 50 Ω × C (worst-case pulse I²t ≈ 0.2 A²s for a 2 mF cap) — far below a 2 A fuse's "
+            "melting I²t, so no nuisance operation. "
+            "Must be a 600 VDC-rated cartridge — standard 5×20 glass fuses are only 250 V and must not be used."
+        ),
+    },
+
     # ══ SLOW DISCHARGE PATH ══════════════════════════════════════════════════
     {
         "refs": ["R_slow1", "R_slow2", "R_slow3", "R_slow4", "R_slow5"],
@@ -49,7 +68,7 @@ BOM = [
         "notes": (
             "5 in series = 23.5 kΩ / 25 W / 1750 V working voltage. "
             "At 600 V: 25.5 mA, 3.06 W per resistor (61% of 5 W rating). "
-            "Each resistor sees 120 V (well under 350 V part limit). "
+            "Each resistor sees 120 V (well under 460 V part limit). "
             "Mount axial on ≥3 mm PCB standoff, in a row for airflow."
         ),
     },
@@ -64,7 +83,7 @@ BOM = [
         "qty": 1,
         "status": "sourced",
         "notes": (
-            "Peak dissipation ≈ 100 W for τ = 50 Ω × C_cap ms at switch-on (V_cap = 71 V). "
+            "Peak dissipation ≈ 80 W for τ = 50 Ω × C_cap ms at switch-on (V_cap ≈ 63 V). "
             "Energy for 1 mF cap = 2.5 J — well within TO-220 SOA."
         ),
     },
@@ -129,7 +148,7 @@ BOM = [
         "notes": "Clamps Q2 gate to 12 V when Q1 is off (safe for any gate oxide).",
     },
 
-    # ══ THRESHOLD DETECTOR (Q1 NPN, 71 V switch point) ══════════════════════
+    # ══ THRESHOLD DETECTOR (Q1 NPN, ~63 V switch point) ═════════════════════
     {
         "refs": ["Q1"],
         "value": "MPSA42",
@@ -139,10 +158,12 @@ BOM = [
         "qty": 1,
         "status": "sourced",
         "notes": (
-            "Saturates when V_cap > 71 V → pulls GATE_CTRL low → Q2 OFF (slow path only). "
-            "Threshold = 0.7 V × (R1 + R2) / R2 ≈ 71 V. "
+            "Saturates above threshold → pulls GATE_CTRL low → Q2 OFF (slow path only). "
+            "Threshold ≈ 101 × (V_BE + I_B × 20 kΩ) with R3 = 10 kΩ; simulation gives 63 V (BF=150) "
+            "and 68 V (worst-case BF=40) — nearly hFE-independent, no hysteresis. "
             "300 V V_CEO gives safe margin in a 600 V circuit even if D9 opens. "
-            "Drop-in replacement for 2N3904 (same TO-92 pinout, β ≈ 150)."
+            "Drop-in replacement for 2N3904 (same TO-92 pinout, β ≈ 150). "
+            "Confirmed in hand (ComponentsDB inventory, 2026-07-29)."
         ),
     },
     {
@@ -155,8 +176,8 @@ BOM = [
         "status": "sourced",
         "notes": (
             "Top of R1/R2 threshold divider. At 600 V: 0.36 W (12% of 3 W rating). "
-            "Sees up to ~408 V (divider top) — 750 V part rating gives adequate margin. "
-            "V_th = 0.7 × (1 MΩ + 10 kΩ) / 10 kΩ ≈ 70.7 V."
+            "Sees ~594 V across it at 600 V — within the 750 V part rating. "
+            "Threshold ≈ 63 V simulated (BF=150); 63–68 V across MPSA42 hFE corners — see Q1 notes."
         ),
     },
     {
@@ -167,17 +188,22 @@ BOM = [
         "part_number": "MFR-25FTE52-10K  (YAGEO, Mouser 603-MFR-25FTE52-10K)",
         "qty": 1,
         "status": "sourced",
-        "notes": "Bottom of R1/R2 divider; sets 71 V threshold. Tune by swapping value if needed.",
+        "notes": "Bottom of R1/R2 divider; sets ~63 V threshold together with R1 and R3. Tune by swapping value if needed.",
     },
     {
         "refs": ["R3"],
-        "value": "100 kΩ / 0.6 W",
-        "schematic_label": "100kΩ/0.6W",
-        "description": "Resistor, metal film, 100 kΩ, 0.6 W, ±1%, 250 V, axial THT",
-        "part_number": "MF006FF1003A50",
+        "value": "10 kΩ",
+        "schematic_label": "10kΩ",
+        "description": "Resistor, metal film, 10 kΩ, 0.25 W, ±1%, axial THT",
+        "part_number": "MFR-25FTE52-10K  (YAGEO, Mouser 603-MFR-25FTE52-10K)",
         "qty": 1,
         "status": "sourced",
-        "notes": "Q1 base current limiter.",
+        "notes": (
+            "Q1 base current limiter. Reduced from 100 kΩ to 10 kΩ (2026-07-29): the stiffer base "
+            "drive makes the threshold nearly hFE-independent — 63 V (BF=150) to 68 V (BF=40) "
+            "simulated, vs 76–154 V with 100 kΩ. Second piece of the same 10 kΩ part as R2; "
+            "inventory has spare 10 kΩ 0.25 W pieces beyond the single Mouser MFR-25 unit."
+        ),
     },
 
     # ══ LED DANGER INDICATOR (~10.2 V cutoff) ════════════════════════════════
@@ -191,7 +217,7 @@ BOM = [
         "status": "sourced",
         "notes": (
             "4 in series = 400 kΩ current limiter. "
-            "At 600 V: 1.47 mA through LED, 0.29 W per resistor (49% of 0.6 W). "
+            "At 600 V: 1.47 mA through LED, 0.216 W per resistor (36% of 0.6 W). "
             "Each resistor sees ≤150 V (60% of 250 V rating) — improved derating vs 3-resistor design."
         ),
     },
@@ -213,7 +239,11 @@ BOM = [
         "part_number": "any 5 mm red LED (Vf ≈ 2 V)  (from kit)",
         "qty": 1,
         "status": "sourced",
-        "notes": "Danger indicator. ON above ~10.2 V, OFF below. Bright at 2 mA (600 V); dim at 0.3 mA (100 V).",
+        "notes": (
+            "Danger indicator. ON above ~10.2 V, OFF below. Bright at 2 mA (600 V); dim at 0.3 mA (100 V). "
+            "Recommend a high-efficiency (≈2 mA) red LED: between ~10 V and ~70 V the chain current is "
+            "only 12–150 µA and a generic 20 mA kit LED is invisible there."
+        ),
     },
 
     # ══ DVM SIGNAL DIVIDER (6:1, 0–600 V → 0–100 V) ══════════════════════
@@ -244,30 +274,25 @@ BOM = [
         ),
     },
 
-    # ══ DVM Vcc DROPPER (parasitic 15 V supply) ═══════════════════════════════
+    # ══ DVM POWER (internal 9 V battery) ═════════════════════════════════════
+    # The original parasitic dropper (4 × 15 kΩ + 15 V Zener from HV+) was
+    # removed 2026-07-29: the sourced DVM module measures 12–15 mA supply
+    # current, far beyond the ≤9.75 mA the dropper could deliver at 600 V.
     {
-        "refs": ["R_drop1", "R_drop2", "R_drop3", "R_drop4"],
-        "value": "15 kΩ / 3 W",
-        "schematic_label": "15kΩ/3W",
-        "description": "Resistor, metal oxide, 15 kΩ, 3 W, ±5%, 500 V, Ø5×15 mm, axial THT",
-        "part_number": "MOF3WS-15K",
-        "qty": 4,
-        "status": "sourced",
-        "notes": (
-            "4 in series = 60 kΩ dropper from HV+ to 15 V Zener. "
-            "At 600 V: 9.75 mA, 1.42 W per resistor (49% of 3 W rating). "
-            "If DVM draws > 9 mA reduce to 3 × 15 kΩ (45 kΩ, 13 mA headroom)."
-        ),
-    },
-    {
-        "refs": ["D_Vcc"],
-        "value": "1N4744A / 15 V",
-        "schematic_label": "1N4744A\n15V",
-        "description": "Zener diode, 15 V, 1 W, DO-41, THT",
-        "part_number": "1N4744A-T50A  (onsemi, Mouser 512-1N4744AT50A)",
+        "refs": ["BT1"],
+        "value": "9 V battery + holder w/ switch",
+        "schematic_label": "9V\n6LR61",
+        "description": "Battery, 9 V alkaline, 6LR61/PP3, in holder with snap lid and built-in ON/OFF slide switch",
+        "part_number": "Westinghouse 6LR61 + 9 V battery box with ON/OFF switch  (both in ComponentsDB inventory)",
         "qty": 1,
         "status": "sourced",
-        "notes": "Shunt regulator; holds DVM Vcc at 15 V. DVM live when V_cap > ~20 V.",
+        "notes": (
+            "Powers the DVM module Vcc pin directly (module accepts 5–30 V). "
+            "Battery − ties to circuit GND so the DVM reads the divider correctly. "
+            "Module draws 12–15 mA (measured) → ~35 h of display per alkaline 9 V; "
+            "switch ON only while measuring. Holder mounts in the enclosure (not on the PCB); "
+            "holder leads enter the PCB via J6 (polarized JST XH — prevents reversed battery)."
+        ),
     },
     {
         "refs": ["C_Vcc"],
@@ -277,7 +302,7 @@ BOM = [
         "part_number": "EEAGA1E100H",
         "qty": 1,
         "status": "sourced",
-        "notes": "Smoothing cap across D_Vcc. Observe polarity (+ toward D_Vcc anode / node_Vcc).",
+        "notes": "Smoothing across the battery-fed Vcc rail at the DVM connector. Observe polarity (+ toward battery +/Vcc pin).",
     },
 
     # ══ OPTIONAL / CALIBRATION ════════════════════════════════════════════════
@@ -292,7 +317,8 @@ BOM = [
         "notes": (
             "Optional. Place in series with R_sig_bot to calibrate DVM full-scale reading. "
             "Set trimmer so DVM reads 50.0 V when V_cap = 300 V (known reference). "
-            "10 kΩ gives ±8% calibration range; 25-turn for fine adjustment. "
+            "Trim is one-sided, +8%/−0% (it can only raise the reading — the correct direction to "
+            "compensate DVM input-impedance loading); 25-turn for fine adjustment. "
             "Do NOT use the sourced 200 kΩ trimmer here — it can overdrive the DVM beyond 100 V."
         ),
     },
@@ -306,7 +332,7 @@ BOM = [
         "part_number": "K104K10X7RF5UH5",
         "qty": 2,
         "status": "sourced",
-        "notes": "Local decoupling near Q1 base/emitter and DVM module Vcc pin.",
+        "notes": "C_byp1 = HF decoupling on the battery-fed DVM Vcc rail; C_byp2 = Q2 gate RC filter (τ ≈ R5 × C ≈ 47 ms, soft turn-on).",
     },
 
     # ══ INPUT TERMINALS ═══════════════════════════════════════════════════════
@@ -340,8 +366,41 @@ BOM = [
         "status": "sourced",
         "notes": "Alternative / auxiliary input terminals on the PCB.",
     },
+    {
+        "refs": ["J6"],
+        "value": "JST XH 2-pin",
+        "schematic_label": None,
+        "description": "Connector header, JST XH, 2-pin, 2.5 mm pitch, vertical THT, polarized",
+        "part_number": "B2B-XH-A  (from JST XH connector kit in ComponentsDB inventory)",
+        "qty": 1,
+        "status": "sourced",
+        "notes": (
+            "Battery input — BT1 holder leads terminate in an XH plug; polarized housing "
+            "prevents reversed battery connection. Pin 1 = +9 V (VCC_DVM), pin 2 = GND."
+        ),
+    },
 
     # ══ SOURCED BUT UNUSED IN CURRENT DESIGN ══════════════════════════════════
+    {
+        "refs": [],
+        "value": "15 kΩ / 3 W",
+        "schematic_label": None,
+        "description": "Resistor, metal oxide, 15 kΩ, 3 W, ±5%, 500 V, Ø5×15 mm, axial THT",
+        "part_number": "MOF3WS-15K",
+        "qty": 0,
+        "status": "sourced_unused",
+        "notes": "20 pcs sourced. Was R_drop1–4 (DVM Vcc dropper); removed 2026-07-29 — DVM (12–15 mA measured) is battery-powered now.",
+    },
+    {
+        "refs": [],
+        "value": "1N4744A / 15 V",
+        "schematic_label": None,
+        "description": "Zener diode, 15 V, 1 W, DO-41, THT",
+        "part_number": "1N4744A-T50A  (onsemi, Mouser 512-1N4744AT50A)",
+        "qty": 0,
+        "status": "sourced_unused",
+        "notes": "Was D_Vcc (parasitic 15 V shunt regulator); removed 2026-07-29 together with the dropper.",
+    },
     {
         "refs": [],
         "value": "820 kΩ / 0.6 W",

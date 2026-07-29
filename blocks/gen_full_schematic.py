@@ -1,8 +1,9 @@
 """Full 600V Capacitor Discharger schematic — schemdraw SVG.
 
 Layout (left to right):
-  Bridge → HV+ bus → Branch1(R_slow) | Branch2(R_fast+Q2) | Branch3(Q1 threshold)
-                    | Branch4(LED) | Branch5(DVM sig divider) | Branch6(DVM Vcc dropper)
+  Bridge → F1 → HV+ bus → Branch1(R_slow) | Branch2(R_fast+Q2) | Branch3(Q1 threshold)
+                         | Branch4(LED) | Branch5(DVM sig divider)
+  Branch6 (off-bus): BT1 9V battery → DVM Vcc
   → Voltmeter 3-pin connector
 
 HV section: bridge + R_slow + R_fast/Q2 + gate drive (R5/D9)
@@ -74,8 +75,15 @@ with schemdraw.Drawing(show=False) as d:
     # ═══════════════════════════════════════════════════════════════
     B6_X = 40           # last branch — defines right end of HV+ bus
     HV_BUS_END = 44     # GND bus / connector leads extend further right
-    d.add(elm.Line().right().at((2, HV_Y)).tox(B6_X))   # HV+ bus ends at last branch
-    d.add(elm.Label().at((3.5, HV_Y + 0.5)).label('HV+'))
+
+    # F1 — protection fuse: opens on single-fault (Q1/D9 failure → Q2 full-on at 600V)
+    # Starts at x=4, after the bridge top rail ends, so the bridge cannot bypass it.
+    F1e = d.add(elm.Fuse().right().at((4, HV_Y)).length(3))
+    d.add(elm.Label().at(((4 + F1e.end[0]) / 2, HV_Y + 0.5))
+          .label(LABEL['F1'], halign='center', valign='bottom'))
+    B5_X = 33           # DVM divider — last branch on the HV+ bus
+    d.add(elm.Line().right().at(F1e.end).tox(B5_X))   # HV+ bus ends at last branch
+    d.add(elm.Label().at((F1e.end[0] + 1.5, HV_Y + 0.5)).label('HV+'))
     d.add(elm.Line().right().at((2, GND_Y)).tox(HV_BUS_END))
 
     # Section labels above the HV+ bus
@@ -97,23 +105,32 @@ with schemdraw.Drawing(show=False) as d:
     d.add(elm.Dot().at((B1_X, GND_Y)))
 
     # ═══════════════════════════════════════════════════════════════
-    # GATE DRIVE — R5 (470 kΩ) pull-up + D9 (12 V Zener) clamp
-    # HV+ → R5 → D9 → GATE_CTRL
+    # GATE DRIVE — R5 (470 kΩ) pull-up; D9 shunt clamp to GND holds
+    # gate ≤12 V; C_byp2 gate RC filter
+    # HV+ → R5 → GATE_CTRL node ── D9 (shunt to GND) ∥ C_byp2 (shunt to GND)
     # ═══════════════════════════════════════════════════════════════
     R5_X = 11
     d.add(elm.Dot().at((R5_X, HV_Y)))
     R5e = d.add(elm.Resistor().down().at((R5_X, HV_Y)).length(EL))
     rlabel(d, R5_X, HV_Y, R5e.end[1], LABEL['R5'])
-    D9_bot = (R5_X, R5e.end[1] - EL)
-    D9e = d.add(elm.Zener().up().at(D9_bot).length(EL))
-    rlabel(d, R5_X, R5e.end[1], D9_bot[1], LABEL['D9'])
-    d.add(elm.Dot(open=True).at(D9_bot).label('GATE_CTRL', loc='right'))
+    GATE_CTRL_NODE = R5e.end
+    d.add(elm.Dot(open=True).at(GATE_CTRL_NODE).label('GATE_CTRL', loc='right'))
+
+    # D9 — Zener shunt clamp, cathode at GATE_CTRL (top), anode to GND (bottom)
+    D9_X = R5_X - 2
+    d.add(elm.Line().left().at(GATE_CTRL_NODE).tox(D9_X))
+    d.add(elm.Dot().at((D9_X, GATE_CTRL_NODE[1])))
+    D9e = d.add(elm.Zener().up().at((D9_X, GATE_CTRL_NODE[1] - EL)).length(EL))
+    rlabel(d, D9_X, GATE_CTRL_NODE[1], GATE_CTRL_NODE[1] - EL, LABEL['D9'])
+    d.add(elm.Line().down().at((D9_X, GATE_CTRL_NODE[1] - EL)).toy(GND_Y))
+    d.add(elm.Dot().at((D9_X, GND_Y)))
 
     # C_byp2 — 100 nF gate RC filter (τ = R5 × C ≈ 47 ms, soft Q2 turn-on)
-    CBP2 = d.add(elm.Capacitor().down().at(D9_bot).length(EL))
-    rlabel(d, R5_X, D9_bot[1], CBP2.end[1], LABEL['C_byp2'])
+    CBP2 = d.add(elm.Capacitor().down().at(GATE_CTRL_NODE).length(EL))
+    rlabel(d, R5_X, GATE_CTRL_NODE[1], CBP2.end[1], LABEL['C_byp2'])
     d.add(elm.Line().down().at(CBP2.end).toy(GND_Y))
     d.add(elm.Dot().at((R5_X, GND_Y)))
+    d.add(elm.Line().right().at((D9_X, GND_Y)).tox(R5_X))
 
     # ═══════════════════════════════════════════════════════════════
     # BRANCH 2 — R_fast (50 Ω / 5 W) + Q2 N-MOSFET (STP10NK80Z)
@@ -138,7 +155,7 @@ with schemdraw.Drawing(show=False) as d:
     d.add(elm.Dot(open=True).at(R4e.end).label('GATE_CTRL', loc='right'))
 
     # ═══════════════════════════════════════════════════════════════
-    # BRANCH 3 — Q1 NPN Threshold Detector (71 V switch point)
+    # BRANCH 3 — Q1 NPN Threshold Detector (~63 V switch point)
     # R1 (1 MΩ) → node_A → R2 (10 kΩ) → GND
     #             node_A → R3 (100 kΩ) → Q1 base
     #             Q1 emitter → GND,  Q1 collector → GATE_CTRL
@@ -200,7 +217,6 @@ with schemdraw.Drawing(show=False) as d:
     # BRANCH 5 — DVM Signal Divider 6:1  (0–600 V → 0–100 V)
     # HV+ → 5 × 100 kΩ/0.6 W → node_sig → R_sig_bot → R_cal → GND
     # ═══════════════════════════════════════════════════════════════
-    B5_X = 33
     d.add(elm.Dot().at((B5_X, HV_Y)))
     cur = (B5_X, HV_Y)
     for i in range(1, 6):
@@ -221,28 +237,25 @@ with schemdraw.Drawing(show=False) as d:
     d.add(elm.Dot().at((B5_X, GND_Y)))
 
     # ═══════════════════════════════════════════════════════════════
-    # BRANCH 6 — DVM Vcc Dropper (parasitic, 15 V regulated)
-    # HV+ → 4 × 15 kΩ/3 W → node_Vcc → D_Vcc(15 V Z) ∥ C_Vcc(10 µF) → GND
+    # BRANCH 6 — DVM Power: internal 9 V battery BT1 (holder with
+    # built-in ON/OFF switch), NOT connected to the HV+ bus.
+    # GND → BT1 (+ up) → switch → node_Vcc; C_Vcc ∥ C_byp1 across rail
+    # (Replaced the parasitic 4×15 kΩ + 15 V Zener dropper 2026-07-29:
+    #  DVM module draws 12–15 mA, beyond what the dropper could supply.)
     # ═══════════════════════════════════════════════════════════════
-    d.add(elm.Dot().at((B6_X, HV_Y)))
-    cur = (B6_X, HV_Y)
-    for i in range(1, 5):
-        top = cur[1]
-        r = d.add(elm.Resistor().down().at(cur).length(EL))
-        rlabel(d, B6_X, top, r.end[1], LABEL[f'R_drop{i}'])
-        cur = r.end
-    NODE_VCC = cur
+    NODE_VCC = (B6_X, HV_Y - 4 * EL)
+    # .reverse() puts the long bar (+) at the top, toward the Vcc rail
+    BAT = d.add(elm.Battery().up().at((B6_X, GND_Y)).length(EL).reverse())
+    rlabel(d, B6_X, BAT.end[1], GND_Y, LABEL['BT1'])
+    d.add(elm.Label().at((B6_X - 0.5, BAT.end[1] - 0.3))
+          .label('+', halign='right', valign='center'))
+    SW = d.add(elm.Switch().up().at(BAT.end).length(EL))
+    rlabel(d, B6_X, SW.end[1], BAT.end[1], 'ON/OFF\n(in holder)')
+    d.add(elm.Line().up().at(SW.end).toy(NODE_VCC[1]))
     d.add(elm.Dot().at(NODE_VCC))
-
-    # D_Vcc Zener on main column
-    DVcc_top = NODE_VCC[1]
-    DVcc_bot_y = DVcc_top - EL
-    DVcc = d.add(elm.Zener().up().at((B6_X, DVcc_bot_y)).length(EL))
-    rlabel(d, B6_X, DVcc_top, DVcc_bot_y, LABEL['D_Vcc'])
-    d.add(elm.Line().down().at((B6_X, DVcc_bot_y)).toy(GND_Y))
     d.add(elm.Dot().at((B6_X, GND_Y)))
 
-    # C_Vcc and C_byp1 in parallel — two columns to the left of D_Vcc
+    # C_Vcc and C_byp1 in parallel across the battery rail — two columns to the left
     CVCC_X  = B6_X - 4   # 10 µF electrolytic
     CBYP1_X = B6_X - 2   # 100 nF HF decoupling
     d.add(elm.Line().left().at(NODE_VCC).tox(CVCC_X))
@@ -292,7 +305,7 @@ with schemdraw.Drawing(show=False) as d:
     # Connector labels
     d.add(elm.Label().at(((2 * CONN_X + CONN_W) / 2, BOX_TOP + 1.2))
           .label('VOLTMETER\n(3-pin connector)'))
-    d.add(elm.Label().at((CONN_X + 0.9, PIN_VCC_Y)).label('Vcc  15 V', loc='right'))
+    d.add(elm.Label().at((CONN_X + 0.9, PIN_VCC_Y)).label('Vcc  9 V (battery)', loc='right'))
     d.add(elm.Label().at((CONN_X + 0.9, PIN_SIG_Y)).label('Signal  0–100 V', loc='right'))
     d.add(elm.Label().at((CONN_X + 0.9, PIN_GND_Y)).label('GND', loc='right'))
 
