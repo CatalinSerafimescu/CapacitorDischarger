@@ -32,7 +32,7 @@ Design an electrical schematic for a professional Capacitor Discharger tool inte
 - LED must be visible during use
 
 ### Voltage Indication — Digital Voltmeter
-- **Digital voltmeter:** Axiomet PM-128 LCD panel meter, 200 mV full scale, powered by a floating 9 V battery (changed 2026-10-01 — the originally sourced 0–100 V 3-wire module's 0.525 MΩ input made its 6:1 divider uncalibratable)
+- **Digital voltmeter:** Axiomet PM-128 LCD panel meter, 200 mV full scale, powered by an external floating 9 V source through a panel DC jack (battery box dropped 2026-10-01; PM-128 chosen 2026-10-01 — the originally sourced 0–100 V 3-wire module's 0.525 MΩ input made its 6:1 divider uncalibratable)
 - Requires a **10 000:1 voltage divider** (5 × 100 kΩ over 2 × 100 Ω in parallel = 50 Ω) so 600 V → 60 mV, displayed as "600"
 - Divider must be high-impedance / high-voltage rated
 

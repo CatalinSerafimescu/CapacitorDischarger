@@ -51,10 +51,10 @@
     (condition "(A.NetName == '/PROBE_A' && B.NetName == 'Net-(R_LED3-Pad2)') || (A.NetName == 'Net-(R_LED3-Pad2)' && B.NetName == '/PROBE_A')")
     (constraint clearance (min 6.0mm)))
 (rule "/PROBE_A | LV"
-    (condition "A.NetName == '/PROBE_A' && (B.NetName == '/BASE_DIV' || B.NetName == '/GATE' || B.NetName == '/GATE_TOP' || B.NetName == '/GND' || B.NetName == '/SIGOUT' || B.NetName == 'Net-(D_LED1-A)' || B.NetName == 'Net-(D_LED1-K)' || B.NetName == 'Net-(Q1-B)')")
+    (condition "A.NetName == '/PROBE_A' && (B.NetName == '/BASE_DIV' || B.NetName == '/GATE' || B.NetName == '/GATE_TOP' || B.NetName == '/GND' || B.NetName == '/LED_A' || B.NetName == '/SIGOUT' || B.NetName == 'Net-(D_LED1-K)' || B.NetName == 'Net-(Q1-B)')")
     (constraint clearance (min 6.0mm)))
 (rule "LV | /PROBE_A"
-    (condition "B.NetName == '/PROBE_A' && (A.NetName == '/BASE_DIV' || A.NetName == '/GATE' || A.NetName == '/GATE_TOP' || A.NetName == '/GND' || A.NetName == '/SIGOUT' || A.NetName == 'Net-(D_LED1-A)' || A.NetName == 'Net-(D_LED1-K)' || A.NetName == 'Net-(Q1-B)')")
+    (condition "B.NetName == '/PROBE_A' && (A.NetName == '/BASE_DIV' || A.NetName == '/GATE' || A.NetName == '/GATE_TOP' || A.NetName == '/GND' || A.NetName == '/LED_A' || A.NetName == '/SIGOUT' || A.NetName == 'Net-(D_LED1-K)' || A.NetName == 'Net-(Q1-B)')")
     (constraint clearance (min 6.0mm)))
 (rule "/PROBE_B | /BRIDGE_P"
     (condition "(A.NetName == '/PROBE_B' && B.NetName == '/BRIDGE_P') || (A.NetName == '/BRIDGE_P' && B.NetName == '/PROBE_B')")
@@ -102,10 +102,10 @@
     (condition "(A.NetName == '/PROBE_B' && B.NetName == 'Net-(R_LED3-Pad2)') || (A.NetName == 'Net-(R_LED3-Pad2)' && B.NetName == '/PROBE_B')")
     (constraint clearance (min 6.0mm)))
 (rule "/PROBE_B | LV"
-    (condition "A.NetName == '/PROBE_B' && (B.NetName == '/BASE_DIV' || B.NetName == '/GATE' || B.NetName == '/GATE_TOP' || B.NetName == '/GND' || B.NetName == '/SIGOUT' || B.NetName == 'Net-(D_LED1-A)' || B.NetName == 'Net-(D_LED1-K)' || B.NetName == 'Net-(Q1-B)')")
+    (condition "A.NetName == '/PROBE_B' && (B.NetName == '/BASE_DIV' || B.NetName == '/GATE' || B.NetName == '/GATE_TOP' || B.NetName == '/GND' || B.NetName == '/LED_A' || B.NetName == '/SIGOUT' || B.NetName == 'Net-(D_LED1-K)' || B.NetName == 'Net-(Q1-B)')")
     (constraint clearance (min 6.0mm)))
 (rule "LV | /PROBE_B"
-    (condition "B.NetName == '/PROBE_B' && (A.NetName == '/BASE_DIV' || A.NetName == '/GATE' || A.NetName == '/GATE_TOP' || A.NetName == '/GND' || A.NetName == '/SIGOUT' || A.NetName == 'Net-(D_LED1-A)' || A.NetName == 'Net-(D_LED1-K)' || A.NetName == 'Net-(Q1-B)')")
+    (condition "B.NetName == '/PROBE_B' && (A.NetName == '/BASE_DIV' || A.NetName == '/GATE' || A.NetName == '/GATE_TOP' || A.NetName == '/GND' || A.NetName == '/LED_A' || A.NetName == '/SIGOUT' || A.NetName == 'Net-(D_LED1-K)' || A.NetName == 'Net-(Q1-B)')")
     (constraint clearance (min 6.0mm)))
 (rule "/BRIDGE_P | Net-(R_fast1-Pad2)"
     (condition "(A.NetName == '/BRIDGE_P' && B.NetName == 'Net-(R_fast1-Pad2)') || (A.NetName == 'Net-(R_fast1-Pad2)' && B.NetName == '/BRIDGE_P')")
@@ -150,10 +150,10 @@
     (condition "(A.NetName == '/BRIDGE_P' && B.NetName == 'Net-(R_LED3-Pad2)') || (A.NetName == 'Net-(R_LED3-Pad2)' && B.NetName == '/BRIDGE_P')")
     (constraint clearance (min 6.0mm)))
 (rule "/BRIDGE_P | LV"
-    (condition "A.NetName == '/BRIDGE_P' && (B.NetName == '/BASE_DIV' || B.NetName == '/GATE' || B.NetName == '/GATE_TOP' || B.NetName == '/GND' || B.NetName == '/SIGOUT' || B.NetName == 'Net-(D_LED1-A)' || B.NetName == 'Net-(D_LED1-K)' || B.NetName == 'Net-(Q1-B)')")
+    (condition "A.NetName == '/BRIDGE_P' && (B.NetName == '/BASE_DIV' || B.NetName == '/GATE' || B.NetName == '/GATE_TOP' || B.NetName == '/GND' || B.NetName == '/LED_A' || B.NetName == '/SIGOUT' || B.NetName == 'Net-(D_LED1-K)' || B.NetName == 'Net-(Q1-B)')")
     (constraint clearance (min 6.0mm)))
 (rule "LV | /BRIDGE_P"
-    (condition "B.NetName == '/BRIDGE_P' && (A.NetName == '/BASE_DIV' || A.NetName == '/GATE' || A.NetName == '/GATE_TOP' || A.NetName == '/GND' || A.NetName == '/SIGOUT' || A.NetName == 'Net-(D_LED1-A)' || A.NetName == 'Net-(D_LED1-K)' || A.NetName == 'Net-(Q1-B)')")
+    (condition "B.NetName == '/BRIDGE_P' && (A.NetName == '/BASE_DIV' || A.NetName == '/GATE' || A.NetName == '/GATE_TOP' || A.NetName == '/GND' || A.NetName == '/LED_A' || A.NetName == '/SIGOUT' || A.NetName == 'Net-(D_LED1-K)' || A.NetName == 'Net-(Q1-B)')")
     (constraint clearance (min 6.0mm)))
 (rule "Net-(R_fast1-Pad2) | Net-(Q2-D)"
     (condition "(A.NetName == 'Net-(R_fast1-Pad2)' && B.NetName == 'Net-(Q2-D)') || (A.NetName == 'Net-(Q2-D)' && B.NetName == 'Net-(R_fast1-Pad2)')")
@@ -195,10 +195,10 @@
     (condition "(A.NetName == 'Net-(R_fast1-Pad2)' && B.NetName == 'Net-(R_LED3-Pad2)') || (A.NetName == 'Net-(R_LED3-Pad2)' && B.NetName == 'Net-(R_fast1-Pad2)')")
     (constraint clearance (min 4.5mm)))
 (rule "Net-(R_fast1-Pad2) | LV"
-    (condition "A.NetName == 'Net-(R_fast1-Pad2)' && (B.NetName == '/BASE_DIV' || B.NetName == '/GATE' || B.NetName == '/GATE_TOP' || B.NetName == '/GND' || B.NetName == '/SIGOUT' || B.NetName == 'Net-(D_LED1-A)' || B.NetName == 'Net-(D_LED1-K)' || B.NetName == 'Net-(Q1-B)')")
+    (condition "A.NetName == 'Net-(R_fast1-Pad2)' && (B.NetName == '/BASE_DIV' || B.NetName == '/GATE' || B.NetName == '/GATE_TOP' || B.NetName == '/GND' || B.NetName == '/LED_A' || B.NetName == '/SIGOUT' || B.NetName == 'Net-(D_LED1-K)' || B.NetName == 'Net-(Q1-B)')")
     (constraint clearance (min 6.0mm)))
 (rule "LV | Net-(R_fast1-Pad2)"
-    (condition "B.NetName == 'Net-(R_fast1-Pad2)' && (A.NetName == '/BASE_DIV' || A.NetName == '/GATE' || A.NetName == '/GATE_TOP' || A.NetName == '/GND' || A.NetName == '/SIGOUT' || A.NetName == 'Net-(D_LED1-A)' || A.NetName == 'Net-(D_LED1-K)' || A.NetName == 'Net-(Q1-B)')")
+    (condition "B.NetName == 'Net-(R_fast1-Pad2)' && (A.NetName == '/BASE_DIV' || A.NetName == '/GATE' || A.NetName == '/GATE_TOP' || A.NetName == '/GND' || A.NetName == '/LED_A' || A.NetName == '/SIGOUT' || A.NetName == 'Net-(D_LED1-K)' || A.NetName == 'Net-(Q1-B)')")
     (constraint clearance (min 6.0mm)))
 (rule "Net-(Q2-D) | /HVp"
     (condition "(A.NetName == 'Net-(Q2-D)' && B.NetName == '/HVp') || (A.NetName == '/HVp' && B.NetName == 'Net-(Q2-D)')")
@@ -237,10 +237,10 @@
     (condition "(A.NetName == 'Net-(Q2-D)' && B.NetName == 'Net-(R_LED3-Pad2)') || (A.NetName == 'Net-(R_LED3-Pad2)' && B.NetName == 'Net-(Q2-D)')")
     (constraint clearance (min 4.5mm)))
 (rule "Net-(Q2-D) | LV"
-    (condition "A.NetName == 'Net-(Q2-D)' && (B.NetName == '/BASE_DIV' || B.NetName == '/GATE' || B.NetName == '/GATE_TOP' || B.NetName == '/GND' || B.NetName == '/SIGOUT' || B.NetName == 'Net-(D_LED1-A)' || B.NetName == 'Net-(D_LED1-K)' || B.NetName == 'Net-(Q1-B)')")
+    (condition "A.NetName == 'Net-(Q2-D)' && (B.NetName == '/BASE_DIV' || B.NetName == '/GATE' || B.NetName == '/GATE_TOP' || B.NetName == '/GND' || B.NetName == '/LED_A' || B.NetName == '/SIGOUT' || B.NetName == 'Net-(D_LED1-K)' || B.NetName == 'Net-(Q1-B)')")
     (constraint clearance (min 6.0mm)))
 (rule "LV | Net-(Q2-D)"
-    (condition "B.NetName == 'Net-(Q2-D)' && (A.NetName == '/BASE_DIV' || A.NetName == '/GATE' || A.NetName == '/GATE_TOP' || A.NetName == '/GND' || A.NetName == '/SIGOUT' || A.NetName == 'Net-(D_LED1-A)' || A.NetName == 'Net-(D_LED1-K)' || A.NetName == 'Net-(Q1-B)')")
+    (condition "B.NetName == 'Net-(Q2-D)' && (A.NetName == '/BASE_DIV' || A.NetName == '/GATE' || A.NetName == '/GATE_TOP' || A.NetName == '/GND' || A.NetName == '/LED_A' || A.NetName == '/SIGOUT' || A.NetName == 'Net-(D_LED1-K)' || A.NetName == 'Net-(Q1-B)')")
     (constraint clearance (min 6.0mm)))
 (rule "/HVp | Net-(R_slow1-Pad2)"
     (condition "(A.NetName == '/HVp' && B.NetName == 'Net-(R_slow1-Pad2)') || (A.NetName == 'Net-(R_slow1-Pad2)' && B.NetName == '/HVp')")
@@ -276,10 +276,10 @@
     (condition "(A.NetName == '/HVp' && B.NetName == 'Net-(R_LED3-Pad2)') || (A.NetName == 'Net-(R_LED3-Pad2)' && B.NetName == '/HVp')")
     (constraint clearance (min 4.5mm)))
 (rule "/HVp | LV"
-    (condition "A.NetName == '/HVp' && (B.NetName == '/BASE_DIV' || B.NetName == '/GATE' || B.NetName == '/GATE_TOP' || B.NetName == '/GND' || B.NetName == '/SIGOUT' || B.NetName == 'Net-(D_LED1-A)' || B.NetName == 'Net-(D_LED1-K)' || B.NetName == 'Net-(Q1-B)')")
+    (condition "A.NetName == '/HVp' && (B.NetName == '/BASE_DIV' || B.NetName == '/GATE' || B.NetName == '/GATE_TOP' || B.NetName == '/GND' || B.NetName == '/LED_A' || B.NetName == '/SIGOUT' || B.NetName == 'Net-(D_LED1-K)' || B.NetName == 'Net-(Q1-B)')")
     (constraint clearance (min 6.0mm)))
 (rule "LV | /HVp"
-    (condition "B.NetName == '/HVp' && (A.NetName == '/BASE_DIV' || A.NetName == '/GATE' || A.NetName == '/GATE_TOP' || A.NetName == '/GND' || A.NetName == '/SIGOUT' || A.NetName == 'Net-(D_LED1-A)' || A.NetName == 'Net-(D_LED1-K)' || A.NetName == 'Net-(Q1-B)')")
+    (condition "B.NetName == '/HVp' && (A.NetName == '/BASE_DIV' || A.NetName == '/GATE' || A.NetName == '/GATE_TOP' || A.NetName == '/GND' || A.NetName == '/LED_A' || A.NetName == '/SIGOUT' || A.NetName == 'Net-(D_LED1-K)' || A.NetName == 'Net-(Q1-B)')")
     (constraint clearance (min 6.0mm)))
 (rule "Net-(R_slow1-Pad2) | Net-(R_slow2-Pad2)"
     (condition "(A.NetName == 'Net-(R_slow1-Pad2)' && B.NetName == 'Net-(R_slow2-Pad2)') || (A.NetName == 'Net-(R_slow2-Pad2)' && B.NetName == 'Net-(R_slow1-Pad2)')")
@@ -306,10 +306,10 @@
     (condition "(A.NetName == 'Net-(R_slow1-Pad2)' && B.NetName == 'Net-(R_LED3-Pad2)') || (A.NetName == 'Net-(R_LED3-Pad2)' && B.NetName == 'Net-(R_slow1-Pad2)')")
     (constraint clearance (min 3.3mm)))
 (rule "Net-(R_slow1-Pad2) | LV"
-    (condition "A.NetName == 'Net-(R_slow1-Pad2)' && (B.NetName == '/BASE_DIV' || B.NetName == '/GATE' || B.NetName == '/GATE_TOP' || B.NetName == '/GND' || B.NetName == '/SIGOUT' || B.NetName == 'Net-(D_LED1-A)' || B.NetName == 'Net-(D_LED1-K)' || B.NetName == 'Net-(Q1-B)')")
+    (condition "A.NetName == 'Net-(R_slow1-Pad2)' && (B.NetName == '/BASE_DIV' || B.NetName == '/GATE' || B.NetName == '/GATE_TOP' || B.NetName == '/GND' || B.NetName == '/LED_A' || B.NetName == '/SIGOUT' || B.NetName == 'Net-(D_LED1-K)' || B.NetName == 'Net-(Q1-B)')")
     (constraint clearance (min 4.8mm)))
 (rule "LV | Net-(R_slow1-Pad2)"
-    (condition "B.NetName == 'Net-(R_slow1-Pad2)' && (A.NetName == '/BASE_DIV' || A.NetName == '/GATE' || A.NetName == '/GATE_TOP' || A.NetName == '/GND' || A.NetName == '/SIGOUT' || A.NetName == 'Net-(D_LED1-A)' || A.NetName == 'Net-(D_LED1-K)' || A.NetName == 'Net-(Q1-B)')")
+    (condition "B.NetName == 'Net-(R_slow1-Pad2)' && (A.NetName == '/BASE_DIV' || A.NetName == '/GATE' || A.NetName == '/GATE_TOP' || A.NetName == '/GND' || A.NetName == '/LED_A' || A.NetName == '/SIGOUT' || A.NetName == 'Net-(D_LED1-K)' || A.NetName == 'Net-(Q1-B)')")
     (constraint clearance (min 4.8mm)))
 (rule "Net-(R_sig1-Pad2) | Net-(R_slow2-Pad2)"
     (condition "(A.NetName == 'Net-(R_sig1-Pad2)' && B.NetName == 'Net-(R_slow2-Pad2)') || (A.NetName == 'Net-(R_slow2-Pad2)' && B.NetName == 'Net-(R_sig1-Pad2)')")
@@ -336,10 +336,10 @@
     (condition "(A.NetName == 'Net-(R_sig1-Pad2)' && B.NetName == 'Net-(R_LED3-Pad2)') || (A.NetName == 'Net-(R_LED3-Pad2)' && B.NetName == 'Net-(R_sig1-Pad2)')")
     (constraint clearance (min 3.3mm)))
 (rule "Net-(R_sig1-Pad2) | LV"
-    (condition "A.NetName == 'Net-(R_sig1-Pad2)' && (B.NetName == '/BASE_DIV' || B.NetName == '/GATE' || B.NetName == '/GATE_TOP' || B.NetName == '/GND' || B.NetName == '/SIGOUT' || B.NetName == 'Net-(D_LED1-A)' || B.NetName == 'Net-(D_LED1-K)' || B.NetName == 'Net-(Q1-B)')")
+    (condition "A.NetName == 'Net-(R_sig1-Pad2)' && (B.NetName == '/BASE_DIV' || B.NetName == '/GATE' || B.NetName == '/GATE_TOP' || B.NetName == '/GND' || B.NetName == '/LED_A' || B.NetName == '/SIGOUT' || B.NetName == 'Net-(D_LED1-K)' || B.NetName == 'Net-(Q1-B)')")
     (constraint clearance (min 4.8mm)))
 (rule "LV | Net-(R_sig1-Pad2)"
-    (condition "B.NetName == 'Net-(R_sig1-Pad2)' && (A.NetName == '/BASE_DIV' || A.NetName == '/GATE' || A.NetName == '/GATE_TOP' || A.NetName == '/GND' || A.NetName == '/SIGOUT' || A.NetName == 'Net-(D_LED1-A)' || A.NetName == 'Net-(D_LED1-K)' || A.NetName == 'Net-(Q1-B)')")
+    (condition "B.NetName == 'Net-(R_sig1-Pad2)' && (A.NetName == '/BASE_DIV' || A.NetName == '/GATE' || A.NetName == '/GATE_TOP' || A.NetName == '/GND' || A.NetName == '/LED_A' || A.NetName == '/SIGOUT' || A.NetName == 'Net-(D_LED1-K)' || A.NetName == 'Net-(Q1-B)')")
     (constraint clearance (min 4.8mm)))
 (rule "Net-(R_slow2-Pad2) | Net-(R_slow3-Pad2)"
     (condition "(A.NetName == 'Net-(R_slow2-Pad2)' && B.NetName == 'Net-(R_slow3-Pad2)') || (A.NetName == 'Net-(R_slow3-Pad2)' && B.NetName == 'Net-(R_slow2-Pad2)')")
@@ -363,10 +363,10 @@
     (condition "(A.NetName == 'Net-(R_slow2-Pad2)' && B.NetName == 'Net-(R_LED3-Pad2)') || (A.NetName == 'Net-(R_LED3-Pad2)' && B.NetName == 'Net-(R_slow2-Pad2)')")
     (constraint clearance (min 2.1mm)))
 (rule "Net-(R_slow2-Pad2) | LV"
-    (condition "A.NetName == 'Net-(R_slow2-Pad2)' && (B.NetName == '/BASE_DIV' || B.NetName == '/GATE' || B.NetName == '/GATE_TOP' || B.NetName == '/GND' || B.NetName == '/SIGOUT' || B.NetName == 'Net-(D_LED1-A)' || B.NetName == 'Net-(D_LED1-K)' || B.NetName == 'Net-(Q1-B)')")
+    (condition "A.NetName == 'Net-(R_slow2-Pad2)' && (B.NetName == '/BASE_DIV' || B.NetName == '/GATE' || B.NetName == '/GATE_TOP' || B.NetName == '/GND' || B.NetName == '/LED_A' || B.NetName == '/SIGOUT' || B.NetName == 'Net-(D_LED1-K)' || B.NetName == 'Net-(Q1-B)')")
     (constraint clearance (min 3.6mm)))
 (rule "LV | Net-(R_slow2-Pad2)"
-    (condition "B.NetName == 'Net-(R_slow2-Pad2)' && (A.NetName == '/BASE_DIV' || A.NetName == '/GATE' || A.NetName == '/GATE_TOP' || A.NetName == '/GND' || A.NetName == '/SIGOUT' || A.NetName == 'Net-(D_LED1-A)' || A.NetName == 'Net-(D_LED1-K)' || A.NetName == 'Net-(Q1-B)')")
+    (condition "B.NetName == 'Net-(R_slow2-Pad2)' && (A.NetName == '/BASE_DIV' || A.NetName == '/GATE' || A.NetName == '/GATE_TOP' || A.NetName == '/GND' || A.NetName == '/LED_A' || A.NetName == '/SIGOUT' || A.NetName == 'Net-(D_LED1-K)' || A.NetName == 'Net-(Q1-B)')")
     (constraint clearance (min 3.6mm)))
 (rule "Net-(R_sig2-Pad2) | Net-(R_slow3-Pad2)"
     (condition "(A.NetName == 'Net-(R_sig2-Pad2)' && B.NetName == 'Net-(R_slow3-Pad2)') || (A.NetName == 'Net-(R_slow3-Pad2)' && B.NetName == 'Net-(R_sig2-Pad2)')")
@@ -390,10 +390,10 @@
     (condition "(A.NetName == 'Net-(R_sig2-Pad2)' && B.NetName == 'Net-(R_LED3-Pad2)') || (A.NetName == 'Net-(R_LED3-Pad2)' && B.NetName == 'Net-(R_sig2-Pad2)')")
     (constraint clearance (min 2.1mm)))
 (rule "Net-(R_sig2-Pad2) | LV"
-    (condition "A.NetName == 'Net-(R_sig2-Pad2)' && (B.NetName == '/BASE_DIV' || B.NetName == '/GATE' || B.NetName == '/GATE_TOP' || B.NetName == '/GND' || B.NetName == '/SIGOUT' || B.NetName == 'Net-(D_LED1-A)' || B.NetName == 'Net-(D_LED1-K)' || B.NetName == 'Net-(Q1-B)')")
+    (condition "A.NetName == 'Net-(R_sig2-Pad2)' && (B.NetName == '/BASE_DIV' || B.NetName == '/GATE' || B.NetName == '/GATE_TOP' || B.NetName == '/GND' || B.NetName == '/LED_A' || B.NetName == '/SIGOUT' || B.NetName == 'Net-(D_LED1-K)' || B.NetName == 'Net-(Q1-B)')")
     (constraint clearance (min 3.6mm)))
 (rule "LV | Net-(R_sig2-Pad2)"
-    (condition "B.NetName == 'Net-(R_sig2-Pad2)' && (A.NetName == '/BASE_DIV' || A.NetName == '/GATE' || A.NetName == '/GATE_TOP' || A.NetName == '/GND' || A.NetName == '/SIGOUT' || A.NetName == 'Net-(D_LED1-A)' || A.NetName == 'Net-(D_LED1-K)' || A.NetName == 'Net-(Q1-B)')")
+    (condition "B.NetName == 'Net-(R_sig2-Pad2)' && (A.NetName == '/BASE_DIV' || A.NetName == '/GATE' || A.NetName == '/GATE_TOP' || A.NetName == '/GND' || A.NetName == '/LED_A' || A.NetName == '/SIGOUT' || A.NetName == 'Net-(D_LED1-K)' || A.NetName == 'Net-(Q1-B)')")
     (constraint clearance (min 3.6mm)))
 (rule "Net-(R_slow3-Pad2) | Net-(R_slow4-Pad2)"
     (condition "(A.NetName == 'Net-(R_slow3-Pad2)' && B.NetName == 'Net-(R_slow4-Pad2)') || (A.NetName == 'Net-(R_slow4-Pad2)' && B.NetName == 'Net-(R_slow3-Pad2)')")
@@ -411,10 +411,10 @@
     (condition "(A.NetName == 'Net-(R_slow3-Pad2)' && B.NetName == 'Net-(R_LED3-Pad2)') || (A.NetName == 'Net-(R_LED3-Pad2)' && B.NetName == 'Net-(R_slow3-Pad2)')")
     (constraint clearance (min 0.9mm)))
 (rule "Net-(R_slow3-Pad2) | LV"
-    (condition "A.NetName == 'Net-(R_slow3-Pad2)' && (B.NetName == '/BASE_DIV' || B.NetName == '/GATE' || B.NetName == '/GATE_TOP' || B.NetName == '/GND' || B.NetName == '/SIGOUT' || B.NetName == 'Net-(D_LED1-A)' || B.NetName == 'Net-(D_LED1-K)' || B.NetName == 'Net-(Q1-B)')")
+    (condition "A.NetName == 'Net-(R_slow3-Pad2)' && (B.NetName == '/BASE_DIV' || B.NetName == '/GATE' || B.NetName == '/GATE_TOP' || B.NetName == '/GND' || B.NetName == '/LED_A' || B.NetName == '/SIGOUT' || B.NetName == 'Net-(D_LED1-K)' || B.NetName == 'Net-(Q1-B)')")
     (constraint clearance (min 2.4mm)))
 (rule "LV | Net-(R_slow3-Pad2)"
-    (condition "B.NetName == 'Net-(R_slow3-Pad2)' && (A.NetName == '/BASE_DIV' || A.NetName == '/GATE' || A.NetName == '/GATE_TOP' || A.NetName == '/GND' || A.NetName == '/SIGOUT' || A.NetName == 'Net-(D_LED1-A)' || A.NetName == 'Net-(D_LED1-K)' || A.NetName == 'Net-(Q1-B)')")
+    (condition "B.NetName == 'Net-(R_slow3-Pad2)' && (A.NetName == '/BASE_DIV' || A.NetName == '/GATE' || A.NetName == '/GATE_TOP' || A.NetName == '/GND' || A.NetName == '/LED_A' || A.NetName == '/SIGOUT' || A.NetName == 'Net-(D_LED1-K)' || A.NetName == 'Net-(Q1-B)')")
     (constraint clearance (min 2.4mm)))
 (rule "Net-(R_sig3-Pad2) | Net-(R_slow4-Pad2)"
     (condition "(A.NetName == 'Net-(R_sig3-Pad2)' && B.NetName == 'Net-(R_slow4-Pad2)') || (A.NetName == 'Net-(R_slow4-Pad2)' && B.NetName == 'Net-(R_sig3-Pad2)')")
@@ -432,10 +432,10 @@
     (condition "(A.NetName == 'Net-(R_sig3-Pad2)' && B.NetName == 'Net-(R_LED3-Pad2)') || (A.NetName == 'Net-(R_LED3-Pad2)' && B.NetName == 'Net-(R_sig3-Pad2)')")
     (constraint clearance (min 0.9mm)))
 (rule "Net-(R_sig3-Pad2) | LV"
-    (condition "A.NetName == 'Net-(R_sig3-Pad2)' && (B.NetName == '/BASE_DIV' || B.NetName == '/GATE' || B.NetName == '/GATE_TOP' || B.NetName == '/GND' || B.NetName == '/SIGOUT' || B.NetName == 'Net-(D_LED1-A)' || B.NetName == 'Net-(D_LED1-K)' || B.NetName == 'Net-(Q1-B)')")
+    (condition "A.NetName == 'Net-(R_sig3-Pad2)' && (B.NetName == '/BASE_DIV' || B.NetName == '/GATE' || B.NetName == '/GATE_TOP' || B.NetName == '/GND' || B.NetName == '/LED_A' || B.NetName == '/SIGOUT' || B.NetName == 'Net-(D_LED1-K)' || B.NetName == 'Net-(Q1-B)')")
     (constraint clearance (min 2.4mm)))
 (rule "LV | Net-(R_sig3-Pad2)"
-    (condition "B.NetName == 'Net-(R_sig3-Pad2)' && (A.NetName == '/BASE_DIV' || A.NetName == '/GATE' || A.NetName == '/GATE_TOP' || A.NetName == '/GND' || A.NetName == '/SIGOUT' || A.NetName == 'Net-(D_LED1-A)' || A.NetName == 'Net-(D_LED1-K)' || A.NetName == 'Net-(Q1-B)')")
+    (condition "B.NetName == 'Net-(R_sig3-Pad2)' && (A.NetName == '/BASE_DIV' || A.NetName == '/GATE' || A.NetName == '/GATE_TOP' || A.NetName == '/GND' || A.NetName == '/LED_A' || A.NetName == '/SIGOUT' || A.NetName == 'Net-(D_LED1-K)' || A.NetName == 'Net-(Q1-B)')")
     (constraint clearance (min 2.4mm)))
 (rule "Net-(R_slow4-Pad2) | Net-(R_LED1-Pad2)"
     (condition "(A.NetName == 'Net-(R_slow4-Pad2)' && B.NetName == 'Net-(R_LED1-Pad2)') || (A.NetName == 'Net-(R_LED1-Pad2)' && B.NetName == 'Net-(R_slow4-Pad2)')")
@@ -444,10 +444,10 @@
     (condition "(A.NetName == 'Net-(R_slow4-Pad2)' && B.NetName == 'Net-(R_LED2-Pad2)') || (A.NetName == 'Net-(R_LED2-Pad2)' && B.NetName == 'Net-(R_slow4-Pad2)')")
     (constraint clearance (min 1.8mm)))
 (rule "Net-(R_slow4-Pad2) | LV"
-    (condition "A.NetName == 'Net-(R_slow4-Pad2)' && (B.NetName == '/BASE_DIV' || B.NetName == '/GATE' || B.NetName == '/GATE_TOP' || B.NetName == '/GND' || B.NetName == '/SIGOUT' || B.NetName == 'Net-(D_LED1-A)' || B.NetName == 'Net-(D_LED1-K)' || B.NetName == 'Net-(Q1-B)')")
+    (condition "A.NetName == 'Net-(R_slow4-Pad2)' && (B.NetName == '/BASE_DIV' || B.NetName == '/GATE' || B.NetName == '/GATE_TOP' || B.NetName == '/GND' || B.NetName == '/LED_A' || B.NetName == '/SIGOUT' || B.NetName == 'Net-(D_LED1-K)' || B.NetName == 'Net-(Q1-B)')")
     (constraint clearance (min 1.2mm)))
 (rule "LV | Net-(R_slow4-Pad2)"
-    (condition "B.NetName == 'Net-(R_slow4-Pad2)' && (A.NetName == '/BASE_DIV' || A.NetName == '/GATE' || A.NetName == '/GATE_TOP' || A.NetName == '/GND' || A.NetName == '/SIGOUT' || A.NetName == 'Net-(D_LED1-A)' || A.NetName == 'Net-(D_LED1-K)' || A.NetName == 'Net-(Q1-B)')")
+    (condition "B.NetName == 'Net-(R_slow4-Pad2)' && (A.NetName == '/BASE_DIV' || A.NetName == '/GATE' || A.NetName == '/GATE_TOP' || A.NetName == '/GND' || A.NetName == '/LED_A' || A.NetName == '/SIGOUT' || A.NetName == 'Net-(D_LED1-K)' || A.NetName == 'Net-(Q1-B)')")
     (constraint clearance (min 1.2mm)))
 (rule "Net-(R_sig4-Pad2) | Net-(R_LED1-Pad2)"
     (condition "(A.NetName == 'Net-(R_sig4-Pad2)' && B.NetName == 'Net-(R_LED1-Pad2)') || (A.NetName == 'Net-(R_LED1-Pad2)' && B.NetName == 'Net-(R_sig4-Pad2)')")
@@ -456,10 +456,10 @@
     (condition "(A.NetName == 'Net-(R_sig4-Pad2)' && B.NetName == 'Net-(R_LED2-Pad2)') || (A.NetName == 'Net-(R_LED2-Pad2)' && B.NetName == 'Net-(R_sig4-Pad2)')")
     (constraint clearance (min 1.8mm)))
 (rule "Net-(R_sig4-Pad2) | LV"
-    (condition "A.NetName == 'Net-(R_sig4-Pad2)' && (B.NetName == '/BASE_DIV' || B.NetName == '/GATE' || B.NetName == '/GATE_TOP' || B.NetName == '/GND' || B.NetName == '/SIGOUT' || B.NetName == 'Net-(D_LED1-A)' || B.NetName == 'Net-(D_LED1-K)' || B.NetName == 'Net-(Q1-B)')")
+    (condition "A.NetName == 'Net-(R_sig4-Pad2)' && (B.NetName == '/BASE_DIV' || B.NetName == '/GATE' || B.NetName == '/GATE_TOP' || B.NetName == '/GND' || B.NetName == '/LED_A' || B.NetName == '/SIGOUT' || B.NetName == 'Net-(D_LED1-K)' || B.NetName == 'Net-(Q1-B)')")
     (constraint clearance (min 1.2mm)))
 (rule "LV | Net-(R_sig4-Pad2)"
-    (condition "B.NetName == 'Net-(R_sig4-Pad2)' && (A.NetName == '/BASE_DIV' || A.NetName == '/GATE' || A.NetName == '/GATE_TOP' || A.NetName == '/GND' || A.NetName == '/SIGOUT' || A.NetName == 'Net-(D_LED1-A)' || A.NetName == 'Net-(D_LED1-K)' || A.NetName == 'Net-(Q1-B)')")
+    (condition "B.NetName == 'Net-(R_sig4-Pad2)' && (A.NetName == '/BASE_DIV' || A.NetName == '/GATE' || A.NetName == '/GATE_TOP' || A.NetName == '/GND' || A.NetName == '/LED_A' || A.NetName == '/SIGOUT' || A.NetName == 'Net-(D_LED1-K)' || A.NetName == 'Net-(Q1-B)')")
     (constraint clearance (min 1.2mm)))
 (rule "Net-(R_LED1-Pad2) | Net-(R_LED2-Pad2)"
     (condition "(A.NetName == 'Net-(R_LED1-Pad2)' && B.NetName == 'Net-(R_LED2-Pad2)') || (A.NetName == 'Net-(R_LED2-Pad2)' && B.NetName == 'Net-(R_LED1-Pad2)')")
@@ -468,25 +468,25 @@
     (condition "(A.NetName == 'Net-(R_LED1-Pad2)' && B.NetName == 'Net-(R_LED3-Pad2)') || (A.NetName == 'Net-(R_LED3-Pad2)' && B.NetName == 'Net-(R_LED1-Pad2)')")
     (constraint clearance (min 3.0mm)))
 (rule "Net-(R_LED1-Pad2) | LV"
-    (condition "A.NetName == 'Net-(R_LED1-Pad2)' && (B.NetName == '/BASE_DIV' || B.NetName == '/GATE' || B.NetName == '/GATE_TOP' || B.NetName == '/GND' || B.NetName == '/SIGOUT' || B.NetName == 'Net-(D_LED1-A)' || B.NetName == 'Net-(D_LED1-K)' || B.NetName == 'Net-(Q1-B)')")
+    (condition "A.NetName == 'Net-(R_LED1-Pad2)' && (B.NetName == '/BASE_DIV' || B.NetName == '/GATE' || B.NetName == '/GATE_TOP' || B.NetName == '/GND' || B.NetName == '/LED_A' || B.NetName == '/SIGOUT' || B.NetName == 'Net-(D_LED1-K)' || B.NetName == 'Net-(Q1-B)')")
     (constraint clearance (min 4.5mm)))
 (rule "LV | Net-(R_LED1-Pad2)"
-    (condition "B.NetName == 'Net-(R_LED1-Pad2)' && (A.NetName == '/BASE_DIV' || A.NetName == '/GATE' || A.NetName == '/GATE_TOP' || A.NetName == '/GND' || A.NetName == '/SIGOUT' || A.NetName == 'Net-(D_LED1-A)' || A.NetName == 'Net-(D_LED1-K)' || A.NetName == 'Net-(Q1-B)')")
+    (condition "B.NetName == 'Net-(R_LED1-Pad2)' && (A.NetName == '/BASE_DIV' || A.NetName == '/GATE' || A.NetName == '/GATE_TOP' || A.NetName == '/GND' || A.NetName == '/LED_A' || A.NetName == '/SIGOUT' || A.NetName == 'Net-(D_LED1-K)' || A.NetName == 'Net-(Q1-B)')")
     (constraint clearance (min 4.5mm)))
 (rule "Net-(R_LED2-Pad2) | Net-(R_LED3-Pad2)"
     (condition "(A.NetName == 'Net-(R_LED2-Pad2)' && B.NetName == 'Net-(R_LED3-Pad2)') || (A.NetName == 'Net-(R_LED3-Pad2)' && B.NetName == 'Net-(R_LED2-Pad2)')")
     (constraint clearance (min 1.5mm)))
 (rule "Net-(R_LED2-Pad2) | LV"
-    (condition "A.NetName == 'Net-(R_LED2-Pad2)' && (B.NetName == '/BASE_DIV' || B.NetName == '/GATE' || B.NetName == '/GATE_TOP' || B.NetName == '/GND' || B.NetName == '/SIGOUT' || B.NetName == 'Net-(D_LED1-A)' || B.NetName == 'Net-(D_LED1-K)' || B.NetName == 'Net-(Q1-B)')")
+    (condition "A.NetName == 'Net-(R_LED2-Pad2)' && (B.NetName == '/BASE_DIV' || B.NetName == '/GATE' || B.NetName == '/GATE_TOP' || B.NetName == '/GND' || B.NetName == '/LED_A' || B.NetName == '/SIGOUT' || B.NetName == 'Net-(D_LED1-K)' || B.NetName == 'Net-(Q1-B)')")
     (constraint clearance (min 3.0mm)))
 (rule "LV | Net-(R_LED2-Pad2)"
-    (condition "B.NetName == 'Net-(R_LED2-Pad2)' && (A.NetName == '/BASE_DIV' || A.NetName == '/GATE' || A.NetName == '/GATE_TOP' || A.NetName == '/GND' || A.NetName == '/SIGOUT' || A.NetName == 'Net-(D_LED1-A)' || A.NetName == 'Net-(D_LED1-K)' || A.NetName == 'Net-(Q1-B)')")
+    (condition "B.NetName == 'Net-(R_LED2-Pad2)' && (A.NetName == '/BASE_DIV' || A.NetName == '/GATE' || A.NetName == '/GATE_TOP' || A.NetName == '/GND' || A.NetName == '/LED_A' || A.NetName == '/SIGOUT' || A.NetName == 'Net-(D_LED1-K)' || A.NetName == 'Net-(Q1-B)')")
     (constraint clearance (min 3.0mm)))
 (rule "Net-(R_LED3-Pad2) | LV"
-    (condition "A.NetName == 'Net-(R_LED3-Pad2)' && (B.NetName == '/BASE_DIV' || B.NetName == '/GATE' || B.NetName == '/GATE_TOP' || B.NetName == '/GND' || B.NetName == '/SIGOUT' || B.NetName == 'Net-(D_LED1-A)' || B.NetName == 'Net-(D_LED1-K)' || B.NetName == 'Net-(Q1-B)')")
+    (condition "A.NetName == 'Net-(R_LED3-Pad2)' && (B.NetName == '/BASE_DIV' || B.NetName == '/GATE' || B.NetName == '/GATE_TOP' || B.NetName == '/GND' || B.NetName == '/LED_A' || B.NetName == '/SIGOUT' || B.NetName == 'Net-(D_LED1-K)' || B.NetName == 'Net-(Q1-B)')")
     (constraint clearance (min 1.5mm)))
 (rule "LV | Net-(R_LED3-Pad2)"
-    (condition "B.NetName == 'Net-(R_LED3-Pad2)' && (A.NetName == '/BASE_DIV' || A.NetName == '/GATE' || A.NetName == '/GATE_TOP' || A.NetName == '/GND' || A.NetName == '/SIGOUT' || A.NetName == 'Net-(D_LED1-A)' || A.NetName == 'Net-(D_LED1-K)' || A.NetName == 'Net-(Q1-B)')")
+    (condition "B.NetName == 'Net-(R_LED3-Pad2)' && (A.NetName == '/BASE_DIV' || A.NetName == '/GATE' || A.NetName == '/GATE_TOP' || A.NetName == '/GND' || A.NetName == '/LED_A' || A.NetName == '/SIGOUT' || A.NetName == 'Net-(D_LED1-K)' || A.NetName == 'Net-(Q1-B)')")
     (constraint clearance (min 1.5mm)))
 
 # Q2 (TO-220): legs bent out to 5.08 mm; the device is rated 800 V between its pins.

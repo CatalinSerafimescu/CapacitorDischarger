@@ -34,7 +34,7 @@ Both pass DRC with schematic parity: **0 errors, 0 unconnected, 0 parity issues*
 - **GND ring:** a 1.5 mm GND ring along the board edge joins both bridge anodes and every return. This is what lets a single layer work without jumpers.
 - **Top-right pocket:** R_fast1 standing, with TF1 standing 0.5 mm from its body (clamp them together). Q2 has the HS-S01 slipped onto its tab. The gate drive is LV and runs along the GND ring. R1 and R5 stand on their LV pad, with the bare HVp lead across a 17.5 × 3 mm slot.
 - **Bottom-left:** R_slow1–5 standing, 2.3 mm air between bodies.
-- **Bottom-right:** the divider and LED chains as staircases, then D_LED1, LED1, the divider bottom, D_clamp1 and J5.
+- **Bottom-right:** the divider and LED chains as staircases, then D_LED1, J6 (XH, front-panel LED cable) with its clamp zener D_clamp2, the divider bottom, D_clamp1 and J5.
 - **Holes:** two M3 holes, H1 and H3. Use nylon screws; H2 and H4 don't fit on this board.
 - **`fab_1s/`:**
   - `1S_B.Cu_exposure_1to1.pdf`: positive, as seen from the component side. Print 1:1 on transparency and lay it **toner side down** on the copper. Small drill marks help centring the drill.
@@ -220,6 +220,6 @@ Each connector uses one functional pin (the probe wire). The second pin of each 
 
 Yes — correct and intentional for this design. The LV section is **not isolated**: it derives all power directly from HVp through resistive dividers. All sections (slow path, fast path, gate drive, LED, signal divider) share the same GND, which is the negative terminal of the capacitor under test.
 
-The PM-128 **input** (VIN / IN GND via J5) must share GND with the divider for the reading to be correct. Its **supply** is the opposite: the PM-128 needs separate supply and input grounds, so the 9 V battery (BT1) floats and never touches circuit GND.
+The PM-128 **input** (VIN / IN GND via J5) must share GND with the divider for the reading to be correct. Its **supply** is the opposite: the PM-128 needs separate supply and input grounds, so the 9 V source (BT1, on the panel DC jack) floats and never touches circuit GND.
 
 The one real concern: PCB GND is at whatever potential the capacitor's negative terminal is at relative to earth. Touching the PCB while probing is dangerous — handled by enclosure design, not circuit isolation. The probes are the only user-touch points and are rated 1000V.

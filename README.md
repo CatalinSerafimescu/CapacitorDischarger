@@ -9,12 +9,19 @@ A professional, handheld capacitor discharger designed for safely discharging hi
 - Discharges capacitors up to **600V** in **under 60 seconds** (up to ~1200µF)
 - **Adaptive discharge:** controlled current above ~63 V (slow resistive path); fast dump below (MOSFET-switched). Switch point 55–83 V across Q1 hFE (25–300) and 0–60 °C corners; peak fast-dump current ≤ 1.6 A
 - **Red LED danger indicator:** ON above ~10V, OFF when safe — powered directly from the capacitor, no external supply. Uses a low-current (2 mA) LED: the chain current is only ~50 µA at 30 V, where a standard LED looks dark
-- **Integrated digital voltmeter:** Axiomet PM-128 3½-digit LCD reading volts directly ("600" at 600 V, 1 V steps) via a 10 000:1 divider, powered by a floating internal 9V battery (holder with ON/OFF switch)
+- **Integrated digital voltmeter:** Axiomet PM-128 3½-digit LCD reading volts directly ("600" at 600 V, 1 V steps) via a 10 000:1 divider, powered by any floating external 9 V source plugged into a panel DC jack (5.5×2.1)
 - **Reverse polarity protection:** 1N4007 full-bridge rectifier
 - **Protection fuse:** 600V-rated 2A fuse on the HV+ line guards against single-fault conditions
 - **Thermal cutoff on R_fast:** if the probes touch a *live* supply below the threshold, Q2 stays on and R_fast would dissipate 41–74 W indefinitely (the 2 A fuse never blows) — a one-shot 133 °C thermal fuse clamped to R_fast opens the fast path; the slow path keeps working. **Still: never connect the tool to a powered circuit.**
 - Designed for **DIY assembly** with through-hole components
 - A residual ~1.2–1.4V remains on the capacitor (two bridge-diode drops) — below the 10V safe threshold
+
+---
+
+## Building it
+
+Step-by-step build, wiring, test, calibration and use: **[instruction.md](instruction.md)**.
+Single-sided board files: `KiCAD/fab_1s/`. 3D-printed case: [mechanical/enclosure/](mechanical/enclosure/README.md).
 
 ---
 
@@ -28,7 +35,7 @@ A professional, handheld capacitor discharger designed for safely discharging hi
 
 See **[bom.md](bom.md)** for the full component list with sourced vs. to-buy status.
 
-**Note on DVM power:** the PM-128 draws ~1 mA from its own 9V battery (~500 h per alkaline cell). Its datasheet requires the supply and the measured input to have separate grounds, so the battery floats — it is **not** connected to circuit GND.
+**Note on DVM power:** the PM-128 draws ~1 mA from a 9 V source on its own DC jack (~500 h from an alkaline 9 V cell on a plug). Its datasheet requires the supply and the measured input to have separate grounds, so the source must float (battery or double-insulated adapter) — it is **not** connected to circuit GND.
 
 **Note on DVM calibration:** set with the PM-128's own trimmer (R4) against a known DC voltage. The meter's >100 MΩ input doesn't load the divider. (The earlier 0–100 V LED module was dropped: its 0.525 MΩ input made the 6:1 divider uncalibratable.)
 

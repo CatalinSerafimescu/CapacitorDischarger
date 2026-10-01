@@ -16,3 +16,4 @@ KiCAD/fp-info-cache
 KiCAD/*.dsn
 KiCAD/*.ses
 KiCAD/*.lck
+*.FCBak

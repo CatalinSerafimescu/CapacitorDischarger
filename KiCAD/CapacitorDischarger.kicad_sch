@@ -5855,8 +5855,8 @@
 		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
+		(on_board no)
+		(in_pos_files no)
 		(dnp no)
 		(uuid "54146dbb-25b5-5faa-ae89-b53d20498277")
 		(property "Reference" "LED1"
@@ -5881,7 +5881,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D5.0mm"
+		(property "Footprint" ""
 			(at 142.24 144.78 0)
 			(hide yes)
 			(show_name no)
@@ -5959,6 +5959,290 @@
 				(justify right)
 			)
 		(uuid "dd4be5d6-b5c9-557a-809d-fc50e4aeeb64")
+	)
+	(wire
+		(pts
+			(xy 142.24 140.97) (xy 142.24 138.43)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "565235ee-8b0e-568d-8691-bcc7151d344e")
+	)
+	(label "LED_A"
+		(at 142.24 138.43 90)
+		(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		(uuid "f47ccfc8-35ab-5bb3-90e0-a7cda5c3df60")
+	)
+	(symbol
+		(lib_id "Device:D_Zener")
+		(at 160.02 144.78 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "a0df2754-3639-5209-8e26-32f9a91b13cc")
+		(property "Reference" "D_clamp2"
+			(at 162.56 143.51 270)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "BZX55C8V2"
+			(at 162.56 146.05 270)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Diode_THT:D_DO-35_SOD27_P5.08mm_Vertical_AnodeUp"
+			(at 160.02 144.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 160.02 144.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Diode, rectifier, 1 A, 1000 V PIV, DO-41, THT"
+			(at 160.02 144.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "1N4007  (spare from the bridge batch, ComponentsDB)"
+			(at 160.02 144.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "12ca8074-3940-5d46-af6e-0373e79909f0")
+		)
+		(pin "2"
+			(uuid "ca19de4d-7eab-56f8-bf88-b4d54d0f7ee6")
+		)
+		(instances
+			(project "CapacitorDischarger"
+				(path "/c3000000-0003-0003-0003-000000000003"
+					(reference "D_clamp2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 160.02 148.59) (xy 160.02 151.13)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0cf44520-8fd7-502f-a2f6-d8cfb01ed5a1")
+	)
+	(label "LED_A"
+		(at 160.02 151.13 270)
+		(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		(uuid "c740cd09-503b-536e-b62e-145ceef587ac")
+	)
+	(wire
+		(pts
+			(xy 160.02 140.97) (xy 160.02 138.43)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "46e566c2-5267-53ac-bfb5-02aef251fbc5")
+	)
+	(label "GND"
+		(at 160.02 138.43 90)
+		(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		(uuid "270e9906-dfd7-5612-b0ba-5164ab6e847c")
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 177.8 144.78 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "fdcb4d48-eaea-56f1-bfbf-eb26c2bcfba4")
+		(property "Reference" "J6"
+			(at 179.07 137.16 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "XH LED cable"
+			(at 179.07 139.7 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical"
+			(at 177.8 144.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 177.8 144.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 177.8 144.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" ""
+			(at 177.8 144.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "dfec02c7-e4f2-5181-8456-1bc17c1eafd2")
+		)
+		(pin "2"
+			(uuid "11cf9208-c9eb-50c1-bf5c-770cf84cbd05")
+		)
+		(instances
+			(project "CapacitorDischarger"
+				(path "/c3000000-0003-0003-0003-000000000003"
+					(reference "J6")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 172.72 144.78) (xy 170.18 144.78)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c0f96cae-b80c-5f50-be0e-103359a17b8f")
+	)
+	(label "GND"
+		(at 170.18 144.78 180)
+		(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		(uuid "b39769a4-175f-5f6e-a011-963707ee3bcc")
+	)
+	(wire
+		(pts
+			(xy 172.72 147.32) (xy 170.18 147.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2a394e38-5b2c-57ab-9f04-5cb29c257423")
+	)
+	(label "LED_A"
+		(at 170.18 147.32 180)
+		(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		(uuid "f0771f61-434f-5ecd-a2ed-2da8a921e2d5")
 	)
 	(symbol
 		(lib_id "Device:R")
@@ -7088,7 +7372,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "9V, holder w/ switch"
+		(property "Value" "9V ext. via DC jack"
 			(at 340.36 147.32 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7121,7 +7405,7 @@
 				)
 			)
 		)
-		(property "Description" "Battery, 9 V alkaline, 6LR61/PP3, in holder with snap lid and built-in ON/OFF slide switch"
+		(property "Description" "DC barrel jack, female, panel mount, 5.5×2.1 mm, M12 body (Ø12.2 hole), centre + — supply input for the PM-128 from any external FLOATING 9 V source"
 			(at 337.82 146.05 0)
 			(hide yes)
 			(show_name no)
@@ -7132,7 +7416,7 @@
 				)
 			)
 		)
-		(property "MPN" "Westinghouse 6LR61 + 9 V battery box with ON/OFF switch  (both in ComponentsDB inventory)"
+		(property "MPN" "Mufa DC mama 5.5x2.1 (ComponentsDB comp_231, same jack as SursaTensiune J5)"
 			(at 337.82 146.05 0)
 			(hide yes)
 			(show_name no)
@@ -7868,7 +8152,7 @@
 			)
 		(uuid "c9113473-5d65-58e2-a673-ba3123e8fa2a")
 	)
-	(text "LED off below\n8.2 V + 2 V ≈ 10.2 V"
+	(text "LED off below 8.2 V + 2 V ≈ 10.2 V.\nLED1 sits in the front panel on a 2-wire cable to J6 (JST XH).\nD_clamp2 holds LED_A ≤ 8.2 V if the LED is unplugged or its wire\nbreaks (else ~590 V via R_LED); it sees only the LED's 2 V otherwise."
 		(exclude_from_sim no)
 		(at 132.08 154.94 0)
 		(effects
@@ -7890,7 +8174,7 @@
 			)
 		(uuid "4f63284b-5861-5885-a326-21f424deeff7")
 	)
-	(text "600 V → 60 mV → display \"600\". Decimal-point jumpers P1–P3 open; calibrate with PM-128 trimmer R4.\nD_clamp1 holds VIN ≤ 0.7 V if both bottom resistors open.\nDVM1 + BT1 are off-board (soldered wires to the PM-128 pads). BT1 FLOATS: never connect\nthe battery to circuit GND (PM-128 requires separate supply and input grounds)."
+	(text "600 V → 60 mV → display \"600\". Decimal-point jumpers P1–P3 open; calibrate with PM-128 trimmer R4.\nD_clamp1 holds VIN ≤ 0.7 V if both bottom resistors open.\nDVM1 + BT1 are off-board (soldered wires to the PM-128 pads). BT1 = any FLOATING 9 V source on\nthe panel DC jack: never tie it to circuit GND (PM-128 needs separate supply and input grounds)."
 		(exclude_from_sim no)
 		(at 190.5 162.56 0)
 		(effects
@@ -7912,7 +8196,7 @@
 			)
 		(uuid "366c3984-e475-5b9d-9d8a-f9f338848801")
 	)
-	(text "PCB ZONES\nHV: J3/J4, bridge, F1, R_slow1-5, R_fast1, TF1, Q2, the R_LED/R_sig chains, the HVp pads of R1/R5.\nLV: Q1, R2-R4, D9, C_byp2, D_LED1, LED1, divider bottom, J5. R1/R5 cross a milled slot.\nClearance = 1 mm per 100 V of worst-case difference, 6 mm HV to GND/LV (hv_rules.py)."
+	(text "PCB ZONES\nHV: J3/J4, bridge, F1, R_slow1-5, R_fast1, TF1, Q2, the R_LED/R_sig chains, the HVp pads of R1/R5.\nLV: Q1, R2-R4, D9, C_byp2, D_LED1, D_clamp2, J6, divider bottom, J5. R1/R5 cross a milled slot.\nClearance = 1 mm per 100 V of worst-case difference, 6 mm HV to GND/LV (hv_rules.py)."
 		(exclude_from_sim no)
 		(at 10.16 190.5 0)
 		(effects

@@ -63,7 +63,7 @@ PLACE = {
     "R_slow1": (52.0, 52.0, 270), "R_slow2": (41.0, 82.48, 90), "R_slow3": (30.0, 52.0, 270),
     "R_slow4": (19.0, 82.48, 90), "R_slow5": (8.0, 52.0, 270),
     # indicator side (standing chains as staircases, same as the single-sided board)
-    "D_LED1": (94.5, 65.5, 270), "LED1": (94.5, 78.0, 90),
+    "D_LED1": (94.5, 65.5, 270), "J6": (94.5, 77.96, 90), "D_clamp2": (89.0, 75.0, 270),
     "R_sig_bot1": (80.0, 75.5, 270), "R_sig_bot2": (76.0, 75.5, 270),
     "D_clamp1": (72.0, 78.5, 90), "J5": (66.0, 78.0, 90),
     # mounting holes (use nylon M3 screws)
@@ -76,7 +76,7 @@ for _i in range(4):
 SLOTS = [(95.0, 43.5, 118.0, 46.5)]          # milled slot under R1/R5 (600 V across each)
 TEXTS = [("DANGER 600 V", 64.0, 44.0, 2.0), ("LV", 112.0, 22.0, 2.0),
          ("CAPACITOR DISCHARGER rev 2.1", 92.0, 87.0, 1.2)]
-REFS_ON_FAB = {"R2", "R3", "R4", "C_byp2", "D9", "Q1", "D_LED1", "LED1", "J5", "D_clamp1", "R_sig_bot1",
+REFS_ON_FAB = {"R2", "R3", "R4", "C_byp2", "D9", "Q1", "D_LED1", "J6", "D_clamp2", "J5", "D_clamp1", "R_sig_bot1",
                "R_sig_bot2", *(f"R_sig{i}" for i in range(1, 6)), *(f"R_LED{i}" for i in range(1, 5))}
 ZONES = []                                    # GND pours: (layer, x1, y1, x2, y2); none here
 NO_POUR = []

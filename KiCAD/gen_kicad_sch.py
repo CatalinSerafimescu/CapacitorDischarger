@@ -38,6 +38,7 @@ FP = {
     "FUSE":    "CapDis:Fuseholder_Clip-10.3x38mm_Schurter_CSO_0751.0506",
     "MKDS":    "CapDis:TerminalBlock_Phoenix_MKDS-5-2-9.5_1x02_P9.52mm",
     "HDR2":    "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical",
+    "XH2":     "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
     "MH":      "MountingHole:MountingHole_3.2mm_M3",
     "": "",
 }
@@ -202,8 +203,13 @@ note(8, 110, "Above ~63 V: Q1 saturates → GATE_TOP low → Q2 off (slow path o
 note(104, 74, "5. DANGER LED", 2)
 vchain("R_LED", 4, "R", "100k 0.6W", "R0207", 112, 84, "HVp", None)
 part("D_LED1", "DZ", "BZX55C8V2", "DO35", 112, 108, 270)   # K touches R_LED4 pin 2
-part("LED1", "LED", "HLMP-4700 red", "LED", 112, 114, 90, {"1": "GND"})
-note(104, 122, "LED off below\n8.2 V + 2 V ≈ 10.2 V")
+part("LED1", "LED", "HLMP-4700 red", "", 112, 114, 90, {"1": "GND", "2": "LED_A"}, on_board=False)
+part("D_clamp2", "DZ", "BZX55C8V2", "DO35", 126, 114, 90, {"1": "LED_A", "2": "GND"})
+part("J6", "CONN2", "XH LED cable", "XH2", 140, 114, 0, {"1": "GND", "2": "LED_A"})
+note(104, 122, "LED off below 8.2 V + 2 V ≈ 10.2 V.\n"
+               "LED1 sits in the front panel on a 2-wire cable to J6 (JST XH).\n"
+               "D_clamp2 holds LED_A ≤ 8.2 V if the LED is unplugged or its wire\n"
+               "breaks (else ~590 V via R_LED); it sees only the LED's 2 V otherwise.")
 
 # 6 ── Voltmeter divider + PM-128 ───────────────────────────────────────────
 note(150, 74, "6. VOLTMETER: 10 000:1 DIVIDER → PM-128", 2)
@@ -220,11 +226,11 @@ junctions += [(170, 114), (184, 114), (198, 114)]
 labels += [("SIGOUT", 162, 114, 0)]
 part("DVM1", "DVM", "Axiomet PM-128", "", 244, 115, 0,
      {"1": "SIGOUT", "2": "GND", "3": "BATT_P", "4": "BATT_N"}, on_board=False)
-part("BT1", "BAT", "9V, holder w/ switch", "", 266, 115, 0, {"1": "BATT_P", "2": "BATT_N"}, on_board=False)
+part("BT1", "BAT", "9V ext. via DC jack", "", 266, 115, 0, {"1": "BATT_P", "2": "BATT_N"}, on_board=False)
 note(150, 128, "600 V → 60 mV → display \"600\". Decimal-point jumpers P1–P3 open; calibrate with PM-128 trimmer R4.\n"
                "D_clamp1 holds VIN ≤ 0.7 V if both bottom resistors open.\n"
-               "DVM1 + BT1 are off-board (soldered wires to the PM-128 pads). BT1 FLOATS: never connect\n"
-               "the battery to circuit GND (PM-128 requires separate supply and input grounds).")
+               "DVM1 + BT1 are off-board (soldered wires to the PM-128 pads). BT1 = any FLOATING 9 V source on\n"
+               "the panel DC jack: never tie it to circuit GND (PM-128 needs separate supply and input grounds).")
 
 # 7 ── Mechanical ────────────────────────────────────────────────────────────
 note(212, 12, "7. MECHANICAL", 2)
@@ -233,7 +239,7 @@ for i in range(4):
 
 note(8, 150, "PCB ZONES\n"
              "HV: J3/J4, bridge, F1, R_slow1-5, R_fast1, TF1, Q2, the R_LED/R_sig chains, the HVp pads of R1/R5.\n"
-             "LV: Q1, R2-R4, D9, C_byp2, D_LED1, LED1, divider bottom, J5. R1/R5 cross a milled slot.\n"
+             "LV: Q1, R2-R4, D9, C_byp2, D_LED1, D_clamp2, J6, divider bottom, J5. R1/R5 cross a milled slot.\n"
              "Clearance = 1 mm per 100 V of worst-case difference, 6 mm HV to GND/LV (hv_rules.py).", 1.5)
 
 
@@ -396,6 +402,7 @@ _SMALL = {   # standing small parts + HS-S01 clip-on heatsink (both boards)
     "D9": "Diode_THT:D_DO-41_SOD81_P5.08mm_Vertical_AnodeUp",
     "D_clamp1": "Diode_THT:D_DO-41_SOD81_P5.08mm_Vertical_AnodeUp",
     "D_LED1": "Diode_THT:D_DO-35_SOD27_P5.08mm_Vertical_AnodeUp",
+    "D_clamp2": "Diode_THT:D_DO-35_SOD27_P5.08mm_Vertical_AnodeUp",
     "HS1": None,     # HS-S01 clips onto Q2: mechanical only, no solder pins
 }
 VARIANTS = {

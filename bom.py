@@ -140,7 +140,7 @@ BOM = [
         "notes": (
             "STP10NK80Z preferred over STF7NM80: 9 A vs 6 A, 0.9 Ω vs 1.7 Ω Rds(on) — less heat in MOSFET during fast discharge. "
             "Use standard TO-220 (not FP variant — FP has isolated tab but only 40 W Pd vs 160 W). "
-            "Mount with bolt-down heatsink (e.g. Wakefield 647-10ABEP, 3.8 °C/W) and the TO-220 insulating mounting set (next entry). "
+            "Clip-on HS-S01 heatsink (HS1) over the TO-220 insulating set (MST 220). "
             "Bend the gate and source legs outward to a 5.08 mm pitch (PCB footprint) for drain spacing."
         ),
     },
@@ -316,7 +316,33 @@ BOM = [
             "Danger indicator. ON above ~10.2 V, OFF below. Bright at 2 mA (600 V); dim at 0.3 mA (100 V). "
             "A low-current (2 mA-rated) red LED is required for the 'LED ON = danger' indication to be "
             "visible: between ~10 V and ~63 V the chain current is only 0–130 µA (50 µA at 30 V) and a "
-            "generic 20 mA kit LED is effectively dark below ~30–40 V."
+            "generic 20 mA kit LED is effectively dark below ~30–40 V. "
+            "Off-board: front panel (Ø5.1 hole, flange in a recess behind the wall, glued), on a 2-wire cable "
+            "to J6 — heat-shrink both legs."
+        ),
+    },
+    {
+        "refs": ["J6"],
+        "value": "JST XH 2-pin",
+        "schematic_label": None,
+        "description": "Wire-to-board header, JST XH (2.5 mm) / XH2.54, 2-pin, vertical, THT + housing and 2 crimp contacts (LED1 cable)",
+        "part_number": "B2B-XH-A + XHP-2  (ComponentsDB comp_156, XH2.54 connector kit)",
+        "qty": 1,
+        "status": "sourced",
+        "notes": "Pin 1 = GND (LED cathode), pin 2 = LED_A (LED anode). Cable ~15 cm, 1 kV silicone wire, run along the left wall to the front panel.",
+    },
+    {
+        "refs": ["D_clamp2"],
+        "value": "BZX55C8V2 / 8.2 V",
+        "schematic_label": None,
+        "description": "Zener diode, 8.2 V, 0.5 W, DO-35, THT",
+        "part_number": "BZX55C8V2-TAP  (ComponentsDB comp_126, same as D_LED)",
+        "qty": 1,
+        "status": "sourced",
+        "notes": (
+            "Across J6 (K = LED_A, A = GND). With the LED unplugged or its wire broken, LED_A would float up to "
+            "~HVp − 8 V through R_LED1-4 (≤ 1.5 mA); the clamp holds it at 8.2 V. In normal use it sees only the "
+            "LED's ~2 V (leakage < 0.1 µA): no effect on the 10.2 V cutoff (sims 15/15 PASS)."
         ),
     },
 
@@ -382,7 +408,7 @@ BOM = [
             "decimal-point jumpers P1–P3 OFF, so 60 mV reads '600' (1 V resolution, up to 1999). "
             "Calibrate with its trimmer R4 against a known DC voltage (e.g. 100 V bench supply measured "
             "with a DMM). Datasheet: supply and measured input MUST have separate grounds, so BT1 floats "
-            "(see BT1). Battery life ~500 h per alkaline 9 V (vs ~35 h for the old module). "
+            "(see BT1). ~1 mA from the floating 9 V on the DC jack (~500 h from an alkaline 9 V on a plug). "
             "Off-board, panel-mounted; connects to J5."
         ),
     },
@@ -397,19 +423,21 @@ BOM = [
         "notes": "Pin 1 = VIN (divider output, ≤60 mV), pin 2 = circuit GND → PM-128 IN GND. LV zone only.",
     },
 
-    # ══ DVM POWER (floating 9 V battery) ═════════════════════════════════════
+    # ══ DVM POWER (external floating 9 V via a panel DC jack) ═════════════════
     {
         "refs": ["BT1"],
-        "value": "9 V battery + holder w/ switch",
-        "schematic_label": "9V\n6LR61",
-        "description": "Battery, 9 V alkaline, 6LR61/PP3, in holder with snap lid and built-in ON/OFF slide switch",
-        "part_number": "Westinghouse 6LR61 + 9 V battery box with ON/OFF switch  (both in ComponentsDB inventory)",
+        "value": "9 V ext. via DC jack",
+        "schematic_label": "9V\next.",
+        "description": "DC barrel jack, female, panel mount, 5.5×2.1 mm, M12 body (Ø12.2 hole), centre + — supply input for the PM-128 from any external FLOATING 9 V source",
+        "part_number": "Mufa DC mama 5.5x2.1 (ComponentsDB comp_231, same jack as SursaTensiune J5)",
         "qty": 1,
         "status": "sourced",
         "notes": (
-            "Wired directly to the PM-128 supply pins, off-board. FLOATING: battery − must NOT connect to "
-            "circuit GND (PM-128 datasheet requirement). PM-128 runs on 7–11 V at ~1 mA → ~500 h per cell; "
-            "replace the battery when the reading becomes erratic."
+            "Left side wall of the enclosure, with an engraved FLOATING SUPPLY ONLY warning. Wired directly to the PM-128 supply pins, off-board; plug in a 9 V source "
+            "to switch the meter on (7–11 V, ~1 mA). The source must FLOAT: a 9 V battery on a 5.5×2.1 plug or an "
+            "isolated (double-insulated) adapter — never a supply whose − is earthed or tied to the device under "
+            "test (PM-128: supply isolated from the input; circuit GND sits at the capacitor's negative terminal). "
+            "Replaces the 9 V battery box (2026-10-01)."
         ),
     },
 
@@ -473,19 +501,26 @@ BOM = [
         "refs": [],
         "value": "Enclosure, 3D-printed PETG",
         "schematic_label": None,
-        "description": "Enclosure, 3D-printed PETG (not PLA), walls ≥2 mm solid, holding PCB, 9 V holder, PM-128, LED and 2 banana sockets",
-        "part_number": "Self-printed, design after PCB layout",
+        "description": "Enclosure, 3D-printed PETG (not PLA), 106.8 × 132.8 × 52 mm: base + screwed top cover, holding the single-sided PCB, PM-128, front-panel LED, 2 banana sockets and the 9 V DC jack",
+        "part_number": "Self-printed — mechanical/enclosure/ (gen_enclosure.py → Enclosure_base / Enclosure_cover .stl/.step)",
         "qty": 1,
         "status": "buy",
         "notes": (
-            "PLA softens at ~55–60 °C — too close to the power resistors; PETG (~80 °C) is OK with "
-            "≥10 mm air gap between R_slow/R_fast/TF1 and the walls, PCB on standoffs, narrow vent slots "
-            "or louvers above the resistors (no straight path for a finger or probe tip), and no metal "
-            "screws reaching inside near HV. Consider ASA/ABS or flame-retardant filament near R_fast. "
+            "Designed for the single-sided 100 × 75 board. PLA softens at ~55–60 °C — too close to the power "
+            "resistors; PETG (~80 °C) or ASA. Vents above R_slow are baffled (no straight path for a probe tip). "
             "Must be insulating: circuit GND sits at the capacitor's negative terminal. "
-            "PCB: single-sided 100 × 75 mm (2 M3 holes, components up to ~40 mm tall) or 2-layer "
-            "120 × 90 mm (4 M3 holes, ~25 mm tall). Use nylon M3 screws/standoffs (holes are near HV copper)."
+            "See mechanical/enclosure/README.md for print settings and assembly."
         ),
+    },
+    {
+        "refs": [],
+        "value": "Enclosure hardware",
+        "schematic_label": None,
+        "description": "4× M3 heat-set insert (Ø4.0 hole, ≤ 6 mm long), 4× M3×10 socket-head screw (cover), 2× M3×12 nylon screw + 2× M3 nut (PCB H1/H3), 4 stick-on rubber feet",
+        "part_number": "Any — M3 hardware, PMMA rod Ø5",
+        "qty": 1,
+        "status": "buy",
+        "notes": "Cover screws are ≥ 10 mm from any HV part (box corners); the PCB screws must be nylon (H1/H3 sit next to HV copper).",
     },
 
     # ══ SOURCED BUT UNUSED IN CURRENT DESIGN ══════════════════════════════════
@@ -513,7 +548,7 @@ BOM = [
         "refs": [],
         "value": "10 µF / 25 V + 100 nF + JST XH 2-pin",
         "schematic_label": None,
-        "description": "C_Vcc (EEAGA1E100H), C_byp1 (K104K10X7RF5UH5), J6 (B2B-XH-A)",
+        "description": "C_Vcc (EEAGA1E100H), C_byp1 (K104K10X7RF5UH5), former J6 (B2B-XH-A; ref J6 now reused for the LED cable)",
         "part_number": "EEAGA1E100H, K104K10X7RF5UH5, B2B-XH-A",
         "qty": 0,
         "status": "sourced_unused",
