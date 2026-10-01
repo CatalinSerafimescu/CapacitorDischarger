@@ -1,0 +1,56 @@
+* 600V Capacitor Discharger — DC sweep, Q1 hFE / temperature corner (G3, G4)
+* Template placeholders: {{NAME}} {{OUTCSV}} {{MODELSLIB}} {{QMODEL}} {{TEMP}}
+* Same circuit as discharger_dc.cir.tmpl; Q1 model and .temp are per scenario.
+.include {{MODELSLIB}}
+.temp {{TEMP}}
+
+V_HVp HVp 0 0
+
+R_slow1 HVp n_slow2 4.7k
+R_slow2 n_slow2 n_slow3 4.7k
+R_slow3 n_slow3 n_slow4 4.7k
+R_slow4 n_slow4 n_slow5 4.7k
+R_slow5 n_slow5 0       4.7k
+
+R5      HVp n_gate_top 470k
+D_D9    0   n_gate_top DZ12
+R4      n_gate_top n_gate 100
+C_byp2  n_gate 0 100n
+
+R1      HVp n_base_top 1Meg
+R2      n_base_top 0   10k
+R3      n_base_top n_q1b 10k
+Q1      n_gate_top n_q1b 0 {{QMODEL}}
+
+V_ifast HVp n_rfast 0
+R_fast  n_rfast n_drain 50
+M_Q2    n_drain n_gate 0 0 STP10NK80Z
+
+R_LED1  HVp n_led2 100k
+R_LED2  n_led2 n_led3 100k
+R_LED3  n_led3 n_led4 100k
+R_LED4  n_led4 n_dled 100k
+D_DLED  n_led_a n_dled DZ8V2
+D_LED1  n_led_a 0      DLED
+
+R_sig1  HVp n_sig2 100k
+R_sig2  n_sig2 n_sig3 100k
+R_sig3  n_sig3 n_sig4 100k
+R_sig4  n_sig4 n_sig5 100k
+R_sig5  n_sig5 n_sigout 100k
+R_sigb1 n_sigout 0 100
+R_sigb2 n_sigout 0 100
+D_clamp n_sigout 0 D1N4007
+R_dvm   n_sigout 0 100Meg
+
+.dc V_HVp 0 200 0.1
+
+.save V(HVp) V(n_gate) V(n_gate_top) I(V_ifast)
+
+.control
+run
+wrdata {{OUTCSV}} V(HVp) V(n_gate) V(n_gate_top) I(V_ifast)
+quit
+.endc
+
+.end

@@ -6,7 +6,13 @@
 
 | Ref(s) | Qty | Description | Part Number / Suggestion |
 |--------|-----|-------------|--------------------------|
-| F1 | 1 | Fuse, 2 A, 600 V AC/DC, 10.3×38 mm ceramic cartridge, with PCB fuse clips | KLKD002.T  (Littelfuse, 600 VAC/VDC) + 2× Keystone 3517 PCB clips |
+| F1 | 1 | Fuse, 2 A, 1000 VDC, gR (super-fast, full-range), 30 kA breaking capacity, ceramic, 10.3×38 mm cartridge | ESKA 1038820  (TME 1038820, in stock 2026-10-01; alt DF ELECTRIC 491602, Littelfuse KLKD002.T) — buy 2 (1 spare) |
+| — | 2 | Fuse clip, PCB through-hole solder, for 10.3×38 mm cartridge fuses, silver-plated copper, 1500 VAC/VDC, 32 A | SCHURTER 0751.0506  (CSO, TME 0751.0506) — 2 per fuse |
+| TF1 | 1 | Thermal cutoff (thermal fuse), one-shot, organic-pellet type, Tf 133 °C, 15 A / 250 VAC, metal case, axial leads | SCHOTT SEFUSE SF129R0  (TME SF129R0; alt AUPO BF133) — buy 2 (1 spare) |
+| LED1 | 1 | LED, red, 5 mm (T-1¾), low-current type (specified at 2 mA), Vf ≈ 1.8–2 V, diffused, THT | HLMP-4700  (Broadcom, low-current red, TME HLMP-4700)  — fallback: kit 5 mm red LED (ComponentsDB) |
+| R_sig_bot1, R_sig_bot2 | 2 | Resistor, metal film, 100 Ω, 0.6 W, ±1%, 50 ppm/°C, axial THT | YAGEO MF0207FTE52-100R  (TME MF0207FTE-100R; any 100 Ω 1% metal film fits) |
+| DVM1 | 1 | Digital panel meter, 3½-digit LCD, 13 mm digits, 199.9 mV full scale, input >100 MΩ, ±0.5 %, 7–11 V DC supply at ~1 mA, decimal point by wire jumper, 68×44 mm | AXIOMET PM-128  (TME PAN.PM128) — 1 needed, 2nd optional as a spare |
+| — | 1 | Enclosure, 3D-printed PETG (not PLA), walls ≥2 mm solid, holding PCB, 9 V holder, PM-128, LED and 2 banana sockets | Self-printed, design after PCB layout |
 
 ## Sourced (In Hand)
 
@@ -16,7 +22,8 @@
 | R_slow1, R_slow2, R_slow3, R_slow4, R_slow5 | 5 | 45F4K7E  (Ohmite, Mouser 588-45F4K7E) |
 | R_fast | 1 | 27J50RE  (Ohmite, Mouser 588-27J50RE) |
 | Q2 | 1 | STP10NK80Z  (alt: STF7NM80, IXTP2N80) |
-| HS1 | 1 | 647-10ABEP  (Wakefield, Mouser 567-647-10ABEP)  (also sourced: 637-10ABPE, 5.8 °C/W) |
+| — | 1 | TO-220 insulating mounting set — Fischer Elektronik MST 220  (ComponentsDB; alt: Stonecold TO220-SET) |
+| HS1 | 1 | Stonecold HS-S01  (TME, ComponentsDB comp_225 — 1 left) |
 | R4 | 1 | RN60D1000FB14  (Vishay, Mouser 71-RN60D-F-100) |
 | R5 | 1 | FMP300FRF73-470K  (YAGEO, Mouser 603-FMP300FRF73-470K) |
 | D9 | 1 | BZX85C12  (onsemi, Mouser 512-BZX85C12) |
@@ -26,22 +33,25 @@
 | R3 | 1 | MFR-25FTE52-10K  (YAGEO, Mouser 603-MFR-25FTE52-10K) |
 | R_LED1, R_LED2, R_LED3, R_LED4 | 4 | MF006FF1003A50 |
 | D_LED | 1 | BZX55C8V2-TAP  (Vishay, Mouser 78-BZX55C8V2-TAP) |
-| LED1 | 1 | any 5 mm red LED (Vf ≈ 2 V)  (from kit) |
 | R_sig1, R_sig2, R_sig3, R_sig4, R_sig5 | 5 | MF006FF1003A50 |
-| R_sig_bot | 1 | MF006FF1003A50 |
+| D_clamp | 1 | 1N4007  (spare from the bridge batch, ComponentsDB) |
+| J5 | 1 | TE narrow flat pin header 2P  (ComponentsDB) |
 | BT1 | 1 | Westinghouse 6LR61 + 9 V battery box with ON/OFF switch  (both in ComponentsDB inventory) |
-| C_Vcc | 1 | EEAGA1E100H |
-| R_cal | 1 | 3296W-1-103LF  (Bourns, TME 3296W-1-103LF) |
-| C_byp1, C_byp2 | 2 | K104K10X7RF5UH5 |
+| C_byp2 | 1 | K104K10X7RF5UH5 |
 | J1 | 1 | SLB4-G-21 |
 | J2 | 1 | SLB4-G-22 |
 | J3, J4 | 2 | MKDS5/2-9.5 |
-| J6 | 1 | B2B-XH-A  (from JST XH connector kit in ComponentsDB inventory) |
+| — | 1 | Silicone wire 1.0 mm², red + black — LAPP 1249584 (red) + 1249524 (black)  (TME HEAT180SIF-A1.0RD/BK, ComponentsDB) |
+| — | 1 | CT2900A test leads — CT2900A |
 
 ## Sourced — Not Used in Current Revision
 
 | Part Number | Description | Notes |
 |-------------|-------------|-------|
+| 647-10ABEP, 637-10ABPE  (Wakefield, Mouser order 39007986) | Heatsinks, TO-220, board-mount with solder pins (3.8 / 5.8 °C/W) | Too big for the 100 × 75 / 120 × 90 mm boards; replaced by the HS-S01. |
+| Voltmetru de panou 0-100V cu 3 fire  (ComponentsDB) | Digital panel voltmeter module, 0–100 V, 3-wire, LED display, 5–30 V supply, 12–15 mA, input 0.525 MΩ (measured) | Replaced 2026-10-01 by the PM-128: 0.525 MΩ input loaded the 6:1 divider beyond the trimmer's range, display read V/6, 12–15 mA battery drain. |
+| 3296W-1-103LF  (Bourns, TME 3296W-1-103LF) | Potentiometer, cermet trimmer, 10 kΩ, 25-turn, 0.5 W, THT | Was R_cal (DVM trim); removed 2026-10-01 — the PM-128 is calibrated with its own trimmer R4. |
+| EEAGA1E100H, K104K10X7RF5UH5, B2B-XH-A | C_Vcc (EEAGA1E100H), C_byp1 (K104K10X7RF5UH5), J6 (B2B-XH-A) | Were the battery-fed Vcc rail on the PCB; removed 2026-10-01 — the floating battery now wires straight to the PM-128. |
 | MOF3WS-15K | Resistor, metal oxide, 15 kΩ, 3 W, ±5%, 500 V, Ø5×15 mm, axial THT | 20 pcs sourced. Was R_drop1–4 (DVM Vcc dropper); removed 2026-07-29 — DVM (12–15 mA measured) is battery-powered now. |
 | 1N4744A-T50A  (onsemi, Mouser 512-1N4744AT50A) | Zener diode, 15 V, 1 W, DO-41, THT | Was D_Vcc (parasitic 15 V shunt regulator); removed 2026-07-29 together with the dropper. |
 | MF006FF8203A50 | Resistor, metal film, 820 kΩ, 0.6 W, ±1%, 250 V, axial THT | 100 pcs sourced. Not used in current design revision. |

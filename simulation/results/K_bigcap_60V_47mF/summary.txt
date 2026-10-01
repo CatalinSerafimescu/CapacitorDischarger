@@ -1,0 +1,5 @@
+SCENARIO: K_bigcap_60V_47mF
+STATUS: PASS
+
+  [PASS] K: t(V<10V): t(V<10V) = 4.23 s  (expected 0-60 s)
+  [PASS] K: TF1 intact, peak R_fast temp = 49 °C  (expected < Th 118 °C)

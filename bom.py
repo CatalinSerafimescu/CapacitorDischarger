@@ -3,7 +3,7 @@ Bill of Materials — 600V Capacitor Discharger
 Single source of truth for component data, schematic labels, and procurement status.
 
 To update a component:  edit the entry here; the schematic regenerates automatically.
-To print a buy list:    python bom.py
+To print a buy list:    python bom.py   (also writes bom.md and TO_BUY_list.csv)
 
 status values
   'sourced'          — in hand (from TME order 2026-04-15, Mouser 39007986, or prior stock)
@@ -40,19 +40,35 @@ BOM = [
     # ══ PROTECTION FUSE ══════════════════════════════════════════════════════
     {
         "refs": ["F1"],
-        "value": "2 A / 600 V time-delay",
-        "schematic_label": "2A/600V",
-        "description": "Fuse, 2 A, 600 V AC/DC, 10.3×38 mm ceramic cartridge, with PCB fuse clips",
-        "part_number": "KLKD002.T  (Littelfuse, 600 VAC/VDC) + 2× Keystone 3517 PCB clips",
+        "value": "2 A / 1000 V DC gR",
+        "schematic_label": "2A/1kV DC",
+        "description": "Fuse, 2 A, 1000 VDC, gR (super-fast, full-range), 30 kA breaking capacity, ceramic, 10.3×38 mm cartridge",
+        "part_number": "ESKA 1038820  (TME 1038820, in stock 2026-10-01; alt DF ELECTRIC 491602, Littelfuse KLKD002.T) — buy 2 (1 spare)",
         "qty": 1,
         "status": "buy",
         "notes": (
+            "Not in ComponentsDB inventory (checked 2026-10-01). Mounts in 2× Schurter CSO PCB clips (next entry). "
             "Single-fault protection: if Q1 fails open or D9 fails, Q2 turns fully on at 600 V and "
             "R_fast would see ~12 A / 7.2 kW — F1 opens the HV+ line on that fault. "
-            "Normal currents: ≤~40 mA continuous plus fast-dump pulses up to ~2 A peak decaying with "
+            "gR = full-range semiconductor-protection fuse: breaks any current that melts it, at 1000 VDC. "
+            "Normal currents: ≤~40 mA continuous plus fast-dump pulses up to ~1.6 A peak (worst Q1 corner) decaying with "
             "τ = 50 Ω × C (worst-case pulse I²t ≈ 0.2 A²s for a 2 mF cap) — far below a 2 A fuse's "
             "melting I²t, so no nuisance operation. "
             "Must be a 600 VDC-rated cartridge — standard 5×20 glass fuses are only 250 V and must not be used."
+        ),
+    },
+    {
+        "refs": [],
+        "value": "PCB fuse clip, 10.3×38 mm",
+        "schematic_label": None,
+        "description": "Fuse clip, PCB through-hole solder, for 10.3×38 mm cartridge fuses, silver-plated copper, 1500 VAC/VDC, 32 A",
+        "part_number": "SCHURTER 0751.0506  (CSO, TME 0751.0506) — 2 per fuse",
+        "qty": 2,
+        "status": "buy",
+        "notes": (
+            "Holds F1. Replaces the earlier Keystone 3517, which is a clip for 5 mm (5×20) fuses and does not "
+            "fit a 10.3 mm cartridge. Not in ComponentsDB inventory. KiCad footprint must be made from the CSO "
+            "datasheet (stock library has no 10×38 clip footprint); keep ≥6 mm HV clearance around both clips."
         ),
     },
 
@@ -83,8 +99,34 @@ BOM = [
         "qty": 1,
         "status": "sourced",
         "notes": (
-            "Peak dissipation ≈ 80 W for τ = 50 Ω × C_cap ms at switch-on (V_cap ≈ 63 V). "
-            "Energy for 1 mF cap = 2.5 J — well within TO-220 SOA."
+            "Peak dissipation ≈ 80 W (up to ~130 W at the cold/low-hFE 83 V switch point) decaying with "
+            "τ = 50 Ω × C_cap. Pulse energy ≈ ½·C·V_switch²: 2 J for 1 mF, ~85 J for a 47 mF/60 V cap "
+            "(≈ the 10×/5 s overload limit of a 7 W wirewound — biggest practical cap). "
+            "Continuous overload (live supply below the threshold) is handled by TF1, not F1. "
+            "NOTE: ComponentsDB lists this part as 3 W — wrong; the Mouser order confirmation says 7 W."
+        ),
+    },
+    {
+        "refs": ["TF1"],
+        "value": "Thermal cutoff 133 °C",
+        "schematic_label": "SF129R0\n133°C",
+        "description": (
+            "Thermal cutoff (thermal fuse), one-shot, organic-pellet type, Tf 133 °C, "
+            "15 A / 250 VAC, metal case, axial leads"
+        ),
+        "part_number": "SCHOTT SEFUSE SF129R0  (TME SF129R0; alt AUPO BF133) — buy 2 (1 spare)",
+        "qty": 1,
+        "status": "buy",
+        "notes": (
+            "In series between R_fast and Q2 drain, body clamped against R_fast (stainless wire or clip "
+            "+ thin thermal compound). Protects R_fast when the probes touch a live supply below the "
+            "~63 V threshold: Q2 stays on and R_fast sees 41–74 W continuously (48–63 V), while F1 "
+            "(2 A) never blows. Simulated (scenario L, assumed thermal constants): opens in ~9 s at 48 V; "
+            "no trip on a 47 mF/60 V dump (peak 49 °C). If it opens, the slow path still discharges the "
+            "cap; replace TF1. Caveat: SEFUSE ratings are AC only — here it breaks ≤1.6 A at ≤83 V DC "
+            "into a resistive load, which is well inside the 15 A contact rating but not datasheet-rated "
+            "for DC. TF1's metal case is electrically live (HV net) — keep HV clearance to LV parts. "
+            "Not in ComponentsDB inventory."
         ),
     },
     {
@@ -98,18 +140,48 @@ BOM = [
         "notes": (
             "STP10NK80Z preferred over STF7NM80: 9 A vs 6 A, 0.9 Ω vs 1.7 Ω Rds(on) — less heat in MOSFET during fast discharge. "
             "Use standard TO-220 (not FP variant — FP has isolated tab but only 40 W Pd vs 160 W). "
-            "Mount with bolt-down heatsink (e.g. Wakefield 647-10ABEP, 3.8 °C/W) and mica/kapton washer."
+            "Mount with bolt-down heatsink (e.g. Wakefield 647-10ABEP, 3.8 °C/W) and the TO-220 insulating mounting set (next entry). "
+            "Bend the gate and source legs outward to a 5.08 mm pitch (PCB footprint) for drain spacing."
+        ),
+    },
+    {
+        "refs": [],
+        "value": "TO-220 insulating mounting set",
+        "schematic_label": None,
+        "description": "Insulating mounting set for TO-220: insulating pad + shoulder bushing (+ M3 hardware)",
+        "part_number": "Fischer Elektronik MST 220  (ComponentsDB; alt: Stonecold TO220-SET)",
+        "qty": 1,
+        "status": "sourced",
+        "notes": (
+            "Required: the STP10NK80Z tab is the drain (up to 600 V), so without it the heatsink becomes "
+            "a live HV part. Check the pad's breakdown rating (≥ 2 kV) and verify tab-to-heatsink "
+            "isolation with an insulation tester / ≥ 600 V before first use."
         ),
     },
     {
         "refs": ["HS1"],
-        "value": "3.8 °C/W bolt-down",
+        "value": "HS-S01 U clip-on, TO-220",
         "schematic_label": None,
-        "description": "Heatsink, TO-220, through-hole bolt-down, 3.8 °C/W",
-        "part_number": "647-10ABEP  (Wakefield, Mouser 567-647-10ABEP)  (also sourced: 637-10ABPE, 5.8 °C/W)",
+        "description": "Heatsink, TO-220, U-shaped slip-on, 19.05 × 13.21 × 6.35 mm, black anodised",
+        "part_number": "Stonecold HS-S01  (TME, ComponentsDB comp_225 — 1 left)",
         "qty": 1,
         "status": "sourced",
-        "notes": "For Q2 (STP10NK80Z). Not a schematic component; listed for completeness. Two heatsinks sourced — use 647-10ABEP (better Rth).",
+        "notes": (
+            "Changed 2026-10-01 for the compact boards (was Wakefield 647-10ABEP, now unused). Q2 only "
+            "dissipates in pulses: a normal dump puts ≲2 J in Q2, and the live-supply case is ~1–2 W for "
+            "<10 s before TF1 opens. Not soldered (no pins): it rides on Q2's tab with the MST 220 "
+            "insulating set, so it is electrically floating."
+        ),
+    },
+    {
+        "refs": [],
+        "value": "Wakefield 647-10ABEP / 637-10ABPE",
+        "schematic_label": None,
+        "description": "Heatsinks, TO-220, board-mount with solder pins (3.8 / 5.8 °C/W)",
+        "part_number": "647-10ABEP, 637-10ABPE  (Wakefield, Mouser order 39007986)",
+        "qty": 2,
+        "status": "sourced_unused",
+        "notes": "Too big for the 100 × 75 / 120 × 90 mm boards; replaced by the HS-S01.",
     },
 
     # ══ GATE DRIVE ════════════════════════════════════════════════════════════
@@ -160,7 +232,8 @@ BOM = [
         "notes": (
             "Saturates above threshold → pulls GATE_CTRL low → Q2 OFF (slow path only). "
             "Threshold ≈ 101 × (V_BE + I_B × 20 kΩ) with R3 = 10 kΩ; simulation gives 63 V (BF=150) "
-            "and 68 V (worst-case BF=40) — nearly hFE-independent, no hysteresis. "
+            "and 68 V (BF=40); full corners (scenarios G3/G4): 55 V (BF=300, 60 °C) to 83 V "
+            "(datasheet-min BF=25, 0 °C) → worst peak I_fast ≈ 1.6 A, still < 2 A. No hysteresis. "
             "300 V V_CEO gives safe margin in a 600 V circuit even if D9 opens. "
             "Drop-in replacement for 2N3904 (same TO-92 pinout, β ≈ 150). "
             "Confirmed in hand (ComponentsDB inventory, 2026-07-29)."
@@ -235,18 +308,19 @@ BOM = [
         "refs": ["LED1"],
         "value": "Red LED  Vf≈2V",
         "schematic_label": "Red  Vf≈2V",
-        "description": "LED, red, 5 mm, Vf ≈ 2 V, 20 mA max, THT",
-        "part_number": "any 5 mm red LED (Vf ≈ 2 V)  (from kit)",
+        "description": "LED, red, 5 mm (T-1¾), low-current type (specified at 2 mA), Vf ≈ 1.8–2 V, diffused, THT",
+        "part_number": "HLMP-4700  (Broadcom, low-current red, TME HLMP-4700)  — fallback: kit 5 mm red LED (ComponentsDB)",
         "qty": 1,
-        "status": "sourced",
+        "status": "buy",
         "notes": (
             "Danger indicator. ON above ~10.2 V, OFF below. Bright at 2 mA (600 V); dim at 0.3 mA (100 V). "
-            "Recommend a high-efficiency (≈2 mA) red LED: between ~10 V and ~70 V the chain current is "
-            "only 12–150 µA and a generic 20 mA kit LED is invisible there."
+            "A low-current (2 mA-rated) red LED is required for the 'LED ON = danger' indication to be "
+            "visible: between ~10 V and ~63 V the chain current is only 0–130 µA (50 µA at 30 V) and a "
+            "generic 20 mA kit LED is effectively dark below ~30–40 V."
         ),
     },
 
-    # ══ DVM SIGNAL DIVIDER (6:1, 0–600 V → 0–100 V) ══════════════════════
+    # ══ DVM SIGNAL DIVIDER (10 000:1, 600 V → 60 mV for the PM-128) ═════════
     {
         "refs": ["R_sig1", "R_sig2", "R_sig3", "R_sig4", "R_sig5"],
         "value": "100 kΩ / 0.6 W",
@@ -256,28 +330,74 @@ BOM = [
         "qty": 5,
         "status": "sourced",
         "notes": (
-            "Top half of 6:1 divider: 5 × 100 kΩ in series = 500 kΩ. "
-            "At 600 V: 1 mA string current, 0.1 W per resistor. Each sees ≤100 V (well within 250 V)."
+            "Top of the 10 000:1 divider: 5 × 100 kΩ in series = 500 kΩ. "
+            "At 600 V: 1.2 mA string current, 0.14 W per resistor. Each sees ≤120 V (well within 250 V)."
         ),
     },
     {
-        "refs": ["R_sig_bot"],
-        "value": "100 kΩ / 0.6 W",
-        "schematic_label": "100kΩ/0.6W",
-        "description": "Resistor, metal film, 100 kΩ, 0.6 W, ±1%, 250 V, axial THT",
-        "part_number": "MF006FF1003A50",
+        "refs": ["R_sig_bot1", "R_sig_bot2"],
+        "value": "100 Ω / 0.6 W (2 in parallel = 50 Ω)",
+        "schematic_label": "100Ω 1%",
+        "description": "Resistor, metal film, 100 Ω, 0.6 W, ±1%, 50 ppm/°C, axial THT",
+        "part_number": "YAGEO MF0207FTE52-100R  (TME MF0207FTE-100R; any 100 Ω 1% metal film fits)",
+        "qty": 2,
+        "status": "buy",
+        "notes": (
+            "Two in parallel form the 50 Ω divider bottom (replaces a single 49.9 Ω, out of stock at TME): "
+            "600 V → 60.0 mV → PM-128 shows '600' before trim; its trimmer R4 corrects the remaining ~1 %. "
+            "1.2 mA total, ~36 µW each. If one ever opens, the reading doubles ('1200' at 600 V) — "
+            "obviously wrong, never dangerous. Not in ComponentsDB inventory (only one 100 Ω, used as R4)."
+        ),
+    },
+    {
+        "refs": ["D_clamp"],
+        "value": "1N4007",
+        "schematic_label": None,
+        "description": "Diode, rectifier, 1 A, 1000 V PIV, DO-41, THT",
+        "part_number": "1N4007  (spare from the bridge batch, ComponentsDB)",
         "qty": 1,
         "status": "sourced",
         "notes": (
-            "Bottom leg of 6:1 divider. "
-            "Optional: add R_cal (200 kΩ trimmer) in series for full-scale calibration."
+            "Across R_sig_bot1/2 (anode = PM-128 VIN, cathode = GND). Normally sees ≤60 mV, so its leakage "
+            "error is a few ppm. If both bottom resistors open, it holds VIN at ~0.7 V (meter shows overrange "
+            "'1') instead of letting ~600 V through 500 kΩ into the meter input."
         ),
     },
 
-    # ══ DVM POWER (internal 9 V battery) ═════════════════════════════════════
-    # The original parasitic dropper (4 × 15 kΩ + 15 V Zener from HV+) was
-    # removed 2026-07-29: the sourced DVM module measures 12–15 mA supply
-    # current, far beyond the ≤9.75 mA the dropper could deliver at 600 V.
+    # ══ VOLTMETER ═════════════════════════════════════════════════════════════
+    {
+        "refs": ["DVM1"],
+        "value": "Axiomet PM-128, 200 mV FS LCD",
+        "schematic_label": None,
+        "description": (
+            "Digital panel meter, 3½-digit LCD, 13 mm digits, 199.9 mV full scale, input >100 MΩ, "
+            "±0.5 %, 7–11 V DC supply at ~1 mA, decimal point by wire jumper, 68×44 mm"
+        ),
+        "part_number": "AXIOMET PM-128  (TME PAN.PM128) — 1 needed, 2nd optional as a spare",
+        "qty": 1,
+        "status": "buy",
+        "notes": (
+            "Replaces the 0–100 V 3-wire LED module (its 0.525 MΩ input loaded the 6:1 divider beyond "
+            "calibration range). Leave the factory RB wire jumper in (200 mV range), RA unfitted, and all "
+            "decimal-point jumpers P1–P3 OFF, so 60 mV reads '600' (1 V resolution, up to 1999). "
+            "Calibrate with its trimmer R4 against a known DC voltage (e.g. 100 V bench supply measured "
+            "with a DMM). Datasheet: supply and measured input MUST have separate grounds, so BT1 floats "
+            "(see BT1). Battery life ~500 h per alkaline 9 V (vs ~35 h for the old module). "
+            "Off-board, panel-mounted; connects to J5."
+        ),
+    },
+    {
+        "refs": ["J5"],
+        "value": "1×2 header 2.54 mm",
+        "schematic_label": None,
+        "description": "Pin header, 1×2, 2.54 mm pitch, straight, THT (PM-128 input cable)",
+        "part_number": "TE narrow flat pin header 2P  (ComponentsDB)",
+        "qty": 1,
+        "status": "sourced",
+        "notes": "Pin 1 = VIN (divider output, ≤60 mV), pin 2 = circuit GND → PM-128 IN GND. LV zone only.",
+    },
+
+    # ══ DVM POWER (floating 9 V battery) ═════════════════════════════════════
     {
         "refs": ["BT1"],
         "value": "9 V battery + holder w/ switch",
@@ -287,52 +407,22 @@ BOM = [
         "qty": 1,
         "status": "sourced",
         "notes": (
-            "Powers the DVM module Vcc pin directly (module accepts 5–30 V). "
-            "Battery − ties to circuit GND so the DVM reads the divider correctly. "
-            "Module draws 12–15 mA (measured) → ~35 h of display per alkaline 9 V; "
-            "switch ON only while measuring. Holder mounts in the enclosure (not on the PCB); "
-            "holder leads enter the PCB via J6 (polarized JST XH — prevents reversed battery)."
-        ),
-    },
-    {
-        "refs": ["C_Vcc"],
-        "value": "10 µF / 25 V",
-        "schematic_label": "10µF/25V",
-        "description": "Capacitor, electrolytic, 10 µF, 25 V, Ø4×7 mm, 2.5 mm pitch, THT",
-        "part_number": "EEAGA1E100H",
-        "qty": 1,
-        "status": "sourced",
-        "notes": "Smoothing across the battery-fed Vcc rail at the DVM connector. Observe polarity (+ toward battery +/Vcc pin).",
-    },
-
-    # ══ OPTIONAL / CALIBRATION ════════════════════════════════════════════════
-    {
-        "refs": ["R_cal"],
-        "value": "10 kΩ trimmer",
-        "schematic_label": "10kΩ trim",
-        "description": "Potentiometer, cermet trimmer, 10 kΩ, 25-turn, 0.5 W, THT",
-        "part_number": "3296W-1-103LF  (Bourns, TME 3296W-1-103LF)",
-        "qty": 1,
-        "status": "sourced",
-        "notes": (
-            "Optional. Place in series with R_sig_bot to calibrate DVM full-scale reading. "
-            "Set trimmer so DVM reads 50.0 V when V_cap = 300 V (known reference). "
-            "Trim is one-sided, +8%/−0% (it can only raise the reading — the correct direction to "
-            "compensate DVM input-impedance loading); 25-turn for fine adjustment. "
-            "Do NOT use the sourced 200 kΩ trimmer here — it can overdrive the DVM beyond 100 V."
+            "Wired directly to the PM-128 supply pins, off-board. FLOATING: battery − must NOT connect to "
+            "circuit GND (PM-128 datasheet requirement). PM-128 runs on 7–11 V at ~1 mA → ~500 h per cell; "
+            "replace the battery when the reading becomes erratic."
         ),
     },
 
     # ══ BYPASS / DECOUPLING ═══════════════════════════════════════════════════
     {
-        "refs": ["C_byp1", "C_byp2"],
+        "refs": ["C_byp2"],
         "value": "100 nF / 50 V",
         "schematic_label": "100nF/50V",
         "description": "Capacitor, ceramic, 100 nF, 50 V, X7R, ±10%, 5 mm pitch, THT",
         "part_number": "K104K10X7RF5UH5",
-        "qty": 2,
+        "qty": 1,
         "status": "sourced",
-        "notes": "C_byp1 = HF decoupling on the battery-fed DVM Vcc rail; C_byp2 = Q2 gate RC filter (τ ≈ R5 × C ≈ 47 ms, soft turn-on).",
+        "notes": "Q2 gate RC filter (τ ≈ R5 × C ≈ 47 ms, soft turn-on); also holds the gate low on hot-plug (scenario J).",
     },
 
     # ══ INPUT TERMINALS ═══════════════════════════════════════════════════════
@@ -364,23 +454,71 @@ BOM = [
         "part_number": "MKDS5/2-9.5",
         "qty": 2,
         "status": "sourced",
-        "notes": "Alternative / auxiliary input terminals on the PCB.",
+        "notes": "PCB entry for the J1/J2 banana-socket wires: J3 = PROBE_A, J4 = PROBE_B (both poles of each block on the same net; one block per probe keeps the leads apart).",
     },
     {
-        "refs": ["J6"],
-        "value": "JST XH 2-pin",
+        "refs": [],
+        "value": "Silicone wire 1.0 mm², red + black",
         "schematic_label": None,
-        "description": "Connector header, JST XH, 2-pin, 2.5 mm pitch, vertical THT, polarized",
-        "part_number": "B2B-XH-A  (from JST XH connector kit in ComponentsDB inventory)",
+        "description": (
+            "Single-core wire, LAPP ÖLFLEX HEAT 180 SiF/A 1×1 mm², fine-stranded Cu, silicone, "
+            "0.6/1 kV (IEC), 3 kV test, −50…+180 °C (banana sockets J1/J2 → J3/J4)"
+        ),
+        "part_number": "LAPP 1249584 (red) + 1249524 (black)  (TME HEAT180SIF-A1.0RD/BK, ComponentsDB)",
         "qty": 1,
         "status": "sourced",
+        "notes": "0.6/1 kV rating is adequate for 600 V. Keep the two leads apart inside the enclosure.",
+    },
+    {
+        "refs": [],
+        "value": "Enclosure, 3D-printed PETG",
+        "schematic_label": None,
+        "description": "Enclosure, 3D-printed PETG (not PLA), walls ≥2 mm solid, holding PCB, 9 V holder, PM-128, LED and 2 banana sockets",
+        "part_number": "Self-printed, design after PCB layout",
+        "qty": 1,
+        "status": "buy",
         "notes": (
-            "Battery input — BT1 holder leads terminate in an XH plug; polarized housing "
-            "prevents reversed battery connection. Pin 1 = +9 V (VCC_DVM), pin 2 = GND."
+            "PLA softens at ~55–60 °C — too close to the power resistors; PETG (~80 °C) is OK with "
+            "≥10 mm air gap between R_slow/R_fast/TF1 and the walls, PCB on standoffs, narrow vent slots "
+            "or louvers above the resistors (no straight path for a finger or probe tip), and no metal "
+            "screws reaching inside near HV. Consider ASA/ABS or flame-retardant filament near R_fast. "
+            "Must be insulating: circuit GND sits at the capacitor's negative terminal. "
+            "PCB: single-sided 100 × 75 mm (2 M3 holes, components up to ~40 mm tall) or 2-layer "
+            "120 × 90 mm (4 M3 holes, ~25 mm tall). Use nylon M3 screws/standoffs (holes are near HV copper)."
         ),
     },
 
     # ══ SOURCED BUT UNUSED IN CURRENT DESIGN ══════════════════════════════════
+    {
+        "refs": [],
+        "value": "0–100 V panel voltmeter, 3-wire",
+        "schematic_label": None,
+        "description": "Digital panel voltmeter module, 0–100 V, 3-wire, LED display, 5–30 V supply, 12–15 mA, input 0.525 MΩ (measured)",
+        "part_number": "Voltmetru de panou 0-100V cu 3 fire  (ComponentsDB)",
+        "qty": 0,
+        "status": "sourced_unused",
+        "notes": "Replaced 2026-10-01 by the PM-128: 0.525 MΩ input loaded the 6:1 divider beyond the trimmer's range, display read V/6, 12–15 mA battery drain.",
+    },
+    {
+        "refs": [],
+        "value": "10 kΩ trimmer 3296W",
+        "schematic_label": None,
+        "description": "Potentiometer, cermet trimmer, 10 kΩ, 25-turn, 0.5 W, THT",
+        "part_number": "3296W-1-103LF  (Bourns, TME 3296W-1-103LF)",
+        "qty": 0,
+        "status": "sourced_unused",
+        "notes": "Was R_cal (DVM trim); removed 2026-10-01 — the PM-128 is calibrated with its own trimmer R4.",
+    },
+    {
+        "refs": [],
+        "value": "10 µF / 25 V + 100 nF + JST XH 2-pin",
+        "schematic_label": None,
+        "description": "C_Vcc (EEAGA1E100H), C_byp1 (K104K10X7RF5UH5), J6 (B2B-XH-A)",
+        "part_number": "EEAGA1E100H, K104K10X7RF5UH5, B2B-XH-A",
+        "qty": 0,
+        "status": "sourced_unused",
+        "notes": "Were the battery-fed Vcc rail on the PCB; removed 2026-10-01 — the floating battery now wires straight to the PM-128.",
+    },
     {
         "refs": [],
         "value": "15 kΩ / 3 W",
@@ -483,7 +621,7 @@ def _section(title: str) -> None:
 def print_summary() -> None:
     buy     = [i for i in BOM if i["status"] == "buy"]
     partial = [i for i in BOM if i["status"] == "sourced_partial"]
-    sourced = [i for i in BOM if i["status"] == "sourced" and i["refs"]]
+    sourced = [i for i in BOM if i["status"] == "sourced"]
     unused  = [i for i in BOM if i["status"] == "sourced_unused"]
 
     _section("TO BUY")
@@ -507,7 +645,7 @@ def print_summary() -> None:
 
     _section("SOURCED (in hand)")
     for item in sourced:
-        refs = ", ".join(item["refs"])
+        refs = ", ".join(item["refs"]) or "—"
         print(f"  [{refs}]  qty {item['qty']}  ← {item['part_number']}")
 
     _section("SOURCED UNUSED")
@@ -518,7 +656,7 @@ def print_summary() -> None:
 def write_bom_md(path: str = "bom.md") -> None:
     buy     = [i for i in BOM if i["status"] == "buy"]
     partial = [i for i in BOM if i["status"] == "sourced_partial"]
-    sourced = [i for i in BOM if i["status"] == "sourced" and i["refs"]]
+    sourced = [i for i in BOM if i["status"] == "sourced"]
     unused  = [i for i in BOM if i["status"] == "sourced_unused"]
 
     lines: list[str] = []
@@ -555,8 +693,9 @@ def write_bom_md(path: str = "bom.md") -> None:
     a("| Ref(s) | Qty | Part Number |")
     a("|--------|-----|-------------|")
     for item in sourced:
-        refs = ", ".join(item["refs"])
-        a(f"| {refs} | {item['qty']} | {item['part_number']} |")
+        refs = ", ".join(item["refs"]) or "—"
+        pn = item["part_number"] if item["refs"] else f"{item['value']} — {item['part_number']}"
+        a(f"| {refs} | {item['qty']} | {pn} |")
     a("")
 
     # ── Sourced but unused ───────────────────────────────────────────────────
@@ -574,8 +713,22 @@ def write_bom_md(path: str = "bom.md") -> None:
     print(f"Saved: {path}")
 
 
+def write_buy_csv(path: str = "TO_BUY_list.csv") -> None:
+    """Shopping list (status 'buy' only), regenerated from BOM like bom.md."""
+    import csv
+    with open(path, "w", encoding="utf-8", newline="") as f:
+        w = csv.writer(f)
+        w.writerow(["Ref(s)", "Qty", "Description", "Part Number / Suggestion"])
+        for item in BOM:
+            if item["status"] == "buy":
+                w.writerow([", ".join(item["refs"]) or "—", item["qty"],
+                            item["description"], item["part_number"]])
+    print(f"Saved: {path}")
+
+
 if __name__ == "__main__":
     import sys
     sys.stdout.reconfigure(encoding='utf-8')
     print_summary()
     write_bom_md()
+    write_buy_csv()

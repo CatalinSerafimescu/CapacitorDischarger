@@ -1,0 +1,6 @@
+SCENARIO: J_hotplug_600V
+STATUS: PASS
+
+  [PASS] J: HVp reached 599 V  (contact made)
+  [PASS] J: max I_fast = 0.000 mA  (expected < 10 mA)
+  [PASS] J: max V(n_gate) = 0.054 V  (expected < 1 V)

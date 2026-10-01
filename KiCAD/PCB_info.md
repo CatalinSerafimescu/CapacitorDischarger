@@ -2,18 +2,60 @@
 
 ---
 
-## Status — 2026-07-29 design-review changes (APPLIED to the schematic)
+## Status — 2026-10-01: two boards, both script-generated
 
-All applied to `CapacitorDischarger.kicad_sch` (netlist-verified with kicad-cli) and mirrored in the hv/lv section drafts:
+| Board | Files | Size | Copper | Parts | Height |
+|---|---|---|---|---|---|
+| **Single-sided, home etch** | `CapacitorDischarger_1S.*` + `fab_1s/` | **100 × 75 mm** (Bungard FEPCU-075) | B.Cu only, no jumpers | power resistors and small parts **standing** | ~40 mm (R_fast1 standing) |
+| **2-layer, for a PCB fab** | `CapacitorDischarger.*` | **120 × 90 mm** (was 180 × 130) | both layers, autorouted | R_slow / R_fast / TF1 **flat**, small parts standing | ~25 mm |
 
-- **F1 fuse added**: 2 A / 600 V AC/DC cartridge (Littelfuse KLKD002.T, 10.3×38 mm, 2× Keystone 3517 PCB clips), in series between the bridge cathodes and the HV+ bus. Single-fault protection: if Q1 fails open or D9 fails, Q2 turns fully on at 600 V and R_fast would see ~12 A / 7.2 kW. Normal operation unaffected (≤40 mA continuous; fast-dump pulse I²t ≈ 0.2 A²s ≪ fuse melting I²t). Do NOT substitute a 5×20 glass fuse — 250 V rated. F1 is in the HV zone; clips need the same ≥6 mm clearance as other HV nodes. ⚠ Footprint is a placeholder (6.3×32 mm clip holder — stock KiCad has no 10×38 footprint): **make a custom Keystone 3517 clip footprint at layout time**.
-- **DVM Vcc dropper removed** (R_drop1–4, D_Vcc): DVM measured 12–15 mA, beyond the dropper's ≤9.75 mA. Replaced by BT1 = 9 V battery in enclosure-mounted holder (built-in ON/OFF switch) entering the PCB via **J6** (JST XH 2-pin, polarized). C_Vcc + C_byp1 stay across the battery-fed `VCC_DVM` rail; J5 pinout: 1 = Vcc, 2 = Signal, 3 = GND. R_drop1 is no longer a boundary component crossing the HV/LV slot.
-- **Polarity fixes in the root schematic**: bridge D1–D4 were mounted reversed (would have made HV+ the negative rail) — all four rotated 180°; LED1 was reversed — fixed. Verified via netlist pinfunctions.
-- Value fields corrected: R5 → "470k 3W", R_fast → "50R 7W", R3 → "10k 0.25W" (R3 reduced from 100 kΩ to make the Q1 threshold hFE-independent: 63–68 V across gain corners).
+Both pass DRC with schematic parity: **0 errors, 0 unconnected, 0 parity issues**. The only findings are 2 silkscreen notes where the R1/R5 outlines cross their milled slot, which is intended.
 
-## TODO — remaining schematic wiring (pre-existing, ongoing rework)
+**Edit the scripts, not the KiCad files.** Run them from `KiCAD/`:
 
-The root schematic still has these blocks unwired (pins unconnected per kicad-cli ERC): the R_sig1–5/R_sig_bot/R_cal divider chain, the R_LED1–4 chain (and D_LED cathode), the Q1/R2/R3/R4 threshold cluster, Q2 drain/source, R_fast bottom end, C_byp2, and the J1–J4 input connectors. Complete these before layout.
+| Step | Command | Produces / checks |
+|---|---|---|
+| 0 | `python gen_3d.py` (needs CadQuery; only when a part changes) | `CapDis.3dshapes/`: true-size STEP bodies for the custom footprints (MKDS 5, CSO clips + fuse, Ohmite 45F/27J, SEFUSE, FMP300, HS-S01 on Q2) |
+| 1 | `python gen_footprints.py` | `CapDis.pretty/`: custom footprints (F1 CSO clips, MKDS 5, Ohmite 45F/27J flat + standing, SEFUSE flat + standing, FMP300 standing, TO-220 with spread legs) |
+| 2 | `python gen_kicad_sch.py` and `python gen_kicad_sch.py --project CapacitorDischarger_1S` | Two schematics: same circuit, footprints per board (`VARIANTS`) |
+| 3 | `python check_kicad.py` | Netlist vs. `simulation/discharger.cir.tmpl`, pin by pin, plus ERC. **PASS.** |
+| 4 | `"C:\Program Files\KiCad\10.0\bin\python.exe" gen_pcb.py --freerouting <freerouting-2.4.1.jar>` | 2-layer board: placement, slot, Q2/chain/GND pre-routes, Freerouting, DRC |
+| 5 | `"C:\Program Files\KiCad\10.0\bin\python.exe" board_1s.py` | Single-sided board: placement and hand routes, DRC |
+
+**Clearance rules (`hv_rules.py` → `*.kicad_dru`).**
+- CLAUDE.md asks for ≥ 6 mm, based on 1 mm per 100 V. Each net pair gets **1 mm per 100 V of the worst-case difference it can actually see**. The worst case is taken over normal / reversed probes, F1 blown, TF1 open, and Q2 conducting at 85 V.
+- **HV to GND/LV, probes and BRIDGE_P to anything: 6 mm.** HVp to the R_fast–TF1 node: 0.9 mm. Neighbouring chain nodes: 1.2–1.5 mm. Minimum 0.4 mm.
+- The 2-layer board passes the same matrix to Freerouting as per-net classes plus `class_class` rules, so the router and the DRC agree.
+- **One exception, the Q2 pin field.** Only drain-related items get 2.5 mm: the legs are bent out to 5.08 mm, and the part is rated 800 V between pins.
+
+**Single-sided layout (100 × 75).**
+- **Probes:** they enter at the top edge (J3 = PROBE_A, J4 = PROBE_B, both poles of each block on the same net).
+- **Bridge and F1:** the bridge is four vertical diodes right below the probes, with the GND anodes on the outside. F1 sits below it, and its right clip is the HVp hub.
+- **GND ring:** a 1.5 mm GND ring along the board edge joins both bridge anodes and every return. This is what lets a single layer work without jumpers.
+- **Top-right pocket:** R_fast1 standing, with TF1 standing 0.5 mm from its body (clamp them together). Q2 has the HS-S01 slipped onto its tab. The gate drive is LV and runs along the GND ring. R1 and R5 stand on their LV pad, with the bare HVp lead across a 17.5 × 3 mm slot.
+- **Bottom-left:** R_slow1–5 standing, 2.3 mm air between bodies.
+- **Bottom-right:** the divider and LED chains as staircases, then D_LED1, LED1, the divider bottom, D_clamp1 and J5.
+- **Holes:** two M3 holes, H1 and H3. Use nylon screws; H2 and H4 don't fit on this board.
+- **`fab_1s/`:**
+  - `1S_B.Cu_exposure_1to1.pdf`: positive, as seen from the component side. Print 1:1 on transparency and lay it **toner side down** on the copper. Small drill marks help centring the drill.
+  - `1S_assembly_top.pdf`: part references and outlines.
+  - `CapacitorDischarger_1S.drl`: hole sizes.
+  - `CapacitorDischarger_1S.step`: 3D board with parts, for designing the enclosure (`fab_2l/CapacitorDischarger_2L.step` for the 2-layer board).
+- **The slot** is the outlined rectangle: cut it with a saw or rotary tool.
+
+**2-layer layout (120 × 90).**
+- **Same top-left block** as the single-sided board.
+- **Fast path:** R_fast1 lies flat along the top, with TF1 under it (1 mm body gap) and Q2 tab-down with the HS-S01.
+- **Gate drive:** packed right of Q2, with R1/R5 across a 23 × 3 mm slot.
+- **Slow path:** the R_slow columns are flat, bottom-left.
+- **Divider and LED chains:** the same staircases as on the single-sided board.
+- **No copper pours.** Four M3 holes; use nylon screws.
+
+**Check before building:**
+- **MKDS 5/2-9.5:** which face the pin row is 4.6 mm from. This sets the wire-entry side.
+- **Schurter CSO clip:** the 3.4 mm centre hole is plated as part of the pad; make sure it doesn't foul the clip.
+- **HS-S01 on Q2 with the MST 220 insulator:** check it fits. It must not touch R4/C_byp2 (2-layer) or the GND ring (single-sided).
+- Print the board 1:1 and lay the real parts on it.
 
 ---
 
@@ -24,16 +66,18 @@ The root schematic still has these blocks unwired (pins unconnected per kicad-cl
 - Slow path: R_slow1–5 (4.7kΩ × 5) — carry up to 25mA at 600V, get hot
 - Fast path: R_fast (50Ω) → Q2 drain/source — up to 1.35A peak
 
-**Boundary components** — HVp on one pin, only µA on the other:
+**Boundary components** — high voltage on one pin, LV on the other (they straddle the slot):
 - R1 (1MΩ) → Q1 base divider
 - R5 (470kΩ) → gate clamp
-- R_LED1 (100kΩ) → LED chain
-- R_sig1 (100kΩ) → signal divider
+- R_LED4 (100kΩ) — bottom of the LED chain (top pin ≈ ¼ of HVp, bottom ≈ 10 V)
+- R_sig5 (100kΩ) — bottom of the signal divider (top pin ≈ ⅕ of HVp, bottom ≤ 60 mV)
+
+R_LED1–3 and R_sig1–4 are entirely HV (their nodes sit at 120–480 V) and stay in the HV zone.
 
 **LV zone** — everything downstream of the zeners:
 - D9 clamps n_gate_top to 12V → Q1, R2, R3, R4, C_byp2
-- Battery-fed DVM Vcc rail (9V holder, off-board) → C_Vcc, C_byp1, DVM connector
-- LED, R_cal trimmer, signal output
+- R_sig_bot1/2 + D_clamp, J5 (2-pin, to the off-board PM-128)
+- LED
 
 The standard separation method is a **PCB slot (moat)**:
 
@@ -43,13 +87,13 @@ The standard separation method is a **PCB slot (moat)**:
 │  [Input+]──[R_slow1-5]──[GND]──[Input−]         │
 │       └──[R_fast]──[Q2 TO-220 + heatsink]──[GND]│
 │                                                  │
-│  R1, R5, R_LED1, R_sig1 (top pins)              │
+│  R1, R5, R_LED4, R_sig5 (top pins)              │
 │                                                  │
 │══════════ PCB SLOT (≥1mm wide) ════════════════  │  ← enforces creepage ≥6mm
 │                                                  │
 │  LV ZONE                                        │
-│  R1, R5, R_LED1, R_sig1 (bottom pins)           │
-│  Q1, D9, DVM connector, LED, Vcc caps, R_cal    │
+│  R1, R5, R_LED4, R_sig5 (bottom pins)           │
+│  Q1, D9, J5 (DVM), LED, R_sig_bot1/2, D_clamp   │
 └─────────────────────────────────────────────────┘
 ```
 
@@ -69,10 +113,10 @@ Key PCB rules:
 Practical layout tips:
 1. Put input terminals and Q2 at the top edge — short HV current loop
 2. Run the GND return as a copper pour directly under the discharge path
-3. The five boundary resistors straddle the slot — top pin in HV zone, body across the gap, bottom pin in LV zone
+3. The four boundary resistors straddle the slot — top pin in HV zone, body across the gap, bottom pin in LV zone
 4. Leave 3–5mm air gap between consecutive resistor bodies (R_slow1–5) — reduces creepage risk between adjacent HV nodes
 5. No copper pour under resistor bodies — bare FR4 only; reduces surface tracking risk under high dissipation
-6. R_cal trimmer in LV zone near the DVM connector for easy access
+6. R_sig_bot1/2 + D_clamp right next to J5 in the LV zone
 7. DVM connector on the board edge, in LV zone only
 
 ---
@@ -115,11 +159,11 @@ Reason: surface contamination (flux residue, humidity, dust) allows current to c
 **GND** — yes, copper pour for GND is the standard and correct approach. Individual traces for all other signals. This also minimises return-path inductance and resistance for the discharge current.
 
 **HVp to LV** — all four boundary resistors bridge the gap (not just R1 and R5):
-- R1 (1MΩ), R5 (470kΩ), R_LED1 (100kΩ), R_sig1 (100kΩ)
+- R1 (1MΩ), R5 (470kΩ), R_LED4 (100kΩ), R_sig5 (100kΩ)
 
 The HVp copper trace stays entirely in the HV zone. Each resistor's top pin solders to HVp in the HV zone, body spans the cut, bottom pin lands in the LV zone. Voltage is already reduced before the LV copper begins.
 
-**LV signals** — zero copper contact with HVp. n_gate, n_vcc (battery-fed), n_sigout, n_led_a are all LV-only nodes, entirely within the LV copper zone. The only thing crossing the slot is the physical body of those four resistors.
+**LV signals** — zero copper contact with HVp. GATE, GATE_TOP, SIGOUT, LED_A are all LV-only nodes, entirely within the LV copper zone. The only thing crossing the slot is the physical body of those four resistors.
 
 ---
 
@@ -137,7 +181,7 @@ Correct — the slot is a partial cut, not a full separation. It's a rectangle m
 │                     └──────────────┘   │
 │  GND pour (LV zone)      ║             │
 │                          ║             │
-│  n_gate, n_vcc, n_sigout ║             │
+│  GATE, GATE_TOP, SIGOUT  ║             │
 └────────────────────────────────────────┘
 ```
 
@@ -174,10 +218,8 @@ Each connector uses one functional pin (the probe wire). The second pin of each 
 
 ## Q: Is it OK to link HV and LV to the same GND?
 
-Yes — correct and intentional for this design. The LV section is **not isolated**: it derives all power directly from HVp through resistive dividers. All sections (slow path, fast path, gate drive, LED, signal divider, Vcc dropper) share the same GND, which is the negative terminal of the capacitor under test.
+Yes — correct and intentional for this design. The LV section is **not isolated**: it derives all power directly from HVp through resistive dividers. All sections (slow path, fast path, gate drive, LED, signal divider) share the same GND, which is the negative terminal of the capacitor under test.
 
-Splitting into separate GNDs would require an isolated DC-DC converter for Vcc and an isolated DVM reference — unnecessary complexity.
-
-The DVM (3-wire: Vcc+, Vcc−, signal input) must share GND with the discharge path for the voltage reading to be correct — so shared GND is **required**, not just acceptable.
+The PM-128 **input** (VIN / IN GND via J5) must share GND with the divider for the reading to be correct. Its **supply** is the opposite: the PM-128 needs separate supply and input grounds, so the 9 V battery (BT1) floats and never touches circuit GND.
 
 The one real concern: PCB GND is at whatever potential the capacitor's negative terminal is at relative to earth. Touching the PCB while probing is dangerous — handled by enclosure design, not circuit isolation. The probes are the only user-touch points and are rated 1000V.

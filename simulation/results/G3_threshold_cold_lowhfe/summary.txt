@@ -1,0 +1,5 @@
+SCENARIO: G3_threshold_cold_lowhfe
+STATUS: PASS
+
+  [PASS] G3: Q2 on below 82.6 V  (expected 70-85 V)
+  [PASS] G3: worst-case peak I_fast ≈ 1.62 A  (expected < 2 A)

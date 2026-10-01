@@ -1,0 +1,4 @@
+SCENARIO: G4_threshold_hot_highhfe
+STATUS: PASS
+
+  [PASS] G4: Q2 on below 54.7 V  (expected 50-60 V)

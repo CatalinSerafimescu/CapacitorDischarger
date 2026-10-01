@@ -1,5 +1,5 @@
 SCENARIO: B_mid_300V_470uF
 STATUS: PASS
 
-  [PASS] B: t(V<71V): t(V<71V) = 13.60 s  (expected 5-20 s)
-  [PASS] B: t(V<10V): t(V<10V) = 14.81 s  (expected 5-22 s)
+  [PASS] B: t(V<63V): t(V<63V) = 14.64 s  (expected 5-20 s)
+  [PASS] B: t(V<10V): t(V<10V) = 14.72 s  (expected 5-22 s)

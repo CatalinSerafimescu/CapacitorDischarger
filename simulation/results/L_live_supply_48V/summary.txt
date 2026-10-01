@@ -1,0 +1,6 @@
+SCENARIO: L_live_supply_48V
+STATUS: PASS
+
+  [PASS] L: max I_fast = 0.89 A  (< 2 A: F1 alone would NOT protect R_fast)
+  [PASS] L: TF1 opens at t = 8.7 s  (expected < 30 s)
+  [PASS] L: I_fast after trip = 0.000 mA  (expected < 1 mA)

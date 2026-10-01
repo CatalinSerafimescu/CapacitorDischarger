@@ -2,12 +2,11 @@
 
 Layout (left to right):
   Bridge → F1 → HV+ bus → Branch1(R_slow) | Branch2(R_fast+Q2) | Branch3(Q1 threshold)
-                         | Branch4(LED) | Branch5(DVM sig divider)
-  Branch6 (off-bus): BT1 9V battery → DVM Vcc
-  → Voltmeter 3-pin connector
+                         | Branch4(LED) | Branch5(DVM sig divider 10 000:1 + clamp)
+  → J5 → DVM1 Axiomet PM-128 (off-board), powered by floating BT1 9 V battery
 
-HV section: bridge + R_slow + R_fast/Q2 + gate drive (R5/D9)
-LV section: Q1 threshold, LED indicator, DVM divider, DVM Vcc, connector
+HV section: bridge + R_slow + R_fast/TF1/Q2 + gate drive (R5/D9)
+LV section: Q1 threshold, LED indicator, DVM divider, J5 → PM-128
 
 NFet.right() orientation: drain up, source down, gate to the right.
 BjtNpn orientation: base left, collector upper-right, emitter lower-right.
@@ -73,7 +72,6 @@ with schemdraw.Drawing(show=False) as d:
     # ═══════════════════════════════════════════════════════════════
     # HV+ BUS and GND BUS
     # ═══════════════════════════════════════════════════════════════
-    B6_X = 40           # last branch — defines right end of HV+ bus
     HV_BUS_END = 44     # GND bus / connector leads extend further right
 
     # F1 — protection fuse: opens on single-fault (Q1/D9 failure → Q2 full-on at 600V)
@@ -133,15 +131,20 @@ with schemdraw.Drawing(show=False) as d:
     d.add(elm.Line().right().at((D9_X, GND_Y)).tox(R5_X))
 
     # ═══════════════════════════════════════════════════════════════
-    # BRANCH 2 — R_fast (50 Ω / 5 W) + Q2 N-MOSFET (STP10NK80Z)
+    # BRANCH 2 — R_fast (50 Ω / 7 W) + TF1 thermal cutoff + Q2 N-MOSFET (STP10NK80Z)
     # ═══════════════════════════════════════════════════════════════
     B2_X = 14
     d.add(elm.Dot().at((B2_X, HV_Y)))
     RF = d.add(elm.Resistor().down().at((B2_X, HV_Y)).length(EL))
     rlabel(d, B2_X, HV_Y, RF.end[1], LABEL['R_fast'])
 
+    # TF1 — one-shot thermal cutoff clamped to the R_fast body: opens if a live
+    # supply below the threshold keeps Q2 on (R_fast overload that F1 can't see)
+    TF1e = d.add(elm.Fuse().down().at(RF.end).length(EL))
+    rlabel(d, B2_X, RF.end[1], TF1e.end[1], LABEL['TF1'])
+
     # NFet.right(): drain=top, source=bottom, gate to the right
-    q2 = d.add(elm.NFet().right().anchor('drain').at(RF.end)
+    q2 = d.add(elm.NFet().right().anchor('drain').at(TF1e.end)
                .label(LABEL['Q2'], loc='left'))
 
     # Q2 source → GND
@@ -157,7 +160,7 @@ with schemdraw.Drawing(show=False) as d:
     # ═══════════════════════════════════════════════════════════════
     # BRANCH 3 — Q1 NPN Threshold Detector (~63 V switch point)
     # R1 (1 MΩ) → node_A → R2 (10 kΩ) → GND
-    #             node_A → R3 (100 kΩ) → Q1 base
+    #             node_A → R3 (10 kΩ) → Q1 base
     #             Q1 emitter → GND,  Q1 collector → GATE_CTRL
     # ═══════════════════════════════════════════════════════════════
     B3_X = 20
@@ -214,8 +217,9 @@ with schemdraw.Drawing(show=False) as d:
     d.add(elm.Dot().at((B4_X, GND_Y)))
 
     # ═══════════════════════════════════════════════════════════════
-    # BRANCH 5 — DVM Signal Divider 6:1  (0–600 V → 0–100 V)
-    # HV+ → 5 × 100 kΩ/0.6 W → node_sig → R_sig_bot → R_cal → GND
+    # BRANCH 5 — DVM Signal Divider 10 000:1  (600 V → 60 mV, PM-128 reads "600")
+    # HV+ → 5 × 100 kΩ/0.6 W → node_sig → R_sig_bot1 ∥ R_sig_bot2 (2 × 100 Ω = 50 Ω) → GND
+    # D_clamp across them: if the bottom opens, node_sig is held ≤ ~0.7 V
     # ═══════════════════════════════════════════════════════════════
     d.add(elm.Dot().at((B5_X, HV_Y)))
     cur = (B5_X, HV_Y)
@@ -228,86 +232,76 @@ with schemdraw.Drawing(show=False) as d:
     d.add(elm.Dot().at(NODE_SIG))
     RSB_top = NODE_SIG[1]
     RSB = d.add(elm.Resistor().down().at(NODE_SIG).length(EL))
-    rlabel(d, B5_X, RSB_top, RSB.end[1], LABEL['R_sig_bot'])
-    # R_cal trimmer in series below R_sig_bot — full-scale calibration trim
-    RCAL_top = RSB.end[1]
-    RCAL = d.add(elm.Resistor().down().length(EL))
-    rlabel(d, B5_X, RCAL_top, RCAL.end[1], LABEL['R_cal'])
-    d.add(elm.Line().down().at(RCAL.end).toy(GND_Y))
+    rlabel(d, B5_X, RSB_top, RSB.end[1], LABEL['R_sig_bot1'])
+    d.add(elm.Line().down().at(RSB.end).toy(GND_Y))
     d.add(elm.Dot().at((B5_X, GND_Y)))
 
-    # ═══════════════════════════════════════════════════════════════
-    # BRANCH 6 — DVM Power: internal 9 V battery BT1 (holder with
-    # built-in ON/OFF switch), NOT connected to the HV+ bus.
-    # GND → BT1 (+ up) → switch → node_Vcc; C_Vcc ∥ C_byp1 across rail
-    # (Replaced the parasitic 4×15 kΩ + 15 V Zener dropper 2026-07-29:
-    #  DVM module draws 12–15 mA, beyond what the dropper could supply.)
-    # ═══════════════════════════════════════════════════════════════
-    NODE_VCC = (B6_X, HV_Y - 4 * EL)
-    # .reverse() puts the long bar (+) at the top, toward the Vcc rail
-    BAT = d.add(elm.Battery().up().at((B6_X, GND_Y)).length(EL).reverse())
-    rlabel(d, B6_X, BAT.end[1], GND_Y, LABEL['BT1'])
-    d.add(elm.Label().at((B6_X - 0.5, BAT.end[1] - 0.3))
-          .label('+', halign='right', valign='center'))
-    SW = d.add(elm.Switch().up().at(BAT.end).length(EL))
-    rlabel(d, B6_X, SW.end[1], BAT.end[1], 'ON/OFF\n(in holder)')
-    d.add(elm.Line().up().at(SW.end).toy(NODE_VCC[1]))
-    d.add(elm.Dot().at(NODE_VCC))
-    d.add(elm.Dot().at((B6_X, GND_Y)))
+    # R_sig_bot2 — second 100 Ω in parallel with R_sig_bot1
+    RSB2_X = B5_X + 3
+    d.add(elm.Line().right().at(NODE_SIG).tox(RSB2_X))
+    d.add(elm.Dot().at((RSB2_X, NODE_SIG[1])))
+    RSB2 = d.add(elm.Resistor().down().at((RSB2_X, NODE_SIG[1])).length(EL))
+    rlabel(d, RSB2_X, RSB_top, RSB2.end[1], LABEL['R_sig_bot2'])
+    d.add(elm.Line().down().at(RSB2.end).toy(GND_Y))
+    d.add(elm.Dot().at((RSB2_X, GND_Y)))
 
-    # C_Vcc and C_byp1 in parallel across the battery rail — two columns to the left
-    CVCC_X  = B6_X - 4   # 10 µF electrolytic
-    CBYP1_X = B6_X - 2   # 100 nF HF decoupling
-    d.add(elm.Line().left().at(NODE_VCC).tox(CVCC_X))
-    d.add(elm.Dot().at((CVCC_X,  NODE_VCC[1])))
-    d.add(elm.Dot().at((CBYP1_X, NODE_VCC[1])))
-    CVcc_top = NODE_VCC[1]
-    CVcc = d.add(elm.Capacitor2(polar=True).down().at((CVCC_X, NODE_VCC[1])).length(EL))
-    d.add(elm.Label().at((CVCC_X + LABEL_OFST, (CVcc_top + CVcc.end[1]) / 2))
-          .label(LABEL['C_Vcc'], halign='left', valign='center'))
-    d.add(elm.Line().down().at(CVcc.end).toy(GND_Y))
-    # C_byp1 — 100 nF HF decoupling for regulated Vcc rail
-    CBP1_top = NODE_VCC[1]
-    CBP1 = d.add(elm.Capacitor().down().at((CBYP1_X, NODE_VCC[1])).length(EL))
-    rlabel(d, CBYP1_X, CBP1_top, CBP1.end[1], LABEL['C_byp1'])
-    d.add(elm.Line().down().at(CBP1.end).toy(GND_Y))
-    d.add(elm.Line().right().at((CVCC_X, GND_Y)).tox(B6_X))
+    # D_clamp — anode at node_sig, cathode to GND (parallel to R_sig_bot1/2)
+    DCL_X = B5_X + 6
+    d.add(elm.Line().right().at((RSB2_X, NODE_SIG[1])).tox(DCL_X))
+    d.add(elm.Dot().at((DCL_X, NODE_SIG[1])))
+    DCL = d.add(elm.Diode().down().at((DCL_X, NODE_SIG[1])).length(EL))
+    rlabel(d, DCL_X, NODE_SIG[1], DCL.end[1], LABEL['D_clamp'])
+    d.add(elm.Line().down().at(DCL.end).toy(GND_Y))
+    d.add(elm.Dot().at((DCL_X, GND_Y)))
 
     # ═══════════════════════════════════════════════════════════════
-    # VOLTMETER — 3-pin connector (GND / Signal / Vcc)
+    # J5 (2-pin) → DVM1 Axiomet PM-128 (off-board, panel-mounted)
+    # PM-128 requires the supply and the measured input to have SEPARATE
+    # grounds: BT1 (9 V, holder with ON/OFF switch) powers only the meter and
+    # is NOT connected to circuit GND (floating). Circuit GND → meter IN GND.
     # ═══════════════════════════════════════════════════════════════
     CONN_X = HV_BUS_END + 0.5
-    CONN_W = 5.0
-
-    PIN_GND_Y = GND_Y
+    CONN_W = 6.0
     PIN_SIG_Y = NODE_SIG[1]
-    PIN_VCC_Y = NODE_VCC[1]
-
-    BOX_TOP = PIN_VCC_Y + 1.8
+    PIN_GND_Y = GND_Y
+    PIN_VP_Y  = HV_Y - 1.5 * EL
+    PIN_VM_Y  = HV_Y - 3.0 * EL
+    BOX_TOP = PIN_VP_Y + 1.8
     BOX_BOT = PIN_GND_Y - 0.8
 
-    # Lead wires from circuit nodes to connector left edge
-    d.add(elm.Line().right().at(NODE_SIG).tox(CONN_X))
-    d.add(elm.Line().right().at(NODE_VCC).tox(CONN_X))
-    d.add(elm.Line().right().at((B6_X, GND_Y)).tox(CONN_X))
+    d.add(elm.Line().right().at((DCL_X, NODE_SIG[1])).tox(CONN_X))
+    d.add(elm.Line().right().at((DCL_X, GND_Y)).tox(CONN_X))   # circuit GND → meter IN GND
+    d.add(elm.Label().at((CONN_X - 2.5, PIN_SIG_Y + 0.4)).label('J5', halign='center', valign='bottom'))
 
-    # Connector box outline
+    # Meter box outline
     d.add(elm.Line().right().at((CONN_X, BOX_TOP)).tox(CONN_X + CONN_W))
     d.add(elm.Line().down().at((CONN_X + CONN_W, BOX_TOP)).toy(BOX_BOT))
     d.add(elm.Line().left().at((CONN_X + CONN_W, BOX_BOT)).tox(CONN_X))
     d.add(elm.Line().up().at((CONN_X, BOX_BOT)).toy(BOX_TOP))
-
-    # Pin stubs
-    for py in [PIN_GND_Y, PIN_SIG_Y, PIN_VCC_Y]:
+    for py in [PIN_GND_Y, PIN_SIG_Y]:
         d.add(elm.Line().right().at((CONN_X, py)).length(0.7))
         d.add(elm.Dot().at((CONN_X + 0.7, py)))
-
-    # Connector labels
     d.add(elm.Label().at(((2 * CONN_X + CONN_W) / 2, BOX_TOP + 1.2))
-          .label('VOLTMETER\n(3-pin connector)'))
-    d.add(elm.Label().at((CONN_X + 0.9, PIN_VCC_Y)).label('Vcc  9 V (battery)', loc='right'))
-    d.add(elm.Label().at((CONN_X + 0.9, PIN_SIG_Y)).label('Signal  0–100 V', loc='right'))
-    d.add(elm.Label().at((CONN_X + 0.9, PIN_GND_Y)).label('GND', loc='right'))
+          .label('DVM1  Axiomet PM-128\n200 mV FS, reads "600" at 600 V'))
+    d.add(elm.Label().at((CONN_X + 0.9, PIN_SIG_Y)).label('VIN  (60 mV @ 600 V)', loc='right'))
+    d.add(elm.Label().at((CONN_X + 0.9, PIN_GND_Y)).label('IN GND', loc='right'))
+
+    # Floating battery loop on the meter's right side (supply pins)
+    BOXR = CONN_X + CONN_W
+    for py in [PIN_VP_Y, PIN_VM_Y]:
+        d.add(elm.Dot().at((BOXR, py)))
+    d.add(elm.Label().at((BOXR - 0.3, PIN_VP_Y)).label('+9V', halign='right', valign='center'))
+    d.add(elm.Label().at((BOXR - 0.3, PIN_VM_Y)).label('−9V', halign='right', valign='center'))
+    BAT_X = BOXR + 3
+    d.add(elm.Line().right().at((BOXR, PIN_VP_Y)).tox(BAT_X))
+    SW = d.add(elm.Switch().down().at((BAT_X, PIN_VP_Y)).length(EL))
+    d.add(elm.Label().at((BAT_X + LABEL_OFST, (PIN_VP_Y + SW.end[1]) / 2))
+          .label('ON/OFF\n(in holder)', halign='left', valign='center'))
+    # .reverse() keeps the long bar (+) at the top, toward the switch
+    BAT = d.add(elm.Battery().down().at(SW.end).toy(PIN_VM_Y).reverse())
+    d.add(elm.Label().at((BAT_X + LABEL_OFST, (SW.end[1] + PIN_VM_Y) / 2))
+          .label(LABEL['BT1'] + '\nfloating — NOT\ntied to circuit GND', halign='left', valign='center'))
+    d.add(elm.Line().left().at((BAT_X, PIN_VM_Y)).tox(BOXR))
 
     # ─────────────────────────────────────────────────────────────
     d.save('E:/Catalin/Work/Electronics/CapacitorDischarger_Claude/blocks/full_schematic.svg')

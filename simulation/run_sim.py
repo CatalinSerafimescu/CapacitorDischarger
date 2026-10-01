@@ -32,6 +32,11 @@ NGSPICE = r"E:\Catalin\Work\Electronics\NGSpice_46\bin\ngspice.exe"
 SIM_DIR = Path(__file__).parent          # simulation/
 RESULTS_DIR = SIM_DIR / "results"
 
+# Default {{DUT}} / {{IC}} for the transient template; scenarios may override
+# them through their "subs" dict (hot-plug contact, live supply, ...).
+DEFAULT_DUT = "C_dut n_probe_a n_probe_b {CDUT} IC={V0}"
+DEFAULT_IC = ".ic V(n_probe_a)={max(V0,0)} V(n_probe_b)={max(-V0,0)} V(HVp)={abs(V0)-0.7}"
+
 
 # ── Template rendering ────────────────────────────────────────────────────────
 
@@ -59,6 +64,9 @@ def run_ngspice(cir_path: Path) -> tuple[bool, str]:
     combined = result.stdout + "\n" + result.stderr
     if result.returncode != 0:
         return False, f"ngspice exit {result.returncode}:\n{combined}"
+    # ngspice can report errors yet still exit 0 — never let those pass silently
+    if re.search(r"(?i)\bfatal\b|\berror\b", combined):
+        return False, f"ngspice reported errors:\n{combined}"
     return True, combined
 
 
@@ -118,7 +126,7 @@ def plot_transient(df: pd.DataFrame, scenario_name: str, out_path: Path):
         ("V(HVp)",      "V_cap",     "tab:blue"),
         ("V(n_gate)",   "V_gate",    "tab:orange"),
         ("V(n_sigout)", "V_sigout",  "tab:green"),
-        ("V(n_vcc)",    "V_vcc",     "tab:red"),
+        ("V(n_temp)",   "T_Rfast (°C)", "tab:red"),
     ]:
         v = _col_fuzzy(df, col)
         if v is not None:
@@ -140,11 +148,10 @@ def plot_transient(df: pd.DataFrame, scenario_name: str, out_path: Path):
     ax.legend(loc="upper right", fontsize=8)
     ax.grid(True, alpha=0.3)
 
-    # Panel 3: LED / DVM currents + Vcc
+    # Panel 3: LED / DVM divider currents
     ax = axes[2]
     for col, label, scale, color in [
         ("I(V_iled)",  "I_LED (mA)",  1e3,  "tab:red"),
-        ("I(V_idrop)", "I_drop (mA)", 1e3,  "tab:purple"),
         ("I(V_isig)",  "I_sig (mA)",  1e3,  "tab:brown"),
     ]:
         v = _col_fuzzy(df, col)
@@ -176,7 +183,7 @@ def plot_dc_sweep(df: pd.DataFrame, scenario_name: str, out_path: Path):
         v = _col_fuzzy(df, col)
         if v is not None:
             ax.plot(hvp, v, label=label, color=color)
-    ax.axvline(70.7, color="gray", linestyle="--", linewidth=0.8, label="71V threshold")
+    ax.axvline(63, color="gray", linestyle="--", linewidth=0.8, label="63V nominal threshold")
     ax.set_ylabel("Gate voltage (V)")
     ax.legend(fontsize=8)
     ax.grid(True, alpha=0.3)
@@ -184,7 +191,6 @@ def plot_dc_sweep(df: pd.DataFrame, scenario_name: str, out_path: Path):
     ax = axes[1]
     for col, label, color in [
         ("V(n_sigout)", "V_sigout", "tab:green"),
-        ("V(n_vcc)",    "V_vcc",    "tab:red"),
     ]:
         v = _col_fuzzy(df, col)
         if v is not None:
@@ -238,7 +244,10 @@ def run_scenario(sc: dict) -> bool:
             "TSTOP":     sc["tstop"],
             "OUTCSV":    csv_abs,
             "MODELSLIB": models_abs,
+            "DUT":       DEFAULT_DUT,
+            "IC":        DEFAULT_IC,
         }
+    subs.update(sc.get("subs", {}))
 
     cir_text = render_template(tmpl_path, subs)
     cir_path.write_text(cir_text, encoding="utf-8")

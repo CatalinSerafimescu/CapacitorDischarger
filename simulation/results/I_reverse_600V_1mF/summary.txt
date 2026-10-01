@@ -1,0 +1,7 @@
+SCENARIO: I_reverse_600V_1mF
+STATUS: PASS
+
+  [PASS] I: t(V<10V): t(V<10V) = 45.16 s  (expected 28-52 s)
+  [PASS] I: residual V(n_probe_a)-V(n_probe_b) at end = -1.035 V  (expected -2.5 to -0.4 V)
+  [PASS] I: PM-128 reading at start = 598  (expected 590-605, positive)
+  [PASS] I: TF1 intact, peak R_fast temp = 26 °C  (expected < Th 118 °C)
