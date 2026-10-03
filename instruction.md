@@ -59,6 +59,7 @@ The board is **single-sided**: copper only on the bottom, no vias, no jumpers. P
 
 1. **Print the film.** Print [KiCAD/fab_1s/1S_B.Cu_exposure_1to1.pdf](KiCAD/fab_1s/1S_B.Cu_exposure_1to1.pdf) on transparency. Set the size to **100 %** (not fit-to-page) and toner density to maximum. Check the 100 × 75 mm outline with a ruler.
    - The film is a positive, drawn as seen from the component side. **Lay it toner side down on the copper.**
+   - For toner transfer, or for a negative photoresist, use page 1 of [KiCAD/fab_1s/1S_films_1to1.pdf](KiCAD/fab_1s/1S_films_1to1.pdf): B.Cu positive and negative side by side, same orientation.
 2. **Expose and develop.** Expose, then develop in NaOH (about 7 g/l). Rinse, then etch: sodium persulfate at 40–45 °C, or FeCl₃.
    - Do a test strip first, because exposure time depends on your UV box.
    - To strip the leftover resist, re-expose the whole board and develop again, or use acetone.
@@ -77,7 +78,7 @@ The board is **single-sided**: copper only on the bottom, no vias, no jumpers. P
    | 3.2 mm | 2 | H1, H3 mounting holes |
 
 4. **Cut the slot.** It is the 17.5 × 3 mm outlined rectangle under R1/R5. Cut it with a saw or rotary tool. Its job is to lengthen the 600 V creepage path between the two pads of R1 and of R5.
-5. **Protect the copper (recommended).** Clean the board and coat the copper side with your green solder mask, leaving the pads open. If you don't have it, use PCB lacquer. Uncoated copper also works, because the clearances are designed for it.
+5. **Protect the copper (recommended).** Clean the board and coat the copper side with your green solder mask, leaving the pads open. For UV mask, the film is the B.Mask image on page 2 of [KiCAD/fab_1s/1S_films_1to1.pdf](KiCAD/fab_1s/1S_films_1to1.pdf), and the board goes in the jig in [mechanical/mask_jig/](mechanical/mask_jig/README.md). If you don't have it, use PCB lacquer. Uncoated copper also works, because the clearances are designed for it.
 
 ---
 

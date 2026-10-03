@@ -38,6 +38,7 @@ Both pass DRC with schematic parity: **0 errors, 0 unconnected, 0 parity issues*
 - **Holes:** two M3 holes, H1 and H3. Use nylon screws; H2 and H4 don't fit on this board.
 - **`fab_1s/`:**
   - `1S_B.Cu_exposure_1to1.pdf`: positive, as seen from the component side. Print 1:1 on transparency and lay it **toner side down** on the copper. Small drill marks help centring the drill.
+  - `1S_films_1to1.pdf` (made by `gen_films.py`): A4 portrait, boards turned 90° and both at the top of the sheet. Page 1 has the B.Cu positive and negative, for toner transfer or photoresist. Page 2 has the B.Cu positive and the B.Mask film, where black = pad openings, for UV solder mask with `mechanical/mask_jig/`. Every image is seen from the component side: print at 100 % and lay it toner side down.
   - `1S_assembly_top.pdf`: part references and outlines.
   - `CapacitorDischarger_1S.drl`: hole sizes.
   - `CapacitorDischarger_1S.step`: 3D board with parts, for designing the enclosure (`fab_2l/CapacitorDischarger_2L.step` for the 2-layer board).
