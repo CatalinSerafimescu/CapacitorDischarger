@@ -66,11 +66,12 @@ for i in range(4):
 G.PLACE = P
 
 # ── Routes, all on B.Cu: (net, width, [points]) ─────────────────────────────
-HVW, SW, LW = 1.5, 0.8, 0.6
+HVW, SW, LW = 2.0, 1.2, 1.0   # wide enough for toner transfer / home etching
 R = [
     # GND ring: D4 anode → left edge → bottom → right → top → down to D2 anode
-    ("/GND", HVW, [(8.0, 27.16), (2.5, 27.16), (2.5, 72.5), (97.5, 72.5), (97.5, 2.5), (46.5, 2.5),
-                   (46.5, 27.16), (38.02, 27.16)]),
+    ("/GND", HVW, [(8.0, 27.16), (2.5, 27.16), (2.5, 72.5), (97.5, 72.5), (97.5, 2.5), (46.5, 2.5)]),
+    # between J4 (6 mm) and the slot edge (0.5 mm) there is room for 1.8 mm only
+    ("/GND", 1.8, [(46.5, 2.5), (46.5, 27.16), (38.02, 27.16)]),
     # probes: both terminal poles and both diodes of each probe
     ("/PROBE_A", HVW, [(8.0, 8.4), (8.0, 17.0), (17.52, 17.0), (17.52, 8.4)]),
     ("/PROBE_B", HVW, [(28.5, 8.4), (28.5, 17.0), (38.02, 17.0), (38.02, 8.4)]),
@@ -93,7 +94,7 @@ R = [
       for i in range(4)],
     *[(f"Net-(R_LED{i + 1}-Pad2)", SW, [(75.0 + 5 * i, 49.08 + 5.08 * i), (80.0 + 5 * i, 49.08 + 5.08 * i)])
       for i in range(3)],
-    ("Net-(D_LED1-K)", LW, [(90.0, 64.32), (94.5, 57.5)]),
+    ("Net-(D_LED1-K)", 0.8, [(90.0, 64.32), (94.5, 57.5)]),          # 0.8: passes R_LED4 pad 1 at 1.5 mm
     ("/LED_A", LW, [(94.5, 62.58), (94.5, 67.46)]),
     ("/LED_A", LW, [(89.0, 67.0), (94.5, 67.46)]),
     ("/GND", LW, [(94.5, 69.96), (94.5, 72.5)]),
@@ -134,12 +135,16 @@ def main():
     # home-made board: no silkscreen print, so references go to the assembly (Fab) drawing
     for fp in board.GetFootprints():
         fp.Reference().SetLayer(pcbnew.F_Fab)
+    # GND pour over the whole bottom: less copper to etch away (thin traces survive), low-impedance return.
+    # Filled by kicad-cli below with the voltage-aware rules: 6 mm from HV copper, 0.4 mm from LV.
+    G.add_zone(board, board.FindNet("/GND"), pcbnew.B_Cu, 0.5, 0.5, G.W - 0.5, G.H - 0.5)
     pcbnew.SaveBoard(G.PCB, board)
     nets = [n for n in board.GetNetsByName().keys()]
     open(os.path.join(HERE, G.NAME + ".kicad_dru"), "w", encoding="utf8", newline="\n").write(
         hv_rules.dru([str(n) for n in nets], Q2_RULE))
     rpt = os.path.join(HERE, "drc_1s.rpt")
-    subprocess.run([G.CLI, "pcb", "drc", "--schematic-parity", "--severity-all", "-o", rpt, G.PCB],
+    subprocess.run([G.CLI, "pcb", "drc", "--schematic-parity", "--severity-all", "--refill-zones", "--save-board",
+                    "-o", rpt, G.PCB],
                    capture_output=True)
     print(open(rpt, encoding="utf8").read()[-1500:])
 

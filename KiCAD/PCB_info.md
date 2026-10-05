@@ -31,7 +31,8 @@ Both pass DRC with schematic parity: **0 errors, 0 unconnected, 0 parity issues*
 **Single-sided layout (100 × 75).**
 - **Probes:** they enter at the top edge (J3 = PROBE_A, J4 = PROBE_B, both poles of each block on the same net).
 - **Bridge and F1:** the bridge is four vertical diodes right below the probes, with the GND anodes on the outside. F1 sits below it, and its right clip is the HVp hub.
-- **GND ring:** a 1.5 mm GND ring along the board edge joins both bridge anodes and every return. This is what lets a single layer work without jumpers.
+- **GND ring and pour:** a 2 mm GND ring along the board edge joins both bridge anodes and every return. This is what lets a single layer work without jumpers. A GND pour fills the rest of the bottom, using the voltage-aware rules (6 mm from HV copper, 0.4 mm from LV). It cuts the copper to etch to about 40 % for home etching, and gives a low-impedance return. `board_1s.py` fills it with `kicad-cli pcb drc --refill-zones --save-board`.
+- **Track widths for home etching:** HV 2 mm, chains 1.2 mm, LV 1 mm. One exception: the D_LED1-K link is 0.8 mm, to keep 1.5 mm from R_LED4.
 - **Top-right pocket:** R_fast1 standing, with TF1 standing 0.5 mm from its body (clamp them together). Q2 has the HS-S01 slipped onto its tab. The gate drive is LV and runs along the GND ring. R1 and R5 stand on their LV pad, with the bare HVp lead across a 17.5 × 3 mm slot.
 - **Bottom-left:** R_slow1–5 standing, 2.3 mm air between bodies.
 - **Bottom-right:** the divider and LED chains as staircases, then D_LED1, J6 (XH, front-panel LED cable) with its clamp zener D_clamp2, the divider bottom, D_clamp1 and J5.
@@ -39,6 +40,9 @@ Both pass DRC with schematic parity: **0 errors, 0 unconnected, 0 parity issues*
 - **`fab_1s/`:**
   - `1S_B.Cu_exposure_1to1.pdf`: positive, as seen from the component side. Print 1:1 on transparency and lay it **toner side down** on the copper. Small drill marks help centring the drill.
   - `1S_films_1to1.pdf` (made by `gen_films.py`): A4 portrait, boards turned 90° and both at the top of the sheet. Page 1 has the B.Cu positive and negative, for toner transfer or photoresist. Page 2 has the B.Cu positive and the B.Mask film, where black = pad openings, for UV solder mask with `mechanical/mask_jig/`. Every image is seen from the component side: print at 100 % and lay it toner side down.
+  - `1S_copper_components_1to1.pdf`: B.Cu positive plus the components (F.Fab + F.SilkS), the latter **mirrored**, for toner transfer onto the component side.
+  - `1S_solder_mask_1to1.pdf`: two copies of the B.Mask image, to stack for a denser UV film.
+  - Both are also made by `gen_films.py`.
   - `1S_assembly_top.pdf`: part references and outlines.
   - `CapacitorDischarger_1S.drl`: hole sizes.
   - `CapacitorDischarger_1S.step`: 3D board with parts, for designing the enclosure (`fab_2l/CapacitorDischarger_2L.step` for the 2-layer board).
