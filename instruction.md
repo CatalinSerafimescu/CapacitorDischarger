@@ -219,6 +219,7 @@ The divider is 10 000:1 within 1 %. The PM-128 trimmer R4 corrects the remaining
 ## 9. Using the tool
 
 1. Plug in the 9 V source and check that the meter shows `0`.
+   Without it the tool still discharges and the LED still works (both run from the capacitor); only the meter stays blank.
 2. Connect both probes to the capacitor (any polarity). The LED lights and the meter shows the voltage.
 3. Wait until **the LED is off and the meter reads 0–1**, then keep the probes on for a few more seconds.
 4. Check with a separate multimeter before touching the capacitor. Electrolytics recover a few volts after discharge.
