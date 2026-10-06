@@ -153,7 +153,7 @@ Full details are in [mechanical/enclosure/README.md](mechanical/enclosure/README
 3. **Front-panel LED (LED1, HLMP-4700):**
    - Heat-shrink both legs.
    - Crimp the XH housing onto about 15 cm of 1 kV wire: **pin 1 = cathode (GND), pin 2 = anode.**
-   - Push the LED in from inside so its flange sits in the recess, then glue it.
+   - Push the 5 mm panel clip into the front-wall hole from the outside, with its slots vertical. Then push the LED into it from inside until it snaps in.
 4. **Board:** put it on the standoffs and press it down until the 3 hooks click. Fit the two **nylon** M3×12 screws (H1, H3), with nuts in the hex pockets under the floor.
 5. **Connect the probe wires** into J3/J4 and tighten the screws. They stay reachable from the top.
 6. **Plug the LED into J6** (rear-left). Run the cable up and along the left wall, above the Q2 heatsink, then down to the front panel.

@@ -4,7 +4,7 @@ report collisions / clearances.
 Run inside the FreeCAD GUI (Python console or MCP execute_code):
     exec(open(r"<repo>/mechanical/enclosure/assembly.py", encoding="utf-8").read())
 Board: KiCAD/fab_1s/CapacitorDischarger_1S.step (kicad-cli export). DC jack: the SursaTensiune model of the same
-part. Banana sockets (Stäubli SLB4-G), the PM-128 and the 5 mm LED are simple stand-ins drawn from their datasheets.
+part. Banana sockets (Stäubli SLB4-G), the PM-128 and the 5 mm LED + panel clip are simple stand-ins drawn from their datasheets.
 """
 import os
 
@@ -36,10 +36,18 @@ def socket(x):
     return insul, metal
 
 
+def led_clip():
+    """5 mm panel clip: Ø8 × 0.8 collar on the front face, Ø6.5 body through the wall (Ø5 bore)."""
+    x, z, fl = g["LED_X"], g["LED_Z"], g["CLIP_FL_T"]
+    s = Part.makeCylinder(g["CLIP_FL_D"] / 2, fl, V(x, -fl, z), V(0, 1, 0)).fuse(
+        Part.makeCylinder(g["CLIP_D"] / 2, g["CLIP_L"] - fl, V(x, 0, z), V(0, 1, 0)))
+    return s.cut(Part.makeCylinder(2.5, g["CLIP_L"] + 2, V(x, -fl - 1, z), V(0, 1, 0)))
+
+
 def led():
-    """5 mm LED, flange (Ø5.8 × 1) in the recess behind the front wall, dome out of the panel, legs inside."""
-    x, z, y_fl = g["LED_X"], g["LED_Z"], g["T"] - g["LED_FLANGE_T"]
-    body = Part.makeCylinder(2.5, 7.6, V(x, y_fl, z), V(0, -1, 0)).fuse(
+    """5 mm LED (8.6 flange → dome tip), flange (Ø5.8 × 1) against the clip's rear end, legs inside."""
+    x, z, y_fl = g["LED_X"], g["LED_Z"], g["CLIP_L"] - g["CLIP_FL_T"]
+    body = Part.makeCylinder(2.5, 8.6, V(x, y_fl, z), V(0, -1, 0)).fuse(
         Part.makeCylinder(2.9, 1.0, V(x, y_fl, z), V(0, 1, 0)))
     legs = Part.makeBox(3.0, 8.0, 0.5, V(x - 1.5, y_fl + 1.0, z - 0.25))
     return body.fuse(legs)
@@ -52,7 +60,7 @@ def meter():
 
 def place(doc_name="CapDis_Enclosure"):
     doc = App.getDocument(doc_name)
-    for n in ("Board", "Jack", "Sock_A", "Sock_A_metal", "Sock_B", "Sock_B_metal", "Meter", "LED"):
+    for n in ("Board", "Jack", "Sock_A", "Sock_A_metal", "Sock_B", "Sock_B_metal", "Meter", "LED", "LED_clip"):
         if doc.getObject(n):
             doc.removeObject(n)
     board = Part.read(os.path.join(REPO, "KiCAD", "fab_1s", "CapacitorDischarger_1S.step"))
@@ -70,6 +78,7 @@ def place(doc_name="CapDis_Enclosure"):
         doc.addObject("Part::Feature", name + "_metal").Shape = met
     doc.addObject("Part::Feature", "Meter").Shape = meter()
     doc.addObject("Part::Feature", "LED").Shape = led()
+    doc.addObject("Part::Feature", "LED_clip").Shape = led_clip()
     doc.recompute()
     if App.GuiUp:
         bd.ViewObject.ShapeColor = (0.10, 0.45, 0.20)
@@ -80,13 +89,14 @@ def place(doc_name="CapDis_Enclosure"):
             doc.getObject(n).ViewObject.ShapeColor = (0.85, 0.7, 0.3)
         doc.getObject("Meter").ViewObject.ShapeColor = (0.15, 0.15, 0.15)
         doc.getObject("LED").ViewObject.ShapeColor = (0.9, 0.1, 0.1)
+        doc.getObject("LED_clip").ViewObject.ShapeColor = (0.1, 0.1, 0.1)
     return doc
 
 
 def check(doc):
     """Overlap volumes between the printed parts and everything else, and a few HV clearances."""
     base, cover = doc.getObject("Base").Shape, doc.getObject("Cover").Shape
-    parts = {n: doc.getObject(n).Shape for n in ("Board", "Jack", "Sock_A", "Sock_A_metal", "Sock_B", "Sock_B_metal", "Meter", "LED")}
+    parts = {n: doc.getObject(n).Shape for n in ("Board", "Jack", "Sock_A", "Sock_A_metal", "Sock_B", "Sock_B_metal", "Meter", "LED", "LED_clip")}
     print("base ∩ cover: %.2f mm³" % base.common(cover).Volume)
     for pn, ps in (("Base", base), ("Cover", cover)):
         for n, s in parts.items():
@@ -102,7 +112,8 @@ def check(doc):
         print("meter ↔ %s: %.1f mm" % (n, m.distToShape(parts[n])[0]))
     print("socket A ↔ socket B metal: %.1f mm" % parts["Sock_A_metal"].distToShape(parts["Sock_B_metal"])[0])
     print("socket B ↔ jack: %.1f mm" % parts["Sock_B_metal"].distToShape(parts["Jack"])[0])
-    print("LED ↔ meter: %.1f mm, LED ↔ base (excl. its hole): see overlaps above" % parts["LED"].distToShape(m)[0])
+    print("LED ↔ meter: %.1f mm, LED clip ↔ meter: %.1f mm (overlaps with the base: see above)"
+          % (parts["LED"].distToShape(m)[0], parts["LED_clip"].distToShape(m)[0]))
     bb = parts["Board"].BoundBox
     print("board top part Z %.1f, cover inner top Z %.1f" % (bb.ZMax, g["ZI"]))
 

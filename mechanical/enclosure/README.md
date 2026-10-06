@@ -23,7 +23,7 @@ The outside is **106.8 W × 132.8 D × 52 H mm**. It is designed for `CapacitorD
 ## Layout
 - **Front wall.** The sockets sit low (Z 15), in a 50 mm gap in front of the board.
   - **Danger LED (LED1)** at the top left, labelled "HV". It is on a 2-wire cable to J6 (JST XH) on the board.
-  - It sits in a Ø5.1 hole, pushed in from inside with its flange in a 1 mm recess. Glue it there.
+  - It sits in a 5 mm panel clip (Ø8 collar, Ø6.5 body, 7 mm long) in a Ø6.6 hole at X 14.4. The hole is centred in the 8 mm gap between the front-left cover boss and the meter. Clip in from the front, LED pushed in from inside, no glue.
   - The black **−** socket (J2 → J4) and the green **+** socket (J1 → J3) are on the right, 20.5 mm apart.
   - Each socket lines up with the inner wire entry of its MKDS terminal block. Its M4 ring lug points straight into that entry, about 7 mm short of the block. The probe wires are short and straight, so they don't cross.
   - The terminal-block screws stay free to reach from the top.
@@ -51,7 +51,8 @@ The outside is **106.8 W × 132.8 D × 52 H mm**. It is designed for `CapacitorD
 - **Below the board.** The standoffs are 6 mm tall and all the HV copper is on the underside, so **trim every lead to ≤ 3 mm**. The stock TO-220 3D model shows uncut Q2 legs reaching the floor.
 
 ## Assembly
-1. Fit the sockets (front wall) and the DC jack (left wall), with their nuts on the inside. Glue the LED into the front wall:
+1. Fit the sockets (front wall) and the DC jack (left wall), with their nuts on the inside. Push the LED clip into the front wall from the outside,
+   with its slots vertical so the body spreads up/down, away from the boss and the meter. Push the LED into it from inside:
    heat-shrink both legs, then crimp the XH housing onto ~15 cm of 1 kV silicone wire. Pin 1 = cathode (GND), pin 2 = anode.
 2. Wire the sockets to J3/J4 with 1.5 mm² silicone wire (0.6/1 kV) and M4 ring lugs, and put heat-shrink over the lugs.
 3. Press in the heat-set inserts.
@@ -69,7 +70,7 @@ The outside is **106.8 W × 132.8 D × 52 H mm**. It is designed for `CapacitorD
 - **Overlaps.** None between base and cover, or between either of them and the board, jack, sockets, meter or LED. The one exception is Q2's uncut 3D-model legs (see above).
 - **Height.** The tallest part, R_fast1, tops out at Z 47.0, and the inner face of the cover is at Z 49.6.
   - Baffle strips → R_slow: ≥ 6.6 mm.
-  - LED → meter: 2.9 mm. Both are LV.
+  - LED clip / LED flange → meter: 1.1 mm (clip → boss 0.75 mm). Both are LV; the meter only moves in Z when the cover goes on.
   - DC jack → meter: 8.3 mm.
 - **HV clearances, all at least 6 mm:**
   - Meter → socket lugs/bolts: 6.9 mm.

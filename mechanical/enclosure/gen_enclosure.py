@@ -59,10 +59,12 @@ SOCK_A_X = bxy(17.52, 0)[0]      # J3 (PROBE_A) pin at x 17.52 → green socket 
 SOCK_B_X = bxy(38.02, 0)[0]      # J4 (PROBE_B) pin at x 38.02 → black socket J2, "−"   (20.5 mm apart)
 SOCK_D, SOCK_FLAT = 12.2, 11.0   # Stäubli SLB4-G: Ø12.1+0.1 hole with a flat, 11.0+0.1 across (anti-rotation);
                                  # flat on top (short bridge when printing)
-# danger LED (LED1, 5 mm) on a 2-wire cable to J6 (XH): pushed in from inside, flange in a recess, glued.
-# Top-left of the front, between the front-left boss (X ≤ 10.4) and the meter (X ≥ 18.4).
-LED_X, LED_Z = 14.0, 38.0
-LED_D, LED_FLANGE_D, LED_FLANGE_T = 5.1, 6.1, 1.0
+# danger LED (LED1, 5 mm) on a 2-wire cable to J6 (XH), in a 5 mm panel clip: clip pushed in from the front
+# (Ø8 × 0.8 collar on the panel, Ø6.5 body 6.2 long behind it), LED pushed into it from inside.
+# Top-left of the front, centred between the front-left boss (X ≤ 10.4) and the meter (X ≥ 18.4).
+LED_X, LED_Z = 14.4, 38.0
+LED_D = 6.6                                              # hole for the Ø6.5 clip body
+CLIP_D, CLIP_L, CLIP_FL_D, CLIP_FL_T = 6.5, 7.0, 8.0, 0.8
 
 # ── Left wall: 9 V input jack + warning ──────────────────────────────────────
 # Panel DC jack 5.5×2.1, M12 body (as on SursaTensiune); in the front gap, below the meter (body X 2.4…19)
@@ -263,7 +265,6 @@ shell = outer.cut(inner)
 
 cuts = [d_hole(SOCK_A_X, SOCK_Z, SOCK_D, SOCK_FLAT, T), d_hole(SOCK_B_X, SOCK_Z, SOCK_D, SOCK_FLAT, T),
         cyl(LED_D, V(LED_X, -1, LED_Z), V(0, 1, 0), T + 2),
-        cyl(LED_FLANGE_D, V(LED_X, T - LED_FLANGE_T, LED_Z), V(0, 1, 0), LED_FLANGE_T + 1),
         cyl(JACK_D, V(-1, JACK_Y, JACK_Z), V(1, 0, 0), T + 2)]
 # top: meter window + screw holes, light pipe bore, vent slots
 cuts.append(box(MET_X - MET_WIN[0] / 2, MET_X + MET_WIN[0] / 2, MET_Y - MET_WIN[1] / 2, MET_Y + MET_WIN[1] / 2,
