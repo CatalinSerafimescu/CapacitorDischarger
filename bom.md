@@ -13,7 +13,7 @@
 | R_sig_bot1, R_sig_bot2 | 2 | Resistor, metal film, 100 Ω, 0.6 W, ±1%, 50 ppm/°C, axial THT | YAGEO MF0207FTE52-100R  (TME MF0207FTE-100R; any 100 Ω 1% metal film fits) |
 | DVM1 | 1 | Digital panel meter, 3½-digit LCD, 13 mm digits, 199.9 mV full scale, input >100 MΩ, ±0.5 %, 7–11 V DC supply at ~1 mA, decimal point by wire jumper, 68×44 mm | AXIOMET PM-128  (TME PAN.PM128) — 1 needed, 2nd optional as a spare |
 | — | 1 | Enclosure, 3D-printed PETG (not PLA), 106.8 × 132.8 × 52 mm: base + screwed top cover, holding the single-sided PCB, PM-128, front-panel LED, 2 banana sockets and the 9 V DC jack | Self-printed — mechanical/enclosure/ (gen_enclosure.py → Enclosure_base / Enclosure_cover .stl/.step) |
-| — | 1 | 4× M3 heat-set insert (Ø4.0 hole, ≤ 6 mm long), 4× M3×10 socket-head screw (cover), 2× M3×12 nylon screw + 2× M3 nut (PCB H1/H3), 4 stick-on rubber feet | Any — M3 hardware, PMMA rod Ø5 |
+| — | 1 | 4× M3×10 socket-head screw + 4× M3 steel hex nut DIN 934 (cover, captive in the boss slots), 2× M3×10 nylon pan-head screw + 2× M3 nylon nut (PCB H1/H3), 4 stick-on rubber feet | Any — M3 hardware, PMMA rod Ø5 |
 
 ## Sourced (In Hand)
 

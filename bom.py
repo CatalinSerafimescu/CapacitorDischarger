@@ -516,7 +516,7 @@ BOM = [
         "refs": [],
         "value": "Enclosure hardware",
         "schematic_label": None,
-        "description": "4× M3 heat-set insert (Ø4.0 hole, ≤ 6 mm long), 4× M3×10 socket-head screw (cover), 2× M3×12 nylon screw + 2× M3 nut (PCB H1/H3), 4 stick-on rubber feet",
+        "description": "4× M3×10 socket-head screw + 4× M3 steel hex nut DIN 934 (cover, captive in the boss slots), 2× M3×10 nylon pan-head screw + 2× M3 nylon nut (PCB H1/H3), 4 stick-on rubber feet",
         "part_number": "Any — M3 hardware, PMMA rod Ø5",
         "qty": 1,
         "status": "buy",

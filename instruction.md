@@ -36,9 +36,9 @@ This guide covers building, wiring, testing, calibrating and using the unit.
 
 Every part is in [bom.md](bom.md) with its inventory ID. The **still to buy** list is
 [TO_BUY_list.csv](TO_BUY_list.csv). It includes the fuse, the CSO clips, TF1, the HLMP-4700 LED and the enclosure hardware:
-- 4× M3 heat-set inserts.
-- 4× M3×10 screws.
-- 2× M3×12 **nylon** screws and nuts.
+- 4× M3 steel hex nuts (DIN 934) for the cover.
+- 4× M3×10 socket-head screws.
+- 2× M3×10 **nylon** screws and nuts.
 - Rubber feet.
 
 **Wire:**
@@ -49,7 +49,6 @@ Every part is in [bom.md](bom.md) with its inventory ID. The **still to buy** li
 **Tools:**
 - UV exposure box, NaOH developer, etchant, 0.8–3.4 mm drills and a saw or rotary tool for the slot.
 - Soldering iron, multimeter, JST XH crimp tool and heat-shrink.
-- Soldering iron tip for the heat-set inserts.
 
 ---
 
@@ -135,10 +134,9 @@ Use [KiCAD/fab_1s/1S_assembly_top.pdf](KiCAD/fab_1s/1S_assembly_top.pdf) as the 
 Full details are in [mechanical/enclosure/README.md](mechanical/enclosure/README.md).
 1. **Print.** Print `Enclosure_base.stl` floor-down and `Enclosure_cover.stl` upside-down, both in **PETG or ASA (not PLA)**, with no supports. Use at least 3 perimeters and 25 % infill.
 2. **Test print (recommended).** Print the front-right corner first to check the socket fit and how the board hooks snap.
-3. **Heat-set inserts.** Press the 4 M3 inserts into the corner bosses with the soldering iron.
+3. **Cover nuts.** Push an M3 nut into the slot in each of the 4 bosses, lying flat with two flats along the slot walls, until it stops under the screw hole. A drop of glue or a strip of tape over the slot mouth keeps it from falling out while the cover is off. The front slots open towards the back, the rear ones towards the front.
 4. **Check before printing:**
    - **PM-128:** measure yours. The script assumes 70 × 40 mm, 23 mm deep, a 44.5 × 19.7 mm window and holes 57.15 mm apart (`MET*` in `gen_enclosure.py`).
-   - **Insert hole:** it is Ø4.0 × 6.5 mm (`INS_D`, `INS_L`).
 
 ---
 
@@ -154,7 +152,7 @@ Full details are in [mechanical/enclosure/README.md](mechanical/enclosure/README
    - Heat-shrink both legs.
    - Crimp the XH housing onto about 15 cm of 1 kV wire: **pin 1 = cathode (GND), pin 2 = anode.**
    - Push the 5 mm panel clip into the front-wall hole from the outside, with its slots vertical. Then push the LED into it from inside until it snaps in.
-4. **Board:** put it on the standoffs and press it down until the 3 hooks click. Fit the two **nylon** M3×12 screws (H1, H3), with nuts in the hex pockets under the floor.
+4. **Board:** put it on the standoffs and press it down until the 3 hooks click. Fit the two **nylon** M3×10 screws (H1, H3), with nuts in the hex pockets under the floor.
 5. **Connect the probe wires** into J3/J4 and tighten the screws. They stay reachable from the top.
 6. **Plug the LED into J6** (rear-left). Run the cable up and along the left wall, above the Q2 heatsink, then down to the front panel.
 7. **PM-128:**

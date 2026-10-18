@@ -13,7 +13,7 @@ Parts
 - Base  = open box: floor + all 4 walls. Board on 2 screwed standoffs (H1, H3) + 4 support posts + 3 snap hooks,
           banana sockets and DC jack in the front wall. Everything is reachable from the top.
 - Cover = top plate with the PM-128 meter, LED light pipe and baffled vents; lip inside the walls,
-          4 × M3 screws into heat-set inserts (a tool is needed to open it — HV inside).
+          4 × M3 screws into captive nuts slid into the bosses (a tool is needed to open it — HV inside).
 Print: Base floor-down; Cover upside-down (top on the bed). No slicer supports.
 """
 import math
@@ -103,12 +103,15 @@ VENT_W, VENT_GAP, VENT_M, VENT_STRIP_T = 2.0, 3.0, 2.8, 1.2
 
 LIP_GAP, LIP_W, LIP_H = 0.2, 1.6, 3.5    # clearance to the walls, lip width, depth below ZS
 BOSS = 8.0                               # screw boss footprint
-INS_D, INS_L = 4.0, 6.5                  # M3 heat-set insert (Ø4.0 hole, ≤ 6 mm long); cover screws M3×10
+BOSS_L = 8.0                             # solid boss below its top (screw hole depth); cover screws M3×10
+NUT_ROOF, NUT_SLOT_H = 2.2, 2.8          # M3 nut (5.5 AF × 2.4) slot: plastic above it, slot height
+NUT_STOP = 3.3                           # slot end behind the screw axis (≥ half the 6.35 across-corners)
 CBORE_D, CBORE_H = 6.2, 3.0              # counterbore for the M3 socket head
-# boss centres and the walls each boss hangs from (front-left / front-right / rear-right corners; the
-# rear-left one moves along the rear wall to X 20, clear of the LED cable rising from J6 in that corner)
-BOSSES = [(T + BOSS / 2, T + BOSS / 2, "xy"), (W - T - BOSS / 2, T + BOSS / 2, "Xy"),
-          (W - T - BOSS / 2, D - T - BOSS / 2, "XY"), (20.0, D - T - BOSS / 2, "Y")]
+# boss centres, the walls each boss hangs from and the Y direction its nut slot opens (front-left / front-right /
+# rear-right corners; the rear-left one moves along the rear wall to X 20, clear of the LED cable rising from J6
+# in that corner). Front slots open rearwards, away from the LED clip; rear ones open forwards.
+BOSSES = [(T + BOSS / 2, T + BOSS / 2, "xy", 1), (W - T - BOSS / 2, T + BOSS / 2, "Xy", 1),
+          (W - T - BOSS / 2, D - T - BOSS / 2, "XY", -1), (20.0, D - T - BOSS / 2, "Y", -1)]
 
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
@@ -294,16 +297,19 @@ for by in SIDE_RIBS_Y:
     adds.append(box(T - 0.1, BX0 - 0.3, y - 2, y + 2, ZB - 3, ZT + 1.5))
     adds.append(box(BX0 + BOARD_W + 0.3, W - T + 0.1, y - 2, y + 2, ZB - 3, ZT + 1.5))
 bz1 = ZS - LIP_H - 0.1                                  # boss top (0.1 under the cover's lip blocks)
-bz0 = bz1 - INS_L - 1.5 - BOSS                          # underside meets the walls here
-for (x, y, walls) in BOSSES:
+bz0 = bz1 - BOSS_L - BOSS                               # underside meets the walls here
+for (x, y, walls, _) in BOSSES:
     adds.append(boss(x, y, walls, bz0, bz1))
 base = base.fuse(adds)
 bcuts = []
 for (x, y) in BOARD_SCREWS:
     bcuts.append(cyl(M3_CLR, V(x, y, -1), V(0, 0, 1), T + STANDOFF_H + 2))
     bcuts.append(hex_prism(x, y, M3_NUT_F, -1, M3_NUT_T))
-for (x, y, _) in BOSSES:
-    bcuts.append(cyl(INS_D, V(x, y, bz1 - INS_L), V(0, 0, 1), INS_L + 1))
+nz1 = bz1 - NUT_ROOF                                   # nut slot top (bridged when printing)
+for (x, y, _, sy) in BOSSES:
+    bcuts.append(cyl(M3_CLR, V(x, y, bz1 - BOSS_L), V(0, 0, 1), BOSS_L + 1))
+    ya, yb = sorted((y - sy * NUT_STOP, y + sy * (BOSS / 2 + 1)))   # flat stop behind the axis → out past the boss
+    bcuts.append(box(x - M3_NUT_F / 2, x + M3_NUT_F / 2, ya, yb, nz1 - NUT_SLOT_H, nz1))
 base = base.cut(bcuts[0].fuse(bcuts[1:]))
 base = engrave_front(base, "+", SOCK_A_X + 12.5, SOCK_Z, 7)
 base = engrave_front(base, "\u2212", SOCK_B_X - 12.5, SOCK_Z, 7)
@@ -318,7 +324,7 @@ lip_out = rrect(T + LIP_GAP, W - T - LIP_GAP, T + LIP_GAP, D - T - LIP_GAP, R - 
 lip = lip_out.cut(rrect(T + LIP_GAP + LIP_W, W - T - LIP_GAP - LIP_W, T + LIP_GAP + LIP_W, D - T - LIP_GAP - LIP_W,
                         R - T - LIP_GAP - LIP_W, lz0 - 1, ZS + 1))
 cadds = [lip]
-for (x, y, _) in BOSSES:
+for (x, y, _, _) in BOSSES:
     cadds.append(box(x - BOSS / 2, x + BOSS / 2, y - BOSS / 2, y + BOSS / 2, lz0, ZS + 0.1).common(lip_out))
 sz1 = ZI - VENT_GAP
 for x in VENT_X:
@@ -329,7 +335,7 @@ for x in VENT_X:
     cadds.append(box(x - hw, x + hw, y1, y1 + 1.2, sz1 - VENT_STRIP_T, ZI + 0.1))
 cover = cover.fuse(cadds)
 ccuts = []
-for (x, y, _) in BOSSES:
+for (x, y, _, _) in BOSSES:
     ccuts.append(cyl(M3_CLR, V(x, y, lz0 - 1), V(0, 0, 1), H))
     ccuts.append(cyl(CBORE_D, V(x, y, H - CBORE_H), V(0, 0, 1), CBORE_H + 1))
 cover = cover.cut(ccuts[0].fuse(ccuts[1:]))

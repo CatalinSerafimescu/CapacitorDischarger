@@ -38,14 +38,15 @@ The outside is **106.8 W × 132.8 D × 52 H mm**. It is designed for `CapacitorD
 
   | Feature | Where | Job |
   |---|---|---|
-  | 2 standoffs (6 mm) | H1, H3 | M3×12 **nylon** screws from the top, nuts in hex pockets under the floor |
+  | 2 standoffs (6 mm) | H1, H3 | M3×10 **nylon** screws from the top, nuts in hex pockets under the floor (×12 would stick out 2 mm under the floor) |
   | 4 support posts | under J3/J4 (screwdriver force) and under the two F1 clip centres (pushing the fuse in) | carry the load |
   | 3 snap hooks | front-left, front-right and rear-left corners | a 45° ledge under the copper-free edge, and a nose 0.8 mm over the board top |
   | 4 side ribs | side walls | locate the board in X with 0.3 mm play |
 
   - The board clicks down into the hooks. To lift it out, take out the two screws and push the hooks outwards.
   - The board's top side has no copper, so the hooks only touch FR4. Leave the F1 clip centre holes empty, because the posts sit under them.
-- **Cover fixing.** 4 × **M3×10** go into M3 heat-set inserts (Ø4.0 × 6.5 mm holes) in bosses hanging from the walls. The bosses have a 45° underside, so they print without support.
+- **Cover fixing.** 4 × **M3×10** socket-head screws go into M3 hex nuts captive in the bosses hanging from the walls. The bosses have a 45° underside, so they print without support.
+  - Each boss has a horizontal nut slot (5.8 wide × 2.8 high, 2.2 mm under the boss top) that ends in a flat stop under the screw hole. The front slots open towards the back (away from the LED clip), the rear ones towards the front. The screw goes right through the nut and ends 1.6 mm above the bottom of its hole; M3×8 does not get through the whole nut, M3×12 bottoms out.
   - Three bosses are in corners. The fourth sits on the rear wall at X 20, so the LED cable can rise from J6 in that corner.
   - Opening the box needs a tool, which is right for an HV device. The magnets aren't needed.
 - **Below the board.** The standoffs are 6 mm tall and all the HV copper is on the underside, so **trim every lead to ≤ 3 mm**. The stock TO-220 3D model shows uncut Q2 legs reaching the floor.
@@ -55,7 +56,7 @@ The outside is **106.8 W × 132.8 D × 52 H mm**. It is designed for `CapacitorD
    with its slots vertical so the body spreads up/down, away from the boss and the meter. Push the LED into it from inside:
    heat-shrink both legs, then crimp the XH housing onto ~15 cm of 1 kV silicone wire. Pin 1 = cathode (GND), pin 2 = anode.
 2. Wire the sockets to J3/J4 with 1.5 mm² silicone wire (0.6/1 kV) and M4 ring lugs, and put heat-shrink over the lugs.
-3. Press in the heat-set inserts.
+3. Push an M3 nut into each boss slot, lying flat with two flats along the slot walls, until it stops under the screw hole.
 4. Put the board on the standoffs, let it click into the hooks, and fit the two nylon screws. Plug the LED into J6
    (rear-left). Run its cable up and along the left wall, above the Q2 heatsink, then down to the front.
 5. Fit the meter under the cover: two screws through the cover into the bezel. Wire the meter:
@@ -81,5 +82,5 @@ The outside is **106.8 W × 132.8 D × 52 H mm**. It is designed for `CapacitorD
 ## Check before printing
 - **PM-128 (VERIFY):** 70 × 40 mm bezel, 23 mm deep, window 1.75 × 0.775 in, Ø3.2 holes 2.25 in apart (MPJA PM128 sheet). Measure your meter; the values are `MET`, `MET_WIN` and `MET_HOLE_*`.
 - **Stäubli SLB4-G:** Ø12.1 hole with a flat 11.0 mm across, printed with the flat on top. The socket and nut in `assembly.py` are stand-ins; the real nut size isn't on the datasheet.
-- **Heat-set inserts:** use one that fits a Ø4.0 hole and is ≤ 6 mm long. Otherwise change `INS_D` / `INS_L`. With `INS_D = 2.6` the screws thread straight into the PETG.
+- **Cover nuts:** the slots are sized for DIN 934 M3 nuts (5.5 AF × 2.4). If yours are loose or tight, change `M3_NUT_F` (also the floor pockets) or `NUT_SLOT_H`.
 - **Test print:** print the front-right corner first (sockets, hook, boss) to check the socket fit and the hook snap.
