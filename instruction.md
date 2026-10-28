@@ -57,7 +57,7 @@ Every part is in [bom.md](bom.md) with its inventory ID. The **still to buy** li
 The board is **single-sided**: copper only on the bottom, no vias, no jumpers. Parts go on the top.
 
 - **Traces:** HV tracks are 2 mm, the divider/LED chains 1.2 mm and the LV tracks 1 mm (one LED link is 0.8 mm), so they survive toner transfer and etching.
-- **GND pour:** the rest of the bottom is copper. It keeps 6 mm from every HV track and pad, and 0.4 mm from LV ones. You only etch away about 40 % of the board, which makes the etch shorter and protects the narrow traces from undercutting.
+- **GND pour:** the rest of the bottom is copper. It keeps 6 mm from every HV track and pad, and 1 mm from LV ones (no gap or copper neck under 1 mm, so the toner holds). You only etch away about 40 % of the board, which makes the etch shorter and protects the narrow traces from undercutting.
 
 **Toner transfer (blue paper):**
 1. Print page 1, left image (**B.Cu POSITIVE**), of [KiCAD/fab_1s/1S_films_1to1.pdf](KiCAD/fab_1s/1S_films_1to1.pdf) on the blue paper. Use a laser printer at **100 %**, **not mirrored**, with toner density at maximum.

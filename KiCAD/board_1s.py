@@ -56,7 +56,7 @@ P = {
     # indicator side
     "D_LED1": (94.5, 57.5, 270), "J6": (94.5, 69.96, 90), "D_clamp2": (89.0, 67.0, 270),
     "R_sig_bot1": (80.0, 67.5, 270), "R_sig_bot2": (76.0, 67.5, 270),
-    "D_clamp1": (72.0, 70.5, 90), "J5": (66.0, 70.0, 90),
+    "D_clamp1": (72.0, 70.5, 90), "J5": (66.0, 69.6, 90),   # 1 mm from the GND ring (toner transfer)
     "H1": (5.5, 69.5, 0), "H3": (94.0, 40.0, 0),     # nylon M3; H2/H4 don't fit on this board
 }
 for i in range(5):   # staircases, 5 mm right and 5.08 mm down per resistor
@@ -94,15 +94,16 @@ R = [
       for i in range(4)],
     *[(f"Net-(R_LED{i + 1}-Pad2)", SW, [(75.0 + 5 * i, 49.08 + 5.08 * i), (80.0 + 5 * i, 49.08 + 5.08 * i)])
       for i in range(3)],
-    ("Net-(D_LED1-K)", 0.8, [(90.0, 64.32), (94.5, 57.5)]),          # 0.8: passes R_LED4 pad 1 at 1.5 mm
+    # bend between R_LED4 pad 1 (150 V, 1.5 mm) and D_LED1 pad 2 (LV, 1 mm) leaves room for 1.2 mm
+    ("Net-(D_LED1-K)", SW, [(90.0, 64.32), (92.4, 61.0), (94.5, 57.5)]),
     ("/LED_A", LW, [(94.5, 62.58), (94.5, 67.46)]),
     ("/LED_A", LW, [(89.0, 67.0), (94.5, 67.46)]),
     ("/GND", LW, [(94.5, 69.96), (94.5, 72.5)]),
     ("/GND", LW, [(89.0, 72.08), (89.0, 72.5)]),
-    ("/SIGOUT", LW, [(86.0, 69.4), (84.0, 67.5), (80.0, 67.5), (76.0, 67.5), (72.0, 67.5), (66.0, 67.5),
-                     (66.0, 70.0)]),
+    ("/SIGOUT", LW, [(86.0, 69.4), (84.0, 67.5), (80.0, 67.5), (76.0, 67.5), (72.0, 67.5), (72.0, 67.0),
+                     (66.0, 67.0), (66.0, 69.6)]),   # y 67.0: 1 mm from J5 pad 2
     ("/SIGOUT", LW, [(72.0, 67.5), (72.0, 65.42)]),
-    *[("/GND", LW, [(x, y), (x, 72.5)]) for x, y in ((80.0, 70.04), (76.0, 70.04), (72.0, 70.5), (68.54, 70.0))],
+    *[("/GND", LW, [(x, y), (x, 72.5)]) for x, y in ((80.0, 70.04), (76.0, 70.04), (72.0, 70.5), (68.54, 69.6))],
     # gate drive
     ("/BASE_DIV", LW, [(56.0, 15.84), (56.0, 12.0), (52.0, 10.0)]),
     ("/BASE_DIV", LW, [(56.0, 12.0), (58.0, 9.0)]),
@@ -136,8 +137,12 @@ def main():
     for fp in board.GetFootprints():
         fp.Reference().SetLayer(pcbnew.F_Fab)
     # GND pour over the whole bottom: less copper to etch away (thin traces survive), low-impedance return.
-    # Filled by kicad-cli below with the voltage-aware rules: 6 mm from HV copper, 0.4 mm from LV.
-    G.add_zone(board, board.FindNet("/GND"), pcbnew.B_Cu, 0.5, 0.5, G.W - 0.5, G.H - 0.5)
+    # Filled by kicad-cli below with the voltage-aware rules: 6 mm from HV copper, 1 mm from LV.
+    z = G.add_zone(board, board.FindNet("/GND"), pcbnew.B_Cu, 0.5, 0.5, G.W - 0.5, G.H - 0.5)
+    # toner transfer: 0.4 mm gaps and slivers flake off, so ≥ 1 mm gaps, thermal gaps and pour necks
+    z.SetLocalClearance(pcbnew.FromMM(1.0))
+    z.SetThermalReliefGap(pcbnew.FromMM(1.0))
+    z.SetMinThickness(pcbnew.FromMM(1.0))
     pcbnew.SaveBoard(G.PCB, board)
     nets = [n for n in board.GetNetsByName().keys()]
     open(os.path.join(HERE, G.NAME + ".kicad_dru"), "w", encoding="utf8", newline="\n").write(

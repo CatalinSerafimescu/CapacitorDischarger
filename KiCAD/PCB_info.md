@@ -31,8 +31,8 @@ Both pass DRC with schematic parity: **0 errors, 0 unconnected, 0 parity issues*
 **Single-sided layout (100 × 75).**
 - **Probes:** they enter at the top edge (J3 = PROBE_A, J4 = PROBE_B, both poles of each block on the same net).
 - **Bridge and F1:** the bridge is four vertical diodes right below the probes, with the GND anodes on the outside. F1 sits below it, and its right clip is the HVp hub.
-- **GND ring and pour:** a 2 mm GND ring along the board edge joins both bridge anodes and every return. This is what lets a single layer work without jumpers. A GND pour fills the rest of the bottom, using the voltage-aware rules (6 mm from HV copper, 0.4 mm from LV). It cuts the copper to etch to about 40 % for home etching, and gives a low-impedance return. `board_1s.py` fills it with `kicad-cli pcb drc --refill-zones --save-board`.
-- **Track widths for home etching:** HV 2 mm, chains 1.2 mm, LV 1 mm. One exception: the D_LED1-K link is 0.8 mm, to keep 1.5 mm from R_LED4.
+- **GND ring and pour:** a 2 mm GND ring along the board edge joins both bridge anodes and every return. This is what lets a single layer work without jumpers. A GND pour fills the rest of the bottom, using the voltage-aware rules (6 mm from HV copper, 1 mm from LV; 1 mm thermal gaps and no pour neck under 1 mm, so toner transfer holds). It cuts the copper to etch to about 40 % for home etching, and gives a low-impedance return. `board_1s.py` fills it with `kicad-cli pcb drc --refill-zones --save-board`.
+- **Track widths for home etching:** HV 2 mm, chains 1.2 mm, LV 1 mm. The D_LED1-K link is 1.2 mm with one bend, to keep 1.5 mm from R_LED4 pad 1 (150 V).
 - **Top-right pocket:** R_fast1 standing, with TF1 standing 0.5 mm from its body (clamp them together). Q2 has the HS-S01 slipped onto its tab. The gate drive is LV and runs along the GND ring. R1 and R5 stand on their LV pad, with the bare HVp lead across a 17.5 × 3 mm slot.
 - **Bottom-left:** R_slow1–5 standing, 2.3 mm air between bodies.
 - **Bottom-right:** the divider and LED chains as staircases, then D_LED1, J6 (XH, front-panel LED cable) with its clamp zener D_clamp2, the divider bottom, D_clamp1 and J5.
