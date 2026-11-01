@@ -38,7 +38,7 @@ The outside is **106.8 W × 132.8 D × 52 H mm**. It is designed for `CapacitorD
 
   | Feature | Where | Job |
   |---|---|---|
-  | 2 standoffs (6 mm) | H1, H3 | M3×10 **nylon** screws from the top, nuts in hex pockets under the floor (×12 would stick out 2 mm under the floor) |
+  | 2 standoffs (6 mm, 45° flare to Ø11.5 at the floor) | H1, H3 | M3×10 **nylon** screws from the top, nuts in hex pockets under the floor (×12 would stick out 2 mm under the floor) |
   | 4 support posts | under J3/J4 (screwdriver force) and under the two F1 clip centres (pushing the fuse in) | carry the load |
   | 3 snap hooks | front-left, front-right and rear-left corners | a 45° ledge under the copper-free edge, and a nose 0.8 mm over the board top |
   | 4 side ribs | side walls | locate the board in X with 0.3 mm play |

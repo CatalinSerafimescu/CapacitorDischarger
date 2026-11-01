@@ -77,6 +77,8 @@ WARN_TRI = (JACK_Y, 33.0, 13.0)                  # warning triangle above the ja
 # ── Board fixing ─────────────────────────────────────────────────────────────
 BOARD_SCREWS = [bxy(5.5, 69.5), bxy(94.0, 40.0)]       # H1, H3: M3 nylon screws, nuts in hex pockets under the floor
 STANDOFF_D = 6.5
+STANDOFF_FLARE = 2.5             # 45° flare at the standoff foot: Ø11.5 on the floor, so it stands on solid floor
+                                 # around the nut pocket (6.7 across corners > Ø6.5 — without it only slivers held it)
 SUPPORTS = [bxy(12.76, 3.5), bxy(33.26, 3.5),          # under J3 / J4 (screwdriver force on the terminals)
             bxy(22.5, 40.0), bxy(52.5, 40.0)]          # under the F1 clip centres (pushing the fuse in)
 SUPPORT_D = 5.0
@@ -287,6 +289,8 @@ base = shell.cut(box(-1, W + 1, -1, D + 1, ZS, H + 1)).cut(rrect(T, W - T, T, D 
 adds = []
 for (x, y) in BOARD_SCREWS:
     adds.append(cyl(STANDOFF_D, V(x, y, T - 0.1), V(0, 0, 1), STANDOFF_H + 0.1))
+    adds.append(Part.makeCone(STANDOFF_D / 2 + STANDOFF_FLARE + 0.1, STANDOFF_D / 2, STANDOFF_FLARE + 0.1,
+                              V(x, y, T - 0.1)))
 for (x, y) in SUPPORTS:
     adds.append(cyl(SUPPORT_D, V(x, y, T - 0.1), V(0, 0, 1), STANDOFF_H + 0.1))
 for bx, wdt, edge in HOOKS:
