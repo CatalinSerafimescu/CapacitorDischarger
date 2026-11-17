@@ -6,22 +6,19 @@
 
 | Ref(s) | Qty | Description | Part Number / Suggestion |
 |--------|-----|-------------|--------------------------|
-| F1 | 1 | Fuse, 2 A, 1000 VDC, gR (super-fast, full-range), 30 kA breaking capacity, ceramic, 10.3×38 mm cartridge | ESKA 1038820  (TME 1038820, in stock 2026-10-01; alt DF ELECTRIC 491602, Littelfuse KLKD002.T) — buy 2 (1 spare) |
-| — | 2 | Fuse clip, PCB through-hole solder, for 10.3×38 mm cartridge fuses, silver-plated copper, 1500 VAC/VDC, 32 A | SCHURTER 0751.0506  (CSO, TME 0751.0506) — 2 per fuse |
-| TF1 | 1 | Thermal cutoff (thermal fuse), one-shot, organic-pellet type, Tf 133 °C, 15 A / 250 VAC, metal case, axial leads | SCHOTT SEFUSE SF129R0  (TME SF129R0; alt AUPO BF133) — buy 2 (1 spare) |
-| LED1 | 1 | LED, red, 5 mm (T-1¾), low-current type (specified at 2 mA), Vf ≈ 1.8–2 V, diffused, THT | HLMP-4700  (Broadcom, low-current red, TME HLMP-4700)  — fallback: kit 5 mm red LED (ComponentsDB) |
-| R_sig_bot1, R_sig_bot2 | 2 | Resistor, metal film, 100 Ω, 0.6 W, ±1%, 50 ppm/°C, axial THT | YAGEO MF0207FTE52-100R  (TME MF0207FTE-100R; any 100 Ω 1% metal film fits) |
-| DVM1 | 1 | Digital panel meter, 3½-digit LCD, 13 mm digits, 199.9 mV full scale, input >100 MΩ, ±0.5 %, 7–11 V DC supply at ~1 mA, decimal point by wire jumper, 68×44 mm | AXIOMET PM-128  (TME PAN.PM128) — 1 needed, 2nd optional as a spare |
 | — | 1 | Enclosure, 3D-printed PETG (not PLA), 106.8 × 132.8 × 52 mm: base + screwed top cover, holding the single-sided PCB, PM-128, front-panel LED, 2 banana sockets and the 9 V DC jack | Self-printed — mechanical/enclosure/ (gen_enclosure.py → Enclosure_base / Enclosure_cover .stl/.step) |
-| — | 1 | 4× M3×10 socket-head screw + 4× M3 steel hex nut DIN 934 (cover, captive in the boss slots), 2× M3×10 nylon pan-head screw + 2× M3 nylon nut (PCB H1/H3), 4 stick-on rubber feet | Any — M3 hardware, PMMA rod Ø5 |
+| — | 1 | 2× M3×10 nylon pan-head screw + 2× M3 nylon nut (PCB H1/H3), 4 stick-on rubber feet | Any |
 
 ## Sourced (In Hand)
 
 | Ref(s) | Qty | Part Number |
 |--------|-----|-------------|
 | D1, D2, D3, D4 | 4 | 1N4007  (Diotec, Mouser 637-1N4007) |
+| F1 | 1 | ESKA 1038820  (TME 1038820, ComponentsDB comp_238 — 2 in hand, 1 spare; alt DF ELECTRIC 491602, Littelfuse KLKD002.T) |
+| — | 2 | PCB fuse clip, 10.3×38 mm — SCHURTER 0751.0506  (CSO, TME 0751.0506, ComponentsDB comp_239 — 5 in hand) — 2 per fuse |
 | R_slow1, R_slow2, R_slow3, R_slow4, R_slow5 | 5 | 45F4K7E  (Ohmite, Mouser 588-45F4K7E) |
-| R_fast | 1 | 27J50RE  (Ohmite, Mouser 588-27J50RE) |
+| R_fast1 | 1 | 27J50RE  (Ohmite, Mouser 588-27J50RE) |
+| TF1 | 1 | SCHOTT SEFUSE SF129R0  (TME SF129R0, ComponentsDB comp_240 — 3 in hand; alt AUPO BF133) |
 | Q2 | 1 | STP10NK80Z  (alt: STF7NM80, IXTP2N80) |
 | — | 1 | TO-220 insulating mounting set — Fischer Elektronik MST 220  (ComponentsDB; alt: Stonecold TO220-SET) |
 | HS1 | 1 | Stonecold HS-S01  (TME, ComponentsDB comp_225 — 1 left) |
@@ -33,11 +30,14 @@
 | R2 | 1 | MFR-25FTE52-10K  (YAGEO, Mouser 603-MFR-25FTE52-10K) |
 | R3 | 1 | MFR-25FTE52-10K  (YAGEO, Mouser 603-MFR-25FTE52-10K) |
 | R_LED1, R_LED2, R_LED3, R_LED4 | 4 | MF006FF1003A50 |
-| D_LED | 1 | BZX55C8V2-TAP  (Vishay, Mouser 78-BZX55C8V2-TAP) |
+| D_LED1 | 1 | BZX55C8V2-TAP  (Vishay, Mouser 78-BZX55C8V2-TAP) |
+| LED1 | 1 | HLMP-4700  (Broadcom, low-current red, TME HLMP-4700, ComponentsDB comp_243) |
 | J6 | 1 | B2B-XH-A + XHP-2  (ComponentsDB comp_156, XH2.54 connector kit) |
 | D_clamp2 | 1 | BZX55C8V2-TAP  (ComponentsDB comp_126, same as D_LED) |
 | R_sig1, R_sig2, R_sig3, R_sig4, R_sig5 | 5 | MF006FF1003A50 |
-| D_clamp | 1 | 1N4007  (spare from the bridge batch, ComponentsDB) |
+| R_sig_bot1, R_sig_bot2 | 2 | YAGEO MF0207FTE52-100R  (TME MF0207FTE-100R, ComponentsDB comp_242) |
+| D_clamp1 | 1 | 1N4007  (spare from the bridge batch, ComponentsDB) |
+| DVM1 | 1 | AXIOMET PM-128  (TME PAN.PM128, ComponentsDB comp_241) |
 | J5 | 1 | TE narrow flat pin header 2P  (ComponentsDB) |
 | BT1 | 1 | Mufa DC mama 5.5x2.1 (ComponentsDB comp_231, same jack as SursaTensiune J5) |
 | C_byp2 | 1 | K104K10X7RF5UH5 |
@@ -45,6 +45,9 @@
 | J2 | 1 | SLB4-G-22 |
 | J3, J4 | 2 | MKDS5/2-9.5 |
 | — | 1 | Silicone wire 1.0 mm², red + black — LAPP 1249584 (red) + 1249524 (black)  (TME HEAT180SIF-A1.0RD/BK, ComponentsDB) |
+| — | 1 | Enclosure hardware, steel — ComponentsDB comp_341 (M3×10 hex socket) + comp_338 (M3 nut) |
+| — | 1 | LED panel clip, 5 mm — ComponentsDB comp_259 |
+| — | 1 | Thermal paste — AG TermoPasty H 25 g  (TME PASTA-SILH-25, ComponentsDB comp_245) |
 | — | 1 | CT2900A test leads — CT2900A |
 
 ## Sourced — Not Used in Current Revision

@@ -2511,7 +2511,7 @@
 				)
 			)
 		)
-		(property "Description" "Banana socket, 4 mm, 1 kV, 32 A, green, panel-mount, Ø12.2 mm hole"
+		(property "Description" "Banana socket, 4 mm, 1 kV, 32 A, red, panel-mount, Ø12.2 mm hole"
 			(at 22.86 33.02 0)
 			(hide yes)
 			(show_name no)
@@ -3522,7 +3522,7 @@
 				)
 			)
 		)
-		(property "MPN" "ESKA 1038820  (TME 1038820, in stock 2026-10-01; alt DF ELECTRIC 491602, Littelfuse KLKD002.T) — buy 2 (1 spare)"
+		(property "MPN" "ESKA 1038820  (TME 1038820, ComponentsDB comp_238 — 2 in hand, 1 spare; alt DF ELECTRIC 491602, Littelfuse KLKD002.T)"
 			(at 111.76 38.1 0)
 			(hide yes)
 			(show_name no)
@@ -4266,7 +4266,7 @@
 				)
 			)
 		)
-		(property "MPN" "SCHOTT SEFUSE SF129R0  (TME SF129R0; alt AUPO BF133) — buy 2 (1 spare)"
+		(property "MPN" "SCHOTT SEFUSE SF129R0  (TME SF129R0, ComponentsDB comp_240 — 3 in hand; alt AUPO BF133)"
 			(at 218.44 38.1 0)
 			(hide yes)
 			(show_name no)
@@ -5278,7 +5278,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100nF 50V"
+		(property "Value" "100nF 100V"
 			(at 93.98 118.11 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5311,7 +5311,7 @@
 				)
 			)
 		)
-		(property "Description" "Capacitor, ceramic, 100 nF, 50 V, X7R, ±10%, 5 mm pitch, THT"
+		(property "Description" "Capacitor, ceramic, 100 nF, 100 V, X7R, ±10%, 5 mm pitch, THT"
 			(at 91.44 116.84 0)
 			(hide yes)
 			(show_name no)
@@ -5914,7 +5914,7 @@
 				)
 			)
 		)
-		(property "MPN" "HLMP-4700  (Broadcom, low-current red, TME HLMP-4700)  — fallback: kit 5 mm red LED (ComponentsDB)"
+		(property "MPN" "HLMP-4700  (Broadcom, low-current red, TME HLMP-4700, ComponentsDB comp_243)"
 			(at 142.24 144.78 0)
 			(hide yes)
 			(show_name no)
@@ -6035,7 +6035,7 @@
 				)
 			)
 		)
-		(property "Description" "Diode, rectifier, 1 A, 1000 V PIV, DO-41, THT"
+		(property "Description" "Zener diode, 8.2 V, 0.5 W, DO-35, THT"
 			(at 160.02 144.78 0)
 			(hide yes)
 			(show_name no)
@@ -6046,7 +6046,7 @@
 				)
 			)
 		)
-		(property "MPN" "1N4007  (spare from the bridge batch, ComponentsDB)"
+		(property "MPN" "BZX55C8V2-TAP  (ComponentsDB comp_126, same as D_LED)"
 			(at 160.02 144.78 0)
 			(hide yes)
 			(show_name no)
@@ -6167,7 +6167,7 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Wire-to-board header, JST XH (2.5 mm) / XH2.54, 2-pin, vertical, THT + housing and 2 crimp contacts (LED1 cable)"
 			(at 177.8 144.78 0)
 			(hide yes)
 			(show_name no)
@@ -6178,7 +6178,7 @@
 				)
 			)
 		)
-		(property "MPN" ""
+		(property "MPN" "B2B-XH-A + XHP-2  (ComponentsDB comp_156, XH2.54 connector kit)"
 			(at 177.8 144.78 0)
 			(hide yes)
 			(show_name no)
@@ -6790,7 +6790,7 @@
 				)
 			)
 		)
-		(property "MPN" "YAGEO MF0207FTE52-100R  (TME MF0207FTE-100R; any 100 Ω 1% metal film fits)"
+		(property "MPN" "YAGEO MF0207FTE52-100R  (TME MF0207FTE-100R, ComponentsDB comp_242)"
 			(at 215.9 148.59 0)
 			(hide yes)
 			(show_name no)
@@ -6902,7 +6902,7 @@
 				)
 			)
 		)
-		(property "MPN" "YAGEO MF0207FTE52-100R  (TME MF0207FTE-100R; any 100 Ω 1% metal film fits)"
+		(property "MPN" "YAGEO MF0207FTE52-100R  (TME MF0207FTE-100R, ComponentsDB comp_242)"
 			(at 233.68 148.59 0)
 			(hide yes)
 			(show_name no)
@@ -7238,7 +7238,7 @@
 				)
 			)
 		)
-		(property "MPN" "AXIOMET PM-128  (TME PAN.PM128) — 1 needed, 2nd optional as a spare"
+		(property "MPN" "AXIOMET PM-128  (TME PAN.PM128, ComponentsDB comp_241)"
 			(at 309.88 146.05 0)
 			(hide yes)
 			(show_name no)

@@ -43,11 +43,11 @@ BOM = [
         "value": "2 A / 1000 V DC gR",
         "schematic_label": "2A/1kV DC",
         "description": "Fuse, 2 A, 1000 VDC, gR (super-fast, full-range), 30 kA breaking capacity, ceramic, 10.3×38 mm cartridge",
-        "part_number": "ESKA 1038820  (TME 1038820, in stock 2026-10-01; alt DF ELECTRIC 491602, Littelfuse KLKD002.T) — buy 2 (1 spare)",
+        "part_number": "ESKA 1038820  (TME 1038820, ComponentsDB comp_238 — 2 in hand, 1 spare; alt DF ELECTRIC 491602, Littelfuse KLKD002.T)",
         "qty": 1,
-        "status": "buy",
+        "status": "sourced",
         "notes": (
-            "Not in ComponentsDB inventory (checked 2026-10-01). Mounts in 2× Schurter CSO PCB clips (next entry). "
+            "Mounts in 2× Schurter CSO PCB clips (next entry). "
             "Single-fault protection: if Q1 fails open or D9 fails, Q2 turns fully on at 600 V and "
             "R_fast would see ~12 A / 7.2 kW — F1 opens the HV+ line on that fault. "
             "gR = full-range semiconductor-protection fuse: breaks any current that melts it, at 1000 VDC. "
@@ -62,12 +62,12 @@ BOM = [
         "value": "PCB fuse clip, 10.3×38 mm",
         "schematic_label": None,
         "description": "Fuse clip, PCB through-hole solder, for 10.3×38 mm cartridge fuses, silver-plated copper, 1500 VAC/VDC, 32 A",
-        "part_number": "SCHURTER 0751.0506  (CSO, TME 0751.0506) — 2 per fuse",
+        "part_number": "SCHURTER 0751.0506  (CSO, TME 0751.0506, ComponentsDB comp_239 — 5 in hand) — 2 per fuse",
         "qty": 2,
-        "status": "buy",
+        "status": "sourced",
         "notes": (
             "Holds F1. Replaces the earlier Keystone 3517, which is a clip for 5 mm (5×20) fuses and does not "
-            "fit a 10.3 mm cartridge. Not in ComponentsDB inventory. KiCad footprint must be made from the CSO "
+            "fit a 10.3 mm cartridge. KiCad footprint must be made from the CSO "
             "datasheet (stock library has no 10×38 clip footprint); keep ≥6 mm HV clearance around both clips."
         ),
     },
@@ -91,7 +91,7 @@ BOM = [
 
     # ══ FAST DISCHARGE PATH ══════════════════════════════════════════════════
     {
-        "refs": ["R_fast"],
+        "refs": ["R_fast1"],
         "value": "50 Ω / 7 W",
         "schematic_label": "50Ω/7W",
         "description": "Resistor, wirewound, 50 Ω, 7 W, ±5%, axial THT",
@@ -114,9 +114,9 @@ BOM = [
             "Thermal cutoff (thermal fuse), one-shot, organic-pellet type, Tf 133 °C, "
             "15 A / 250 VAC, metal case, axial leads"
         ),
-        "part_number": "SCHOTT SEFUSE SF129R0  (TME SF129R0; alt AUPO BF133) — buy 2 (1 spare)",
+        "part_number": "SCHOTT SEFUSE SF129R0  (TME SF129R0, ComponentsDB comp_240 — 3 in hand; alt AUPO BF133)",
         "qty": 1,
-        "status": "buy",
+        "status": "sourced",
         "notes": (
             "In series between R_fast and Q2 drain, body clamped against R_fast (stainless wire or clip "
             "+ thin thermal compound). Protects R_fast when the probes touch a live supply below the "
@@ -125,8 +125,7 @@ BOM = [
             "no trip on a 47 mF/60 V dump (peak 49 °C). If it opens, the slow path still discharges the "
             "cap; replace TF1. Caveat: SEFUSE ratings are AC only — here it breaks ≤1.6 A at ≤83 V DC "
             "into a resistive load, which is well inside the 15 A contact rating but not datasheet-rated "
-            "for DC. TF1's metal case is electrically live (HV net) — keep HV clearance to LV parts. "
-            "Not in ComponentsDB inventory."
+            "for DC. TF1's metal case is electrically live (HV net) — keep HV clearance to LV parts."
         ),
     },
     {
@@ -295,7 +294,7 @@ BOM = [
         ),
     },
     {
-        "refs": ["D_LED"],
+        "refs": ["D_LED1"],
         "value": "BZX55C8V2 / 8.2 V",
         "schematic_label": "BZX55C8V2\n8.2V",
         "description": "Zener diode, 8.2 V, 0.5 W, DO-35, THT",
@@ -309,15 +308,15 @@ BOM = [
         "value": "Red LED  Vf≈2V",
         "schematic_label": "Red  Vf≈2V",
         "description": "LED, red, 5 mm (T-1¾), low-current type (specified at 2 mA), Vf ≈ 1.8–2 V, diffused, THT",
-        "part_number": "HLMP-4700  (Broadcom, low-current red, TME HLMP-4700)  — fallback: kit 5 mm red LED (ComponentsDB)",
+        "part_number": "HLMP-4700  (Broadcom, low-current red, TME HLMP-4700, ComponentsDB comp_243)",
         "qty": 1,
-        "status": "buy",
+        "status": "sourced",
         "notes": (
             "Danger indicator. ON above ~10.2 V, OFF below. Bright at 2 mA (600 V); dim at 0.3 mA (100 V). "
             "A low-current (2 mA-rated) red LED is required for the 'LED ON = danger' indication to be "
             "visible: between ~10 V and ~63 V the chain current is only 0–130 µA (50 µA at 30 V) and a "
             "generic 20 mA kit LED is effectively dark below ~30–40 V. "
-            "Off-board: front panel (Ø5.1 hole, flange in a recess behind the wall, glued), on a 2-wire cable "
+            "Off-board: front panel, in a 5 mm plastic panel clip (no glue), on a 2-wire cable "
             "to J6 — heat-shrink both legs."
         ),
     },
@@ -365,18 +364,18 @@ BOM = [
         "value": "100 Ω / 0.6 W (2 in parallel = 50 Ω)",
         "schematic_label": "100Ω 1%",
         "description": "Resistor, metal film, 100 Ω, 0.6 W, ±1%, 50 ppm/°C, axial THT",
-        "part_number": "YAGEO MF0207FTE52-100R  (TME MF0207FTE-100R; any 100 Ω 1% metal film fits)",
+        "part_number": "YAGEO MF0207FTE52-100R  (TME MF0207FTE-100R, ComponentsDB comp_242)",
         "qty": 2,
-        "status": "buy",
+        "status": "sourced",
         "notes": (
             "Two in parallel form the 50 Ω divider bottom (replaces a single 49.9 Ω, out of stock at TME): "
             "600 V → 60.0 mV → PM-128 shows '600' before trim; its trimmer R4 corrects the remaining ~1 %. "
             "1.2 mA total, ~36 µW each. If one ever opens, the reading doubles ('1200' at 600 V) — "
-            "obviously wrong, never dangerous. Not in ComponentsDB inventory (only one 100 Ω, used as R4)."
+            "obviously wrong, never dangerous."
         ),
     },
     {
-        "refs": ["D_clamp"],
+        "refs": ["D_clamp1"],
         "value": "1N4007",
         "schematic_label": None,
         "description": "Diode, rectifier, 1 A, 1000 V PIV, DO-41, THT",
@@ -399,9 +398,9 @@ BOM = [
             "Digital panel meter, 3½-digit LCD, 13 mm digits, 199.9 mV full scale, input >100 MΩ, "
             "±0.5 %, 7–11 V DC supply at ~1 mA, decimal point by wire jumper, 68×44 mm"
         ),
-        "part_number": "AXIOMET PM-128  (TME PAN.PM128) — 1 needed, 2nd optional as a spare",
+        "part_number": "AXIOMET PM-128  (TME PAN.PM128, ComponentsDB comp_241)",
         "qty": 1,
-        "status": "buy",
+        "status": "sourced",
         "notes": (
             "Replaces the 0–100 V 3-wire LED module (its 0.525 MΩ input loaded the 6:1 divider beyond "
             "calibration range). Leave the factory RB wire jumper in (200 mV range), RA unfitted, and all "
@@ -444,9 +443,9 @@ BOM = [
     # ══ BYPASS / DECOUPLING ═══════════════════════════════════════════════════
     {
         "refs": ["C_byp2"],
-        "value": "100 nF / 50 V",
-        "schematic_label": "100nF/50V",
-        "description": "Capacitor, ceramic, 100 nF, 50 V, X7R, ±10%, 5 mm pitch, THT",
+        "value": "100 nF / 100 V",
+        "schematic_label": "100nF/100V",
+        "description": "Capacitor, ceramic, 100 nF, 100 V, X7R, ±10%, 5 mm pitch, THT",
         "part_number": "K104K10X7RF5UH5",
         "qty": 1,
         "status": "sourced",
@@ -458,7 +457,7 @@ BOM = [
         "refs": ["J1"],
         "value": "SLB4-G-21",
         "schematic_label": None,
-        "description": "Banana socket, 4 mm, 1 kV, 32 A, green, panel-mount, Ø12.2 mm hole",
+        "description": "Banana socket, 4 mm, 1 kV, 32 A, red, panel-mount, Ø12.2 mm hole",
         "part_number": "SLB4-G-21",
         "qty": 1,
         "status": "sourced",
@@ -514,13 +513,43 @@ BOM = [
     },
     {
         "refs": [],
-        "value": "Enclosure hardware",
+        "value": "Enclosure hardware, nylon + feet",
         "schematic_label": None,
-        "description": "4× M3×10 socket-head screw + 4× M3 steel hex nut DIN 934 (cover, captive in the boss slots), 2× M3×10 nylon pan-head screw + 2× M3 nylon nut (PCB H1/H3), 4 stick-on rubber feet",
-        "part_number": "Any — M3 hardware, PMMA rod Ø5",
+        "description": "2× M3×10 nylon pan-head screw + 2× M3 nylon nut (PCB H1/H3), 4 stick-on rubber feet",
+        "part_number": "Any",
         "qty": 1,
         "status": "buy",
-        "notes": "Cover screws are ≥ 10 mm from any HV part (box corners); the PCB screws must be nylon (H1/H3 sit next to HV copper).",
+        "notes": "The PCB screws must be nylon (H1/H3 sit next to HV copper). Not in ComponentsDB inventory (checked 2026-11-17).",
+    },
+    {
+        "refs": [],
+        "value": "Enclosure hardware, steel",
+        "schematic_label": None,
+        "description": "4× M3×10 socket-head screw + 4× M3 steel hex nut DIN 934 (cover, captive in the boss slots)",
+        "part_number": "ComponentsDB comp_341 (M3×10 hex socket) + comp_338 (M3 nut)",
+        "qty": 1,
+        "status": "sourced",
+        "notes": "Cover screws are ≥ 10 mm from any HV part (box corners).",
+    },
+    {
+        "refs": [],
+        "value": "LED panel clip, 5 mm",
+        "schematic_label": None,
+        "description": "LED mounting clip, plastic, panel mount, for 5 mm LEDs (holds LED1 in the front wall)",
+        "part_number": "ComponentsDB comp_259",
+        "qty": 1,
+        "status": "sourced",
+        "notes": "Clip in from the front, push LED1 in from inside (see mechanical/enclosure/README.md).",
+    },
+    {
+        "refs": [],
+        "value": "Thermal paste",
+        "schematic_label": None,
+        "description": "Thermal compound, silicone, 0.88 W/m·K (TF1 body clamped to R_fast1)",
+        "part_number": "AG TermoPasty H 25 g  (TME PASTA-SILH-25, ComponentsDB comp_245)",
+        "qty": 1,
+        "status": "sourced",
+        "notes": "Thin layer between TF1 and R_fast1.",
     },
 
     # ══ SOURCED BUT UNUSED IN CURRENT DESIGN ══════════════════════════════════

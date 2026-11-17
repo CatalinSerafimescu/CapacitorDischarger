@@ -136,7 +136,7 @@ with schemdraw.Drawing(show=False) as d:
     B2_X = 14
     d.add(elm.Dot().at((B2_X, HV_Y)))
     RF = d.add(elm.Resistor().down().at((B2_X, HV_Y)).length(EL))
-    rlabel(d, B2_X, HV_Y, RF.end[1], LABEL['R_fast'])
+    rlabel(d, B2_X, HV_Y, RF.end[1], LABEL['R_fast1'])
 
     # TF1 — one-shot thermal cutoff clamped to the R_fast body: opens if a live
     # supply below the threshold keeps Q2 on (R_fast overload that F1 can't see)
@@ -209,7 +209,7 @@ with schemdraw.Drawing(show=False) as d:
     DZ_top = cur[1]
     DZ_bot_y = DZ_top - EL
     DZ  = d.add(elm.Zener().up().at((B4_X, DZ_bot_y)).length(EL))
-    rlabel(d, B4_X, DZ_top, DZ_bot_y, LABEL['D_LED'])
+    rlabel(d, B4_X, DZ_top, DZ_bot_y, LABEL['D_LED1'])
     L1_top = DZ_bot_y
     L1  = d.add(elm.LED().down().at((B4_X, DZ_bot_y)).length(EL))
     rlabel(d, B4_X, L1_top, L1.end[1], LABEL['LED1'])
@@ -250,7 +250,7 @@ with schemdraw.Drawing(show=False) as d:
     d.add(elm.Line().right().at((RSB2_X, NODE_SIG[1])).tox(DCL_X))
     d.add(elm.Dot().at((DCL_X, NODE_SIG[1])))
     DCL = d.add(elm.Diode().down().at((DCL_X, NODE_SIG[1])).length(EL))
-    rlabel(d, DCL_X, NODE_SIG[1], DCL.end[1], LABEL['D_clamp'])
+    rlabel(d, DCL_X, NODE_SIG[1], DCL.end[1], LABEL['D_clamp1'])
     d.add(elm.Line().down().at(DCL.end).toy(GND_Y))
     d.add(elm.Dot().at((DCL_X, GND_Y)))
 
