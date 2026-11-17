@@ -14,7 +14,7 @@ This guide covers building, wiring, testing, calibrating and using the unit.
 ## 1. What you are building
 
 ```
- probe + ─► banana J1 (green) ─► J3 ┐                     ┌─► R_slow1-5 (23.5 kΩ) ─────────────────► GND   always on
+ probe + ─► banana J1 (red)   ─► J3 ┐                     ┌─► R_slow1-5 (23.5 kΩ) ─────────────────► GND   always on
  probe − ─► banana J2 (black) ─► J4 ┴─► bridge D1-D4 ─► F1 ┼─► R_fast1 (50 Ω) ─► TF1 ─► Q2 ─────────► GND   only below ~63 V
                                        (any polarity)      ├─► R1/R2 ► Q1 ► R5/D9 (threshold, gate drive of Q2)
                                                            ├─► R_LED1-4 ► D_LED1 ► J6 ═ cable ═► LED1 (front panel)   on above ~10 V
@@ -42,7 +42,7 @@ Every part is in [bom.md](bom.md) with its inventory ID. The **still to buy** li
 - Rubber feet.
 
 **Wire:**
-- **Probe leads (J1/J2 → J3/J4):** 1.5 mm² silicone, rated 0.6/1 kV.
+- **Probe leads (J1/J2 → J3/J4):** 1.0 mm² silicone, rated 0.6/1 kV.
 - **J5 cable, LED cable and 9 V wires:** thin silicone wire rated 1 kV. They run over HV parts.
 - **Lugs:** M4 ring lugs for the banana sockets.
 
@@ -143,8 +143,8 @@ Full details are in [mechanical/enclosure/README.md](mechanical/enclosure/README
 ## 6. Wiring and final assembly
 
 1. **Banana sockets (front wall):**
-   - Fit the green socket J1 on the right ("+") and the black J2 next to it ("−"). Their nuts go inside, and the flat of each hole is on top.
-   - Crimp M4 ring lugs on 1.5 mm² silicone wire. Bolt them to the sockets and heat-shrink the lugs.
+   - Fit the red socket J1 on the right ("+") and the black J2 next to it ("−"). Their nuts go inside, and the flat of each hole is on top.
+   - Crimp M4 ring lugs on 1.0 mm² silicone wire. Bolt them to the sockets and heat-shrink the lugs.
    - Each lug points straight at its terminal block: J1 → **J3**, J2 → **J4**.
    - Both poles of a block are the same probe, so use either entry.
 2. **DC jack (left wall, under the warning).** Fit it with its nut inside.
@@ -166,8 +166,8 @@ Full details are in [mechanical/enclosure/README.md](mechanical/enclosure/README
 
 | From | To | Wire |
 |---|---|---|
-| J1 green socket (M4 lug) | J3 (either entry) | 1.5 mm² silicone, 1 kV |
-| J2 black socket (M4 lug) | J4 (either entry) | 1.5 mm² silicone, 1 kV |
+| J1 red socket (M4 lug) | J3 (either entry) | 1.0 mm² silicone, 1 kV |
+| J2 black socket (M4 lug) | J4 (either entry) | 1.0 mm² silicone, 1 kV |
 | DC jack centre (+) / sleeve (−) | PM-128 +9 V / −9 V | thin silicone, 1 kV |
 | J5 pin 1 / pin 2 | PM-128 VIN / IN GND | thin silicone, 1 kV |
 | J6 pin 1 / pin 2 (XH) | LED1 cathode / anode | thin silicone, 1 kV |

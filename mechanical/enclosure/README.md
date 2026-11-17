@@ -24,7 +24,7 @@ The outside is **106.8 W × 132.8 D × 52 H mm**. It is designed for `CapacitorD
 - **Front wall.** The sockets sit low (Z 15), in a 50 mm gap in front of the board.
   - **Danger LED (LED1)** at the top left, labelled "HV". It is on a 2-wire cable to J6 (JST XH) on the board.
   - It sits in a 5 mm panel clip (Ø8 collar, Ø6.5 body, 7 mm long) in a Ø6.6 hole at X 14.4. The hole is centred in the 8 mm gap between the front-left cover boss and the meter. Clip in from the front, LED pushed in from inside, no glue.
-  - The black **−** socket (J2 → J4) and the green **+** socket (J1 → J3) are on the right, 20.5 mm apart.
+  - The black **−** socket (J2 → J4) and the red **+** socket (J1 → J3) are on the right, 20.5 mm apart.
   - Each socket lines up with the inner wire entry of its MKDS terminal block. Its M4 ring lug points straight into that entry, about 7 mm short of the block. The probe wires are short and straight, so they don't cross.
   - The terminal-block screws stay free to reach from the top.
 - **Left wall, front end.** The 9 V DC jack sits low (Z 15) under an engraved warning triangle. Next to it:
@@ -55,7 +55,7 @@ The outside is **106.8 W × 132.8 D × 52 H mm**. It is designed for `CapacitorD
 1. Fit the sockets (front wall) and the DC jack (left wall), with their nuts on the inside. Push the LED clip into the front wall from the outside,
    with its slots vertical so the body spreads up/down, away from the boss and the meter. Push the LED into it from inside:
    heat-shrink both legs, then crimp the XH housing onto ~15 cm of 1 kV silicone wire. Pin 1 = cathode (GND), pin 2 = anode.
-2. Wire the sockets to J3/J4 with 1.5 mm² silicone wire (0.6/1 kV) and M4 ring lugs, and put heat-shrink over the lugs.
+2. Wire the sockets to J3/J4 with 1.0 mm² silicone wire (0.6/1 kV) and M4 ring lugs, and put heat-shrink over the lugs.
 3. Push an M3 nut into each boss slot, lying flat with two flats along the slot walls, until it stops under the screw hole.
 4. Put the board on the standoffs, let it click into the hooks, and fit the two nylon screws. Plug the LED into J6
    (rear-left). Run its cable up and along the left wall, above the Q2 heatsink, then down to the front.
